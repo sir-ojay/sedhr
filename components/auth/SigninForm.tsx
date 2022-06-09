@@ -11,10 +11,17 @@ const SigninForm = () => {
 				placeholder='you@sedher.com'
 				value={""}
 				type='email'
+				onChange={() => {}}
 			/>
-			<Input label='Password' value={""} type='password' />
+			<Input onChange={() => {}} label='Password' value={""} type='password' />
 			<div className='flex justify-between items-center'>
-				<Checkbox value={true} label='Remember me' size='md' id='rememberMe' />
+				<Checkbox
+					value={true}
+					label='Remember me'
+					size='md'
+					id='rememberMe'
+					onChange={() => {}}
+				/>
 				<Button
 					tag='link'
 					href='/auth/forgot-password'
@@ -22,7 +29,12 @@ const SigninForm = () => {
 					Forgot password
 				</Button>
 			</div>
-			<Button theme='primary' disabled className='w-full' loading={false}>
+			<Button
+				theme='primary'
+				onClick={() => console.log("click")}
+				disabled
+				className='w-full'
+				loading={false}>
 				Login
 			</Button>
 		</form>
