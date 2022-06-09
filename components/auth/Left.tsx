@@ -5,6 +5,30 @@ const Left = () => {
 	return (
 		<>
 			<div className='bg-[#E7F6FD] w-[45%] h-full relative overflow-hidden'>
+				<div className='left-[-40px] top-[0px] absolute w-[62%]'>
+					<Image
+						src='/assets/images/auth/bg-svg-1.svg'
+						width={519}
+						height={576}
+						alt=''
+					/>
+				</div>
+				<div className='left-[-175px] bottom-[-250px] absolute w-[62%]'>
+					<Image
+						src='/assets/images/auth/bg-svg-2.svg'
+						width={519}
+						height={576}
+						alt=''
+					/>
+				</div>
+				<div className='top-[175px] right-[-90px] absolute w-[55%]'>
+					<Image
+						src='/assets/images/auth/bg-svg-2.svg'
+						width={519}
+						height={576}
+						alt=''
+					/>
+				</div>
 				<div className='ml-[62px] mt-[42px]'>
 					<Image
 						src='/assets/icons/logo.svg'
@@ -13,7 +37,7 @@ const Left = () => {
 						alt='sedher'
 					/>
 				</div>
-				<div className='absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[450px]'>
+				<div className='absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[65%]'>
 					<Image
 						src='/assets/images/auth/medical-professional.png'
 						width={528}
@@ -30,7 +54,9 @@ const Left = () => {
 					/>
 				</div>
 				<div className='bg-white p-[20px] absolute top-[140px] left-8'>
-					<div className='w-[50px] h-[40px]'>{/* <Image/> */}</div>
+					<div className='w-[56px] h-[40px] mb-6'>
+						<Image src='/assets/icons/connect.svg' width={56} height={40} />
+					</div>
 					<div className='text-dark-900 text-[20px] font-bold'>100K+</div>
 					<div className='text-dark-100 leading-[150%]'>
 						Connect with people
