@@ -1,5 +1,6 @@
 import { ButtonProps } from "@/types/ButtonProps";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { ClipLoader } from "react-spinners";
 
@@ -8,12 +9,13 @@ const Button: React.FC<ButtonProps> = ({
 	disabled,
 	theme = "primary",
 	icon = null,
-	link = null,
+	href = "/",
 	size = "md",
-	underline = false,
+	underline = true,
 	outline = false,
 	isExternal = false,
 	children,
+	tag,
 	className,
 	...rest
 }) => {
@@ -23,6 +25,21 @@ const Button: React.FC<ButtonProps> = ({
 				return "bg-primary text-white";
 			case "outline":
 				return `bg-transparent text-secondary border-2 border-[#E2D3CF]`;
+			case "secondary":
+				return "bg-secondary text-white";
+			default:
+				return "bg-primary text-white";
+		}
+	};
+
+	const LinkTheme = (theme: string) => {
+		switch (theme) {
+			case "primary":
+				return "text-primary";
+			case "secondary":
+				return "text-secondary";
+			default:
+				return "text-primary";
 		}
 	};
 
@@ -66,12 +83,26 @@ const Button: React.FC<ButtonProps> = ({
 				return "#fff";
 		}
 	};
+
+	if (tag === "link") {
+		return (
+			<Link href={href}>
+				<a
+					className={`${LinkTheme(theme)} ${buttonSize(size)} ${
+						underline ? "underline" : null
+					} ${className}`}
+					{...rest}>
+					{children}
+				</a>
+			</Link>
+		);
+	}
 	return (
 		<button
 			disabled={disabled || loading}
 			className={`flex items-center font-epilogue justify-center transition-all rounded-[5px] hover:brightness-90 disabled:brightness-[60%] ease-in text-center gap-4 font-bold disabled:cursor-not-allowed ${buttonTheme(
 				theme
-			)} ${buttonSize(size)} ${underline ? "underline" : ""} ${className}`}
+			)} ${buttonSize(size)} ${className}`}
 			{...rest}>
 			<ClipLoader color={iconColor(theme)} loading={loading} size={20} />
 			{icon && (

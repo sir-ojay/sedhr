@@ -1,14 +1,17 @@
+import React from "react";
+
 export type ButtonProps = {
 	loading?: boolean;
 	disabled?: boolean;
-	theme: "primary" | "secondary" | "plain" | "outline";
+	theme?: "primary" | "secondary" | "plain" | "outline";
 	tag?: "button" | "link";
 	isExternal?: boolean;
 	outline?: boolean;
 	icon?: string;
-	link?: string;
+	href?: string;
 	size?: "sm" | "md" | "lg" | "xl";
 	underline?: boolean;
 	className?: string;
 	children: string;
-} & Omit<React.ComponentProps<"button">, "children">;
+} & Omit<React.ComponentProps<"button">, "children"> &
+	React.ComponentProps<"a">;

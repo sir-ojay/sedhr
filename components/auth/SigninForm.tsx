@@ -15,10 +15,15 @@ const SigninForm = () => {
 			<Input label='Password' value={""} type='password' />
 			<div className='flex justify-between items-center'>
 				<Checkbox value={true} label='Remember me' size='md' id='rememberMe' />
-				<div>Forget password</div>
+				<Button
+					tag='link'
+					href='/auth/forgot-password'
+					className='text-[#616A6A]'>
+					Forgot password
+				</Button>
 			</div>
 			<Button theme='primary' disabled className='w-full' loading={false}>
-				Get Started
+				Login
 			</Button>
 		</form>
 	);
