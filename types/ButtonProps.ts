@@ -1,5 +1,4 @@
 export type ButtonProps = {
-	// label: string;
 	loading?: boolean;
 	disabled?: boolean;
 	theme: "primary" | "secondary" | "plain" | "outline";
@@ -11,4 +10,5 @@ export type ButtonProps = {
 	size?: "sm" | "md" | "lg" | "xl";
 	underline?: boolean;
 	className?: string;
-} & React.ComponentProps<"button">;
+	children: string;
+} & Omit<React.ComponentProps<"button">, "children">;

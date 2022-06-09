@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@/components/global/Button";
 import SigninForm from "./SigninForm";
+import Divider from "@/components/global/Divider";
 
 const Signin = () => {
 	return (
@@ -10,7 +11,7 @@ const Signin = () => {
 					<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
 						Welcome to Sedher
 					</h1>
-					<p className='font-epilogue font-medium text-lg leading-[160%] text-dark-100'>
+					<p className='font-epilogue font-medium text-lg leading-[160%] text-dark-100 mb-6'>
 						Let us get to know you better!
 					</p>
 					<Button
@@ -20,6 +21,7 @@ const Signin = () => {
 						icon='google'>
 						Sign in with Google
 					</Button>
+					<Divider label='Or sign in with email' />
 					<SigninForm />
 				</div>
 			</div>
