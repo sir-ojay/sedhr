@@ -72,7 +72,7 @@ const SignupForm = ({ loading, setLoading }: SignupFormProps) => {
 				{`Already have an account? `}
 				<Button
 					tag='link'
-					href='signin'
+					href='/auth/signin'
 					theme='primary'
 					className='font-semibold'>
 					Sign in

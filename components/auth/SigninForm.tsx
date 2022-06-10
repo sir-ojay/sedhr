@@ -47,7 +47,7 @@ const SigninForm = () => {
 				{`Already have an account? `}
 				<Button
 					tag='link'
-					href='signup?step=1'
+					href='/auth/signup?step=1'
 					theme='primary'
 					className='font-semibold'>
 					Sign up

@@ -2,6 +2,7 @@ module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
+    './layouts/**/*.{js,ts,jsx,tsx}',
     './node_modules/tw-elements/dist/js/**/*.js',
   ],
   theme: {
@@ -37,10 +38,14 @@ module.exports = {
       },
       backgroundImage: {
         'auth-left': "url('/assets/images/auth/bg-svg.svg')",
-      }
+      },
     },
   },
   plugins: [
-    require('tw-elements/dist/plugin')
+    require('tw-elements/dist/plugin'),
+    require('tailwind-scrollbar')
   ],
+  variants: {
+    scrollbar: ['rounded']
+  },
 };

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { InputProps } from "@/types/InputProps";
+import { useState } from "react";
+import { InputProps } from "@/types/global/InputProps";
 
 const Input = ({
 	label,

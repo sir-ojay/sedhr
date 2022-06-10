@@ -8,3 +8,12 @@
 body {
 	font-family: "Inter", sans-serif;
 }
+
+.nav-hover:hover {
+	img {
+		filter: invert(25%) sepia(49%) saturate(527%) hue-rotate(137deg)
+			brightness(53%) contrast(92%);
+	}
+	color: #1e5156;
+	background-color: #e7f6fd;
+}

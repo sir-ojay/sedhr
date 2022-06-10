@@ -1,7 +1,6 @@
-import { ButtonProps } from "@/types/ButtonProps";
+import { ButtonProps } from "@/types/global/ButtonProps";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { ClipLoader } from "react-spinners";
 import { useRouter } from "next/router";
 
