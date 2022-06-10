@@ -13,11 +13,10 @@ class MyDocument extends Document {
 		return initialProps;
 	}
 
-	ender() {
+	render() {
 		return (
 			<Html>
 				<Head>
-					<title>Sedher</title>
 					<link rel='icon' href='/favicon.ico' />
 					<meta name='Sedher' content='Sedher' />
 					<meta property='og:url' content='https://sedher.com/' />
