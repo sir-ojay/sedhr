@@ -3,13 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { ClipLoader } from "react-spinners";
+import { useRouter } from "next/router";
 
 const Button: React.FC<ButtonProps> = ({
 	loading = false,
 	disabled,
 	theme = "primary",
 	icon = null,
-	href = "/",
+	href,
 	size = "md",
 	underline = true,
 	outline = false,
@@ -19,6 +20,8 @@ const Button: React.FC<ButtonProps> = ({
 	className,
 	...rest
 }) => {
+	const router = useRouter();
+
 	const buttonTheme = (theme: string) => {
 		switch (theme) {
 			case "primary":
@@ -88,7 +91,7 @@ const Button: React.FC<ButtonProps> = ({
 
 	if (tag === "link") {
 		return (
-			<Link href={href}>
+			<Link href={href || router.pathname}>
 				<a
 					className={`${LinkTheme(theme)} ${
 						underline ? "underline" : null

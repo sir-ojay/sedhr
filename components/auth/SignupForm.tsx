@@ -3,7 +3,11 @@ import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import Checkbox from "../global/Checkbox";
 
-const SignupForm = () => {
+type SignupFormProps = {
+	setStep: (step: number) => void;
+};
+
+const SignupForm = ({ setStep }: SignupFormProps) => {
 	return (
 		<form className='space-y-6'>
 			<Input
@@ -25,13 +29,6 @@ const SignupForm = () => {
 				type='email'
 				onChange={() => {}}
 			/>
-			{/* <Input
-				onChange={() => {}}
-				label='Password'
-				placeholder='password'
-				value={""}
-				type='password'
-			/> */}
 			<div className='flex justify-between items-center'>
 				<label className='flex '>
 					<Checkbox
@@ -55,11 +52,11 @@ const SignupForm = () => {
 			</div>
 			<Button
 				theme='primary'
-				onClick={() => console.log("click")}
-				disabled
+				onClick={() => setStep(2)}
+				// disabled
 				className='w-full'
 				loading={false}>
-				Login
+				Get Started
 			</Button>
 			<div className='text-left text-dark-100 font-epilogue'>
 				{`Already have an account? `}
