@@ -5,7 +5,7 @@ import React from "react";
 
 const signup: NextPage = () => {
 	return (
-		<AuthLayout>
+		<AuthLayout title='Sedher | Sign up | Create an account'>
 			<Signup />
 		</AuthLayout>
 	);

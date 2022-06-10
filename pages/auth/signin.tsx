@@ -4,7 +4,7 @@ import { NextPage } from "next";
 
 const signin: NextPage = () => {
 	return (
-		<AuthLayout>
+		<AuthLayout title='Sedher | Sign in'>
 			<Signin />
 		</AuthLayout>
 	);

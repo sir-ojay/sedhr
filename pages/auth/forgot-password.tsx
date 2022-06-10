@@ -6,7 +6,7 @@ import React from "react";
 
 const forgotPassword: NextPage = () => {
 	return (
-		<AuthLayout>
+		<AuthLayout title='Sedher | Forgot password'>
 			<div className='w-[55%] h-full'>
 				<div className='w-[408px] mx-auto mt-[90px] text-center'>
 					<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
