@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import Checkbox from "../global/Checkbox";
+import Router from "next/router";
 
 const SigninForm = () => {
+	const [loading, setLoading] = useState(false);
+
 	return (
 		<form className='space-y-6'>
 			<Input
@@ -37,10 +40,17 @@ const SigninForm = () => {
 			</div>
 			<Button
 				theme='primary'
-				onClick={() => console.log("click")}
-				disabled
+				onClick={(event) => {
+					event.preventDefault();
+					setLoading(true);
+					setTimeout(() => {
+						Router.push("/onboarding/account");
+						setLoading(false);
+					}, 1500);
+				}}
+				// disabled
 				className='w-full'
-				loading={false}>
+				loading={loading}>
 				Login
 			</Button>
 			<div className='text-left text-dark-100 font-epilogue'>
