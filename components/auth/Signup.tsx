@@ -10,13 +10,14 @@ const Signup = () => {
 	const router = useRouter();
 
 	const { step } = router.query;
+
 	const [loading, setLoading] = useState(false);
 
 	return (
 		<>
 			<div className='w-[55%] h-full'>
 				<div className='w-[408px] mx-auto mt-[90px] text-center'>
-					{step === "1" && (
+					{(step === "1" || step === undefined) && (
 						<>
 							<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
 								Welcome to Sedher
