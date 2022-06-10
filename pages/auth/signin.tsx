@@ -1,13 +1,12 @@
-import Left from "@/components/auth/Left";
 import Signin from "@/components/auth/Signin";
+import AuthLayout from "@/components/layouts/authLayout";
 import { NextPage } from "next";
 
 const signin: NextPage = () => {
 	return (
-		<section className='flex items-center w-full h-[100vh]'>
-			<Left />
+		<AuthLayout>
 			<Signin />
-		</section>
+		</AuthLayout>
 	);
 };
 
