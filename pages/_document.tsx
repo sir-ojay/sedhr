@@ -17,7 +17,7 @@ class MyDocument extends Document {
 		return (
 			<Html>
 				<Head>
-					<title>Bitcasino</title>
+					<title>Sedher</title>
 					<link rel='icon' href='/favicon.ico' />
 					<link
 						rel='preconnect'

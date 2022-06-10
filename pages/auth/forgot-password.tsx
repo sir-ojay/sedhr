@@ -1,6 +1,6 @@
 import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
-import AuthLayout from "@/components/layouts/AuthLayout";
+import AuthLayout from "@/layouts/AuthLayout";
 import { NextPage } from "next";
 import React from "react";
 

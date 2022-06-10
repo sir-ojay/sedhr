@@ -1,5 +1,5 @@
 import Signup from "@/components/auth/Signup";
-import AuthLayout from "@/components/layouts/AuthLayout";
+import AuthLayout from "@/layouts/AuthLayout";
 import { NextPage } from "next";
 import React from "react";
 
