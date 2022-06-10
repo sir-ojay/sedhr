@@ -4,14 +4,19 @@ import SigninForm from "./SigninForm";
 import Divider from "@/components/global/Divider";
 import SignupForm from "./SignupForm";
 import Input from "../global/Input";
+import { useRouter } from "next/router";
 
 const Signup = () => {
-	const [step, setStep] = useState(1);
+	const router = useRouter();
+
+	const { step } = router.query;
+	const [loading, setLoading] = useState(false);
+
 	return (
 		<>
 			<div className='w-[55%] h-full'>
 				<div className='w-[408px] mx-auto mt-[90px] text-center'>
-					{step === 1 && (
+					{step === "1" && (
 						<>
 							<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
 								Welcome to Sedher
@@ -27,10 +32,10 @@ const Signup = () => {
 								Sign up with Google
 							</Button>
 							<Divider label='Or sign up with email' />
-							<SignupForm setStep={setStep} />
+							<SignupForm loading={loading} setLoading={setLoading} />
 						</>
 					)}
-					{step === 2 && (
+					{step === "2" && (
 						<>
 							<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
 								Verify your Email
@@ -47,10 +52,18 @@ const Signup = () => {
 								/>
 								<Button
 									theme='primary'
-									onClick={() => setStep(3)}
+									onClick={(event) => {
+										event.preventDefault();
+										setLoading(true);
+										setTimeout(() => {
+											router.push("signup?step=3");
+
+											setLoading(false);
+										}, 1500);
+									}}
 									// disabled
 									className='w-full'
-									loading={false}>
+									loading={loading}>
 									Verify
 								</Button>
 								<div className='text-left text-dark-100 font-epilogue'>
@@ -62,7 +75,7 @@ const Signup = () => {
 							</form>
 						</>
 					)}
-					{step === 3 && (
+					{step === "3" && (
 						<>
 							<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
 								password

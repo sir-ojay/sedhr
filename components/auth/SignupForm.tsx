@@ -2,12 +2,15 @@ import React from "react";
 import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import Checkbox from "../global/Checkbox";
+import { useRouter } from "next/router";
 
 type SignupFormProps = {
-	setStep: (step: number) => void;
+	loading: boolean;
+	setLoading: (state: boolean) => void;
 };
 
-const SignupForm = ({ setStep }: SignupFormProps) => {
+const SignupForm = ({ loading, setLoading }: SignupFormProps) => {
+	const router = useRouter();
 	return (
 		<form className='space-y-6'>
 			<Input
@@ -52,10 +55,17 @@ const SignupForm = ({ setStep }: SignupFormProps) => {
 			</div>
 			<Button
 				theme='primary'
-				onClick={() => setStep(2)}
+				onClick={(event) => {
+					event.preventDefault();
+					setLoading(true);
+					setTimeout(() => {
+						router.push("signup?step=2");
+						setLoading(false);
+					}, 1500);
+				}}
 				// disabled
 				className='w-full'
-				loading={false}>
+				loading={loading}>
 				Get Started
 			</Button>
 			<div className='text-left text-dark-100 font-epilogue'>
