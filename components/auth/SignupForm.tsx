@@ -3,9 +3,21 @@ import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import Checkbox from "../global/Checkbox";
 
-const SigninForm = () => {
+const SignupForm = () => {
 	return (
 		<form className='space-y-6'>
+			<Input
+				label='First Name'
+				placeholder='first name'
+				value={""}
+				onChange={() => {}}
+			/>
+			<Input
+				label='Last Name'
+				placeholder='last name'
+				value={""}
+				onChange={() => {}}
+			/>
 			<Input
 				label='Email Address'
 				placeholder='you@sedher.com'
@@ -13,27 +25,33 @@ const SigninForm = () => {
 				type='email'
 				onChange={() => {}}
 			/>
-			<Input
+			{/* <Input
 				onChange={() => {}}
 				label='Password'
 				placeholder='password'
 				value={""}
 				type='password'
-			/>
+			/> */}
 			<div className='flex justify-between items-center'>
-				<Checkbox
-					value={true}
-					label='Remember me'
-					size='md'
-					id='rememberMe'
-					onChange={() => {}}
-				/>
-				<Button
-					tag='link'
-					href='/auth/forgot-password'
-					className='text-[#616A6A]'>
-					Forgot password
-				</Button>
+				<label className='flex '>
+					<Checkbox
+						value={true}
+						size='md'
+						id='rememberMe'
+						onChange={() => {}}
+					/>
+					<div className='text-left text-dark-100 font-epilogue text-sm'>
+						{`By clicking 'Continue', you acknowledge that you have read and
+						accept the `}
+						<Button tag='link' href='/terms-of-service' theme='secondary'>
+							Terms of Service
+						</Button>
+						{` and `}
+						<Button tag='link' href='/privacy-policy' theme='secondary'>
+							Privacy Policy.
+						</Button>
+					</div>
+				</label>
 			</div>
 			<Button
 				theme='primary'
@@ -47,10 +65,10 @@ const SigninForm = () => {
 				{`Already have an account? `}
 				<Button
 					tag='link'
-					href='signup'
+					href='signin'
 					theme='primary'
 					className='font-semibold'>
-					Sign up
+					Sign in
 				</Button>
 			</div>
 			<div className='pb-8' />
@@ -58,4 +76,4 @@ const SigninForm = () => {
 	);
 };
 
-export default SigninForm;
+export default SignupForm;

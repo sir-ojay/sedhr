@@ -23,6 +23,8 @@ const Button: React.FC<ButtonProps> = ({
 		switch (theme) {
 			case "primary":
 				return "bg-primary text-white";
+			case "plain":
+				return `bg-transparent`;
 			case "outline":
 				return `bg-transparent text-secondary border-2 border-[#E2D3CF]`;
 			case "secondary":
@@ -88,7 +90,7 @@ const Button: React.FC<ButtonProps> = ({
 		return (
 			<Link href={href}>
 				<a
-					className={`${LinkTheme(theme)} ${buttonSize(size)} ${
+					className={`${LinkTheme(theme)} ${
 						underline ? "underline" : null
 					} ${className}`}
 					{...rest}>

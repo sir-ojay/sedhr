@@ -27,7 +27,7 @@ export type InputProps = {
 	id?: string;
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	value?: boolean | string | number;
-	autoComplete?: string;
+	autoComplete?: string | boolean;
 	disabled?: boolean;
 	step?: number;
 	name?: string;

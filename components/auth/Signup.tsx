@@ -2,8 +2,9 @@ import React from "react";
 import Button from "@/components/global/Button";
 import SigninForm from "./SigninForm";
 import Divider from "@/components/global/Divider";
+import SignupForm from "./SignupForm";
 
-const Signin = () => {
+const Signup = () => {
 	return (
 		<>
 			<div className='w-[55%] h-full'>
@@ -19,14 +20,14 @@ const Signin = () => {
 						className='w-full border-2 border-[#D4EBEB] text-[#103BF2]'
 						loading={false}
 						icon='google'>
-						Sign in with Google
+						Sign up with Google
 					</Button>
-					<Divider label='Or sign in with email' />
-					<SigninForm />
+					<Divider label='Or sign up with email' />
+					<SignupForm />
 				</div>
 			</div>
 		</>
 	);
 };
 
-export default Signin;
+export default Signup;

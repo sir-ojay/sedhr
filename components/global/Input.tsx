@@ -9,7 +9,7 @@ const Input = ({
 	onChange,
 	value,
 	max,
-	autoComplete,
+	autoComplete = "off",
 	disabled,
 	...rest
 }: InputProps) => {
@@ -27,7 +27,6 @@ const Input = ({
 				id={id}
 				value={value}
 				onChange={onChange}
-				autoComplete={autoComplete || "off"}
 				disabled={disabled || false}
 				{...rest}
 			/>

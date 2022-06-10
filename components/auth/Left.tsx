@@ -3,8 +3,8 @@ import React from "react";
 
 const Left = () => {
 	return (
-		<>
-			<div className='bg-[#E7F6FD] w-[45%] h-full relative overflow-hidden'>
+		<aside className='w-[45%] h-full relative'>
+			<div className='bg-[#E7F6FD] w-[45%] fixed top-0 left-0 h-full  overflow-hidden'>
 				<div className='left-[-40px] top-[0px] absolute w-[62%]'>
 					<Image
 						src='/assets/images/auth/bg-svg-1.svg'
@@ -37,7 +37,7 @@ const Left = () => {
 						alt='sedher'
 					/>
 				</div>
-				<div className='absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[65%]'>
+				<div className='absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-[62%]'>
 					<Image
 						src='/assets/images/auth/medical-professional.png'
 						width={528}
@@ -85,7 +85,7 @@ const Left = () => {
 					</div>
 				</div>
 			</div>
-		</>
+		</aside>
 	);
 };
 
