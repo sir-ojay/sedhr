@@ -10,7 +10,7 @@ const AccountTypeCard = ({
 	iconColour,
 }: AccountTypeCardProps) => {
 	const gotoPayment = () => {
-		Router.push(`/onboarding/payment?type=${title}`);
+		Router.push(`/onboarding/payment?type=${title.toLowerCase()}`);
 	};
 	return (
 		<div className='w-[334px] bg-white p-5 rounded-[5px] font-epilogue space-y-5'>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Router from "next/router";
 import React from "react";
 
 type OnboardingHeaderProps = {

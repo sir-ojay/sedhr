@@ -4,7 +4,7 @@ import React from "react";
 const Left = () => {
 	return (
 		<aside className='w-[45%] h-full relative'>
-			<div className='bg-[#E7F6FD] w-[45%] fixed top-0 left-0 h-full  overflow-hidden'>
+			<div className='bg-[#E7F6FD] w-[45%] fixed top-0 left-0 h-full overflow-hidden'>
 				<div className='left-[-40px] top-[0px] absolute w-[62%]'>
 					<Image
 						src='/assets/images/auth/bg-svg-1.svg'

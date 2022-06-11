@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Button from "@/components/global/Button";
-import SigninForm from "./SigninForm";
 import Divider from "@/components/global/Divider";
 import SignupForm from "./SignupForm";
 import Input from "../global/Input";
@@ -28,7 +27,6 @@ const Signup = () => {
 							<Button
 								theme='plain'
 								className='w-full border-2 border-[#D4EBEB] text-[#103BF2]'
-								loading={false}
 								icon='google'>
 								Sign up with Google
 							</Button>
