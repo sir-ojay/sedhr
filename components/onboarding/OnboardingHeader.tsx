@@ -16,7 +16,7 @@ type OnboardingHeaderProps = {
 const OnboardingHeader = ({ step, steps, children }: OnboardingHeaderProps) => {
 	return (
 		<div>
-			<nav className='bg-white h-full'>
+			<nav className='bg-white'>
 				<ul className='bg-white pt-16 pb-4 flex justify-between items-center gap-5 px-7 w-[calc(100%-272px)] fixed right-0'>
 					{steps.map((_step, index) => (
 						<li
@@ -64,7 +64,7 @@ const OnboardingHeader = ({ step, steps, children }: OnboardingHeaderProps) => {
 				</ul>
 			</nav>
 
-			<main className='py-[140px] bg-[#E7F6FD]'>{children}</main>
+			<main className='py-[140px] bg-[#e7f6fd66] p-9'>{children}</main>
 		</div>
 	);
 };

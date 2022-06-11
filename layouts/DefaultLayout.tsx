@@ -16,7 +16,7 @@ const DefaultLayout = ({ title, children }: DefaultLayoutProps) => {
 			<div className='w-[272px] h-screen'>
 				<LeftNavigation />
 			</div>
-			<div className='w-[calc(100%-272px)] h-[150vh]'>{children}</div>
+			<div className='w-[calc(100%-272px)]'>{children}</div>
 		</div>
 	);
 };
