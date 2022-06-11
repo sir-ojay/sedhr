@@ -1,5 +1,6 @@
 import Button from "@/components/global/Button";
 import { AccountTypeCardProps } from "@/types/onboarding/account/AccountTypeCardProps";
+import Router from "next/router";
 
 const AccountTypeCard = ({
 	title,
@@ -8,6 +9,9 @@ const AccountTypeCard = ({
 	buttonColor,
 	iconColour,
 }: AccountTypeCardProps) => {
+	const gotoPayment = () => {
+		Router.push(`/onboarding/payment?type=${title}`);
+	};
 	return (
 		<div className='w-[334px] bg-white p-5 rounded-[5px] font-epilogue space-y-5'>
 			<div
@@ -32,7 +36,8 @@ const AccountTypeCard = ({
 					backgroundColor: `${buttonColor}`,
 				}}
 				size='sm'
-				theme='plain'>
+				theme='plain'
+				onClick={gotoPayment}>
 				Setup
 			</Button>
 		</div>
