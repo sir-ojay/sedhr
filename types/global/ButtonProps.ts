@@ -4,7 +4,7 @@ export type ButtonProps = {
 	loading?: boolean;
 	disabled?: boolean;
 	theme?: "primary" | "secondary" | "plain" | "outline";
-	tag?: "button" | "link";
+	tag?: "button" | "a";
 	isExternal?: boolean;
 	outline?: boolean;
 	icon?: string;
@@ -14,4 +14,4 @@ export type ButtonProps = {
 	className?: string;
 	children: string;
 } & Omit<React.ComponentProps<"button">, "children"> &
-	React.ComponentProps<"a">;
+	Omit<React.ComponentProps<"a">, "children">;

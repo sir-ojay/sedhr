@@ -33,7 +33,7 @@ const forgotPassword: NextPage = () => {
 						<div className='text-left text-dark-100 font-epilogue'>
 							{`Remembered your password? `}
 							<Button
-								tag='link'
+								tag='a'
 								href='signin'
 								theme='primary'
 								className='font-semibold'>

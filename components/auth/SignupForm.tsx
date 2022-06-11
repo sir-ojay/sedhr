@@ -43,11 +43,11 @@ const SignupForm = ({ loading, setLoading }: SignupFormProps) => {
 					<div className='text-left text-dark-100 font-epilogue text-sm'>
 						{`By clicking 'Continue', you acknowledge that you have read and
 						accept the `}
-						<Button tag='link' href='/terms-of-service' theme='secondary'>
+						<Button tag='a' href='/terms-of-service' theme='secondary'>
 							Terms of Service
 						</Button>
 						{` and `}
-						<Button tag='link' href='/privacy-policy' theme='secondary'>
+						<Button tag='a' href='/privacy-policy' theme='secondary'>
 							Privacy Policy.
 						</Button>
 					</div>
@@ -71,7 +71,7 @@ const SignupForm = ({ loading, setLoading }: SignupFormProps) => {
 			<div className='text-left text-dark-100 font-epilogue'>
 				{`Already have an account? `}
 				<Button
-					tag='link'
+					tag='a'
 					href='/auth/signin'
 					theme='primary'
 					className='font-semibold'>

@@ -17,3 +17,7 @@ body {
 	color: #1e5156;
 	background-color: #e7f6fd;
 }
+
+.tab-active {
+	filter: brightness(0) invert(1);
+}

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Navigations = ({ navigations }: LeftNavigationProps) => {
 	return (
-		<div className='overflow-y-auto h-[calc(100vh-120px)] transition-all ease-in scrollbar-thin hover:scrollbar-thumb-primary hover:scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
+		<div className='overflow-y-auto h-[calc(100vh-120px)] pt-1 transition-all ease-in scrollbar-thin hover:scrollbar-thumb-primary hover:scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
 			{navigations.map((navigation) => (
 				<div key={navigation.name} className='pb-3'>
 					{navigation.name && (
@@ -32,7 +32,9 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 										</a>
 									</Link>
 								) : (
-									<a className='nav-hover flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]'>
+									<a
+										tabIndex={0}
+										className='nav-hover flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]'>
 										<img
 											src={`/assets/icons/layouts/${item.icon}.svg`}
 											alt={item.name}

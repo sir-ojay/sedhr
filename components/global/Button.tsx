@@ -88,9 +88,16 @@ const Button: React.FC<ButtonProps> = ({
 		}
 	};
 
-	if (tag === "link") {
+	if (tag === "a") {
 		return (
-			<Link href={href || router.pathname}>
+			<Link
+				href={
+					isExternal
+						? !href?.includes("https" || "http")
+							? `https://${href}`
+							: href
+						: href || router.pathname
+				}>
 				<a
 					className={`${LinkTheme(theme)} ${
 						underline ? "underline" : null
@@ -101,6 +108,7 @@ const Button: React.FC<ButtonProps> = ({
 			</Link>
 		);
 	}
+
 	return (
 		<button
 			disabled={disabled || loading}

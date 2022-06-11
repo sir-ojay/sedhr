@@ -10,7 +10,7 @@ const Input = ({
 	value,
 	max,
 	autoComplete = "off",
-	disabled,
+	disabled = false,
 	...rest
 }: InputProps) => {
 	const [errorMessage, setErrorMessage] = useState("");
@@ -27,7 +27,7 @@ const Input = ({
 				id={id}
 				value={value}
 				onChange={onChange}
-				disabled={disabled || false}
+				disabled={disabled}
 				{...rest}
 			/>
 			{errorMessage && (

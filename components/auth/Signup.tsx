@@ -69,7 +69,7 @@ const Signup = () => {
 								</Button>
 								<div className='text-left text-dark-100 font-epilogue'>
 									{`Didn’t get the code? `}
-									<Button tag='link' theme='primary' className='font-semibold'>
+									<Button tag='a' theme='primary' className='font-semibold'>
 										Click Resend
 									</Button>
 								</div>
@@ -110,7 +110,7 @@ const Signup = () => {
 								<div className='text-left text-dark-100 font-epilogue'>
 									{`Already have an account? `}
 									<Button
-										tag='link'
+										tag='a'
 										href='signin'
 										theme='primary'
 										className='font-semibold'>

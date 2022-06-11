@@ -31,10 +31,7 @@ const SigninForm = () => {
 					id='rememberMe'
 					onChange={() => {}}
 				/>
-				<Button
-					tag='link'
-					href='/auth/forgot-password'
-					className='text-[#616A6A]'>
+				<Button tag='a' href='/auth/forgot-password' className='text-[#616A6A]'>
 					Forgot password
 				</Button>
 			</div>
@@ -56,7 +53,7 @@ const SigninForm = () => {
 			<div className='text-left text-dark-100 font-epilogue'>
 				{`Already have an account? `}
 				<Button
-					tag='link'
+					tag='a'
 					href='/auth/signup?step=1'
 					theme='primary'
 					className='font-semibold'>
