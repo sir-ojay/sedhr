@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import PersonalInformationForm from "@/components/onboarding/verification/PersonalInformationForm";
 import BusinessInformationForm from "@/components/onboarding/verification/BusinessInformationForm";
 import CompanyDetailsForm from "@/components/onboarding/verification/CompanyDetailsForm";
+import UploadDocumentsForm from "@/components/onboarding/verification/UploadDocumentsForm";
 
 const verification: NextPage = () => {
 	const [categories, setCategories] = useState<string[]>([]);
@@ -33,6 +34,8 @@ const verification: NextPage = () => {
 				{step === "2" && <BusinessInformationForm />}
 
 				{step === "3" && <CompanyDetailsForm />}
+
+				{step === "4" && <UploadDocumentsForm />}
 
 				{categories.length === 0 && (step === "1" || step === undefined) && (
 					<NoCategories />
