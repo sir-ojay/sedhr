@@ -2,7 +2,7 @@ import Button from "@/components/global/Button";
 import Router from "next/router";
 
 const AccountPackage = () => {
-	const goto = () => Router.push("/onboarding/verification");
+	const goto = () => Router.push("/onboarding/verification?step=1");
 
 	return (
 		<div className='w-[340px] bg-white p-8'>

@@ -9,10 +9,16 @@ type OnboardingHeaderProps = {
 		description?: string;
 	}[];
 	step: number;
+	subStep?: number;
 	children?: React.ReactNode;
 };
 
-const OnboardingHeader = ({ step, steps, children }: OnboardingHeaderProps) => {
+const OnboardingHeader = ({
+	step,
+	steps,
+	subStep,
+	children,
+}: OnboardingHeaderProps) => {
 	return (
 		<div>
 			<nav className='bg-white'>
@@ -69,7 +75,33 @@ const OnboardingHeader = ({ step, steps, children }: OnboardingHeaderProps) => {
 				</ul>
 			</nav>
 
-			<main className='py-[140px] bg-[#e7f6fd66] p-9'>{children}</main>
+			{/* children steps */}
+			{step === 3 && (
+				<div className='pt-[160px] px-7'>
+					<hr />
+					<div className='py-[30px]'>
+						<div className='flex justify-between items-center'>
+							<div className='space-y-[5px]'>
+								<h2 className='text-dark-900 text-[26px] font-semibold font-clash'>
+									Enter your Detail
+								</h2>
+								<p className='text-dark-100 font-epilogue'>
+									To keep using this account after the trial ends,set up a
+									subscription
+								</p>
+							</div>
+							<div className='py-3 px-12 bg-[#F47D5B26] text-secondary font-epilogue text-lg font-semibold rounded-[30px]'>
+								Step {subStep}/4
+							</div>
+						</div>
+					</div>
+				</div>
+			)}
+
+			<main
+				className={`${step !== 3 ? "py-[140px]" : null} bg-[#e7f6fd66] p-9`}>
+				{children}
+			</main>
 		</div>
 	);
 };
