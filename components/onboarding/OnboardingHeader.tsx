@@ -4,7 +4,7 @@ import React from "react";
 type OnboardingHeaderProps = {
 	steps: {
 		title: string;
-		step?: Number;
+		step: Number;
 		icon?: string;
 		description?: string;
 	}[];
@@ -26,13 +26,19 @@ const OnboardingHeader = ({ step, steps, children }: OnboardingHeaderProps) => {
 									<a className='flex gap-4 cursor-pointer'>
 										<div
 											className={`w-14 h-14 ${
-												step === _step.step ? "bg-primary" : "bg-[#D4EBEB]"
+												step === _step.step
+													? "bg-primary"
+													: step > _step.step
+													? "bg-[#44BE9D]"
+													: "bg-[#D4EBEB]"
 											} rounded-full flex justify-center items-center`}>
 											<img
 												className={`${
 													step === _step.step ? "tab-active" : null
 												}`}
-												src={`/assets/icons/layouts/onboarding-layout/${_step.icon}.svg`}
+												src={`/assets/icons/layouts/onboarding-layout/${
+													step > _step.step ? "completed" : _step.icon
+												}.svg`}
 												alt={_step.icon}
 											/>
 										</div>

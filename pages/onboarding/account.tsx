@@ -8,7 +8,7 @@ const account: NextPage = () => {
 	return (
 		<DefaultLayout title='Sedher | Onboarding | Account'>
 			<OnboardingHeader step={1}>
-				<main className=''>
+				<>
 					<div className='font-epilogue my-[50px] text-center'>
 						<h1 className='font-bold text-[26px] mb-3'>
 							Welcome Salami Olutayo
@@ -20,7 +20,7 @@ const account: NextPage = () => {
 					</div>
 
 					<AccountTypes />
-				</main>
+				</>
 			</OnboardingHeader>
 		</DefaultLayout>
 	);
