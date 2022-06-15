@@ -6,6 +6,8 @@ import VerificationCategories from "@/components/onboarding/verification/Verific
 import NoCategories from "@/components/onboarding/verification/NoCategories";
 import { useRouter } from "next/router";
 import PersonalInformationForm from "@/components/onboarding/verification/PersonalInformationForm";
+import BusinessInformationForm from "@/components/onboarding/verification/BusinessInformationForm";
+import CompanyDetailsForm from "@/components/onboarding/verification/CompanyDetailsForm";
 
 const verification: NextPage = () => {
 	const [categories, setCategories] = useState<string[]>([]);
@@ -27,6 +29,10 @@ const verification: NextPage = () => {
 				{categories.length > 0 && (step === "1" || step === undefined) && (
 					<PersonalInformationForm categories={categories} />
 				)}
+
+				{step === "2" && <BusinessInformationForm />}
+
+				{step === "3" && <CompanyDetailsForm />}
 
 				{categories.length === 0 && (step === "1" || step === undefined) && (
 					<NoCategories />

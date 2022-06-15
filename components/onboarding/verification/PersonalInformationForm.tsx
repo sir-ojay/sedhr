@@ -16,10 +16,10 @@ const PersonalInformationForm = ({
 	return (
 		<>
 			<div className='w-full bg-white p-8'>
-				<h4 className='font-semibold text-dark-900 font-epilogue font-[20px] mb-10'>
-					Personal Information
-				</h4>
 				<form>
+					<h4 className='font-semibold text-dark-900 font-epilogue font-[20px] mb-10'>
+						Personal Information
+					</h4>
 					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10'>
 						<Input label='First Name' placeholder='First Name' />
 						<Input label='Last Name' placeholder='Last Name' />

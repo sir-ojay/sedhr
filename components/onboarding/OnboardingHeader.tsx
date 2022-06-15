@@ -22,7 +22,7 @@ const OnboardingHeader = ({
 	return (
 		<div>
 			<nav className='bg-white'>
-				<ul className='bg-white pt-16 pb-4 flex justify-between items-center gap-5 px-7 w-[calc(100%-272px)] fixed right-0'>
+				<ul className='bg-white pt-16 pb-4 flex justify-between items-center gap-5 px-7 w-[calc(100%-272px)] fixed right-0 z-10'>
 					{steps.map((_step, index) => (
 						<li
 							key={_step.title + index}
@@ -86,7 +86,7 @@ const OnboardingHeader = ({
 									Enter your Detail
 								</h2>
 								<p className='text-dark-100 font-epilogue'>
-									To keep using this account after the trial ends,set up a
+									To keep using this account after the trial ends, set up a
 									subscription
 								</p>
 							</div>
