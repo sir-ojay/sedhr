@@ -17,18 +17,20 @@ const verification: NextPage = () => {
 	return (
 		<DefaultLayout title='Sedher | Onboarding | Verification'>
 			<OnboardingHeader step={3} subStep={Number(step || 1)}>
-				{step === "1" && (
+				{(step === "1" || step === undefined) && (
 					<VerificationCategories
 						categories={categories}
 						setCategories={setCategories}
 					/>
 				)}
 
-				{categories.length > 0 && step === "1" && (
+				{categories.length > 0 && (step === "1" || step === undefined) && (
 					<PersonalInformationForm categories={categories} />
 				)}
 
-				{categories.length === 0 && step === "1" && <NoCategories />}
+				{categories.length === 0 && (step === "1" || step === undefined) && (
+					<NoCategories />
+				)}
 			</OnboardingHeader>
 		</DefaultLayout>
 	);
