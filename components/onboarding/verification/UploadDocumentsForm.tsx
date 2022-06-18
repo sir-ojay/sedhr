@@ -16,7 +16,7 @@ const UploadDocumentsForm = () => {
 
 	return (
 		<>
-			<div className='w-full bg-white p-8'>
+			<section className='w-full bg-white p-8'>
 				<form>
 					<h4 className='font-semibold text-dark-900 font-epilogue font-[20px] mb-10'>
 						Upload document
@@ -29,7 +29,7 @@ const UploadDocumentsForm = () => {
 						<Input type='file' label='Driver License ' />
 					</div>
 				</form>
-			</div>
+			</section>
 			<div className='flex justify-between my-10'>
 				<Button
 					onClick={() => handleStep(3)}
@@ -38,7 +38,11 @@ const UploadDocumentsForm = () => {
 					className='w-[311px]'>
 					Previous Step
 				</Button>
-				<Button onClick={() => handleStep(5)} size='sm' className='w-[311px]'>
+				<Button
+					type='submit'
+					onClick={() => handleStep(5)}
+					size='sm'
+					className='w-[311px]'>
 					Complete
 				</Button>
 			</div>

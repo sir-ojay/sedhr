@@ -1,6 +1,7 @@
 import React from "react";
 
 export type ButtonProps = {
+	type?: "button" | "submit" | "reset";
 	loading?: boolean;
 	disabled?: boolean;
 	theme?: "primary" | "secondary" | "plain" | "outline";

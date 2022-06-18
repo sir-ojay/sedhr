@@ -31,21 +31,19 @@ const Checkbox = ({
 
 	return (
 		<div className='flex justify-center '>
-			<div>
-				<div className='flex items-center'>
-					<input
-						className={`${checkboxSize(
-							size
-						)} form-check-input appearance-none h-4 w-4 border-2 border-[#D4EBEB] rounded-sm bg-white checked:bg-primary checked:border-primary focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-4 cursor-pointer`}
-						type='checkbox'
-						value=''
-						id={id}
-						{...rest}
-					/>
-					<label className='text-dark-100 font-epilogue' htmlFor={id}>
-						{label}
-					</label>
-				</div>
+			<div className='flex items-center'>
+				<input
+					className={`${checkboxSize(
+						size
+					)} form-check-input appearance-none h-4 w-4 border-2 border-[#D4EBEB] rounded-sm bg-white checked:bg-primary checked:border-primary focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-4 cursor-pointer`}
+					type='checkbox'
+					value=''
+					id={id}
+					{...rest}
+				/>
+				<label className='text-dark-100 font-epilogue' htmlFor={id}>
+					{label}
+				</label>
 			</div>
 		</div>
 	);

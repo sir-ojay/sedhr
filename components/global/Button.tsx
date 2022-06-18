@@ -17,6 +17,7 @@ const Button: React.FC<ButtonProps> = ({
 	children,
 	tag,
 	className,
+	type = "button",
 	...rest
 }) => {
 	const router = useRouter();
@@ -111,6 +112,7 @@ const Button: React.FC<ButtonProps> = ({
 
 	return (
 		<button
+			type={type}
 			disabled={disabled || loading}
 			className={`flex items-center font-epilogue justify-center transition-all rounded-[5px] hover:brightness-90 disabled:brightness-[60%] ease-in text-center gap-4 font-bold disabled:cursor-not-allowed ${buttonTheme(
 				theme

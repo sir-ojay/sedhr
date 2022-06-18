@@ -13,7 +13,7 @@ const payment: NextPage = () => {
 			<OnboardingHeader step={2}>
 				<AccountTypesHorizontalList />
 
-				<div className='flex flex-col font-epilogue text-center items-center'>
+				<section className='flex flex-col font-epilogue text-center items-center'>
 					<div className='w-[265px] my-9 flex items-center justify-between bg-tertiary p-1'>
 						<div
 							onClick={() => setBillRange("monthly")}
@@ -39,7 +39,7 @@ const payment: NextPage = () => {
 						We set out with one goal in mind: to produce the most user-friendly
 						web community software ever. We were successful.
 					</p>
-				</div>
+				</section>
 
 				<AccountPackages />
 			</OnboardingHeader>

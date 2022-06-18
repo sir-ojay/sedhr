@@ -13,7 +13,7 @@ const AccountTypeCard = ({
 		Router.push(`/onboarding/payment?type=${title.toLowerCase()}`);
 	};
 	return (
-		<div className='w-[334px] bg-white p-5 rounded-[5px] font-epilogue space-y-5'>
+		<article className='w-[334px] bg-white p-5 rounded-[5px] font-epilogue space-y-5'>
 			<div
 				className='w-[85px] h-[85px] rounded-full mb-4 flex justify-center items-center'
 				style={{
@@ -31,6 +31,7 @@ const AccountTypeCard = ({
 				</p>
 			</div>
 			<Button
+				type='button'
 				className='w-full text-white'
 				style={{
 					backgroundColor: `${buttonColor}`,
@@ -40,7 +41,7 @@ const AccountTypeCard = ({
 				onClick={gotoPayment}>
 				Setup
 			</Button>
-		</div>
+		</article>
 	);
 };
 

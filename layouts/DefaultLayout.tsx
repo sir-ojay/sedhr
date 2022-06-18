@@ -13,10 +13,10 @@ const DefaultLayout = ({ title, children }: DefaultLayoutProps) => {
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<div className='w-[272px] h-screen'>
+			<aside className='w-[272px] h-screen'>
 				<LeftNavigation />
-			</div>
-			<div className='w-[calc(100%-272px)]'>{children}</div>
+			</aside>
+			<main className='w-[calc(100%-272px)]'>{children}</main>
 		</div>
 	);
 };

@@ -15,7 +15,7 @@ const PersonalInformationForm = ({
 		router.push(`/onboarding/verification?step=${step}`);
 	return (
 		<>
-			<div className='w-full bg-white p-8'>
+			<section className='w-full bg-white p-8'>
 				<form>
 					<h4 className='font-semibold text-dark-900 font-epilogue font-[20px] mb-10'>
 						Personal Information
@@ -38,7 +38,7 @@ const PersonalInformationForm = ({
 						<Input label='Criminal History' placeholder='Criminal History' />
 					</div>
 				</form>
-			</div>
+			</section>
 			<div className='flex justify-end my-10'>
 				<Button
 					disabled={categories.length === 0}

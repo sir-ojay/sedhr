@@ -21,7 +21,7 @@ const VerificationCategories = ({
 	};
 
 	return (
-		<div className='space-y-[18px] mb-9'>
+		<section className='space-y-[18px] mb-9'>
 			<h4 className='font-semibold text-[20px] text-dark-900'>
 				Select your categories
 			</h4>
@@ -29,6 +29,7 @@ const VerificationCategories = ({
 			<div className='flex items-center flex-wrap gap-x-4 gap-6'>
 				{_categories.map((category) => (
 					<Button
+						type='button'
 						onClick={() => handleSetCategories(category)}
 						key={category}
 						theme='plain'
@@ -41,7 +42,7 @@ const VerificationCategories = ({
 					</Button>
 				))}
 			</div>
-		</div>
+		</section>
 	);
 };
 

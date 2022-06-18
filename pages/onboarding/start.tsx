@@ -10,7 +10,7 @@ const start: NextPage = () => {
 	return (
 		<DefaultLayout title='Sedher | Onboarding | Start'>
 			<OnboardingHeader step={4}>
-				<div className='flex w-full justify-center items-center min-h-screen'>
+				<section className='flex w-full justify-center items-center min-h-screen'>
 					<div className='max-w-[728px] text-center w-full rounded-[15px] shadow-2xl bg-white py-20 flex flex-col items-center gap-6'>
 						<div>
 							<img
@@ -26,11 +26,11 @@ const start: NextPage = () => {
 							<span className='text-[#7F4433]'>xxxxxxxxx</span> has been
 							successfully created
 						</p>
-						<Button className='w-[418px]' onClick={goto}>
+						<Button type='button' className='w-[418px]' onClick={goto}>
 							Let’s go!
 						</Button>
 					</div>
-				</div>
+				</section>
 			</OnboardingHeader>
 		</DefaultLayout>
 	);
