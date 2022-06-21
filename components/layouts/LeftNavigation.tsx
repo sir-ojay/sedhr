@@ -14,7 +14,7 @@ const LeftNavigation = ({ navigations }: LeftNavigationProps) => {
 							src='/assets/icons/logo.svg'
 							width={125}
 							height={53}
-							alt='sedher'
+							alt='sedher home logo'
 						/>
 					</a>
 				</Link>
@@ -54,6 +54,7 @@ LeftNavigation.defaultProps = {
 				{
 					name: "More Sedher",
 					icon: "more",
+					// href of More Sedher is null because it is not a link, but a button
 					href: null,
 				},
 			],

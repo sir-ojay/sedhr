@@ -9,7 +9,9 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 					{navigation.name && (
 						<>
 							<hr />
-							<div className='mt-5 mb-3 px-8 text-secondary text-sm font-semibold'>
+							<div
+								aria-label={`${navigation.name.toLowerCase()} navigation group`}
+								className='mt-5 mb-3 px-8 text-secondary text-sm font-semibold'>
 								{navigation.name}
 							</div>
 						</>
@@ -32,7 +34,8 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 										</a>
 									</Link>
 								) : (
-									<a
+									<button
+										type='button'
 										tabIndex={0}
 										className='nav-hover flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]'>
 										<img
@@ -44,7 +47,7 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 										<div className='leading-[160%] font-medium'>
 											{item.name}
 										</div>
-									</a>
+									</button>
 								)}
 							</li>
 						))}
