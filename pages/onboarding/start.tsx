@@ -8,7 +8,7 @@ const start: NextPage = () => {
 	const goto = () => Router.push("/feeds");
 
 	return (
-		<DefaultLayout title='Sedher | Onboarding | Start'>
+		<DefaultLayout title='Sedher | Onboarding | Start' showHeader={false}>
 			<OnboardingHeader step={4}>
 				<section className='flex w-full justify-center items-center min-h-screen'>
 					<div className='max-w-[728px] text-center w-full rounded-[15px] shadow-2xl bg-white py-20 flex flex-col items-center gap-6'>

@@ -1,12 +1,12 @@
 import DefaultLayout from "@/layouts/DefaultLayout";
 import React from "react";
 
-const feeds = () => {
+const feed = () => {
 	return (
-		<DefaultLayout>
+		<DefaultLayout title='Feed'>
 			<div>feeds</div>
 		</DefaultLayout>
 	);
 };
 
-export default feeds;
+export default feed;

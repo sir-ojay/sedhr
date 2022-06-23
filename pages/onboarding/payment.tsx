@@ -9,7 +9,7 @@ const payment: NextPage = () => {
 	const [billRange, setBillRange] = useState("monthly");
 
 	return (
-		<DefaultLayout title='Sedher | Onboarding | Payment'>
+		<DefaultLayout title='Sedher | Onboarding | Payment' showHeader={false}>
 			<OnboardingHeader step={2}>
 				<AccountTypesHorizontalList />
 

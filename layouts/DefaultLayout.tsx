@@ -1,13 +1,20 @@
+import Input from "@/components/global/Input";
+import DefaultLayoutHeader from "@/components/layouts/DefaultLayoutHeader";
 import LeftNavigation from "@/components/layouts/LeftNavigation";
 import Head from "next/head";
 import React from "react";
 
 type DefaultLayoutProps = {
 	title: string;
+	showHeader?: boolean;
 	children?: React.ReactNode;
 };
 
-const DefaultLayout = ({ title, children }: DefaultLayoutProps) => {
+const DefaultLayout = ({
+	title,
+	children,
+	showHeader = true,
+}: DefaultLayoutProps) => {
 	return (
 		<div className='flex w-full'>
 			<Head>
@@ -16,7 +23,18 @@ const DefaultLayout = ({ title, children }: DefaultLayoutProps) => {
 			<aside className='w-[272px] h-screen'>
 				<LeftNavigation />
 			</aside>
-			<main className='w-[calc(100%-272px)]'>{children}</main>
+			<section
+				className={`w-[calc(100%-272px)] ${showHeader ? "py-8 pr-9" : null}`}>
+				{showHeader && <DefaultLayoutHeader />}
+				<main
+					className={`min-w-[calc(100%-272px)] ${
+						showHeader
+							? "p-9 rounded-xl min-h-[calc(100vh-164px)] bg-[#F5FBFE]"
+							: null
+					}`}>
+					{children}
+				</main>
+			</section>
 		</div>
 	);
 };

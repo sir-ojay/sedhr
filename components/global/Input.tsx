@@ -20,7 +20,28 @@ const Input = ({
 			<span className='w-full font-bold text-left text-[#101C1D] mb-1'>
 				{label}
 			</span>
-			{type !== "file" && (
+			{type === "search" && (
+				<div className='flex items-center w-full gap-4 py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px]'>
+					<div>
+						<img
+							src='/assets/icons/layouts/search.svg'
+							alt='see more'
+							title='see more'
+						/>
+					</div>
+					<input
+						className=' focus:border-primary outline-none w-full'
+						type={type}
+						placeholder={placeholder}
+						id={id}
+						value={value}
+						onChange={onChange}
+						disabled={disabled}
+						{...rest}
+					/>
+				</div>
+			)}
+			{type !== "file" && type !== "search" && (
 				<input
 					className='w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none'
 					type={type}

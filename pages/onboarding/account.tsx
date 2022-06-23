@@ -6,7 +6,7 @@ import React from "react";
 
 const account: NextPage = () => {
 	return (
-		<DefaultLayout title='Sedher | Onboarding | Account'>
+		<DefaultLayout title='Sedher | Onboarding | Account' showHeader={false}>
 			<OnboardingHeader step={1}>
 				<section>
 					<div className='font-epilogue my-[50px] text-center'>

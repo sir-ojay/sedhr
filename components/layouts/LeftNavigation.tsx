@@ -32,9 +32,9 @@ LeftNavigation.defaultProps = {
 			name: null,
 			links: [
 				{
-					name: "Feeds",
-					icon: "feeds",
-					href: "/feeds",
+					name: "Feed",
+					icon: "feed",
+					href: "/feed",
 				},
 				{
 					name: "My Connection",

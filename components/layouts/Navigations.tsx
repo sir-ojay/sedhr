@@ -1,7 +1,10 @@
 import { LeftNavigationProps } from "@/types/layouts/LeftNavigationProps";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Navigations = ({ navigations }: LeftNavigationProps) => {
+	const location = useRouter();
+
 	return (
 		<div className='overflow-y-auto h-[calc(100vh-120px)] pt-1 transition-all ease-in scrollbar-thin hover:scrollbar-thumb-primary hover:scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
 			{navigations.map((navigation) => (
@@ -21,7 +24,10 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 							<li key={item.name} className='flex items-center cursor-pointer'>
 								{item.href ? (
 									<Link href={item.href}>
-										<a className='nav-hover cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]'>
+										<a
+											className={`nav-hover ${
+												location.pathname.includes(item.href) ? "active" : null
+											} cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
 											<img
 												src={`/assets/icons/layouts/${item.icon}.svg`}
 												alt={item.name}

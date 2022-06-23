@@ -11,10 +11,19 @@ body {
 
 .nav-hover:hover {
 	img {
-		filter: invert(25%) sepia(49%) saturate(527%) hue-rotate(137deg)
-			brightness(53%) contrast(92%);
+		filter: invert(38%) sepia(48%) saturate(4105%) hue-rotate(212deg)
+			brightness(101%) contrast(191%);
 	}
-	color: #1e5156;
+	color: #3772ff;
+	background-color: #e7f6fd;
+}
+
+.nav-hover.active {
+	img {
+		filter: invert(38%) sepia(48%) saturate(4105%) hue-rotate(212deg)
+			brightness(101%) contrast(191%);
+	}
+	color: #3772ff;
 	background-color: #e7f6fd;
 }
 

@@ -18,7 +18,9 @@ const verification: NextPage = () => {
 	const { step } = router.query;
 
 	return (
-		<DefaultLayout title='Sedher | Onboarding | Verification'>
+		<DefaultLayout
+			title='Sedher | Onboarding | Verification'
+			showHeader={false}>
 			<OnboardingHeader step={3} subStep={Number(step || 1)}>
 				{(step === "1" || step === undefined) && (
 					<VerificationCategories
