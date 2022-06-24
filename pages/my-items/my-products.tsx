@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import ListNav from "@/components/global/ListNav";
 import ListSortHeader from "@/components/global/ListSortHeader";
-import WhiteWrapper from "@/components/global/WhiteWrapper";
 import MyItemsNav from "@/components/my-items/MyItemsNav";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import GridContainer from "@/components/global/GridContainer";
+import ProductCard from "@/components/global/ProductCard";
+import { useRouter } from "next/router";
 
 type MyProductsProps = {
 	defaultGrid: number;
@@ -16,6 +17,9 @@ type MyProductsProps = {
 
 const MyProducts = ({ navs, defaultGrid }: MyProductsProps) => {
 	const [grid, setGrid] = useState(defaultGrid);
+	const {
+		query: { t },
+	} = useRouter();
 
 	return (
 		<DefaultLayout title='Sedher | My item'>
@@ -27,23 +31,31 @@ const MyProducts = ({ navs, defaultGrid }: MyProductsProps) => {
 					<ListSortHeader setGrid={setGrid} defaultGrid={defaultGrid} />
 					<ListNav navs={navs} />
 
-					<WhiteWrapper>
-						<section
-							className={`grid ${
-								grid === 2
-									? "grid-cols-2"
-									: grid === 3
-									? "grid-cols-3"
-									: grid === 4
-									? "grid-cols-4"
-									: grid === 5
-									? "grid-cols-5"
-									: "grid-cols-1"
-							}`}>
-							<motion.div layout>1</motion.div>
-							<motion.div layout>1</motion.div>
-						</section>
-					</WhiteWrapper>
+					{t === "product" ? (
+						<GridContainer grid={grid}>
+							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
+								(card) => (
+									<ProductCard type='product' />
+								)
+							)}
+						</GridContainer>
+					) : t === "pending" ? (
+						<GridContainer grid={grid}>
+							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
+								(card) => (
+									<ProductCard type='pending' />
+								)
+							)}
+						</GridContainer>
+					) : (
+						<GridContainer grid={grid}>
+							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
+								(card) => (
+									<ProductCard type='purchase' />
+								)
+							)}
+						</GridContainer>
+					)}
 				</section>
 			</div>
 		</DefaultLayout>
