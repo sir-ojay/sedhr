@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Archivo", sans-serif;
 }
 
 .nav-hover:hover {
