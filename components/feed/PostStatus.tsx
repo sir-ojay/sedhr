@@ -77,7 +77,7 @@ const PostStatus = () => {
 						<span className='text-[#899A9A] font-medium'>Poll</span>
 					</div>
 				</div>
-				<Button>Post</Button>
+				<Button size='sm'>Post</Button>
 			</div>
 		</WhiteWrapper>
 	);

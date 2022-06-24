@@ -2,8 +2,8 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 
 const index = () => {
 	return (
-		<DefaultLayout title='Feed'>
-			<div>my connection</div>
+		<DefaultLayout title='Sedher | My connections'>
+			<div>my connections</div>
 		</DefaultLayout>
 	);
 };

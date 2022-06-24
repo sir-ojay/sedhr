@@ -26,7 +26,7 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 									<Link href={item.href}>
 										<a
 											className={`nav-hover ${
-												location.pathname.includes(item.href) ? "active" : null
+												location.pathname.includes(item.href) ? "active" : ""
 											} cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
 											<img
 												src={`/assets/icons/layouts/${item.icon}.svg`}
