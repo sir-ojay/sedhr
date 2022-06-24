@@ -29,7 +29,7 @@ const DefaultLayout = ({
 				<main
 					className={`min-w-[calc(100%-272px)] ${
 						showHeader
-							? "p-8 rounded-xl min-h-[calc(100vh-164px)] bg-accents-light-blue"
+							? "p-8 rounded-xl min-h-[calc(100vh-164px)] bg-accents-light-blue mt-[100px]"
 							: null
 					}`}>
 					{children}

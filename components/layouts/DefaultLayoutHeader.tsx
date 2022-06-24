@@ -3,7 +3,7 @@ import Input from "@/components/global/Input";
 
 const DefaultLayoutHeader = () => {
 	return (
-		<header className='pb-8 flex justify-between items-center'>
+		<header className='pb-8 flex justify-between bg-white py-8 pr-9 items-center fixed top-0 right-0 w-[calc(100%-272px)] z-10'>
 			<div className='max-w-[570px] w-full'>
 				<Input type='search' placeholder='Search...' />
 			</div>
