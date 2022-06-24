@@ -25,7 +25,7 @@ const Button: React.FC<ButtonProps> = ({
 	const buttonTheme = (theme: string) => {
 		switch (theme) {
 			case "primary":
-				return "bg-primary text-white";
+				return "bg-primary text-white border-2 border-transparent";
 			case "plain":
 				return `bg-transparent`;
 			case "outline":
