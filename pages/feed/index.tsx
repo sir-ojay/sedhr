@@ -9,7 +9,7 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 
 const feed = () => {
 	return (
-		<DefaultLayout title='Feed'>
+		<DefaultLayout title='Sedher | Feed'>
 			<div className='grid grid-cols-6 gap-8'>
 				<section className='col-span-4 space-y-6'>
 					<PostStatus />
