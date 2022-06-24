@@ -3,18 +3,25 @@ import React, { useState } from "react";
 type ListSortHeaderProps = {
 	setGrid: (number: number) => void;
 	defaultGrid: number;
+	title: string;
+	results: number;
 };
 
-const ListSortHeader = ({ setGrid, defaultGrid }: ListSortHeaderProps) => {
+const ListSortHeader = ({
+	setGrid,
+	defaultGrid,
+	title,
+	results,
+}: ListSortHeaderProps) => {
 	const [listType, setListType] = useState("grid");
 
 	return (
 		<header className='flex justify-between items-center'>
 			<div>
 				<div className='font-semibold text-2xl text-dark-900 font-clash'>
-					My Product
+					{title}
 				</div>
-				<div className='font-epilogue'>Showing 73 results</div>
+				<div className='font-epilogue'>Showing {results} results</div>
 			</div>
 			<div className='flex items-center gap-4 font-epilogue'>
 				<div className='text-dark-100'>Sort by:</div>
