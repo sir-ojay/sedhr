@@ -28,14 +28,19 @@ const MyProducts = ({ navs, defaultGrid }: MyProductsProps) => {
 					<MyItemsNav />
 				</section>
 				<section className='col-span-4 space-y-6'>
-					<ListSortHeader setGrid={setGrid} defaultGrid={defaultGrid} />
+					<ListSortHeader
+						title='My Product'
+						results={73}
+						setGrid={setGrid}
+						defaultGrid={defaultGrid}
+					/>
 					<ListNav navs={navs} />
 
 					{t === "product" ? (
 						<GridContainer grid={grid}>
 							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
 								(card) => (
-									<ProductCard type='product' />
+									<ProductCard key={card} type='product' />
 								)
 							)}
 						</GridContainer>
@@ -43,7 +48,7 @@ const MyProducts = ({ navs, defaultGrid }: MyProductsProps) => {
 						<GridContainer grid={grid}>
 							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
 								(card) => (
-									<ProductCard type='pending' />
+									<ProductCard key={card} type='pending' />
 								)
 							)}
 						</GridContainer>
@@ -51,7 +56,7 @@ const MyProducts = ({ navs, defaultGrid }: MyProductsProps) => {
 						<GridContainer grid={grid}>
 							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
 								(card) => (
-									<ProductCard type='purchase' />
+									<ProductCard key={card} type='purchase' />
 								)
 							)}
 						</GridContainer>
