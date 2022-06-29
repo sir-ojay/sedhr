@@ -14,7 +14,7 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 							<hr />
 							<div
 								aria-label={`${navigation.name.toLowerCase()} navigation group`}
-								className='mt-5 mb-3 px-8 text-secondary text-sm font-semibold'>
+								className='mt-5 mb-3 px-8 text-[#3772ff7f] text-sm font-semibold'>
 								{navigation.name}
 							</div>
 						</>

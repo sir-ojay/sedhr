@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
 			case "plain":
 				return `bg-transparent`;
 			case "outline":
-				return `bg-transparent text-secondary border-2 border-[#E2D3CF]`;
+				return `bg-transparent text-primary border-2 border-[#DDE4F7]`;
 			case "secondary":
 				return "bg-secondary text-white";
 			default:

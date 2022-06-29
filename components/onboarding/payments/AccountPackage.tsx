@@ -12,7 +12,7 @@ const AccountPackage = () => {
 			<div className='text-neutral-60 font-medium font-epilogue'>
 				Custom Domain
 			</div>
-			<div className='text-semibold text-4xl font-epilogue text-dark-900 my-[18px]'>
+			<div className='text-semibold text-4xl font-epilogue text-title my-[18px]'>
 				₦3,000<span className='text-2xl text-secondary font-semibold'>/m</span>
 			</div>
 			<Button size='sm' className='w-full' onClick={goto}>

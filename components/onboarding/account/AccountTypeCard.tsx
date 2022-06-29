@@ -22,9 +22,7 @@ const AccountTypeCard = ({
 				<img src={`/assets/icons/onboarding/account/${icon}.svg`} alt='' />
 			</div>
 			<div>
-				<h2 className='text-dark-900 font-bold text-lg leading-[150%]'>
-					{title}
-				</h2>
+				<h2 className='text-title font-bold text-lg leading-[150%]'>{title}</h2>
 				<p className='text-dark-100 leading-[150%]'>
 					Complete details about your company, set roles and permission
 					<span className='text-secondary cursor-pointer'> read more....</span>

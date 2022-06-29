@@ -50,13 +50,13 @@ const OnboardingHeader = ({
 												/>
 											</div>
 											<div>
-												<div className='font-semibold text-lg font-epilogue leading-[160%] text-dark-900'>
+												<div className='font-semibold text-lg font-epilogue leading-[160%] text-title'>
 													{_step.title}
 												</div>
 												<div
 													className={`font-epilogue ${
 														step === _step.step
-															? "text-secondary"
+															? "text-primary"
 															: "text-[#899A9A]"
 													}`}>
 													{_step.description}
