@@ -17,7 +17,7 @@ const RadioInputGroup = ({
 }: RadioInputGroupProps) => {
 	return (
 		<fieldset className={`font-epilogue space-y-1 ${className}`}>
-			<legend id={name} className='font-semibold text-dark-900'>
+			<legend id={name} className='font-semibold text-title'>
 				{label}
 			</legend>
 			<div className='flex items-center flex-wrap gap-2 px-2 py-[6px] border-2 border-[#B8C9C9] w-fit rounded-[5px]'>

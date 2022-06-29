@@ -17,7 +17,7 @@ const Input = ({
 
 	return (
 		<label htmlFor={id} className='flex flex-col relative'>
-			<span className='w-full font-bold text-left text-[#101C1D] mb-1'>
+			<span className='w-full font-bold text-left text-title mb-1'>
 				{label}
 			</span>
 			{type === "search" && (
