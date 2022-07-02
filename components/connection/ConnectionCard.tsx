@@ -11,6 +11,7 @@ type ConnectionCardProps = {
 
 const ConnectionCard = ({ type, star }: ConnectionCardProps) => {
   return (
+    <motion.article>
     <WhiteWrapper>
       <div>
         <div className="flex gap-3 mb-4">
@@ -86,6 +87,7 @@ const ConnectionCard = ({ type, star }: ConnectionCardProps) => {
         </div>
       </div>
     </WhiteWrapper>
+    </motion.article>
   );
 };
 
