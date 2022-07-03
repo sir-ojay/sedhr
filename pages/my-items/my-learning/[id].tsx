@@ -2,7 +2,6 @@ import Button from "@/components/global/Button";
 import GoBackButton from "@/components/global/GoBackButton";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { NextPage } from "next";
 import Image from "next/image";
 
 type SingleTrainingProps = {

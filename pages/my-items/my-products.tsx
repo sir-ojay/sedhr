@@ -5,7 +5,7 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import GridContainer from "@/components/global/GridContainer";
 import ProductCard from "@/components/global/ProductCard";
 import { useRouter } from "next/router";
-import MyItemsWrapper from "@/components/my-items/myItemsWrapper";
+import MyItemsWrapper from "@/components/my-items/MyItemsWrapper";
 
 type MyProductsProps = {
 	defaultGrid: number;
