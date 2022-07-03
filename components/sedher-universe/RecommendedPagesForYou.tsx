@@ -27,6 +27,7 @@ const RecommendedPagesForYou = ({ accounts }: RecommendedPagesForYouProps) => {
 						accountType={account.accountType}
 						image={account.image}
 						cardType='page'
+						grid={1}
 					/>
 				))}
 			</section>

@@ -25,6 +25,7 @@ const PeopleYouMayKnow = ({ accounts }: PeopleYouMayKnowProps) => {
 						accountType={account.accountType}
 						// image={account.image}
 						cardType='connect'
+						grid={1}
 					/>
 				))}
 			</section>

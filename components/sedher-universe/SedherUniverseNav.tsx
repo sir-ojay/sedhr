@@ -58,6 +58,7 @@ SedherUniverseNav.defaultProps = {
 			name: "My Follows",
 			href: "/sedher-universe/my-follows",
 			count: 45,
+			query: "?t=patientcarecenters",
 		},
 		{
 			name: "My Groups",

@@ -5,6 +5,8 @@ export type LeftNavigationProps = {
 			name: string;
 			href: string | null;
 			icon: string;
+			query?: string;
+			slug?: string;
 		}[];
 	}[];
 };

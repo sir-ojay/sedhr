@@ -23,7 +23,10 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 						{navigation.links.map((item) => (
 							<li key={item.name} className='flex items-center cursor-pointer'>
 								{item.href ? (
-									<Link href={item.href}>
+									<Link
+										href={`${item.href}${item.slug ? item.slug : ""}${
+											item.query ? item.query : ""
+										}`}>
 										<a
 											className={`nav-hover ${
 												location.pathname.includes(item.href) ? "active" : ""
