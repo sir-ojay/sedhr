@@ -41,7 +41,7 @@ const SigninForm = () => {
 					event.preventDefault();
 					setLoading(true);
 					setTimeout(() => {
-						Router.push("/onboarding/account");
+						Router.push("/feed");
 						setLoading(false);
 					}, 1500);
 				}}

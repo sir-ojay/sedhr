@@ -97,10 +97,17 @@ const Signup = () => {
 						/>
 						<Button
 							theme='primary'
-							onClick={() => console.log("success")}
+							onClick={(event) => {
+								event.preventDefault();
+								setLoading(true);
+								setTimeout(() => {
+									router.push("/onboarding/account");
+									setLoading(false);
+								}, 1500);
+							}}
 							// disabled
 							className='w-full'
-							loading={false}>
+							loading={loading}>
 							Create Account
 						</Button>
 						<div className='text-left text-dark-100 font-epilogue'>
