@@ -36,9 +36,10 @@ const Avatar = ({ image, name, size, rounded = true }: AvatarProps) => {
 				<Image
 					width={size}
 					height={size}
-					src='/assets/icons/layouts/profile.png'
+					src={image}
 					alt='Salami Tayo profile'
 					title='Salami Tayo Profile'
+					className={rounded ? "rounded-full" : "rounded-xl"}
 				/>
 			) : (
 				<div>

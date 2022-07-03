@@ -45,7 +45,7 @@ PeopleYouMayKnow.defaultProps = {
 		},
 		{
 			name: "Richard Ingwe",
-			description: "Medical Physicists",
+			description: "Medical Physicist",
 			accountType: "HCP",
 			image: "/assets/icons/layouts/profile.png",
 		},
