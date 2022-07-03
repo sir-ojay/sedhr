@@ -45,10 +45,13 @@ LeftNavigation.defaultProps = {
 					name: "My Items",
 					icon: "my-items",
 					href: "/my-items",
+					slug: "/my-products",
+					query: "?t=product",
 				},
 				{
 					name: "Sedher Universe",
 					icon: "sedher-universe",
+					slug: "/my-connections",
 					href: "/sedher-universe",
 				},
 				{
