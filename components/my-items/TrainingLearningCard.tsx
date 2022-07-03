@@ -1,11 +1,14 @@
 import Button from "@/components/global/Button";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
-const TrainingCard = () => {
+type TrainingLearningCardProps = {
+	type: "training" | "learning";
+};
+
+const TrainingLearningCard = ({ type }: TrainingLearningCardProps) => {
 	return (
-		<Link href={"/my-items/my-training"}>
+		<Link href={`/my-items/my-${type}/Adagio-CME-CPD-Training-Services`}>
 			<a>
 				<div className='text-dark-100 text-sm mb-2'>
 					Tomorrow - 10 July, 2021
@@ -52,4 +55,4 @@ const TrainingCard = () => {
 	);
 };
 
-export default TrainingCard;
+export default TrainingLearningCard;
