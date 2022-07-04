@@ -8,7 +8,7 @@ const LeftNavigation = ({ navigations }: LeftNavigationProps) => {
 	return (
 		<nav className='bg-white fixed top-0 left-0 w-[272px] h-full'>
 			<div className='ml-[62px] my-[32px]'>
-				<Link href='/'>
+				<Link href='/feed'>
 					<a>
 						<Image
 							src='/assets/icons/logo.svg'
