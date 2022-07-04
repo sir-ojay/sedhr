@@ -7,7 +7,7 @@ import React from "react";
 
 const MyGroups = () => {
 	return (
-		<DefaultLayout title='Sedher | Sedher universe | My groups'>
+		<DefaultLayout title='Sedher | Sedher universe | My Events'>
 			<SedherUniverseWrapper>
 				<section className='space-y-5'>
 					<WhiteWrapper>
