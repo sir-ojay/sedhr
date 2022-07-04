@@ -19,7 +19,7 @@ const SedherUniverseNav = ({ navigations }: SedherUniverseNavProps) => {
 			<section>
 				<header className='mb-4'>
 					<div title='My Items' className='font-semibold text-lg text-dark-900'>
-						My Items
+						Manage my Sedher universe
 					</div>
 				</header>
 				<ul>

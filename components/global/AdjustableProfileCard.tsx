@@ -4,6 +4,7 @@ import Button from "./Button";
 import WhiteWrapper from "./WhiteWrapper";
 import { motion } from "framer-motion";
 import Router from "next/router";
+import SmallAvatars from "./SmallAvatars";
 
 type AdjustableProfileCardProps = {
 	name: string;
@@ -77,33 +78,7 @@ const AdjustableProfileCard = ({
 								<div className='space-y-2'>
 									<div className='font-semibold text-dark-900'>{name}</div>
 									<div className='text-sm text-dark-100'>{description}</div>
-									<div className='flex items-center gap-2'>
-										<div className='flex -space-x-[5px]'>
-											<Avatar
-												image='/assets/icons/layouts/profile.png'
-												name={name}
-												size={24}
-											/>
-											<Avatar
-												image='/assets/images/square-avatar-1.png'
-												name={name}
-												size={24}
-											/>
-											<Avatar
-												image='/assets/icons/layouts/profile.png'
-												name={name}
-												size={24}
-											/>
-											<Avatar
-												image='/assets/images/square-avatar-1.png'
-												name={name}
-												size={24}
-											/>
-										</div>
-										<span className='text-sm text-dark-100 font-epilogue'>
-											+300 seen
-										</span>
-									</div>
+									<SmallAvatars name='Richard Ingwe' label='+300 seen' />
 								</div>
 							</div>
 						</div>

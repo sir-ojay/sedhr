@@ -6,9 +6,16 @@ type AvatarProps = {
 	name?: string;
 	size: number;
 	rounded?: boolean;
+	border?: boolean;
 };
 
-const Avatar = ({ image, name, size, rounded = true }: AvatarProps) => {
+const Avatar = ({
+	image,
+	name,
+	size,
+	rounded = true,
+	border = false,
+}: AvatarProps) => {
 	// function to get random colours for avatar background
 	const getRandomColour = () => {
 		const letters = "0123456789ABCDEF";
@@ -39,7 +46,9 @@ const Avatar = ({ image, name, size, rounded = true }: AvatarProps) => {
 					src={image}
 					alt='Salami Tayo profile'
 					title='Salami Tayo Profile'
-					className={rounded ? "rounded-full" : "rounded-xl"}
+					className={`${rounded ? "rounded-full" : "rounded-xl"} ${
+						border ? "border-2 border-[#B8C9C9]" : ""
+					}`}
 				/>
 			) : (
 				<div>
