@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const index = () => {
   useEffect(() => {
-    Router.push("/connection/?t=all");
+    Router.push("/connection/all?t=all");
   }, []);
   return <DefaultLayout title="Sedher | Connection"></DefaultLayout>;
 };
