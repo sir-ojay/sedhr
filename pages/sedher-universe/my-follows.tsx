@@ -23,7 +23,7 @@ const MyFollows = ({ navs, defaultGrid }: MyFollowsProps) => {
 	} = useRouter();
 
 	return (
-		<DefaultLayout title='Sedher | Sedher universe | My follows'>
+		<DefaultLayout title='Sedher | Sedher universe | My Follows'>
 			<SedherUniverseWrapper>
 				<ListSortHeader
 					title='My Follows'

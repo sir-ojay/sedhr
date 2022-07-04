@@ -1,6 +1,6 @@
 import { LeftNavigationProps } from "@/types/layouts/LeftNavigationProps";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 
 const Navigations = ({ navigations }: LeftNavigationProps) => {
 	const location = useRouter();
@@ -44,6 +44,9 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 									</Link>
 								) : (
 									<button
+										onClick={() => {
+											if (item.name === "Logout") Router.push("/auth/signin");
+										}}
 										type='button'
 										tabIndex={0}
 										className='nav-hover flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]'>
