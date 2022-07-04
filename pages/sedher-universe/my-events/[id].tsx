@@ -1,9 +1,7 @@
 import AboutCard from "@/components/global/AboutCard";
-import Button from "@/components/global/Button";
 import GoBackButton from "@/components/global/GoBackButton";
 import LargeDetailsCard from "@/components/global/LargeDetailsCard";
 import LargeProfileCard from "@/components/global/LargeProfileCard";
-import WhiteWrapper from "@/components/global/WhiteWrapper";
 import AdditionalDetailsCard from "@/components/sedher-universe/AdditionalDetailsCard";
 import DefaultLayout from "@/layouts/DefaultLayout";
 
