@@ -6,6 +6,7 @@ type AvatarProps = {
 	name?: string;
 	size: number;
 	rounded?: boolean;
+	shape?: "circle" | "square";
 	border?: boolean;
 };
 
@@ -13,8 +14,9 @@ const Avatar = ({
 	image,
 	name,
 	size,
-	rounded = true,
+	rounded = false,
 	border = false,
+	shape = "circle",
 }: AvatarProps) => {
 	// function to get random colours for avatar background
 	const getRandomColour = () => {
@@ -46,16 +48,16 @@ const Avatar = ({
 					src={image}
 					alt='Salami Tayo profile'
 					title='Salami Tayo Profile'
-					className={`${rounded ? "rounded-full" : "rounded-xl"} ${
-						border ? "border-2 border-[#B8C9C9]" : ""
-					}`}
+					className={`${shape === "circle" ? "rounded-full" : ""} ${
+						rounded ? "rounded-xl" : ""
+					} ${border ? "border-2 border-[#B8C9C9]" : ""}`}
 				/>
 			) : (
 				<div>
 					<div
 						className={`text-2xl font-semibold text-dark-900 flex items-center justify-center ${
-							rounded ? "rounded-full" : "rounded-xl"
-						}`}
+							shape === "circle" ? "rounded-full" : ""
+						} ${rounded ? "rounded-xl" : ""}`}
 						style={{
 							backgroundColor: colour,
 							color: getTextColour(colour),

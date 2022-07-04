@@ -7,8 +7,8 @@ type AdditionalDetailsCardProps = {
 
 const AdditionalDetailsCard = ({ type }: AdditionalDetailsCardProps) => {
 	return (
-		<div className='col-span-3 space-y-5'>
-			<div className='sticky top-[164px]'>
+		<div className='col-span-3 '>
+			<div className='sticky top-[164px] space-y-5'>
 				<WhiteWrapper>
 					<h5 className='font-clash font-semibold text-2xl text-dark-900'>
 						Additional Details

@@ -73,7 +73,13 @@ const AdjustableProfileCard = ({
 					)}
 					{(cardType === "event" || cardType === "group") && (
 						<div className='flex gap-6 items-center'>
-							<Avatar image={image} name={name} rounded={false} size={64} />
+							<Avatar
+								image={image}
+								name={name}
+								shape='square'
+								rounded
+								size={64}
+							/>
 							<div>
 								<div className='space-y-2'>
 									<div className='font-semibold text-dark-900'>{name}</div>
