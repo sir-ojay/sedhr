@@ -13,6 +13,6 @@ export type ButtonProps = {
 	size?: "sm" | "md" | "lg" | "xl";
 	underline?: boolean;
 	className?: string;
-	children: string;
+	children?: string;
 } & Omit<React.ComponentProps<"button">, "children"> &
 	Omit<React.ComponentProps<"a">, "children">;
