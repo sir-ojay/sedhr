@@ -2,7 +2,6 @@ import ConnectionCard from "@/components/connection/ConnectionCard";
 import GridContainer from "@/components/global/GridContainer";
 import ListNav from "@/components/global/ListNav";
 import ListSortHeader from "@/components/global/ListSortHeader";
-import ProductCard from "@/components/global/ProductCard";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
