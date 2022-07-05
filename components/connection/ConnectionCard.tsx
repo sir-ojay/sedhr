@@ -1,6 +1,4 @@
-import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import WhiteWrapper from "../global/WhiteWrapper";
 import Button from "../global/Button";
 import Avatar from "../global/Avatar";
@@ -23,7 +21,7 @@ const ConnectionCard = ({ type, star }: ConnectionCardProps) => {
 									: "circle"
 							}
 							size={54}
-							name='Salami Tayo'
+							name='Adewale Odewale'
 						/>
 						<div>
 							<div className='font-semibold text-dark-900'>Adewale Odewale</div>

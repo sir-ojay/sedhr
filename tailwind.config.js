@@ -36,6 +36,7 @@ module.exports = {
         },
       },
       fontFamily: {
+        archivo: ["Archivo", "sans-serif"],
         epilogue: ["Epilogue", "sans-serif"],
         clash: ["Clash Display", "sans-serif"],
       },

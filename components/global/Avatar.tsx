@@ -58,7 +58,9 @@ const Avatar = ({
 				<div
 					role='img'
 					aria-label={`Avatar of ${name}`}
-					className={`text-2xl font-semibold text-dark-900 flex items-center justify-center ${
+					className={`${
+						size > 54 ? "text-2xl" : "text-lg"
+					} font-semibold font-archivo text-dark-900 flex items-center justify-center ${
 						shape === "circle" ? "rounded-full" : ""
 					} ${rounded ? "rounded-xl" : ""}`}
 					style={{

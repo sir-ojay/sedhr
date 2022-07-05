@@ -5,7 +5,7 @@ import { NextPage } from "next";
 import Router from "next/router";
 
 const start: NextPage = () => {
-	const goto = () => Router.push("/feeds");
+	const goto = () => Router.push("/feed");
 
 	return (
 		<DefaultLayout title='Sedher | Onboarding | Start' showHeader={false}>
