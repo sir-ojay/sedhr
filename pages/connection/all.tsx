@@ -86,7 +86,7 @@ const All = ({ navs, defaultGrid }: AllProps) => {
 export default All;
 
 All.defaultProps = {
-  defaultGrid: 3,
+  defaultGrid: 4,
   navs: [
     {
       name: "All",
