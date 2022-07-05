@@ -1,3 +1,4 @@
+import Avatar from "../global/Avatar";
 import Button from "../global/Button";
 import WhiteWrapper from "../global/WhiteWrapper";
 
@@ -30,14 +31,13 @@ const RecentGroups = ({ accounts }: RecentGroupsprops) => {
 				{accounts?.map((account, i) => (
 					<div key={account.name + i} className='bg-accents-light-blue p-4'>
 						<div className='flex gap-3 mb-4'>
-							<div className='h-12 w-12'>
-								<img
-									src='/assets/icons/layouts/avatar-2.png'
-									alt='Salami Tayo profile'
-									title='Salami Tayo Profile'
-								/>
-							</div>
-							<div>
+							<Avatar
+								shape='square'
+								name={account.name}
+								size={48}
+								// image='/assets/icons/layouts/avatar-2.png'
+							/>
+							<div className='w-[calc(100%-48px)]'>
 								<div className='font-semibold text-dark-900'>
 									{account.name}
 								</div>

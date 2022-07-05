@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Avatar from "../global/Avatar";
 import Button from "../global/Button";
 import WhiteWrapper from "../global/WhiteWrapper";
 
@@ -8,13 +9,7 @@ const FeedPost = () => {
 			<article>
 				<header className='flex justify-between items-start'>
 					<div className='flex gap-3 mb-4'>
-						<div className='h-16 w-16'>
-							<img
-								src='/assets/icons/layouts/avatar-1.png'
-								alt='Salami Tayo profile'
-								title='Salami Tayo Profile'
-							/>
-						</div>
+						<Avatar shape='square' name='Eko Diagnostic Centre' size={64} />
 						<div className='space-y-[1px]'>
 							<div className='font-semibold text-dark-900'>
 								Eko Diagnostic Centre

@@ -1,3 +1,4 @@
+import Avatar from "../global/Avatar";
 import Button from "../global/Button";
 import WhiteWrapper from "../global/WhiteWrapper";
 
@@ -30,13 +31,11 @@ const YouMightKnow = ({ accounts }: YouMightKnowprops) => {
 				{accounts?.map((account, i) => (
 					<div key={account.name + i} className='bg-accents-light-blue p-4'>
 						<div className='flex gap-3 mb-4'>
-							<div className='h-12 w-12'>
-								<img
-									src='/assets/icons/layouts/profile.png'
-									alt='Salami Tayo profile'
-									title='Salami Tayo Profile'
-								/>
-							</div>
+							<Avatar
+								name={"Salami Tayo"}
+								size={48}
+								image='/assets/icons/layouts/profile.png'
+							/>
 							<div>
 								<div className='font-semibold text-dark-900'>
 									{account.name}

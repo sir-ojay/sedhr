@@ -11,15 +11,17 @@ type ListNavProps = {
 
 const ListNav = ({ navs }: ListNavProps) => {
 	const location = useRouter();
+
 	return (
 		<WhiteWrapper>
 			<ul className='flex items-center gap-5'>
-				{navs?.map((nav) => (
+				{navs?.map((nav, i) => (
 					<li key={nav.name}>
 						<Link href={nav.href}>
 							<a
 								className={`font-semibold px-5 pb-2 ${
-									location.asPath.includes(nav.href)
+									nav.href.includes(`=${Object.values(location?.query)[0]}`) ||
+									(i === 0 && Object.keys(location?.query).length === 0)
 										? "border-b-4 border-b-primary text-dark-900"
 										: "text-dark-100"
 								}`}>
