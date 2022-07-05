@@ -48,6 +48,7 @@ const Avatar = ({
 				<Image
 					width={size}
 					height={size}
+					title={name}
 					src={image}
 					alt={`Avatar of ${name}`}
 					className={`${shape === "circle" ? "rounded-full" : ""} ${
@@ -57,6 +58,7 @@ const Avatar = ({
 			) : (
 				<div
 					role='img'
+					title={name}
 					aria-label={`Avatar of ${name}`}
 					className={`${
 						size > 54 ? "text-2xl" : "text-lg"
