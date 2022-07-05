@@ -4,16 +4,16 @@ import MyItemsWrapper from "@/components/my-items/MyItemsWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { NextPage } from "next";
 
-const MyTraining: NextPage = () => {
+const MyLearning: NextPage = () => {
 	return (
-		<DefaultLayout title='Sedher | My item | My training'>
+		<DefaultLayout title='Sedher | My item | My learning'>
 			<MyItemsWrapper>
 				<WhiteWrapper>
 					<header className='flex items-center justify-between mb-9'>
 						<div
 							title='My training'
 							className='font-semibold text-lg text-dark-900 font-epilogue'>
-							My training
+							My learning
 						</div>
 						<button type='button' className='flex items-center gap-3'>
 							<svg
@@ -45,7 +45,7 @@ const MyTraining: NextPage = () => {
 							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
 								(training) => (
 									<li key={training}>
-										<TrainingLearningCard type='training' />
+										<TrainingLearningCard type='learning' />
 									</li>
 								)
 							)}
@@ -57,4 +57,4 @@ const MyTraining: NextPage = () => {
 	);
 };
 
-export default MyTraining;
+export default MyLearning;

@@ -25,15 +25,15 @@ const Button: React.FC<ButtonProps> = ({
 	const buttonTheme = (theme: string) => {
 		switch (theme) {
 			case "primary":
-				return "bg-primary text-white border-2 border-transparent";
+				return "bg-primary text-white border-2 border-transparent rounded-[5px]";
 			case "plain":
-				return `bg-transparent`;
+				return ``;
 			case "outline":
-				return `bg-transparent text-primary border-2 border-[#DDE4F7]`;
+				return `bg-transparent text-primary border-2 border-[#DDE4F7] rounded-[5px]`;
 			case "secondary":
-				return "bg-secondary text-white";
+				return "bg-secondary text-white rounded-[5px]";
 			default:
-				return "bg-primary text-white";
+				return "bg-primary text-white border-2 border-transparent rounded-[5px]";
 		}
 	};
 
@@ -114,7 +114,7 @@ const Button: React.FC<ButtonProps> = ({
 		<button
 			type={type}
 			disabled={disabled || loading}
-			className={`flex items-center font-epilogue justify-center transition-all rounded-[5px] hover:brightness-90 disabled:brightness-[60%] ease-in text-center gap-4 font-bold disabled:cursor-not-allowed ${buttonTheme(
+			className={`flex items-center font-epilogue justify-center transition-all hover:brightness-90 disabled:brightness-[60%] ease-in text-center gap-4 font-bold disabled:cursor-not-allowed ${buttonTheme(
 				theme
 			)} ${buttonSize(size)} ${className}`}
 			{...rest}>

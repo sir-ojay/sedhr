@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
 import WhiteWrapper from "../global/WhiteWrapper";
 
-type MyItemsNavProps = {
+type SedherUniverseNavProps = {
 	navigations: {
 		name: string;
 		href: string;
@@ -12,7 +11,7 @@ type MyItemsNavProps = {
 	}[];
 };
 
-const MyItemsNav = ({ navigations }: MyItemsNavProps) => {
+const SedherUniverseNav = ({ navigations }: SedherUniverseNavProps) => {
 	const location = useRouter();
 
 	return (
@@ -20,7 +19,7 @@ const MyItemsNav = ({ navigations }: MyItemsNavProps) => {
 			<section>
 				<header className='mb-4'>
 					<div title='My Items' className='font-semibold text-lg text-dark-900'>
-						My Items
+						Manage my Sedher universe
 					</div>
 				</header>
 				<ul>
@@ -45,24 +44,35 @@ const MyItemsNav = ({ navigations }: MyItemsNavProps) => {
 	);
 };
 
-export default MyItemsNav;
+export default SedherUniverseNav;
 
-MyItemsNav.defaultProps = {
+SedherUniverseNav.defaultProps = {
 	navigations: [
 		{
-			name: "My Products",
-			href: "/my-items/my-products",
+			name: "My Connections",
+			href: "/sedher-universe/my-connections",
 			count: 45,
 			query: "?t=product",
 		},
 		{
-			name: "My Training",
-			href: "/my-items/my-training",
+			name: "My Follows",
+			href: "/sedher-universe/my-follows",
+			count: 45,
+			query: "?t=patientcarecenters",
+		},
+		{
+			name: "My Groups",
+			href: "/sedher-universe/my-groups",
 			count: 45,
 		},
 		{
-			name: "My Learning",
-			href: "/my-items/my-learning",
+			name: "My Events",
+			href: "/sedher-universe/my-events",
+			count: 45,
+		},
+		{
+			name: "My Forums",
+			href: "/sedher-universe/my-forums",
 			count: 45,
 		},
 	],
