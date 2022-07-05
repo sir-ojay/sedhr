@@ -79,7 +79,12 @@ const ConnectionCard = ({ type, star }: ConnectionCardProps) => {
           <hr className="mb-5 mt-2" />
 
           <div className="flex items-center gap-5">
-            <Button className="w-full bg-primary " size="sm" theme="primary">
+            <Button
+              href="/connection/user-profile/2"
+              className="w-full bg-primary "
+              size="sm"
+              theme="primary"
+            >
               {type === "all" || type === "hcp" || type === "sedher"
                 ? "Connection"
                 : "Follow"}
