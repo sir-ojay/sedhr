@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import WhiteWrapper from "../global/WhiteWrapper";
 import Button from "../global/Button";
 import Avatar from "../global/Avatar";
+import Link from "next/link";
 
 type ConnectionCardProps = {
 	type: string;
@@ -15,6 +16,7 @@ const ConnectionCard = ({ type, star }: ConnectionCardProps) => {
 				<div>
 					<div className='flex gap-3 mb-4'>
 						<Avatar
+							href='/connection/1'
 							shape={
 								type === "patient" || type === "not-for-profits"
 									? "square"
@@ -24,7 +26,11 @@ const ConnectionCard = ({ type, star }: ConnectionCardProps) => {
 							name='Adewale Odewale'
 						/>
 						<div>
-							<div className='font-semibold text-dark-900'>Adewale Odewale</div>
+							<Link href='/connection/1'>
+								<a className='font-semibold text-dark-900 hover:underline'>
+									Adewale Odewale
+								</a>
+							</Link>
 							<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
 								Medical Doctor
 							</div>

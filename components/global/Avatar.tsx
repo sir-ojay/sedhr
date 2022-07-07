@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 
 type AvatarProps = {
@@ -8,6 +10,8 @@ type AvatarProps = {
 	rounded?: boolean;
 	shape?: "circle" | "square";
 	border?: boolean;
+	as?: "Link" | "div";
+	href?: string;
 };
 
 const Avatar = ({
@@ -17,7 +21,11 @@ const Avatar = ({
 	rounded = false,
 	border = false,
 	shape = "circle",
+	as = "Link",
+	href,
 }: AvatarProps) => {
+	const router = useRouter();
+
 	// function to get random colours for avatar background
 	const getRandomColour = () => {
 		const letters = "0123456789ABCDEF";
@@ -43,41 +51,85 @@ const Avatar = ({
 	);
 
 	return (
-		<div>
-			{image ? (
-				<Image
-					width={size}
-					height={size}
-					title={name}
-					src={image}
-					alt={`Avatar of ${name}`}
-					className={`${shape === "circle" ? "rounded-full" : ""} ${
-						rounded ? "rounded-xl" : ""
-					} ${border ? "border-2 border-[#B8C9C9]" : ""}`}
-				/>
+		<div className={as === "Link" ? "hover:brightness-[115%]" : ""}>
+			{as === "Link" ? (
+				<Link href={href || router.asPath}>
+					<a>
+						{image ? (
+							<Image
+								width={size}
+								height={size}
+								title={name}
+								src={image}
+								alt={`Avatar of ${name}`}
+								className={`${shape === "circle" ? "rounded-full" : ""} ${
+									rounded ? "rounded-xl" : ""
+								} ${border ? "border-2 border-[#B8C9C9]" : ""}`}
+							/>
+						) : (
+							<div
+								role='img'
+								title={name}
+								aria-label={`Avatar of ${name}`}
+								className={`${
+									size > 54 ? "text-2xl" : "text-lg"
+								} font-semibold font-archivo text-dark-900 flex items-center justify-center ${
+									shape === "circle" ? "rounded-full" : ""
+								} ${rounded ? "rounded-xl" : ""}`}
+								style={{
+									backgroundColor: colour,
+									color: getTextColour(colour),
+									width: `${size}px`,
+									height: `${size}px`,
+								}}>
+								{/* function to get the initials of a name */}
+								{name &&
+									name
+										.split(" ")
+										.map((n) => n[0])
+										.join("")}
+							</div>
+						)}
+					</a>
+				</Link>
 			) : (
-				<div
-					role='img'
-					title={name}
-					aria-label={`Avatar of ${name}`}
-					className={`${
-						size > 54 ? "text-2xl" : "text-lg"
-					} font-semibold font-archivo text-dark-900 flex items-center justify-center ${
-						shape === "circle" ? "rounded-full" : ""
-					} ${rounded ? "rounded-xl" : ""}`}
-					style={{
-						backgroundColor: colour,
-						color: getTextColour(colour),
-						width: `${size}px`,
-						height: `${size}px`,
-					}}>
-					{/* function to get the initials of a name */}
-					{name &&
-						name
-							.split(" ")
-							.map((n) => n[0])
-							.join("")}
-				</div>
+				<>
+					{image ? (
+						<Image
+							width={size}
+							height={size}
+							title={name}
+							src={image}
+							alt={`Avatar of ${name}`}
+							className={`${shape === "circle" ? "rounded-full" : ""} ${
+								rounded ? "rounded-xl" : ""
+							} ${border ? "border-2 border-[#B8C9C9]" : ""}`}
+						/>
+					) : (
+						<div
+							role='img'
+							title={name}
+							aria-label={`Avatar of ${name}`}
+							className={`${
+								size > 54 ? "text-2xl" : "text-lg"
+							} font-semibold font-archivo text-dark-900 flex items-center justify-center ${
+								shape === "circle" ? "rounded-full" : ""
+							} ${rounded ? "rounded-xl" : ""}`}
+							style={{
+								backgroundColor: colour,
+								color: getTextColour(colour),
+								width: `${size}px`,
+								height: `${size}px`,
+							}}>
+							{/* function to get the initials of a name */}
+							{name &&
+								name
+									.split(" ")
+									.map((n) => n[0])
+									.join("")}
+						</div>
+					)}
+				</>
 			)}
 		</div>
 	);

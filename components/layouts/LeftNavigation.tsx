@@ -36,11 +36,11 @@ LeftNavigation.defaultProps = {
 					icon: "feed",
 					href: "/feed",
 				},
-				{
-					name: "My Connections",
-					icon: "my-connections",
-					href: "/my-connections",
-				},
+				// {
+				// 	name: "My Connections",
+				// 	icon: "my-connections",
+				// 	href: "/my-connections",
+				// },
 				{
 					name: "My Items",
 					icon: "my-items",
