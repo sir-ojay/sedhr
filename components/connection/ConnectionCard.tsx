@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import WhiteWrapper from "../global/WhiteWrapper";
 import Button from "../global/Button";
 
