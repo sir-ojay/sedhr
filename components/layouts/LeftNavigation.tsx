@@ -51,7 +51,7 @@ LeftNavigation.defaultProps = {
 				{
 					name: "Sedher Universe",
 					icon: "sedher-universe",
-					slug: "/my-connections",
+					// slug: "/my-connections",
 					href: "/sedher-universe",
 				},
 				{

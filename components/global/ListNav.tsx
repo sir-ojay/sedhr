@@ -14,7 +14,7 @@ const ListNav = ({ navs }: ListNavProps) => {
 
 	return (
 		<WhiteWrapper>
-			<ul className='flex items-center gap-5'>
+			<ul className='flex items-center gap-5 flex-wrap'>
 				{navs?.map((nav, i) => (
 					<li key={nav.name}>
 						<Link href={nav.href}>

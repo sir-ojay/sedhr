@@ -1,12 +1,23 @@
+import EventsForYou from "@/components/sedher-universe/EventsForYou";
+import GroupsForYou from "@/components/sedher-universe/GroupsForYou";
+import PeopleYouMayKnow from "@/components/sedher-universe/PeopleYouMayKnow";
+import RecommendedPagesForYou from "@/components/sedher-universe/RecommendedPagesForYou";
+import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import Router from "next/router";
-import { useEffect } from "react";
 
 const index = () => {
-	useEffect(() => {
-		Router.push("/sedher-universe/my-connections");
-	}, []);
-	return <DefaultLayout title='Sedher | Sedher Universe'></DefaultLayout>;
+	return (
+		<DefaultLayout title='Sedher | Sedher Universe'>
+			<SedherUniverseWrapper>
+				<section className='space-y-6'>
+					<PeopleYouMayKnow />
+					<RecommendedPagesForYou />
+					<EventsForYou />
+					<GroupsForYou />
+				</section>
+			</SedherUniverseWrapper>
+		</DefaultLayout>
+	);
 };
 
 export default index;
