@@ -1,6 +1,6 @@
 import ListNav from "@/components/global/ListNav";
 import ListSortHeader from "@/components/global/ListSortHeader";
-import MessagesWrapper from "@/components/messages/messagesWrapper";
+import MessagesWrapper from "@/components/messages/MessagesWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import React, { useState } from "react";
 
