@@ -1,6 +1,6 @@
 import Button from "@/components/global/Button";
-import Image from "next/image";
 import Link from "next/link";
+import Avatar from "../global/Avatar";
 
 type TrainingLearningCardProps = {
 	type: "training" | "learning";
@@ -15,15 +15,12 @@ const TrainingLearningCard = ({ type }: TrainingLearningCardProps) => {
 				</div>
 				<article className='flex items-center justify-between p-4 border-2 border-[#B8C9C9] rounded-[5px]'>
 					<div className='flex items-center gap-4 '>
-						<div className='h-10 w-10'>
-							<Image
-								width={40}
-								height={40}
-								layout='responsive'
-								src='/assets/images/myTraining.png'
-								alt=''
-							/>
-						</div>
+						<Avatar
+							shape='square'
+							image='/assets/images/myTraining.png'
+							name='Adagio Training Services'
+							size={40}
+						/>
 						<div>
 							<h4 className='font-semibold text-[#25324B]'>
 								Adagio CME-CPD Training Services

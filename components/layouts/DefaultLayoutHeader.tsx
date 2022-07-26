@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "@/components/global/Input";
+import Avatar from "../global/Avatar";
 
 const DefaultLayoutHeader = () => {
 	return (
@@ -22,13 +23,11 @@ const DefaultLayoutHeader = () => {
 						</div>
 						<div className='text-sm text-dark-100'>Patient care centres</div>
 					</div>
-					<div className='h-12 w-12'>
-						<img
-							src='/assets/icons/layouts/profile.png'
-							alt='Salami Tayo profile'
-							title='Salami Tayo Profile'
-						/>
-					</div>
+					<Avatar
+						name={"Salami Tayo"}
+						size={48}
+						image='/assets/icons/layouts/profile.png'
+					/>
 				</div>
 			</div>
 		</header>

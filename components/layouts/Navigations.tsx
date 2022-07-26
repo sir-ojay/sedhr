@@ -21,7 +21,11 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 					)}
 					<ul className='flex flex-col gap-[2px] px-4'>
 						{navigation.links.map((item) => (
-							<li key={item.name} className='flex items-center cursor-pointer'>
+							<li
+								key={item.name}
+								title={item.name}
+								aria-label={`link to ${item.name}`}
+								className='flex items-center cursor-pointer'>
 								{item.href ? (
 									<Link
 										href={`${item.href}${item.slug ? item.slug : ""}${
@@ -33,8 +37,6 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 											} cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
 											<img
 												src={`/assets/icons/layouts/${item.icon}.svg`}
-												alt={item.name}
-												title={item.name}
 												className='group-hover:invert-[25%] group-hover:sepia-[49%] group-hover:saturate-[527%] group-hover:hue-rotate-[137deg] group-hover:brightness-[93%]'
 											/>
 											<div className='leading-[160%] font-medium'>

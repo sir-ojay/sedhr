@@ -1,8 +1,8 @@
+import Avatar from "@/components/global/Avatar";
 import Button from "@/components/global/Button";
 import GoBackButton from "@/components/global/GoBackButton";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import Image from "next/image";
 
 type SingleTrainingProps = {
 	trainingInfo: {
@@ -22,15 +22,12 @@ const SingleTraining = ({ trainingInfo, categories }: SingleTrainingProps) => {
 			<section className='mt-10 space-y-6'>
 				<WhiteWrapper>
 					<div className='flex items-center gap-4'>
-						<div className='h-10 w-10'>
-							<Image
-								width={40}
-								height={40}
-								layout='responsive'
-								src='/assets/images/myTraining.png'
-								alt=''
-							/>
-						</div>
+						<Avatar
+							shape='square'
+							image='/assets/images/myTraining.png'
+							name='Adagio Training Services'
+							size={40}
+						/>
 						<div>
 							<h4 className='font-semibold font-clash text-[32px] text-dark-900'>
 								Adagio CME-CPD Training Services

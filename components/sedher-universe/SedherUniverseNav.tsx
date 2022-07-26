@@ -52,7 +52,6 @@ SedherUniverseNav.defaultProps = {
 			name: "My Connections",
 			href: "/sedher-universe/my-connections",
 			count: 45,
-			query: "?t=product",
 		},
 		{
 			name: "My Follows",
@@ -70,10 +69,10 @@ SedherUniverseNav.defaultProps = {
 			href: "/sedher-universe/my-events",
 			count: 45,
 		},
-		{
-			name: "My Forums",
-			href: "/sedher-universe/my-forums",
-			count: 45,
-		},
+		// {
+		// 	name: "My Forums",
+		// 	href: "/sedher-universe/my-forums",
+		// 	count: 45,
+		// },
 	],
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import Avatar from "../global/Avatar";
 import Button from "../global/Button";
 import Input from "../global/Input";
 import WhiteWrapper from "../global/WhiteWrapper";
@@ -7,10 +8,12 @@ const PostStatus = () => {
 	return (
 		<WhiteWrapper>
 			<div className='flex items-center gap-6 mb-5'>
-				<div className='h-12 w-12'>
-					<img src='/assets/icons/layouts/profile.png' alt='Salami Tayo' />
-				</div>
-				<div className='w-full'>
+				<Avatar
+					name='Salami Tayo'
+					size={48}
+					image='/assets/icons/layouts/profile.png'
+				/>
+				<div className='w-[calc(100%-72px)]'>
 					<Input
 						name='post'
 						placeholder='What do you want to write about?'

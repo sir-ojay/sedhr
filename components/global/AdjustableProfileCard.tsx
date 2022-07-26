@@ -13,6 +13,7 @@ type AdjustableProfileCardProps = {
 	image?: string;
 	grid: number;
 	cardType: "connect" | "page" | "event" | "group";
+	connected?: boolean;
 };
 
 const AdjustableProfileCard = ({
@@ -22,6 +23,7 @@ const AdjustableProfileCard = ({
 	image = "",
 	cardType,
 	grid,
+	connected = false,
 }: AdjustableProfileCardProps) => {
 	return (
 		<motion.article layout>
@@ -91,23 +93,41 @@ const AdjustableProfileCard = ({
 					)}
 					<div
 						className={`${
-							grid === 1 ? "w-[164px]" : "w-full"
+							grid === 1 && connected && cardType === "connect"
+								? "w-[240px]"
+								: grid === 1
+								? "w-[164px]"
+								: "w-full"
 						} flex flex-col gap-3 items-center`}>
 						{(cardType === "connect" || cardType === "page") && (
 							<>
-								{cardType === "connect" && (
+								{cardType === "connect" && !connected ? (
 									<Button size='sm' className='w-full'>
 										Connect
 									</Button>
-								)}
-								{cardType === "page" && (
+								) : cardType === "page" && !connected ? (
 									<Button size='sm' className='w-full'>
 										Follow
 									</Button>
+								) : (
+									<Button size='sm' theme='outline' className='w-full'>
+										{cardType === "connect" ? "Remove Connection" : "Unfollow"}
+									</Button>
 								)}
-								<Button size='sm' theme='outline' className='w-full'>
-									Ignore
-								</Button>
+								{/* {cardType === "page" && !connected ? (
+									<Button size='sm' className='w-full'>
+										Follow
+									</Button>
+								) : (
+									<Button size='sm' theme='outline' className='w-full'>
+										Remove Connection
+									</Button>
+								)} */}
+								{!connected && (
+									<Button size='sm' theme='outline' className='w-full'>
+										Ignore
+									</Button>
+								)}
 							</>
 						)}
 						{(cardType === "group" || cardType === "event") && (

@@ -36,11 +36,11 @@ LeftNavigation.defaultProps = {
 					icon: "feed",
 					href: "/feed",
 				},
-				{
-					name: "My Connections",
-					icon: "my-connections",
-					href: "/my-connections",
-				},
+				// {
+				// 	name: "My Connections",
+				// 	icon: "my-connections",
+				// 	href: "/my-connections",
+				// },
 				{
 					name: "My Items",
 					icon: "my-items",
@@ -51,7 +51,7 @@ LeftNavigation.defaultProps = {
 				{
 					name: "Sedher Universe",
 					icon: "sedher-universe",
-					slug: "/my-connections",
+					// slug: "/my-connections",
 					href: "/sedher-universe",
 				},
 				{
