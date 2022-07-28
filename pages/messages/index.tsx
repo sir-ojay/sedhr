@@ -2,6 +2,7 @@ import ListNav from "@/components/global/ListNav";
 import ListSortHeader from "@/components/global/ListSortHeader";
 import MessagesWrapper from "@/components/messages/MessagesWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 type MessagesProps = {
@@ -13,6 +14,9 @@ type MessagesProps = {
 };
 const Messages = ({ navs, defaultGrid }: MessagesProps) => {
   const [grid, setGrid] = useState(defaultGrid);
+  const {
+    query: { view },
+  } = useRouter();
 
   return (
     <DefaultLayout title="Sedher | Messages">
@@ -24,8 +28,12 @@ const Messages = ({ navs, defaultGrid }: MessagesProps) => {
           defaultGrid={defaultGrid}
           message
         />
+
         <ListNav navs={navs} />
-        <MessagesWrapper>Hellobb</MessagesWrapper>
+        {(view === "chats" || view === undefined) && (
+          <MessagesWrapper >Hellobb</MessagesWrapper>
+        )}
+        {view === "emails" && <MessagesWrapper >Email</MessagesWrapper>}
       </section>
     </DefaultLayout>
   );
