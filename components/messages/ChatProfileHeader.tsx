@@ -6,7 +6,7 @@ import WhiteWrapper from "../global/WhiteWrapper";
 const ChatProfileHeader = () => {
   return (
     <WhiteWrapper>
-      <div className="flex space-x-5 py-4 px-4">
+      <div className="flex justify-between space-x-5 py-4 px-4">
         <Avatar
           size={48}
           name={"Jan Mayer"}
