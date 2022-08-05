@@ -6,7 +6,7 @@ import WhiteWrapper from "../global/WhiteWrapper";
 const ChatProfileHeader = () => {
   return (
     <WhiteWrapper>
-      <div className="flex justify-between space-x-5 py-4 px-4">
+      <div className="flex space-x-5 py-4 px-4">
         <Avatar
           size={48}
           name={"Jan Mayer"}
@@ -23,7 +23,7 @@ const ChatProfileHeader = () => {
             </p>
             <h5 className="text-[16px] text-accents-brown font-normal">HCP</h5>
           </div>
-          <div className="flex space-x-5">
+          <div className="flex justify-between space-x-5">
             <img src="/assets/icons/pin.svg" alt="pin" title="pin" />
             <img src="/assets/icons/star.svg" alt="star" title="star" />
             <img src="/assets/icons/more.svg" alt="more" title="more" />
