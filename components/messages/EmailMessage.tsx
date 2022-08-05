@@ -5,7 +5,7 @@ const EmailMessage = () => {
   return (
     <div className="mt-2">
       <WhiteWrapper>
-        <div className="flex  space-x-2 ">
+        <div className="flex justify-between space-x-2 ">
           <h4>Emmanuel Bubble</h4>
           <p>We are making these changes to provide....</p>
           <time> 9:34 PM</time>
