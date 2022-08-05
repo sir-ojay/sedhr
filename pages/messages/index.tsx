@@ -1,9 +1,11 @@
 import ListNav from "@/components/global/ListNav";
 import ListSortHeader from "@/components/global/ListSortHeader";
 import MessagesWrapper from "@/components/messages/MessagesWrapper";
+import EmailMessage from "@/components/messages/EmailMessage";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import ChatProfileHeader from "@/components/messages/ChatProfileHeader";
 
 type MessagesProps = {
   defaultGrid: number;
@@ -31,9 +33,19 @@ const Messages = ({ navs, defaultGrid }: MessagesProps) => {
 
         <ListNav navs={navs} />
         {(view === "chats" || view === undefined) && (
-          <MessagesWrapper >Hellobb</MessagesWrapper>
+          <MessagesWrapper>
+            <ChatProfileHeader />
+          </MessagesWrapper>
         )}
-        {view === "emails" && <MessagesWrapper >Email</MessagesWrapper>}
+        {view === "emails" && (
+          <MessagesWrapper>
+            <ChatProfileHeader />
+            {/* <EmailMessage /> */}
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
+              <EmailMessage />
+            ))}
+          </MessagesWrapper>
+        )}
       </section>
     </DefaultLayout>
   );

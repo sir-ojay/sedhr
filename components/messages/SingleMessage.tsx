@@ -40,12 +40,11 @@ const SingleMessage = ({ card }: SingelMessageProps) => {
             )}
             {view === "emails" && (
               <Button
-              icon="messages"
+                icon="messages"
                 theme="plain"
                 size="sm"
                 className="w-full text-primary border border-primary"
               >
-                
                 All message
               </Button>
             )}
