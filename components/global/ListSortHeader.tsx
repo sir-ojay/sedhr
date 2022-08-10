@@ -6,7 +6,7 @@ type ListSortHeaderProps = {
 	defaultGrid: number;
 	title: string;
 	description?: string;
-	results: number;
+	results?: number;
 	connect?: boolean;
 };
 
@@ -15,7 +15,6 @@ const ListSortHeader = ({
 	defaultGrid,
 	title,
 	results,
-	connect,
 	description = "Connect with people you know",
 }: ListSortHeaderProps) => {
 	const [listType, setListType] = useState("grid");
@@ -26,7 +25,7 @@ const ListSortHeader = ({
 				<div className='font-semibold text-2xl text-dark-900 font-clash'>
 					{title}
 				</div>
-				{connect ? (
+				{!results && description ? (
 					<div className='font-epilogue'>{description}</div>
 				) : (
 					<div className='font-epilogue'>

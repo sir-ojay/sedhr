@@ -23,7 +23,6 @@ const Collaboration = ({ navs, defaultGrid }: CollaborationProps) => {
 			<section className='space-y-6'>
 				<ListSortHeader
 					title='Collaboration'
-					results={73}
 					setGrid={setGrid}
 					defaultGrid={defaultGrid}
 					connect
