@@ -25,10 +25,9 @@ const Connection = ({ navs, defaultGrid }: ConnectionProps) => {
 			<section className='space-y-6'>
 				<ListSortHeader
 					title='Connection'
-					results={73}
 					setGrid={setGrid}
 					defaultGrid={defaultGrid}
-					connect
+					description='Connect with people you know'
 				/>
 				<ListNav navs={navs} />
 				<WhiteWrapper>
@@ -58,9 +57,7 @@ const Connection = ({ navs, defaultGrid }: ConnectionProps) => {
 					</GridContainer>
 				)}
 				{t === "hcp" && (
-					<GridContainer grid={grid}>
-						justify-between
-					</GridContainer>
+					<GridContainer grid={grid}>justify-between</GridContainer>
 				)}
 				{t === "sedher" && (
 					<GridContainer grid={grid}>
