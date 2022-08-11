@@ -1,10 +1,7 @@
 import CollaborationNav from "@/components/collaboration/CollaborationNav";
 import CollaborationWrapper from "@/components/collaboration/CollaborationWrapper";
-import RFPCard from "@/components/collaboration/rfp/RFPCard";
 import CollaboCard from "@/components/collaboration/sedher-collabo/CollaboCard";
-import Button from "@/components/global/Button";
 import GridContainer from "@/components/global/GridContainer";
-import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
