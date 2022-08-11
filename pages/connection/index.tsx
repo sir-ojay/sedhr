@@ -57,7 +57,11 @@ const Connection = ({ navs, defaultGrid }: ConnectionProps) => {
 					</GridContainer>
 				)}
 				{t === "hcp" && (
-					<GridContainer grid={grid}>justify-between</GridContainer>
+					<GridContainer grid={grid}>
+						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
+							<ConnectionCard key={card} type='hcp' />
+						))}
+					</GridContainer>
 				)}
 				{t === "sedher" && (
 					<GridContainer grid={grid}>

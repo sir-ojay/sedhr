@@ -6,6 +6,7 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import ChatProfileHeader from "@/components/messages/ChatProfileHeader";
+import ConversationSection from "@/components/messages/ConversationSection";
 
 type MessagesProps = {
 	defaultGrid: number;
@@ -34,6 +35,7 @@ const Messages = ({ navs, defaultGrid }: MessagesProps) => {
 				{(view === "chats" || view === undefined) && (
 					<MessagesWrapper>
 						<ChatProfileHeader />
+						<ConversationSection />
 					</MessagesWrapper>
 				)}
 				{view === "emails" && (
