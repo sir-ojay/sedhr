@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React from "react";
 import WhiteWrapper from "./WhiteWrapper";
 
 type ListNavProps = {
@@ -7,9 +8,10 @@ type ListNavProps = {
 		name: string;
 		href: string;
 	}[];
+	type?: "query" | "slug";
 };
 
-const ListNav = ({ navs }: ListNavProps) => {
+const ListNav = ({ navs, type = "query" }: ListNavProps) => {
 	const location = useRouter();
 
 	return (
@@ -18,15 +20,28 @@ const ListNav = ({ navs }: ListNavProps) => {
 				{navs?.map((nav, i) => (
 					<li key={nav.name}>
 						<Link href={nav.href}>
-							<a
-								className={`font-semibold px-5 pb-2 ${
-									nav.href.includes(`=${Object.values(location?.query)[0]}`) ||
-									(i === 0 && Object.keys(location?.query).length === 0)
-										? "border-b-4 border-b-primary text-dark-900"
-										: "text-dark-100"
-								}`}>
-								{nav.name}
-							</a>
+							{type === "query" ? (
+								<a
+									className={`font-semibold px-5 pb-2 ${
+										nav.href.includes(
+											`=${Object.values(location?.query)[0]}`
+										) ||
+										(i === 0 && Object.keys(location?.query).length === 0)
+											? "border-b-4 border-b-primary text-dark-900"
+											: "text-dark-100"
+									}`}>
+									{nav.name}
+								</a>
+							) : (
+								<a
+									className={`font-semibold px-5 pb-2 ${
+										location.pathname.includes(nav.href)
+											? "border-b-4 border-b-primary text-dark-900"
+											: "text-dark-100"
+									}`}>
+									{nav.name}
+								</a>
+							)}
 						</Link>
 					</li>
 				))}

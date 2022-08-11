@@ -7,7 +7,6 @@ type ListSortHeaderProps = {
 	title: string;
 	description?: string;
 	results?: number;
-	connect?: boolean;
 };
 
 const ListSortHeader = ({
