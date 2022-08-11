@@ -8,61 +8,60 @@ import React, { useState } from "react";
 import ChatProfileHeader from "@/components/messages/ChatProfileHeader";
 
 type MessagesProps = {
-  defaultGrid: number;
-  navs: {
-    name: string;
-    href: string;
-  }[];
+	defaultGrid: number;
+	navs: {
+		name: string;
+		href: string;
+	}[];
 };
 const Messages = ({ navs, defaultGrid }: MessagesProps) => {
-  const [grid, setGrid] = useState(defaultGrid);
-  const {
-    query: { view },
-  } = useRouter();
+	const [grid, setGrid] = useState(defaultGrid);
+	const {
+		query: { view },
+	} = useRouter();
 
-  return (
-    <DefaultLayout title="Sedher | Messages">
-      <section className="space-y-6">
-        <ListSortHeader
-          title="Messages"
-          results={73}
-          setGrid={setGrid}
-          defaultGrid={defaultGrid}
-          message
-        />
+	return (
+		<DefaultLayout title='Sedher | Messages'>
+			<section className='space-y-6'>
+				<ListSortHeader
+					title='Messages'
+					results={73}
+					setGrid={setGrid}
+					defaultGrid={defaultGrid}
+				/>
 
-        <ListNav navs={navs} />
-        {(view === "chats" || view === undefined) && (
-          <MessagesWrapper>
-            <ChatProfileHeader />
-          </MessagesWrapper>
-        )}
-        {view === "emails" && (
-          <MessagesWrapper>
-            <ChatProfileHeader />
-            {/* <EmailMessage /> */}
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
-              <EmailMessage />
-            ))}
-          </MessagesWrapper>
-        )}
-      </section>
-    </DefaultLayout>
-  );
+				<ListNav navs={navs} />
+				{(view === "chats" || view === undefined) && (
+					<MessagesWrapper>
+						<ChatProfileHeader />
+					</MessagesWrapper>
+				)}
+				{view === "emails" && (
+					<MessagesWrapper>
+						<ChatProfileHeader />
+						{/* <EmailMessage /> */}
+						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
+							<EmailMessage />
+						))}
+					</MessagesWrapper>
+				)}
+			</section>
+		</DefaultLayout>
+	);
 };
 
 export default Messages;
 
 Messages.defaultProps = {
-  defaultGrid: 4,
-  navs: [
-    {
-      name: "Chats",
-      href: "/messages?view=chats",
-    },
-    {
-      name: "Emails",
-      href: "/messages?view=emails",
-    },
-  ],
+	defaultGrid: 4,
+	navs: [
+		{
+			name: "Chats",
+			href: "/messages?view=chats",
+		},
+		{
+			name: "Emails",
+			href: "/messages?view=emails",
+		},
+	],
 };

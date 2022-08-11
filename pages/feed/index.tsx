@@ -15,15 +15,17 @@ const feed = () => {
 					<PostStatus />
 
 					<section className='space-y-6'>
-						{[1, 2, 3, 4, 5, 6].map((post) => (
+						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((post) => (
 							<FeedPost key={post} />
 						))}
 					</section>
 				</section>
-				<aside className='col-span-2 space-y-6'>
-					<YouMightKnow />
-					<RecentEvents />
-					<RecentGroups />
+				<aside className='col-span-2'>
+					<div className='sticky top-[164px] overflow-auto h-[calc(100vh-160.76px)] space-y-6 pb-8 transition-all ease-in scrollbar-thin hover:scrollbar-thumb-transparent hover:scrollbar-track-transparent scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
+						<YouMightKnow />
+						<RecentEvents />
+						<RecentGroups />
+					</div>
 				</aside>
 			</div>
 		</DefaultLayout>
