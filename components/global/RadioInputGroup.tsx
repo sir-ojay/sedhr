@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 
 type RadioInputGroupProps = {
-	label: string;
-	name: string;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	options: string[];
+	label?: string;
+	name?: string;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	options?: string[];
 	className?: string;
 };
 
@@ -21,7 +21,7 @@ const RadioInputGroup = ({
 				{label}
 			</legend>
 			<div className='flex items-center flex-wrap gap-2 px-2 py-[6px] border-2 border-[#B8C9C9] w-fit rounded-[5px]'>
-				{options.map((option) => {
+				{options?.map((option) => {
 					const id = uuidv4();
 					return (
 						<label
