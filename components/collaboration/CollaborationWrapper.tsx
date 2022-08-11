@@ -70,6 +70,10 @@ CollaborationWrapper.defaultProps = {
 			href: "/collaboration/sedher-synergi",
 		},
 		{
+			name: "Sedher Luminaries",
+			href: "/collaboration/sedher-luminaries",
+		},
+		{
 			name: "Communication",
 			href: "/collaboration/communication",
 		},
