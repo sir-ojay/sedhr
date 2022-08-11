@@ -30,7 +30,7 @@ const SingleMessage = ({ card }: SingelMessageProps) => {
                 12 mins ago
               </p>
             </div>
-            <div className="text-[10px] text-accents-brown">
+            <div className="text-accents-brown mb-1 text-[15px]">
               HCP <span className=" text-neutral-80 "> Dental clinics</span>
             </div>
             {view !== "emails" && (
