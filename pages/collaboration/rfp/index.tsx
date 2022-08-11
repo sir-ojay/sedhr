@@ -87,7 +87,7 @@ const RFP = ({ navigations }: RFPProps) => {
 						</WhiteWrapper>
 
 						<GridContainer grid={grid}>
-							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
+							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
 								(card) => (
 									<RFPCard key={card} type='all' />
 								)

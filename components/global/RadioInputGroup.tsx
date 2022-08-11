@@ -1,10 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 
 type RadioInputGroupProps = {
-	label: string;
-	name: string;
-	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-	options: string[];
+	label?: string;
+	name?: string;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	options?: string[];
 	className?: string;
 };
 
