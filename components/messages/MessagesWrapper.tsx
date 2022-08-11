@@ -9,8 +9,8 @@ type MessagesWrapperProps = {
 
 const MessagesWrapper = ({ children }: MessagesWrapperProps) => {
   return (
-    <div className="grid grid-cols-10 gap-8">
-      <section className="col-span-4 space-y-6">
+    <div className="grid grid-cols-6 gap-8">
+      <section className="col-span-2 space-y-6">
         <WhiteWrapper>
           <Input type="search" placeholder="Search..." />
           {[1, 2, 3, 4, 6, 6, 7].map((card) => (
@@ -18,7 +18,7 @@ const MessagesWrapper = ({ children }: MessagesWrapperProps) => {
           ))}
         </WhiteWrapper>
       </section>
-      <section className="col-span-6 space-y-6">{children}</section>
+      <section className="col-span-4  space-y-6">{children}</section>
     </div>
   );
 };
