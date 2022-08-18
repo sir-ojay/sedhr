@@ -41,7 +41,7 @@ const LabelValue = ({
 				)}
 			</div>
 			<div
-				className={`font-archivo font-normal text-base text-[#101C1D] ${valueClassName}`}>
+				className={`font-archivo font-medium text-base text-[#101C1D] ${valueClassName}`}>
 				{value}
 			</div>
 		</div>
