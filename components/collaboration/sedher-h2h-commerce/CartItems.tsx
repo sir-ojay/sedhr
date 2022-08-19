@@ -5,9 +5,9 @@ import React from "react";
 
 const CartItems = () => {
 	return (
-		<WhiteWrapper className='!mt-8 st'>
+		<WhiteWrapper>
 			<div className='flex justify-between space-x-5 w-full'>
-				<div className='w-[300px] min-w-[300px]'>
+				<div className='w-[160px] min-w-[160px]'>
 					<Image
 						className='w-full'
 						src='/assets/images/collaborate.png'
@@ -30,7 +30,7 @@ const CartItems = () => {
 						NGN 300,000.00
 					</h5>
 					<div className='flex justify-between gap-5'>
-						<Button className='w-full' theme='outline'>
+						<Button className='w-full'  theme='outline'>
 							Save
 						</Button>
 						<Button className='w-full' theme='outline'>
