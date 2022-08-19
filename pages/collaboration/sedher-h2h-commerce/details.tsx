@@ -113,7 +113,7 @@ const Details = () => {
 							</Button>
 							<Button
 								onClick={() =>
-									router.push("/collaboration/sedher-h2h-commerce/details")
+									router.push("/collaboration/sedher-h2h-commerce/order-items")
 								}>
 								Place Order
 							</Button>
