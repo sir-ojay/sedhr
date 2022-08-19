@@ -9,9 +9,9 @@ import Switch from "@/components/global/Switch";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import Image from "next/image";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
-const create = () => {
+const index = () => {
 	const router = useRouter();
 	return (
 		<DefaultLayout title='Sedher | Collaboration | create RFP'>
@@ -145,7 +145,9 @@ const create = () => {
 							<Button theme='outline'>Cancel</Button>
 							<Button
 								onClick={() =>
-									router.push("/collaboration/sedher-h2h-commerce/details")
+									router.push(
+										"/collaboration/sedher-h2h-commerce/thomas-clinics/details"
+									)
 								}>
 								View full Details
 							</Button>
@@ -157,4 +159,4 @@ const create = () => {
 	);
 };
 
-export default create;
+export default index;
