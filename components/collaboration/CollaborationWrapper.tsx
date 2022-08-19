@@ -75,7 +75,7 @@ CollaborationWrapper.defaultProps = {
 		},
 		{
 			name: "Communication",
-			href: "/collaboration/communication",
+			href: "/collaboration/communication/my-groups",
 		},
 	],
 };
