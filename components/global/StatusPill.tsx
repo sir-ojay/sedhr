@@ -11,8 +11,8 @@ const StatusPill = ({
 	bg,
 	textColor,
 	statusStyle,
-	showIcon,
-}: StatusPillProps) => {
+}: // showIcon,
+StatusPillProps) => {
 	return (
 		<div
 			className={`text-center  px-3 py-2 rounded ${statusStyle}`}
@@ -21,8 +21,6 @@ const StatusPill = ({
 				color: textColor,
 			}}>
 			{text}
-
-			{showIcon && <img src='/assets/icons/more.svg' alt={text} title={text} />}
 		</div>
 	);
 };
