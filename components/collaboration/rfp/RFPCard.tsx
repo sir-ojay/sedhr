@@ -6,7 +6,11 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const RFPCard = () => {
+type Props = {
+	type?: "active" | "saved" | "complete";
+};
+
+const RFPCard = ({ type }: Props) => {
 	const router = useRouter();
 
 	return (
