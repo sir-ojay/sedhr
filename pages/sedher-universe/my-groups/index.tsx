@@ -38,6 +38,7 @@ const MyGroups = () => {
 									image='/assets/images/square-avatar-1.png'
 									cardType='group'
 									grid={1}
+									href='/sedher-universe/my-groups/Adagio CME-CPD Training Service'
 								/>
 							)
 						)}

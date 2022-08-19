@@ -73,7 +73,8 @@ LeftNavigation.defaultProps = {
 				{
 					name: "Collaboration",
 					icon: "collaboration",
-					href: "/collaboration/rfp",
+					href: "/collaboration",
+					slug: "/rfp",
 				},
 				{
 					name: "Sedher Finance",

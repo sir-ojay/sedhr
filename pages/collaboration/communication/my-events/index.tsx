@@ -1,14 +1,14 @@
+import CommunicationWrapper from "@/components/collaboration/communication/CommunicationWrapper";
 import AdjustableProfileCard from "@/components/global/AdjustableProfileCard";
 import Button from "@/components/global/Button";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
-import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import React from "react";
 
 const MyGroups = () => {
 	return (
-		<DefaultLayout title='Sedher | Sedher universe | My Events'>
-			<SedherUniverseWrapper>
+		<DefaultLayout title='Sedher | Collaboration | Communication | My Events'>
+			<CommunicationWrapper>
 				<section className='space-y-5'>
 					<WhiteWrapper>
 						<span className='font-semibold text-dark-900'>Event for you</span>
@@ -38,13 +38,13 @@ const MyGroups = () => {
 									image='/assets/images/square-avatar-1.png'
 									cardType='event'
 									grid={1}
-									href='/sedher-universe/my-events/Adagio CME-CPD Training Service'
+									href='/collaboration/communication/my-events/Adagio CME-CPD Training Service'
 								/>
 							)
 						)}
 					</section>
 				</section>
-			</SedherUniverseWrapper>
+			</CommunicationWrapper>
 		</DefaultLayout>
 	);
 };

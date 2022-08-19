@@ -4,9 +4,11 @@ import { useEffect } from "react";
 
 const index = () => {
 	useEffect(() => {
-		Router.push("/my-items/my-products?t=products");
+		Router.push("/collaboration/communication/my-groups");
 	}, []);
-	return <DefaultLayout title='Sedher | My items'></DefaultLayout>;
+	return (
+		<DefaultLayout title='Sedher | Collaboration | Communication'></DefaultLayout>
+	);
 };
 
 export default index;
