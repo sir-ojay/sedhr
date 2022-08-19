@@ -2,7 +2,7 @@ import WhiteWrapper from "./WhiteWrapper";
 
 type AboutCardProps = {
 	title: string;
-	description: string;
+	description?: string;
 };
 
 const AboutCard = ({ title, description }: AboutCardProps) => {
