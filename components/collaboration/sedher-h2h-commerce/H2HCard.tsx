@@ -7,11 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 type H2HCardProps = {
-	type: string;
-	star?: boolean;
+	type?: string;
 };
 
-const H2HCard = ({ type, star }: H2HCardProps) => {
+const H2HCard = ({ type }: H2HCardProps) => {
 	return (
 		<motion.article layout>
 			<WhiteWrapper>
@@ -23,17 +22,50 @@ const H2HCard = ({ type, star }: H2HCardProps) => {
 							size={54}
 							name='Thomas clinics'
 						/>
-						<div>
-							<Link href='/connection/1'>
-								<a className='font-semibold text-[#2A2069] hover:underline'>
-									Thomas clinics
-								</a>
-							</Link>
-							<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
-								Dental clinics
+						<div className='w-full flex justify-between '>
+							<div>
+								<Link href='/connection/1'>
+									<a className='font-semibold text-[#2A2069] hover:underline'>
+										Thomas clinics
+									</a>
+								</Link>
+								<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
+									Dental clinics
+								</div>
+								<div className='text-sm text-accents-brown'>
+									Patient care centres
+								</div>
 							</div>
-							<div className='text-sm text-accents-brown'>
-								Patient care centres
+
+							<div>
+								{type === "cancel" && (
+									<StatusPill
+										text='cancel'
+										bg='white'
+										textColor='#FF3956'
+										statusStyle='border border-[#FF3956] font-semibold font-archivo flex justify-between items-center '
+										showIcon='yes'
+									/>
+								)}
+
+								{type === "saved" && (
+									<StatusPill
+										text='saved'
+										bg='white'
+										textColor=' #1699F8'
+										statusStyle='border border-[#1699F8] font-semibold font-archivo flex justify-between items-center '
+										showIcon='yes'
+									/>
+								)}
+								{type === "complete" && (
+									<StatusPill
+										text='complete'
+										bg='white'
+										textColor='#1AD48D'
+										statusStyle='border border-[#1AD48D] font-semibold font-archivo flex justify-between items-center '
+										showIcon='yes'
+									/>
+								)}
 							</div>
 						</div>
 					</div>
@@ -60,12 +92,14 @@ const H2HCard = ({ type, star }: H2HCardProps) => {
 						semper amet, morbi. Egestas massa ac aliquam quam velit.
 					</div>
 					<div className='flex items-center gap-5'>
-						<Button
-							href='/connection/user-profile/2'
-							className='w-full'
-							theme='outline'>
-							View H2H
-						</Button>
+						{type !== "cancel" && type !== "complete" && type !== "saved" && (
+							<Button
+								href='/connection/user-profile/2'
+								className='w-full'
+								theme='outline'>
+								View H2H
+							</Button>
+						)}
 					</div>
 				</div>
 			</WhiteWrapper>

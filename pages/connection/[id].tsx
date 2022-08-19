@@ -13,7 +13,15 @@ const SingleUser = () => {
 			<div className='flex flex-col lg:grid lg:grid-cols-9 gap-8'>
 				<div className='col-span-6 space-y-5'>
 					<LargeDetailsCard type='account' />
-					<AboutCard title='About Me' />
+					<AboutCard
+						title='About Me'
+						description='Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
+					dolorum, earum dolorem veritatis molestiae obcaecati consequatur nemo
+					quis delectus at. Ullam distinctio quo ea tenetur suscipit neque,
+					ducimus et doloremque nisi, magni, sunt eos reiciendis voluptate
+					 laboriosam facilis, fuga culpa officia recusandae
+					accusantium saepe id tempore.'
+					/>
 					<WhiteWrapper>
 						<LargeProfileCard
 							avatarShape='circle'
