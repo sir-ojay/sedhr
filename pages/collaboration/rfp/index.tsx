@@ -45,11 +45,7 @@ const RFP = ({ navigations }: RFPProps) => {
 								className='font-semibold text-lg text-dark-900'>
 								Request for Proposal
 							</div>
-							<Button
-								icon='plus'
-								size='sm'
-								className='w-[234px]'
-								onClick={() => router.push("/collaboration/rfp/create")}>
+							<Button icon='plus' size='sm' className='w-[234px]'>
 								Create RFP
 							</Button>
 						</WhiteWrapper>
@@ -89,7 +85,7 @@ const RFP = ({ navigations }: RFPProps) => {
 						<GridContainer grid={grid}>
 							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
 								(card) => (
-									<RFPCard key={card} type='all' />
+									<RFPCard key={card} />
 								)
 							)}
 						</GridContainer>

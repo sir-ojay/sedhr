@@ -14,6 +14,7 @@ type AdjustableProfileCardProps = {
 	grid: number;
 	cardType: "connect" | "page" | "event" | "group";
 	connected?: boolean;
+	href?: string;
 };
 
 const AdjustableProfileCard = ({
@@ -24,6 +25,7 @@ const AdjustableProfileCard = ({
 	cardType,
 	grid,
 	connected = false,
+	href = "",
 }: AdjustableProfileCardProps) => {
 	return (
 		<motion.article layout>
@@ -132,11 +134,7 @@ const AdjustableProfileCard = ({
 						)}
 						{(cardType === "group" || cardType === "event") && (
 							<Button
-								onClick={() =>
-									Router.push(
-										`/sedher-universe/my-${cardType}s/Adagio-CME-CPD-Training-Services`
-									)
-								}
+								onClick={() => Router.push(href)}
 								size='sm'
 								theme='outline'
 								className='w-full'>

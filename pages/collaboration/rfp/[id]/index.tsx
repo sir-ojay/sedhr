@@ -10,7 +10,7 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
 
-const create = () => {
+const index = () => {
 	const router = useRouter();
 	return (
 		<DefaultLayout title='Sedher | Collaboration | create RFP'>
@@ -626,4 +626,4 @@ const create = () => {
 	);
 };
 
-export default create;
+export default index;

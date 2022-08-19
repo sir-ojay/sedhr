@@ -4,13 +4,15 @@ import StatusPill from "@/components/global/StatusPill";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-type RFPCardProps = {
-	type: string;
-	star?: boolean;
+type Props = {
+	type?: "active" | "saved" | "complete";
 };
 
-const RFPCard = ({ type, star }: RFPCardProps) => {
+const RFPCard = ({ type }: Props) => {
+	const router = useRouter();
+
 	return (
 		<motion.article layout>
 			<WhiteWrapper>
@@ -52,7 +54,8 @@ const RFPCard = ({ type, star }: RFPCardProps) => {
 						<Button
 							href='/connection/user-profile/2'
 							className='w-full'
-							theme='outline'>
+							theme='outline'
+							onClick={() => router.push("/collaboration/rfp/thomas-clinics")}>
 							View RFP
 						</Button>
 					</div>
