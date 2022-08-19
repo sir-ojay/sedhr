@@ -96,12 +96,12 @@ SedherH2hCommerce.defaultProps = {
 		},
 		{
 			name: "Cancel H2H",
-			href: "/collaboration/sedher-h2h-commerce/",
+			href: "/collaboration/sedher-h2h-commerce/cancel-h2h",
 			count: 45,
 		},
 		{
 			name: "Complete H2H",
-			href: "/collaboration/sedher-h2h-commerce/",
+			href: "/collaboration/sedher-h2h-commerce/complete-h2h",
 			count: 45,
 		},
 	],

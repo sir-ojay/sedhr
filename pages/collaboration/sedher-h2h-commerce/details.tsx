@@ -156,48 +156,51 @@ const Details = () => {
 								</Button>
 							</div>
 						</WhiteWrapper>
+
 						<WhiteWrapper>
-							<div className='space-y-4'>
-								<h4 className='font-semibold text-xl font-archivo text-black'>
-									Item details
-								</h4>
+							<div className='sticky  '>
 								<div className='space-y-4'>
-									<LabelValue
-										label='Name'
-										value=' 1600 W Universal Machining Centre'
-										orientation='vertical'
-									/>
-									<LabelValue
-										label='item number'
-										value=' 4556778'
-										orientation='vertical'
-									/>
-									<LabelValue
-										label='Model / type'
-										value='MH 1600 W'
-										orientation='vertical'
-									/>
-									<LabelValue
-										label='Year of manufacture'
-										value='20 june, 2022'
-										orientation='vertical'
-									/>
-									<LabelValue
-										label='Item available from'
-										value='Immediately'
-										orientation='vertical'
-									/>
-									<LabelValue
-										label='Item condition'
-										value='unchecked'
-										orientation='vertical'
-									/>
-									<LabelValue
-										label='location'
-										value='nigeria,lagos obawole, show map'
-										orientation='vertical'
-										valueClassName='text-[#3772FF]'
-									/>
+									<h4 className='font-semibold text-xl font-archivo text-black'>
+										Item details
+									</h4>
+									<div className='space-y-4'>
+										<LabelValue
+											label='Name'
+											value=' 1600 W Universal Machining Centre'
+											orientation='vertical'
+										/>
+										<LabelValue
+											label='item number'
+											value=' 4556778'
+											orientation='vertical'
+										/>
+										<LabelValue
+											label='Model / type'
+											value='MH 1600 W'
+											orientation='vertical'
+										/>
+										<LabelValue
+											label='Year of manufacture'
+											value='20 june, 2022'
+											orientation='vertical'
+										/>
+										<LabelValue
+											label='Item available from'
+											value='Immediately'
+											orientation='vertical'
+										/>
+										<LabelValue
+											label='Item condition'
+											value='unchecked'
+											orientation='vertical'
+										/>
+										<LabelValue
+											label='location'
+											value='nigeria,lagos obawole, show map'
+											orientation='vertical'
+											isLink={true}
+										/>
+									</div>
 								</div>
 							</div>
 						</WhiteWrapper>

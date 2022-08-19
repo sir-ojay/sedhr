@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 type LabelValueProps = {
 	label: string;
 	value: string;
@@ -5,6 +7,7 @@ type LabelValueProps = {
 	orientation?: "horizontal" | "vertical";
 	labelClassName?: string;
 	valueClassName?: string;
+	isLink?: boolean;
 };
 
 const LabelValue = ({
@@ -14,6 +17,7 @@ const LabelValue = ({
 	orientation = "horizontal",
 	labelClassName,
 	valueClassName,
+	isLink = false,
 }: LabelValueProps) => {
 	return (
 		<div
@@ -40,10 +44,14 @@ const LabelValue = ({
 					</svg>
 				)}
 			</div>
-			<div
-				className={`font-archivo font-medium text-base text-[#101C1D] ${valueClassName}`}>
-				{value}
-			</div>
+			{isLink ? (
+				<Button tag='a'>{value}</Button>
+			) : (
+				<div
+					className={`font-archivo font-medium text-base text-[#101C1D] ${valueClassName}`}>
+					{value}
+				</div>
+			)}
 		</div>
 	);
 };
