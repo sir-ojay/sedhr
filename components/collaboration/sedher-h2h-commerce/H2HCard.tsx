@@ -5,12 +5,15 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type H2HCardProps = {
 	type?: string;
 };
 
 const H2HCard = ({ type }: H2HCardProps) => {
+	const router = useRouter();
+
 	return (
 		<motion.article layout>
 			<WhiteWrapper>
@@ -96,7 +99,12 @@ const H2HCard = ({ type }: H2HCardProps) => {
 							<Button
 								href='/connection/user-profile/2'
 								className='w-full'
-								theme='outline'>
+								theme='outline'
+								onClick={() =>
+									router.push(
+										"/collaboration/sedher-h2h-commerce/thomas-clinics"
+									)
+								}>
 								View H2H
 							</Button>
 						)}

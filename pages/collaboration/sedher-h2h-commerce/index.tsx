@@ -45,13 +45,7 @@ const SedherH2hCommerce = ({ navigations }: SedherH2hCommerceProps) => {
 								className='font-semibold text-lg text-dark-900'>
 								Sedher H2H Commerce
 							</div>
-							<Button
-								icon='plus'
-								size='sm'
-								className='w-[234px]'
-								onClick={() =>
-									router.push("/collaboration/sedher-h2h-commerce/create")
-								}>
+							<Button icon='plus' size='sm' className='w-[234px]'>
 								Create H2H
 							</Button>
 						</WhiteWrapper>
