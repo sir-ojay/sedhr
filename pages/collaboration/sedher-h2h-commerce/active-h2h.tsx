@@ -2,6 +2,7 @@ import React from "react";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import ListNav from "@/components/global/ListNav";
 import H2HCard from "@/components/collaboration/sedher-h2h-commerce/H2HCard";
+import GoBackButton from "@/components/global/GoBackButton";
 
 type ActiveH2hProps = {
 	navigations: {
@@ -14,12 +15,16 @@ type ActiveH2hProps = {
 const ActiveH2h = ({ navigations }: ActiveH2hProps) => {
 	return (
 		<DefaultLayout>
-			<ListNav type='slug' navs={navigations} />
-			<section className='grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-8'>
-				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
-					<H2HCard key={card} type='active' />
-				))}
-			</section>
+			<div className='space-y-8'>
+				<GoBackButton label='My request for proposal' />
+
+				<ListNav type='slug' navs={navigations} />
+				<section className='grid md:grid-cols-2 xl:grid-cols-3 gap-8'>
+					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
+						<H2HCard key={card} type='active' />
+					))}
+				</section>
+			</div>
 		</DefaultLayout>
 	);
 };

@@ -92,17 +92,14 @@ const H2HCard = ({ type }: H2HCardProps) => {
 						semper amet, morbi. Egestas massa ac aliquam quam velit.
 					</div>
 					<div className='flex items-center gap-5'>
-						{type !== "active" &&
-							type !== "cancel" &&
-							type !== "complete" &&
-							type !== "saved" && (
-								<Button
-									href='/connection/user-profile/2'
-									className='w-full'
-									theme='outline'>
-									View H2H
-								</Button>
-							)}
+						{type !== "cancel" && type !== "complete" && type !== "saved" && (
+							<Button
+								href='/connection/user-profile/2'
+								className='w-full'
+								theme='outline'>
+								View H2H
+							</Button>
+						)}
 					</div>
 				</div>
 			</WhiteWrapper>
