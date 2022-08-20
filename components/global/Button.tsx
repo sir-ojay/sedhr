@@ -9,6 +9,7 @@ const Button: React.FC<ButtonProps> = ({
 	disabled,
 	theme = "primary",
 	icon = null,
+	iconBlue = null,
 	href,
 	size = "md",
 	underline = true,
@@ -120,6 +121,13 @@ const Button: React.FC<ButtonProps> = ({
 			{...rest}>
 			<ClipLoader color={iconColor(theme)} loading={loading} size={20} />
 			{icon && (
+				<Image
+					src={`/assets/icons/${icon}.svg`}
+					width={iconSize(size)}
+					height={iconSize(size)}
+				/>
+			)}
+			{iconBlue && (
 				<Image
 					src={`/assets/icons/${icon}.svg`}
 					width={iconSize(size)}

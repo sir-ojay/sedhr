@@ -2,9 +2,12 @@ import Button from "@/components/global/Button";
 import LabelValue from "@/components/global/LabelValue";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import Image from "next/image";
+import { Router, useRouter } from "next/router";
 import React from "react";
 
 const CartAside = () => {
+	const router = useRouter();
+
 	return (
 		<WhiteWrapper>
 			<div className='space-y-4'>
@@ -33,7 +36,14 @@ const CartAside = () => {
 							<span className='text-[#44BE9D]'>NGN290,000,000.00</span>
 						</p>
 					</div>
-					<Button className='w-full' size='lg'>
+					<Button
+						onClick={() =>
+							router.push(
+								"/collaboration/sedher-h2h-commerce/thomas-clinics/checkout"
+							)
+						}
+						className='w-full'
+						size='lg'>
 						Checkout
 					</Button>
 					<p className='text-center text-[#696866]'>

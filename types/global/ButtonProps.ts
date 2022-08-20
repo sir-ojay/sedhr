@@ -9,6 +9,7 @@ export type ButtonProps = {
 	isExternal?: boolean;
 	outline?: boolean;
 	icon?: string;
+	iconBlue?: string;
 	href?: string;
 	size?: "sm" | "md" | "lg" | "xl";
 	underline?: boolean;
