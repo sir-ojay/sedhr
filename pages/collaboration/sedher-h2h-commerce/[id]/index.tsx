@@ -2,8 +2,6 @@ import CollaborationWrapper from "@/components/collaboration/CollaborationWrappe
 import H2HCard from "@/components/collaboration/sedher-h2h-commerce/H2HCard";
 import Avatar from "@/components/global/Avatar";
 import Button from "@/components/global/Button";
-import Input from "@/components/global/Input";
-import RadioInputGroup from "@/components/global/RadioInputGroup";
 import StatusPill from "@/components/global/StatusPill";
 import Switch from "@/components/global/Switch";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
