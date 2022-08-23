@@ -104,7 +104,7 @@ const Details = () => {
 						<Button
 							onClick={() =>
 								router.push(
-									"/collaboration/sedher-h2h-commerce/thomas-clinics/order-items"
+									"/collaboration/sedher-h2h-commerce/thomas-clinics/details/order-items"
 								)
 							}>
 							Place Order
