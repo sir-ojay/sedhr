@@ -44,29 +44,31 @@ const CartAside = () => {
 						}
 						className='w-full'
 						size='lg'>
-						Checkout
+						CHECKOUT
 					</Button>
 					<p className='text-center text-[#696866]'>
 						Vestibulum iaculis sagittis massa.
 					</p>
-					<div className='flex justify-between  w-full'>
-						<div className='w-[40px] min-w-[40px]'>
-							<Image
-								className='w-full'
-								src='/assets/images/money.png'
-								width={24}
-								height={24}
-								// layout='responsive'
-							/>
-						</div>
-						<div>
-							<h5 className='font-archivo text-[#3772FF] font-semibold text-sm '>
-								30 day money back guarantee
-							</h5>
-							<p className=' text-[#616A6A] font-normal text-sm font-archivo'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. A proin
-								hac feugiat facilisi aliquet adipiscing.
-							</p>
+					<div className='bg-[#F5FBFE] px-4 py-4'>
+						<div className='flex justify-between  w-full'>
+							<div className='w-[40px] min-w-[40px]'>
+								<Image
+									className='w-full'
+									src='/assets/images/money.png'
+									width={24}
+									height={24}
+									// layout='responsive'
+								/>
+							</div>
+							<div>
+								<h5 className='font-archivo text-[#3772FF] font-semibold text-sm '>
+									30 day money back guarantee
+								</h5>
+								<p className=' text-[#616A6A] font-normal text-sm font-archivo'>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. A
+									proin hac feugiat facilisi aliquet adipiscing.
+								</p>
+							</div>
 						</div>
 					</div>
 					<div>
