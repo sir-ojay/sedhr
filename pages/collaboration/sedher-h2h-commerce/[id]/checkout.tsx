@@ -26,9 +26,7 @@ const CheckOut = () => {
 					</Button>
 					<Button
 						onClick={() =>
-							router.push(
-								"/collaboration/sedher-h2h-commerce/thomas-clinics/details/order-items/checkout/card"
-							)
+							router.push("/collaboration/sedher-h2h-commerce/card")
 						}>
 						Continue
 					</Button>

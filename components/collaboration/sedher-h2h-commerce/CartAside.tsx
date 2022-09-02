@@ -39,7 +39,7 @@ const CartAside = () => {
 					<Button
 						onClick={() =>
 							router.push(
-								"/collaboration/sedher-h2h-commerce/thomas-clinics/details/order-items/checkout"
+								"/collaboration/sedher-h2h-commerce/thomas-clinics/checkout"
 							)
 						}
 						className='w-full'

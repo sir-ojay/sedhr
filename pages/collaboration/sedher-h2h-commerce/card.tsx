@@ -109,11 +109,19 @@ Card.defaultProps = {
 	navigations: [
 		{
 			name: "Card",
-			href: "/collaboration/sedher-h2h-commerce/thomas-clinics/details/order-items/checkout/card",
+			href: "/collaboration/sedher-h2h-commerce/card",
 		},
 		{
 			name: "Bank Transfer",
-			href: "/collaboration/sedher-h2h-commerce/thomas-clinics/checkout/payment/bank-transfer",
+			href: "/collaboration/sedher-h2h-commerce/transfer",
+		},
+		{
+			name: "Sedher Loan",
+			href: "/collaboration/sedher-h2h-commerce/t",
+		},
+		{
+			name: "Others",
+			href: "/collaboration/sedher-h2h-commerce/other",
 		},
 	],
 };
