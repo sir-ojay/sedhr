@@ -104,7 +104,7 @@ const BankTransfer = ({ navigations }: BankTransferProps) => {
 						</WhiteWrapper>
 						<p className='text-right p-6 font-archivo font-medium text-sm text-[#515B6F]'>
 							By clicking make payment button you agree with out term and
-							condition and{" "}
+							condition
 						</p>
 					</section>
 					<div className='col-span-2 '>
