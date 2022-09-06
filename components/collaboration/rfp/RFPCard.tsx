@@ -7,10 +7,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 type Props = {
-	type?: "active" | "saved" | "complete";
+	type?: "default" | "active" | "saved" | "complete";
 };
 
-const RFPCard = ({ type }: Props) => {
+const RFPCard = ({ type = "default" }: Props) => {
 	const router = useRouter();
 
 	return (
@@ -50,15 +50,20 @@ const RFPCard = ({ type }: Props) => {
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam tempor
 						semper amet, morbi. Egestas massa ac aliquam quam velit.
 					</div>
-					<div className='flex items-center gap-5'>
-						<Button
-							href='/connection/user-profile/2'
-							className='w-full'
-							theme='outline'
-							onClick={() => router.push("/collaboration/rfp/thomas-clinics")}>
-							View RFP
-						</Button>
-					</div>
+					{type === "saved" ||
+						(type === "default" && (
+							<div className='flex items-center gap-5'>
+								<Button
+									href='/connection/user-profile/2'
+									className='w-full'
+									theme='outline'
+									onClick={() =>
+										router.push("/collaboration/rfp/thomas-clinics")
+									}>
+									View RFP
+								</Button>
+							</div>
+						))}
 				</div>
 			</WhiteWrapper>
 		</motion.article>
