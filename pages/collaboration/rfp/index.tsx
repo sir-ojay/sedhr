@@ -45,7 +45,11 @@ const RFP = ({ navigations }: RFPProps) => {
 								className='font-semibold text-lg text-dark-900'>
 								Request for Proposal
 							</div>
-							<Button icon='plus' size='sm' className='w-[234px]'>
+							<Button
+								icon='plus'
+								onClick={() => router.push("/collaboration/rfp/templates")}
+								size='sm'
+								className='w-[234px]'>
 								Create RFP
 							</Button>
 						</WhiteWrapper>
@@ -104,16 +108,15 @@ RFP.defaultProps = {
 			name: "Active RFP",
 			href: "/collaboration/rfp/active-rfp",
 			count: 45,
-			// query: "?t=product",
 		},
 		{
 			name: "Complete RFP",
-			href: "/collaboration/rfp/",
+			href: "/collaboration/rfp/complete-rfp",
 			count: 45,
 		},
 		{
 			name: "Saved RFP",
-			href: "/collaboration/rfp/",
+			href: "/collaboration/rfp/saved-rfp",
 			count: 45,
 		},
 	],
