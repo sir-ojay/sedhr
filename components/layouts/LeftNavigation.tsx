@@ -42,6 +42,13 @@ LeftNavigation.defaultProps = {
 				// 	href: "/my-connections",
 				// },
 				{
+					name: "My Cart",
+					icon: "my-cart",
+					href: "/my-cart",
+					slug: "/my-products",
+					query: "?t=product",
+				},
+				{
 					name: "My Items",
 					icon: "my-items",
 					href: "/my-items",
@@ -76,21 +83,21 @@ LeftNavigation.defaultProps = {
 					href: "/collaboration",
 					slug: "/rfp",
 				},
+				// {
+				// 	name: "Sedher Finance",
+				// 	icon: "sedher-finance",
+				// 	href: "/sedher-finance",
+				// },
 				{
-					name: "Sedher Finance",
-					icon: "sedher-finance",
-					href: "/sedher-finance",
+					name: "Marketplace",
+					icon: "marketplace",
+					href: "/marketplace",
 				},
 			],
 		},
 		{
 			name: "ACCOUNT",
 			links: [
-				{
-					name: "Marketplace",
-					icon: "marketplace",
-					href: "/marketplace",
-				},
 				{
 					name: "Notifications",
 					icon: "notifications",
