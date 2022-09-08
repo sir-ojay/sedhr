@@ -101,7 +101,7 @@ SedherSynergi.defaultProps = {
 		},
 		{
 			name: "Cancel Sedher Synergi",
-			href: "/collaboration/sedher-synergi/canel-sedher-synergi",
+			href: "/collaboration/sedher-synergi/cancel-sedher-synergi",
 			count: 5,
 		},
 	],

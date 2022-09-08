@@ -18,6 +18,7 @@ type BankTransferProps = {
 	}[];
 };
 const BankTransfer = ({ navigations }: BankTransferProps) => {
+	
 	return (
 		<DefaultLayout>
 			<div className='space-y-8'>
@@ -89,6 +90,7 @@ const BankTransfer = ({ navigations }: BankTransferProps) => {
 										placeholder='This is placeholder'
 									/>
 								</div>
+								
 								<div className='w-1/2'>
 									<Input label='Time range' placeholder='This is placeholder' />
 								</div>

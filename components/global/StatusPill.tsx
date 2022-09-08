@@ -3,16 +3,9 @@ type StatusPillProps = {
 	bg: string;
 	textColor: string;
 	statusStyle?: string;
-	showIcon?: string;
 };
 
-const StatusPill = ({
-	text,
-	bg,
-	textColor,
-	statusStyle,
-}: // showIcon,
-StatusPillProps) => {
+const StatusPill = ({ text, bg, textColor, statusStyle }: StatusPillProps) => {
 	return (
 		<div
 			className={`text-center  px-3 py-2 rounded ${statusStyle}`}

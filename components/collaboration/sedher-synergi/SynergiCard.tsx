@@ -5,6 +5,7 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 type SynergiCardProps = {
 	type?: string;
@@ -12,6 +13,8 @@ type SynergiCardProps = {
 };
 
 const SynergiCard = ({ type, star }: SynergiCardProps) => {
+	const router = useRouter();
+
 	return (
 		<motion.article layout>
 			<WhiteWrapper>
@@ -23,17 +26,62 @@ const SynergiCard = ({ type, star }: SynergiCardProps) => {
 							size={54}
 							name='Thomas clinics'
 						/>
-						<div>
-							<Link href='/connection/1'>
-								<a className='font-semibold text-[#2A2069] hover:underline'>
-									Thomas clinics
-								</a>
-							</Link>
-							<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
-								Dental clinics
+						<div className='w-full flex justify-between'>
+							<div>
+								<Link href='/connection/1'>
+									<a className='font-semibold text-[#2A2069] hover:underline'>
+										Thomas clinics
+									</a>
+								</Link>
+								<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
+									Dental clinics
+								</div>
+								<div className='text-sm text-accents-brown'>
+									Patient care centres
+								</div>
 							</div>
-							<div className='text-sm text-accents-brown'>
-								Patient care centres
+							<div>
+								{type === "active" && (
+									<StatusPill
+										text='active'
+										bg='white'
+										textColor='#1699F8'
+										statusStyle='border border-[#1699F8] font-semibold font-archivo flex justify-between items-center '
+									/>
+								)}
+								{type === "cancel" && (
+									<StatusPill
+										text='cancel'
+										bg='white'
+										textColor='#FF3956'
+										statusStyle='border border-[#FF3956] font-semibold font-archivo flex justify-between items-center '
+									/>
+								)}
+
+								{type === "saved" && (
+									<StatusPill
+										text='saved'
+										bg='white'
+										textColor=' #1699F8'
+										statusStyle='border border-[#1699F8] font-semibold font-archivo flex justify-between items-center '
+									/>
+								)}
+								{type === "complete" && (
+									<StatusPill
+										text='complete'
+										bg='white'
+										textColor='#1AD48D'
+										statusStyle='border border-[#1AD48D] font-semibold font-archivo flex justify-between items-center '
+									/>
+								)}
+								{type === "create" && (
+									<StatusPill
+										text='Active'
+										bg='#1AD48D1A'
+										textColor='#1AD48D'
+										statusStyle=' font-semibold font-archivo flex justify-between items-center '
+									/>
+								)}
 							</div>
 						</div>
 					</div>
@@ -61,10 +109,12 @@ const SynergiCard = ({ type, star }: SynergiCardProps) => {
 					</div>
 					<div className='flex items-center gap-5'>
 						<Button
-							href='/connection/user-profile/2'
+							onClick={() =>
+								router.push("/collaboration/sedher-synergi/gideon")
+							}
 							className='w-full'
 							theme='outline'>
-							Book Appoinment
+							{type === "create" ? "Edit Details" : "Book Appoinment"}
 						</Button>
 					</div>
 				</div>
