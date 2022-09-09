@@ -21,7 +21,7 @@ const LabelValue = ({
 }: LabelValueProps) => {
 	return (
 		<div
-			className={`flex  justify-between ${
+			className={`flex justify-between ${
 				orientation === "horizontal"
 					? "flex-row items-center"
 					: "flex-col items-start"

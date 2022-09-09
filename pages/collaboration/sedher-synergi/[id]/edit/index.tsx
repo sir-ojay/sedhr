@@ -5,9 +5,13 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import AdditionalDetailsCard from "@/components/sedher-universe/AdditionalDetailsCard";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
 import React from "react";
 
 const Edit = () => {
+	const router = useRouter();
+
 	return (
 		<DefaultLayout>
 			<div className='space-y-8'>
@@ -137,7 +141,15 @@ const Edit = () => {
 													</Button>
 												</div>
 												<div className='mb-3'>
-													<Button className='w-full'>View appointment</Button>
+													<Button
+														onClick={() =>
+															router.push(
+																"/collaboration/sedher-synergi/gideon/edit/view"
+															)
+														}
+														className='w-full'>
+														View appointment
+													</Button>
 												</div>
 											</div>
 										</div>
