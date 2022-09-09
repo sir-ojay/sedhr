@@ -33,21 +33,25 @@ const NotificationCard = () => {
 				title='Instant message'
 				description='Et dolor pellentesque.'
 				time='12 minute ago'
+				bgColor='#E3F2EC'
 			/>
 			<NotificationCardItem
 				title='Message'
 				description='Quis blandit orci id aliquam.'
 				time='12 minute ago'
+				bgColor='#D3CFF94D'
 			/>
 			<NotificationCardItem
 				title='Audio Call'
 				description='Euismod tempus interdum.'
 				time='12 minute ago'
+				bgColor='#F0D2D84D'
 			/>
 			<NotificationCardItem
 				title='Video Call'
 				description='Tellus vitae sed netus.'
 				time='12 minute ago'
+				bgColor='#D0E3F34D'
 			/>
 		</WhiteWrapper>
 	);

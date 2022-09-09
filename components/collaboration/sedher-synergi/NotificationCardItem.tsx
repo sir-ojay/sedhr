@@ -4,14 +4,16 @@ type NotificationCardItemProps = {
 	title: string;
 	description: string;
 	time: string;
+	bgColor: string;
 };
 const NotificationCardItem = ({
 	title,
 	description,
 	time,
+	bgColor,
 }: NotificationCardItemProps) => {
 	return (
-		<div className='bg-[#E3F2EC66] mb-3'>
+		<div className='mb-3 rounded-xl ' style={{ backgroundColor: `${bgColor}` }}>
 			<div className='flex items-center  space-x-5 px-4 py-4'>
 				<div>
 					<svg
