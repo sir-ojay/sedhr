@@ -47,7 +47,6 @@ const H2HCard = ({ type }: H2HCardProps) => {
 										bg='white'
 										textColor='#FF3956'
 										statusStyle='border border-[#FF3956] font-semibold font-archivo flex justify-between items-center '
-										showIcon='yes'
 									/>
 								)}
 
@@ -57,7 +56,6 @@ const H2HCard = ({ type }: H2HCardProps) => {
 										bg='white'
 										textColor=' #1699F8'
 										statusStyle='border border-[#1699F8] font-semibold font-archivo flex justify-between items-center '
-										showIcon='yes'
 									/>
 								)}
 								{type === "complete" && (
@@ -66,7 +64,6 @@ const H2HCard = ({ type }: H2HCardProps) => {
 										bg='white'
 										textColor='#1AD48D'
 										statusStyle='border border-[#1AD48D] font-semibold font-archivo flex justify-between items-center '
-										showIcon='yes'
 									/>
 								)}
 							</div>

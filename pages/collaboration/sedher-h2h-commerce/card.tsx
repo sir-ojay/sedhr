@@ -30,7 +30,7 @@ const Card = ({ navigations }: CardProps) => {
 						Watch Tutorial
 					</Button>
 				</div>
-				<ListNav navs={navigations} type='slug' />
+				<ListNav type='slug' navs={navigations} />
 				<div className='grid grid-cols-6 gap-8'>
 					<section className='col-span-4 space-y-8'>
 						<section className='space-y-8'>
@@ -104,15 +104,24 @@ const Card = ({ navigations }: CardProps) => {
 };
 
 export default Card;
+
 Card.defaultProps = {
 	navigations: [
 		{
 			name: "Card",
-			href: "/collaboration/sedher-h2h-commerce/thomas-clinics/checkout/payment/card",
+			href: "/collaboration/sedher-h2h-commerce/card",
 		},
 		{
 			name: "Bank Transfer",
-			href: "/collaboration/sedher-h2h-commerce/thomas-clinics/checkout/payment/bank-transfer",
+			href: "/collaboration/sedher-h2h-commerce/transfer",
+		},
+		{
+			name: "Sedher Loan",
+			href: "/collaboration/sedher-h2h-commerce/t",
+		},
+		{
+			name: "Others",
+			href: "/collaboration/sedher-h2h-commerce/other",
 		},
 	],
 };

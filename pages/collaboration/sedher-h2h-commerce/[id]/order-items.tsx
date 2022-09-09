@@ -14,18 +14,23 @@ const OrderItems = () => {
 					<section className='col-span-4 space-y-8'>
 						<section className='space-y-8'>
 							{[1, 2].map((card) => (
-							<CartItems key={card}/>
-						))}
-						<WhiteWrapper>
-							<div className="flex justify-between items-center">
-							<h5 className="font-semibold text-neutral-80 text-xl font-archivo " >2 Item Added</h5>
-							<p className="font-semibold text-neutral-80 text-xl font-archivo">Total Amount <span className="text-[#44BE9D]">NGN 4,000,000:00</span></p>
-							</div>
-						</WhiteWrapper>
+								<CartItems key={card} />
+							))}
+							<WhiteWrapper>
+								<div className='flex justify-between items-center'>
+									<h5 className='font-semibold text-neutral-80 text-xl font-archivo '>
+										2 Item Added
+									</h5>
+									<p className='font-semibold text-neutral-80 text-xl font-archivo'>
+										Total Amount{" "}
+										<span className='text-[#44BE9D]'>NGN 4,000,000:00</span>
+									</p>
+								</div>
+							</WhiteWrapper>
 						</section>
 					</section>
 					<div className='col-span-2 '>
-						<CartAside/>
+						<CartAside />
 					</div>
 				</div>
 			</div>

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 type GoBackButtonProps = {
 	onClick?: () => void;
 	label?: string;
+	desc?: string;
 };
 
 const GoBackButton = ({ label }: GoBackButtonProps) => {
