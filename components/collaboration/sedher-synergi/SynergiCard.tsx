@@ -110,7 +110,7 @@ const SynergiCard = ({ type, star }: SynergiCardProps) => {
 					<div className='flex items-center gap-5'>
 						<Button
 							onClick={() =>
-								router.push("/collaboration/sedher-synergi/gideon")
+								router.push("/collaboration/sedher-synergi/gideon/edit")
 							}
 							className='w-full'
 							theme='outline'>

@@ -1,5 +1,6 @@
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import React from "react";
+import NotificationCardItem from "./NotificationCardItem";
 
 const NotificationCard = () => {
 	return (
@@ -7,7 +8,7 @@ const NotificationCard = () => {
 			<h5 className='font-clash font-semibold text-lg text-dark-900'>
 				Communication notification
 			</h5>
-			<div className='flex items-center pt-2 gap-4 '>
+			<div className='flex items-center pt-2 pb-5 gap-4 '>
 				<div className='text-dark-100'>Sort by:</div>
 				<div className='flex items-center gap-2 font-medium cursor-pointer'>
 					Most Recent
@@ -27,7 +28,27 @@ const NotificationCard = () => {
 					</svg>
 				</div>
 			</div>
-			<hr />
+			<hr className='pb-5' />
+			<NotificationCardItem
+				title='Instant message'
+				description='Et dolor pellentesque.'
+				time='12 minute ago'
+			/>
+			<NotificationCardItem
+				title='Message'
+				description='Quis blandit orci id aliquam.'
+				time='12 minute ago'
+			/>
+			<NotificationCardItem
+				title='Audio Call'
+				description='Euismod tempus interdum.'
+				time='12 minute ago'
+			/>
+			<NotificationCardItem
+				title='Video Call'
+				description='Tellus vitae sed netus.'
+				time='12 minute ago'
+			/>
 		</WhiteWrapper>
 	);
 };
