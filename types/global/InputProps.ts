@@ -32,7 +32,7 @@ export type InputProps = {
 	autoComplete?: string | boolean;
 	disabled?: boolean;
 	step?: number;
-	name: string;
+	name?: string;
 	className?: string;
 	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 	onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
