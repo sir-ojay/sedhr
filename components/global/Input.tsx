@@ -15,7 +15,7 @@ export interface ValidationRules {
 }
 
 const Input = ({
-	name,
+	name = "name",
 	label,
 	placeholder,
 	type = "text",
