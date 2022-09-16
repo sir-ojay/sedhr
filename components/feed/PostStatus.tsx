@@ -14,11 +14,11 @@ const PostStatus = () => {
 					image='/assets/icons/layouts/profile.png'
 				/>
 				<div className='w-[calc(100%-72px)]'>
-					<Input
+					{/* <Input
 						name='post'
 						placeholder='What do you want to write about?'
 						className='bg-accents-light-blue px-4 py-3 outline-none'
-					/>
+					/> */}
 				</div>
 			</div>
 			<div className='flex items-center justify-between'>

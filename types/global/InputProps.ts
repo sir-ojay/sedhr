@@ -1,3 +1,5 @@
+import { ValidationRules } from "@/components/global/Input";
+
 export type InputProps = {
 	label?: string;
 	placeholder?: string;
@@ -30,22 +32,24 @@ export type InputProps = {
 	autoComplete?: string | boolean;
 	disabled?: boolean;
 	step?: number;
-	name?: string;
+	name: string;
 	className?: string;
 	onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 	onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
 	onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 	onKeyUp?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 	onKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-	rules?: {
-		required?: boolean;
-		minLength?: number;
-		maxLength?: number;
-		pattern?: string;
-		min?: number;
-		max?: number;
-		step?: number;
-		email?: boolean;
-		number?: boolean;
-	};
+	// rules?: {
+	// 	required?: boolean;
+	// 	minLength?: number;
+	// 	maxLength?: number;
+	// 	pattern?: string;
+	// 	min?: number;
+	// 	max?: number;
+	// 	step?: number;
+	// 	email?: boolean;
+	// 	number?: boolean;
+	// };
+	rules?: Array<keyof ValidationRules>;
+	pattern?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;

@@ -1,19 +1,152 @@
-import { useState } from "react";
+import { HTMLInputTypeAttribute, useRef, useState } from "react";
 import { InputProps } from "@/types/global/InputProps";
+import { useFormContext } from "react-hook-form";
+
+type ValidationResult = boolean | string;
+export interface ValidationRules {
+	email: (value: string, label?: string) => ValidationResult;
+	required: (value: any, label?: string) => ValidationResult;
+	phone: (value: any, label?: string) => ValidationResult;
+	altPhone: (value: any, label?: string) => ValidationResult;
+	password: (value: any, label?: string) => ValidationResult;
+	otp: (value: any, label?: string) => ValidationResult;
+	confirmPassword: (value: any, label?: string) => ValidationResult;
+	noSpaces: (value: any, label?: string) => ValidationResult;
+}
 
 const Input = ({
+	name,
 	label,
 	placeholder,
 	type = "text",
 	id,
-	onChange,
-	value,
+	onChange = () => {},
+	// value,
+	readOnly = false,
+	autoFocus = false,
+	pattern,
+	min,
 	max,
+	rules = [],
 	autoComplete = "off",
 	disabled = false,
 	...rest
 }: InputProps) => {
 	const [errorMessage, setErrorMessage] = useState("");
+	const [focused, setFocused] = useState<boolean>(false);
+	const inputRef = useRef<HTMLInputElement | null>(null);
+	// / react-hook-form values
+	const methods = useFormContext();
+
+	const { watch } = methods;
+
+	const validationRules: ValidationRules = {
+		required: (value, label = "") => {
+			if (value !== null && value !== undefined && value !== "") return true;
+			else return `The ${label} field is required`;
+		},
+		email: (value, label = "") => {
+			const match = value
+				.toString()
+				.match(
+					/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+				);
+			return match ? true : `The ${label} field has to be a valid email`;
+		},
+		password: (value, label = "") => {
+			const messages = [];
+
+			if (!/[A-Z]/g.test(value)) {
+				messages.push("an uppercase letter");
+			}
+			if (!/[a-z]/g.test(value)) {
+				messages.push("a lowercase letter");
+			}
+			if (!/[0-9]/g.test(value)) {
+				messages.push("a number");
+			}
+			// eslint-disable-next-line no-useless-escape
+			if (!/[*|\":<>[\]{}`\\()';@&$#]/g.test(value)) {
+				messages.push("a special character");
+			}
+			if (value.length < 8) {
+				messages.push("at least 8 digits");
+			}
+
+			const message =
+				messages.length > 1
+					? `${messages.slice(0, -1).join(", ")} and ${messages.slice(-1)}`
+					: `${messages.join(", ")}`;
+			return messages.length > 0
+				? `The ${label} field must have ${message}`
+				: true;
+		},
+		otp: (value, label = "") => {
+			return value.length === 6
+				? true
+				: `The ${label} field must be of length 6`;
+		},
+		phone: (value, label = "") => {
+			return value.length <= 10
+				? true
+				: `The ${label} field must be less than or equal to 12 digits`;
+		},
+		altPhone: (value, label = "") => {
+			return value.length <= 12
+				? true
+				: `The ${label} field must be less than or equal to 12 digits`;
+		},
+		confirmPassword: (value, label = "") => {
+			return value === watch("password")
+				? true
+				: `The ${label} field must be equal to the Password field`;
+		},
+		noSpaces: (value, label = "") => {
+			return !value.includes(" ")
+				? true
+				: `The ${label} field is not allowed to contain spaces`;
+		},
+	};
+
+	// state for handling type
+	const [computedType, setComputedType] = useState<HTMLInputTypeAttribute>(
+		type.includes("date") ? "text" : type
+	);
+
+	const computedRules = rules.reduce<{
+		[index: string]: (param: string) => ValidationResult;
+	}>((map, key) => {
+		map[key] = (value) => validationRules[key](value, label || name);
+		return map;
+	}, {});
+
+	const { error } = methods.getFieldState(name);
+	const register = methods.register(name, {
+		validate: computedRules,
+		// max,
+		// min,
+		pattern: pattern
+			? {
+					value: new RegExp(pattern),
+					message:
+						errorMessage ||
+						`The ${label} field doesn't satisfy the regex ${pattern}`,
+			  }
+			: undefined,
+		min: min
+			? {
+					value: min,
+					message: `The ${label} field must be greater than or equal to ${min}`,
+			  }
+			: undefined,
+		max: max
+			? {
+					value: max,
+					message: `The ${label} field must be less than or equal to ${max}`,
+			  }
+			: undefined,
+	});
+	const value = methods.getValues(name);
 
 	return (
 		<label htmlFor={id} className='flex flex-col relative'>
@@ -43,12 +176,24 @@ const Input = ({
 			)}
 			{type !== "file" && type !== "search" && (
 				<input
+					{...register}
 					className='w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none'
 					type={type}
 					placeholder={placeholder}
 					id={id}
-					value={value}
-					onChange={onChange}
+					// value={value}
+					// onBlur={(event) => {
+					// 	register.onBlur(event);
+					// 	setFocused(false);
+					// }}
+					onChange={(event) => {
+						register.onChange(event);
+						onChange(event);
+					}}
+					ref={(e) => {
+						register.ref(e);
+						inputRef.current = e;
+					}}
 					disabled={disabled}
 					{...rest}
 				/>
@@ -86,11 +231,13 @@ const Input = ({
 					</div>
 				</>
 			)}
-			{errorMessage && (
-				<span className='absolute bottom-[-20px] text-sm text-accents-red'>
-					{errorMessage}
+			{error && (
+				<span className='text-left text-sm mt-1 text-accents-red'>
+					{error.message}
 				</span>
 			)}
+			{/* {error && <div className={styles.error}>{error.message}</div>}
+			{!error && hint && <div className={styles.hint}>{hint}</div>} */}
 		</label>
 	);
 };
