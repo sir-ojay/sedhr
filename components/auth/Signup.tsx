@@ -1,16 +1,64 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@/components/global/Button";
 import Divider from "@/components/global/Divider";
 import SignupForm from "./SignupForm";
 import Input from "../global/Input";
 import { useRouter } from "next/router";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import {
+	useRegisterMutation,
+	useValidateEmailMutation,
+	useVerifyEmailMutation,
+} from "@/services/auth";
+import { RegisterRequest, ValidateEmailRequest } from "@/types/auth/auth";
+import { toast } from "react-toastify";
+import RegisterForm from "./RegisterForm";
 
 const Signup = () => {
 	const router = useRouter();
 
-	const { step } = router.query;
+	const { step, email, otp } = router.query;
 
-	const [loading, setLoading] = useState(false);
+	const methods = useForm({
+		defaultValues: {
+			otp: otp?.toString() || "",
+		},
+		mode: "onChange",
+	});
+
+	const {
+		formState: { isValid },
+		setValue,
+	} = methods;
+
+	useEffect(() => {
+		setValue("otp", otp?.toString() || "", { shouldValidate: true });
+	}, [otp]);
+
+	/* Handle submit */
+	const [validateOTP, { isLoading }] = useValidateEmailMutation();
+
+	const onSubmit: SubmitHandler<ValidateEmailRequest> = async (data) => {
+		try {
+			const body = {
+				email: email?.toString(),
+				otp: data.otp,
+			};
+			const user = await validateOTP(body).unwrap();
+			toast.success(user.message);
+			router.push({
+				pathname: "/auth/signup",
+				query: {
+					...router.query,
+					step: "3",
+				},
+			});
+		} catch (err: any) {
+			toast.error(err.data.error);
+		}
+	};
+
+	const [verifyOTP] = useVerifyEmailMutation();
 
 	return (
 		<section className='w-[408px] mx-auto mt-[90px] text-center'>
@@ -29,7 +77,8 @@ const Signup = () => {
 						Sign up with Google
 					</Button>
 					<Divider label='Or sign up with email' />
-					<SignupForm loading={loading} setLoading={setLoading} />
+
+					<SignupForm />
 				</>
 			)}
 			{step === "2" && (
@@ -40,89 +89,52 @@ const Signup = () => {
 					<p className='font-epilogue font-medium text-lg leading-[160%] text-dark-100 mb-6'>
 						Please fill the code to confirm your email
 					</p>
-					<form className='space-y-6'>
-						<Input
-							label='Enter verification Code'
-							placeholder='Enter your verification Code'
-							value={""}
-							onChange={() => {}}
-						/>
-						<Button
-							theme='primary'
-							onClick={(event) => {
-								event.preventDefault();
-								setLoading(true);
-								setTimeout(() => {
-									router.push("signup?step=3");
-
-									setLoading(false);
-								}, 1500);
-							}}
-							// disabled
-							className='w-full'
-							loading={loading}>
-							Verify
-						</Button>
-						<div className='text-left text-dark-100 font-epilogue'>
-							{`Didn’t get the code? `}
-							<Button tag='a' theme='primary' className='font-semibold'>
-								Click Resend
-							</Button>
-						</div>
-					</form>
-				</>
-			)}
-			{step === "3" && (
-				<>
-					<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
-						password
-					</h1>
-					<p className='font-epilogue font-medium text-lg leading-[160%] text-dark-100 mb-6'>
-						Create your password
-					</p>
-					<form className='space-y-6'>
-						<Input
-							label='Create Password'
-							placeholder='Enter your Password'
-							type='password'
-							value={""}
-							onChange={() => {}}
-						/>
-						<Input
-							label='Confirm Password'
-							placeholder='Enter your Confirm Password'
-							type='password'
-							value={""}
-							onChange={() => {}}
-						/>
-						<Button
-							theme='primary'
-							onClick={(event) => {
-								event.preventDefault();
-								setLoading(true);
-								setTimeout(() => {
-									router.push("/onboarding/account");
-									setLoading(false);
-								}, 1500);
-							}}
-							// disabled
-							className='w-full'
-							loading={loading}>
-							Create Account
-						</Button>
-						<div className='text-left text-dark-100 font-epilogue'>
-							{`Already have an account? `}
+					<FormProvider {...methods}>
+						<form
+							onSubmit={methods.handleSubmit(onSubmit)}
+							className='space-y-6'>
+							<Input
+								label='Enter verification Code'
+								placeholder='Enter your verification Code'
+								name='otp'
+								rules={["required"]}
+							/>
 							<Button
-								tag='a'
-								href='/auth/signin'
 								theme='primary'
-								className='font-semibold'>
-								Sign in
+								type='submit'
+								disabled={!isValid}
+								className='w-full'
+								loading={isLoading}>
+								Verify
 							</Button>
-						</div>
-					</form>
+							<div className='text-left text-dark-100 font-epilogue'>
+								{`Didn’t get the code? `}
+								<Button
+									onClick={async (e) => {
+										e.preventDefault();
+										const user = await verifyOTP({
+											email: email?.toString() || "",
+										}).unwrap();
+										toast.success(user?.message);
+										router.replace({
+											pathname: "/auth/signup",
+											query: {
+												...router.query,
+												otp: user.data.otp,
+											},
+										});
+									}}
+									tag='a'
+									theme='primary'
+									className='font-semibold'>
+									Click Resend
+								</Button>
+							</div>
+						</form>
+					</FormProvider>
 				</>
 			)}
+			{step === "3" && <RegisterForm />}
 		</section>
 	);
 };
