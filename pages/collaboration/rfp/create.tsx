@@ -4,7 +4,6 @@ import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 const create = () => {
 	const router = useRouter();

@@ -50,7 +50,7 @@ const SedherSynergi = ({ navigations }: SedherSynergiProps) => {
 								size='sm'
 								className='w-[234px]'
 								onClick={() =>
-									router.push("/collaboration/sedher-h2h-commerce/create")
+									router.push("/collaboration/sedher-synergi/templates")
 								}>
 								Create H2H
 							</Button>
