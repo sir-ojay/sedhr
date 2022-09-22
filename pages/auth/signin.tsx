@@ -2,7 +2,7 @@ import Signin from "@/components/auth/Signin";
 import AuthLayout from "@/layouts/AuthLayout";
 import { NextPage } from "next";
 
-const signin: NextPage = () => {
+const SigninPage: NextPage = () => {
 	return (
 		<AuthLayout title='Sedher | Sign in'>
 			<Signin />
@@ -10,4 +10,4 @@ const signin: NextPage = () => {
 	);
 };
 
-export default signin;
+export default SigninPage;

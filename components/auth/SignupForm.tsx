@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import Checkbox from "../global/Checkbox";
@@ -34,6 +33,7 @@ const SignupForm = () => {
 			};
 			const user = await verifyOTP(body).unwrap();
 			toast.success(user.message);
+			console.log(user);
 			router.push({
 				pathname: "/auth/signup",
 				query: {
@@ -41,11 +41,12 @@ const SignupForm = () => {
 					email: data.email,
 					firstName: data.firstName,
 					lastName: data.lastName,
-					otp: user.data.otp,
+					// otp: user.data.otp,
 				},
 			});
 		} catch (err: any) {
-			toast.error(err.data.message);
+			console.log("err", err);
+			toast.error(err?.data?.message);
 		}
 	};
 	return (

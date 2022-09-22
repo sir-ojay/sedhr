@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Button from "@/components/global/Button";
 import Divider from "@/components/global/Divider";
 import SignupForm from "./SignupForm";
@@ -6,11 +6,10 @@ import Input from "../global/Input";
 import { useRouter } from "next/router";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import {
-	useRegisterMutation,
 	useValidateEmailMutation,
 	useVerifyEmailMutation,
 } from "@/services/auth";
-import { RegisterRequest, ValidateEmailRequest } from "@/types/auth/auth";
+import { ValidateEmailRequest } from "@/types/auth/auth";
 import { toast } from "react-toastify";
 import RegisterForm from "./RegisterForm";
 
@@ -116,13 +115,13 @@ const Signup = () => {
 											email: email?.toString() || "",
 										}).unwrap();
 										toast.success(user?.message);
-										router.replace({
-											pathname: "/auth/signup",
-											query: {
-												...router.query,
-												otp: user.data.otp,
-											},
-										});
+										// router.replace({
+										// 	pathname: "/auth/signup",
+										// 	query: {
+										// 		...router.query,
+										// 		otp: user.data.otp,
+										// 	},
+										// });
 									}}
 									tag='a'
 									theme='primary'

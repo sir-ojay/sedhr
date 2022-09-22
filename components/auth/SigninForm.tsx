@@ -1,8 +1,7 @@
-import React, { useState } from "react";
 import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import Checkbox from "../global/Checkbox";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { LoginRequest } from "@/types/auth/auth";
 import { useLoginMutation } from "@/services/auth";
@@ -35,7 +34,7 @@ const SigninForm = () => {
 			// Cookies.set("kadavraToken", user.token);
 			router.push("/feed");
 		} catch (err: any) {
-			toast.error(err.data.message);
+			toast.error(err?.data?.message);
 		}
 	};
 
@@ -48,11 +47,9 @@ const SigninForm = () => {
 					placeholder='you@sedher.com'
 					type='email'
 					rules={["required", "email"]}
-					// onChange={() => {}}
 				/>
 				<Input
 					name='password'
-					// onChange={() => {}}
 					label='Password'
 					placeholder='password'
 					type='password'
@@ -76,14 +73,6 @@ const SigninForm = () => {
 				<Button
 					theme='primary'
 					type='submit'
-					// onClick={(event) => {
-					// 	event.preventDefault();
-					// 	setLoading(true);
-					// 	setTimeout(() => {
-					// 		Router.push("/feed");
-					// 		setLoading(false);
-					// 	}, 1500);
-					// }}
 					disabled={!isValid}
 					className='w-full'
 					loading={isLoading}>
