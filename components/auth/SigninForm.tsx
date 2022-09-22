@@ -3,14 +3,13 @@ import Input from "@/components/global/Input";
 import Checkbox from "../global/Checkbox";
 import { useRouter } from "next/router";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { LoginRequest } from "@/types/auth/auth";
+import { LoginRequest, LoginResponse } from "@/types/auth/auth";
 import { useLoginMutation } from "@/services/auth";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 
 const SigninForm = () => {
 	const router = useRouter();
-	console.log(router);
 
 	const methods = useForm({
 		defaultValues: {
@@ -29,12 +28,13 @@ const SigninForm = () => {
 
 	const onSubmit: SubmitHandler<LoginRequest> = async (data) => {
 		try {
-			const user = await login(data).unwrap();
+			const user = (await login(data).unwrap()) as LoginResponse;
 			toast.success("Login successful");
 			console.log(user);
 			Cookies.set("sedherUser", JSON.stringify(user));
 			Cookies.set("sedherToken", user.token);
-			router.push("/feed");
+			if (user.accountType) router.push("/feed");
+			else router.push("/onboarding/account");
 		} catch (err: any) {
 			toast.error(err?.data?.message);
 		}
