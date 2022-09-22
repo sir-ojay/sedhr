@@ -3,6 +3,8 @@ import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { FormProvider, useForm } from "react-hook-form";
 
@@ -209,3 +211,12 @@ const create = () => {
 };
 
 export default create;
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

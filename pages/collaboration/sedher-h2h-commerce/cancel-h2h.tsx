@@ -3,6 +3,8 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import ListNav from "@/components/global/ListNav";
 import H2HCard from "@/components/collaboration/sedher-h2h-commerce/H2HCard";
 import GoBackButton from "@/components/global/GoBackButton";
+import { GetServerSideProps } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 type CancelH2hProps = {
 	navigations: {
@@ -50,3 +52,12 @@ CancelH2h.defaultProps = {
 		},
 	],
 };
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

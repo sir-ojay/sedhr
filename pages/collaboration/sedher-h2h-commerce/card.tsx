@@ -5,6 +5,8 @@ import LabelValue from "@/components/global/LabelValue";
 import ListNav from "@/components/global/ListNav";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 import React from "react";
 
@@ -125,3 +127,12 @@ Card.defaultProps = {
 		},
 	],
 };
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

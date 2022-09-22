@@ -3,6 +3,8 @@ import GoBackButton from "@/components/global/GoBackButton";
 import LabelValue from "@/components/global/LabelValue";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 import React from "react";
 
 const Detail = () => {
@@ -68,3 +70,12 @@ const Detail = () => {
 };
 
 export default Detail;
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

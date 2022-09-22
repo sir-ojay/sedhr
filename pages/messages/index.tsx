@@ -41,13 +41,12 @@ const Messages = ({ navs, defaultGrid }: MessagesProps) => {
 					/>
 
 					<ListNav navs={navs} />
-					{(view === "chats" || view === undefined) && (
+					{view === "chats" || view === undefined ? (
 						<MessagesWrapper>
 							<ChatProfileHeader />
 							<ConversationSection />
 						</MessagesWrapper>
-					)}
-					{view === "emails" && (
+					) : (
 						<MessagesWrapper>
 							<ChatProfileHeader />
 							{/* <EmailMessage /> */}
