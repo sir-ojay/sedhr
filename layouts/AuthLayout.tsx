@@ -15,7 +15,7 @@ const AuthLayout = ({ title, children }: AuthLayoutProps) => {
 			</Head>
 			<section className='flex items-center w-full h-[100vh]'>
 				<Left />
-				<main className='w-[55%] h-full'>{children}</main>
+				<main className='xl:w-[55%] mx-auto p-6 h-full'>{children}</main>
 			</section>
 		</>
 	);
