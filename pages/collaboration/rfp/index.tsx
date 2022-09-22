@@ -8,6 +8,7 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 
 type RFPProps = {
 	navigations: {
@@ -28,6 +29,12 @@ const RFP = ({ navigations }: RFPProps) => {
 
 	const router = useRouter();
 
+	const methods = useForm({
+		defaultValues: {
+			term: "",
+		},
+		mode: "onChange",
+	});
 	return (
 		<DefaultLayout title='Sedher | Collaboration | RFP'>
 			<CollaborationWrapper getGrid={getGrid}>
@@ -73,17 +80,19 @@ const RFP = ({ navigations }: RFPProps) => {
 						</div>
 
 						<WhiteWrapper>
-							<form action=''>
-								<div
-									title='Request for Proposal'
-									className='font-semibold text-lg text-dark-900'>
-									Request for Proposal
-								</div>
-								<Input type='search' placeholder='This is placeholder' />
-								<p className='text-sm text-dark-100 mt-2'>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-								</p>
-							</form>
+							<FormProvider {...methods}>
+								<form action=''>
+									<div
+										title='Request for Proposal'
+										className='font-semibold text-lg text-dark-900'>
+										Request for Proposal
+									</div>
+									<Input type='search' placeholder='This is placeholder' />
+									<p className='text-sm text-dark-100 mt-2'>
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
+									</p>
+								</form>
+							</FormProvider>
 						</WhiteWrapper>
 
 						<GridContainer grid={grid}>
