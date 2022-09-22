@@ -2,10 +2,11 @@ import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import { FormProvider, useForm } from "react-hook-form";
 import AuthLayout from "@/layouts/AuthLayout";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import React from "react";
+import { checkAuthentication } from "hoc/checkAuthentication";
 
-const forgotPassword: NextPage = () => {
+const ForgotPasswordPage: NextPage = () => {
 	const methods = useForm({
 		defaultValues: {
 			email: "",
@@ -55,4 +56,12 @@ const forgotPassword: NextPage = () => {
 	);
 };
 
-export default forgotPassword;
+export default ForgotPasswordPage;
+
+export const getServerSideProps: GetServerSideProps = checkAuthentication(
+	async (context) => {
+		return {
+			props: {},
+		};
+	}
+);

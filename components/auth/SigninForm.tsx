@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 
 const SigninForm = () => {
 	const router = useRouter();
+	console.log(router);
 
 	const methods = useForm({
 		defaultValues: {
@@ -30,8 +31,9 @@ const SigninForm = () => {
 		try {
 			const user = await login(data).unwrap();
 			toast.success("Login successful");
-			// Cookies.set("kadavraUserDetails", JSON.stringify(user));
-			// Cookies.set("kadavraToken", user.token);
+			console.log(user);
+			Cookies.set("sedherUser", JSON.stringify(user));
+			Cookies.set("sedherToken", user.token);
 			router.push("/feed");
 		} catch (err: any) {
 			toast.error(err?.data?.message);

@@ -4,6 +4,8 @@ import ListNav from "@/components/global/ListNav";
 import ListSortHeader from "@/components/global/ListSortHeader";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -113,3 +115,13 @@ Connection.defaultProps = {
 		},
 	],
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

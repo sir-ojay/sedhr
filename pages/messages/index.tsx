@@ -8,6 +8,8 @@ import React, { useState } from "react";
 import ChatProfileHeader from "@/components/messages/ChatProfileHeader";
 import ConversationSection from "@/components/messages/ConversationSection";
 import { FormProvider, useForm } from "react-hook-form";
+import { GetServerSideProps } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 type MessagesProps = {
 	defaultGrid: number;
@@ -77,3 +79,13 @@ Messages.defaultProps = {
 		},
 	],
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

@@ -5,6 +5,8 @@ import FeedPost from "@/components/feed/FeedPost";
 import YouMightKnow from "@/components/feed/YouMightKnow";
 import RecentEvents from "@/components/feed/RecentEvent";
 import RecentGroups from "@/components/feed/RecentGroups";
+import { GetServerSideProps } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 const Marketplace = ({ Options }: any) => {
 	return (
@@ -29,3 +31,13 @@ export default Marketplace;
 Marketplace.defaultProps = {
 	Options: ["Date Posted", "Company", "Location"],
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

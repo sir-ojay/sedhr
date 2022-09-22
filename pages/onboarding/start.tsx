@@ -1,7 +1,8 @@
 import Button from "@/components/global/Button";
 import OnboardingHeader from "@/components/onboarding/OnboardingHeader";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { NextPage } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps, NextPage } from "next";
 import Router from "next/router";
 
 const start: NextPage = () => {
@@ -37,3 +38,13 @@ const start: NextPage = () => {
 };
 
 export default start;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

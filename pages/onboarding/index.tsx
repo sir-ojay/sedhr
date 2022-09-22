@@ -1,5 +1,6 @@
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { NextPage } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps, NextPage } from "next";
 import Router from "next/router";
 import React, { useEffect } from "react";
 
@@ -11,3 +12,13 @@ const index: NextPage = () => {
 };
 
 export default index;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

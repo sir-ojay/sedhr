@@ -1,9 +1,9 @@
 import Signup from "@/components/auth/Signup";
 import AuthLayout from "@/layouts/AuthLayout";
-import { NextPage } from "next";
-import React from "react";
+import { checkAuthentication } from "hoc/checkAuthentication";
+import { GetServerSideProps, NextPage } from "next";
 
-const signup: NextPage = () => {
+const SignupPage: NextPage = () => {
 	return (
 		<AuthLayout title='Sedher | Sign up | Create an account'>
 			<Signup />
@@ -11,4 +11,12 @@ const signup: NextPage = () => {
 	);
 };
 
-export default signup;
+export default SignupPage;
+
+export const getServerSideProps: GetServerSideProps = checkAuthentication(
+	async (context) => {
+		return {
+			props: {},
+		};
+	}
+);

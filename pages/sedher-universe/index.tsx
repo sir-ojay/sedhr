@@ -4,6 +4,8 @@ import PeopleYouMayKnow from "@/components/sedher-universe/PeopleYouMayKnow";
 import RecommendedPagesForYou from "@/components/sedher-universe/RecommendedPagesForYou";
 import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 
 const index = () => {
 	return (
@@ -21,3 +23,13 @@ const index = () => {
 };
 
 export default index;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

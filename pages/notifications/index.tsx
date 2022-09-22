@@ -2,8 +2,10 @@ import Checkbox from "@/components/global/Checkbox";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import NotificationCard from "@/components/notifications/NotificationCard";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 
-const index = () => {
+const NotificationsPage = () => {
 	return (
 		<DefaultLayout title='Sedher | Notifications'>
 			<header className='flex justify-between items-center mb-9'>
@@ -79,4 +81,14 @@ const index = () => {
 	);
 };
 
-export default index;
+export default NotificationsPage;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

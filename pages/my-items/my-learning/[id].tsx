@@ -3,6 +3,8 @@ import Button from "@/components/global/Button";
 import GoBackButton from "@/components/global/GoBackButton";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 
 type SingleTrainingProps = {
 	trainingInfo: {
@@ -241,3 +243,13 @@ SingleTraining.defaultProps = {
 		},
 	],
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

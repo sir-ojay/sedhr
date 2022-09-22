@@ -3,6 +3,8 @@ import Button from "@/components/global/Button";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 import React from "react";
 
 const MyGroups = () => {
@@ -50,3 +52,13 @@ const MyGroups = () => {
 };
 
 export default MyGroups;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

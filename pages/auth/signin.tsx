@@ -1,6 +1,7 @@
 import Signin from "@/components/auth/Signin";
 import AuthLayout from "@/layouts/AuthLayout";
-import { NextPage } from "next";
+import { checkAuthentication } from "hoc/checkAuthentication";
+import { GetServerSideProps, NextPage } from "next";
 
 const SigninPage: NextPage = () => {
 	return (
@@ -11,3 +12,11 @@ const SigninPage: NextPage = () => {
 };
 
 export default SigninPage;
+
+export const getServerSideProps: GetServerSideProps = checkAuthentication(
+	async (context) => {
+		return {
+			props: {},
+		};
+	}
+);
