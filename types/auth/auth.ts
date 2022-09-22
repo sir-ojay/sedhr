@@ -1,14 +1,11 @@
 export interface LoginResponse {
+	_id: string;
+	name: string;
+	profilePicture: string;
+	company: string;
+	accountType: string;
+	username: string;
 	token: string;
-	user: {
-		_id: string;
-		firstName: string;
-		lastName: string;
-		profilePicture: string;
-		company: string;
-		accountType: string;
-		username: string;
-	};
 }
 
 export interface LoginRequest {
