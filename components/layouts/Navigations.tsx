@@ -1,10 +1,16 @@
 import { LeftNavigationProps } from "@/types/layouts/LeftNavigationProps";
+import Cookies from "js-cookie";
 import Link from "next/link";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const Navigations = ({ navigations }: LeftNavigationProps) => {
 	const location = useRouter();
 
+	const logout = () => {
+		Cookies.remove("sedherToken");
+		Cookies.remove("sedherUser");
+		location.push("/auth/signin");
+	};
 	return (
 		<div className='overflow-y-auto h-[calc(100vh-120px)] pt-1 transition-all ease-in scrollbar-thin hover:scrollbar-thumb-primary hover:scrollbar-track-gray-200 scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
 			{navigations.map((navigation) => (
@@ -47,7 +53,7 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 								) : (
 									<button
 										onClick={() => {
-											if (item.name === "Logout") Router.push("/auth/signin");
+											if (item.name === "Logout") logout();
 										}}
 										type='button'
 										tabIndex={0}

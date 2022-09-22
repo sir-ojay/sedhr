@@ -5,6 +5,8 @@ import ListNav from "@/components/global/ListNav";
 import ListSortHeader from "@/components/global/ListSortHeader";
 import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -127,3 +129,13 @@ MyConnections.defaultProps = {
 		},
 	],
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

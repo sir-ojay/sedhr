@@ -5,12 +5,12 @@ export function requireAuthentication(gssp: GetServerSideProps) {
 		const { req } = ctx;
 
 		try {
-			const token = req.cookies.kadavraToken;
+			const token = req.cookies.sedherToken;
 			if (!token) {
 				return {
 					redirect: {
 						permanent: false,
-						destination: "/auth/login",
+						destination: "/auth/signin",
 					},
 				};
 			} else {
@@ -21,7 +21,7 @@ export function requireAuthentication(gssp: GetServerSideProps) {
 			return {
 				redirect: {
 					permanent: false,
-					destination: "/auth/login",
+					destination: "/auth/signin",
 				},
 			};
 		}

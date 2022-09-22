@@ -1,7 +1,8 @@
 import AccountTypes from "@/components/onboarding/account/AccountTypes";
 import OnboardingHeader from "@/components/onboarding/OnboardingHeader";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { NextPage } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 
 const account: NextPage = () => {
@@ -27,3 +28,13 @@ const account: NextPage = () => {
 };
 
 export default account;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

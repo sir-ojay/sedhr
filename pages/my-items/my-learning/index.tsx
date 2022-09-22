@@ -2,7 +2,8 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import TrainingLearningCard from "@/components/my-items/TrainingLearningCard";
 import MyItemsWrapper from "@/components/my-items/MyItemsWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 const MyLearning: NextPage = () => {
 	return (
@@ -58,3 +59,13 @@ const MyLearning: NextPage = () => {
 };
 
 export default MyLearning;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

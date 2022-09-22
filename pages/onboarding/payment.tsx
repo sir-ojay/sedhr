@@ -2,7 +2,8 @@ import OnboardingHeader from "@/components/onboarding/OnboardingHeader";
 import AccountPackages from "@/components/onboarding/payments/AccountPackages";
 import AccountTypesHorizontalList from "@/components/onboarding/payments/AccountTypesHorizontalList";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { NextPage } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps, NextPage } from "next";
 import { useState } from "react";
 
 const payment: NextPage = () => {
@@ -48,3 +49,13 @@ const payment: NextPage = () => {
 };
 
 export default payment;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

@@ -6,6 +6,8 @@ import YouMightKnow from "@/components/feed/YouMightKnow";
 import Button from "@/components/global/Button";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 
 const feed = () => {
 	return (
@@ -33,3 +35,13 @@ const feed = () => {
 };
 
 export default feed;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

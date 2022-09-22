@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import OnboardingHeader from "@/components/onboarding/OnboardingHeader";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import VerificationCategories from "@/components/onboarding/verification/VerificationCategories";
@@ -9,6 +9,7 @@ import PersonalInformationForm from "@/components/onboarding/verification/Person
 import BusinessInformationForm from "@/components/onboarding/verification/BusinessInformationForm";
 import CompanyDetailsForm from "@/components/onboarding/verification/CompanyDetailsForm";
 import UploadDocumentsForm from "@/components/onboarding/verification/UploadDocumentsForm";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 const verification: NextPage = () => {
 	const [categories, setCategories] = useState<string[]>([]);
@@ -48,3 +49,13 @@ const verification: NextPage = () => {
 };
 
 export default verification;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

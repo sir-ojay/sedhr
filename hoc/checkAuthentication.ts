@@ -5,14 +5,15 @@ export function checkAuthentication(gssp: GetServerSideProps) {
 		const { req } = ctx;
 
 		const initialRoute = req.headers.referer;
+		console.log("initialRoute", initialRoute);
 
 		try {
-			const token = req.cookies.kadavraToken;
+			const token = req.cookies.sedherToken;
 
 			if (token) {
 				return {
 					redirect: {
-						destination: initialRoute || "/",
+						destination: initialRoute || "/feed",
 						permanent: false,
 					},
 				};
@@ -24,7 +25,7 @@ export function checkAuthentication(gssp: GetServerSideProps) {
 			return {
 				redirect: {
 					permanent: false,
-					destination: "/auth/login",
+					destination: "/auth/signin",
 				},
 			};
 		}

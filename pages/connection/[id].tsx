@@ -6,6 +6,8 @@ import LargeProfileCard from "@/components/global/LargeProfileCard";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import SkillsCard from "@/components/connection/SkillsCard";
 import RecommendationCard from "@/components/connection/RecommendationCard";
+import { GetServerSideProps } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 const SingleUser = () => {
 	return (
@@ -61,3 +63,13 @@ const SingleUser = () => {
 };
 
 export default SingleUser;
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);
