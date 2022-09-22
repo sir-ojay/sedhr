@@ -3,21 +3,18 @@ import React from "react";
 
 type VerificationCategoriesProps = {
 	_categories: string[];
-	categories: string[];
-	setCategories: (categories: string[]) => void;
+	category: string;
+	setCategory: (category: string) => void;
 };
 
 const VerificationCategories = ({
 	_categories,
-	categories,
-	setCategories,
+	category,
+	setCategory,
 }: VerificationCategoriesProps) => {
-	const handleSetCategories = (category: string) => {
-		if (categories.includes(category)) {
-			setCategories(categories.filter((c) => c !== category));
-		} else {
-			setCategories([...categories, category]);
-		}
+	const handleSetCategories = (selectedCategory: string) => {
+		if (selectedCategory === category) setCategory("");
+		else setCategory(selectedCategory);
 	};
 
 	return (
@@ -27,18 +24,18 @@ const VerificationCategories = ({
 			</h4>
 
 			<div className='flex items-center flex-wrap gap-x-4 gap-6'>
-				{_categories.map((category) => (
+				{_categories.map((category_) => (
 					<Button
 						type='button'
-						onClick={() => handleSetCategories(category)}
-						key={category}
+						onClick={() => handleSetCategories(category_)}
+						key={category_}
 						theme='plain'
 						className={`border ${
-							categories.includes(category)
+							category === category_
 								? "bg-[#1E5156] text-white"
 								: "border-[#B8C9C9] hover:bg-tertiary text-dark-100"
 						}  rounded-[30px]  font-normal`}>
-						{category}
+						{category_}
 					</Button>
 				))}
 			</div>
