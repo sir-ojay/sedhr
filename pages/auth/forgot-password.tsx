@@ -1,10 +1,17 @@
 import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
+import { FormProvider, useForm } from "react-hook-form";
 import AuthLayout from "@/layouts/AuthLayout";
 import { NextPage } from "next";
 import React from "react";
 
 const forgotPassword: NextPage = () => {
+	const methods = useForm({
+		defaultValues: {
+			email: "",
+		},
+		mode: "onChange",
+	});
 	return (
 		<AuthLayout title='Sedher | Forgot password'>
 			<section className='w-[408px] mx-auto mt-[90px] text-center'>
@@ -15,31 +22,34 @@ const forgotPassword: NextPage = () => {
 					Enter the email associated with your account and we’ll send an email
 					with instructions to reset your Password
 				</p>
-				<form className='space-y-6'>
-					<Input
-						label='Email Address'
-						placeholder='Enter your Email Address'
-						type='email'
-						value={""}
-						onChange={() => {}}
-					/>
-					<Button
-						theme='primary'
-						// disabled
-						className='w-full'>
-						Send Instruction
-					</Button>
-					<div className='text-left text-dark-100 font-epilogue'>
-						{`Remembered your password? `}
+
+				<FormProvider {...methods}>
+					<form className='space-y-6'>
+						<Input
+							label='Email Address'
+							placeholder='Enter your Email Address'
+							type='email'
+							value={""}
+							onChange={() => {}}
+						/>
 						<Button
-							tag='a'
-							href='signin'
 							theme='primary'
-							className='font-semibold'>
-							Sign in
+							// disabled
+							className='w-full'>
+							Send Instruction
 						</Button>
-					</div>
-				</form>
+						<div className='text-left text-dark-100 font-epilogue'>
+							{`Remembered your password? `}
+							<Button
+								tag='a'
+								href='signin'
+								theme='primary'
+								className='font-semibold'>
+								Sign in
+							</Button>
+						</div>
+					</form>
+				</FormProvider>
 			</section>
 		</AuthLayout>
 	);

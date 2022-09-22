@@ -9,10 +9,16 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { FormProvider, useForm } from "react-hook-form";
 
 const Create = () => {
 	const router = useRouter();
-
+	const methods = useForm({
+		defaultValues: {
+			description: "",
+		},
+		mode: "onChange",
+	});
 	return (
 		<DefaultLayout>
 			<div className='space-y-8'>
@@ -42,11 +48,13 @@ const Create = () => {
 						<h3 className='font-semibold text-lg font-archivo text-[#101C1D]'>
 							Summary
 						</h3>
-						<Input
-							label='Description'
-							type='text'
-							placeholder='This is placeholder'
-						/>
+						<FormProvider {...methods}>
+							<Input
+								label='Description'
+								type='text'
+								placeholder='This is placeholder'
+							/>
+						</FormProvider>
 					</div>
 				</WhiteWrapper>
 				<WhiteWrapper>
@@ -58,31 +66,37 @@ const Create = () => {
 							Patient Details
 						</h3>
 						<div className='flex justify-between pt-6 space-x-12'>
-							<div className='w-1/2'>
-								<Input label='First name' placeholder='This is placeholder' />
-							</div>
+							<FormProvider {...methods}>
+								<div className='w-1/2'>
+									<Input label='First name' placeholder='This is placeholder' />
+								</div>
 
-							<div className='w-1/2'>
-								<Input label='Last  name' placeholder='This is placeholder' />
-							</div>
+								<div className='w-1/2'>
+									<Input label='Last  name' placeholder='This is placeholder' />
+								</div>
+							</FormProvider>
 						</div>
 						<div className='flex justify-between pt-6 space-x-12'>
-							<div className='w-1/2'>
-								<Input label='Gender' placeholder='This is placeholder' />
-							</div>
+							<FormProvider {...methods}>
+								<div className='w-1/2'>
+									<Input label='Gender' placeholder='This is placeholder' />
+								</div>
 
-							<div className='w-1/2'>
-								<Input label='Age' placeholder='This is placeholder' />
-							</div>
+								<div className='w-1/2'>
+									<Input label='Age' placeholder='This is placeholder' />
+								</div>
+							</FormProvider>
 						</div>
 						<div className='flex justify-between pt-6 space-x-12'>
-							<div className='w-1/2'>
-								<Input label='Condition' placeholder='This is placeholder' />
-							</div>
+							<FormProvider {...methods}>
+								<div className='w-1/2'>
+									<Input label='Condition' placeholder='This is placeholder' />
+								</div>
 
-							<div className='w-1/2'>
-								<Input label='Attach image' type='file' />
-							</div>
+								<div className='w-1/2'>
+									<Input label='Attach image' type='file' />
+								</div>
+							</FormProvider>
 						</div>
 					</div>
 				</WhiteWrapper>
@@ -95,31 +109,37 @@ const Create = () => {
 							Patient Details
 						</h3>
 						<div className='flex justify-between pt-6 space-x-12'>
-							<div className='w-1/2'>
-								<Input label='First name' placeholder='This is placeholder' />
-							</div>
+							<FormProvider {...methods}>
+								<div className='w-1/2'>
+									<Input label='First name' placeholder='This is placeholder' />
+								</div>
 
-							<div className='w-1/2'>
-								<Input label='Last  name' placeholder='This is placeholder' />
-							</div>
+								<div className='w-1/2'>
+									<Input label='Last  name' placeholder='This is placeholder' />
+								</div>
+							</FormProvider>
 						</div>
 						<div className='flex justify-between pt-6 space-x-12'>
-							<div className='w-1/2'>
-								<Input label='Gender' placeholder='This is placeholder' />
-							</div>
+							<FormProvider {...methods}>
+								<div className='w-1/2'>
+									<Input label='Gender' placeholder='This is placeholder' />
+								</div>
 
-							<div className='w-1/2'>
-								<Input label='Age' placeholder='This is placeholder' />
-							</div>
+								<div className='w-1/2'>
+									<Input label='Age' placeholder='This is placeholder' />
+								</div>
+							</FormProvider>
 						</div>
 						<div className='flex justify-between pt-6 space-x-12'>
-							<div className='w-1/2'>
-								<Input label='Condition' placeholder='This is placeholder' />
-							</div>
+							<FormProvider {...methods}>
+								<div className='w-1/2'>
+									<Input label='Condition' placeholder='This is placeholder' />
+								</div>
 
-							<div className='w-1/2'>
-								<Input label='Attach image' type='file' />
-							</div>
+								<div className='w-1/2'>
+									<Input label='Attach image' type='file' />
+								</div>
+							</FormProvider>
 						</div>
 					</div>
 				</WhiteWrapper>

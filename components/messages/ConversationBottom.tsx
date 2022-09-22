@@ -1,7 +1,16 @@
 import Image from "next/image";
 import React from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import Button from "../global/Button";
+import Input from "../global/Input";
 
 const ConversationBottom = () => {
+	const methods = useForm({
+		defaultValues: {
+			message: "",
+		},
+		mode: "onChange",
+	});
 	return (
 		<div>
 			<div className='flex items-center mt-28 w-full gap-4 py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px]'>
@@ -23,46 +32,20 @@ const ConversationBottom = () => {
 						</g>
 					</svg>
 				</div>
-				<input
-					className=' focus:border-primary outline-none w-full'
-					type='text'
-					placeholder='Reply message'
-				/>
-				<img src='/assets/icons/emoji.svg' alt='emoji' title='emoji' />
-				<svg
-					width='73'
-					height='40'
-					viewBox='0 0 73 40'
-					fill='none'
-					xmlns='http://www.w3.org/2000/svg'>
-					<rect width='73' height='40' fill='#3772FF' />
-					<g clip-path='url(#clip0_1884_192682)'>
-						<path
-							d='M31.6975 20.1316L36.4992 19.9983'
-							stroke='white'
-							stroke-width='2'
-							stroke-linecap='round'
-							stroke-linejoin='round'
+				<div className='flex-1'>
+					<FormProvider {...methods}>
+						<Input
+							type='text'
+							className=' focus:border-primary outline-none w-full'
+							placeholder='Reply message'
 						/>
-						<path
-							d='M44.6619 20.1316L30.2251 26.9081C30.1429 26.9386 30.0535 26.9449 29.9678 26.9262C29.8821 26.9075 29.8035 26.8646 29.7414 26.8025C29.6794 26.7404 29.6364 26.6619 29.6177 26.5761C29.599 26.4904 29.6053 26.4011 29.6359 26.3188L31.6983 20.1316L29.6359 13.9444C29.6053 13.8622 29.599 13.7728 29.6177 13.6871C29.6364 13.6014 29.6794 13.5228 29.7414 13.4607C29.8035 13.3987 29.882 13.3557 29.9678 13.337C30.0535 13.3183 30.1429 13.3246 30.2251 13.3552L44.6619 20.1316Z'
-							stroke='white'
-							stroke-width='2'
-							stroke-linecap='round'
-							stroke-linejoin='round'
-						/>
-					</g>
-					<defs>
-						<clipPath id='clip0_1884_192682'>
-							<rect
-								width='20'
-								height='20'
-								fill='white'
-								transform='translate(26.5 10)'
-							/>
-						</clipPath>
-					</defs>
-				</svg>
+					</FormProvider>
+				</div>
+
+				<div className='flex'>
+					<img src='/assets/icons/emoji.svg' alt='emoji' title='emoji' />
+					<Button icon='Icon' className='ml-4 rounded-none'></Button>
+				</div>
 			</div>
 		</div>
 	);
