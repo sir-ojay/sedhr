@@ -35,7 +35,7 @@ const Checkbox = ({
 				<input
 					className={`${checkboxSize(
 						size
-					)} form-check-input appearance-none h-4 w-4 border-2 border-[#D4EBEB] rounded-sm bg-white checked:bg-primary checked:border-primary focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-4 cursor-pointer`}
+					)} form-check-input appearance-none border-2 border-[#D4EBEB] rounded-sm bg-white checked:bg-primary checked:border-primary focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-4 cursor-pointer`}
 					type='checkbox'
 					value=''
 					id={id}
