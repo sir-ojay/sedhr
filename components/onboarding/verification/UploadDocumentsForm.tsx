@@ -50,14 +50,14 @@ const UploadDocumentsForm = () => {
 					onClick={() => handleStep(3)}
 					size='sm'
 					theme='outline'
-					className='w-[311px]'>
+					className='w-full md:w-[311px]'>
 					Previous Step
 				</Button>
 				<Button
 					type='submit'
 					onClick={() => handleStep(5)}
 					size='sm'
-					className='w-[311px]'>
+					className='w-full md:w-[311px]'>
 					Complete
 				</Button>
 			</div>

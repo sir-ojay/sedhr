@@ -47,8 +47,8 @@ const DefaultLayout = ({
 				<LeftNavigation />
 			</aside>
 			<section
-				className={`xl:w-[calc(100%-272px)] ${
-					showHeader ? "py-8 pr-9" : null
+				className={`w-full xl:w-[calc(100%-272px)] ${
+					showHeader ? "py-8 pr-9" : ""
 				}`}>
 				{showHeader && <DefaultLayoutHeader />}
 				{showHeader && (
@@ -67,7 +67,7 @@ const DefaultLayout = ({
 				<main
 					className={`min-w-[calc(100%-272px)] ${
 						showHeader
-							? "p-8 rounded-xl min-h-[100vh] bg-accents-light-blue mt-[100px]"
+							? "p-6 md:p-8 rounded-xl min-h-[100vh] bg-accents-light-blue mt-[100px]"
 							: null
 					}`}>
 					{children}

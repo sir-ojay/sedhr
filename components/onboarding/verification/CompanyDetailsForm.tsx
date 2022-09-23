@@ -241,10 +241,13 @@ const CompanyDetailsForm = () => {
 					onClick={() => handleStep(2)}
 					size='sm'
 					theme='outline'
-					className='w-[311px]'>
+					className='w-full md:w-[311px]'>
 					Previous Step
 				</Button>
-				<Button onClick={() => handleStep(4)} size='sm' className='w-[311px]'>
+				<Button
+					onClick={() => handleStep(4)}
+					size='sm'
+					className='w-full md:w-[311px]'>
 					Next Step
 				</Button>
 			</div>

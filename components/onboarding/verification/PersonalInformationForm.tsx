@@ -63,7 +63,7 @@ const PersonalInformationForm = ({
 					disabled={category === ""}
 					onClick={() => handleStep(2)}
 					size='sm'
-					className='w-[311px]'>
+					className='w-full md:w-[311px]'>
 					Next Step
 				</Button>
 			</div>
