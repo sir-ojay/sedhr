@@ -15,11 +15,11 @@ const ForgotPasswordPage: NextPage = () => {
 	});
 	return (
 		<AuthLayout title='Sedher | Forgot password'>
-			<section className='w-[408px] mx-auto mt-[90px] text-center'>
+			<section className='w-full md:w-[408px] mx-auto mt-10 md:mt-[90px] text-center'>
 				<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 mb-2 font-clash'>
 					Forgot Password
 				</h1>
-				<p className='font-epilogue font-medium text-lg leading-[160%] text-dark-100 mb-6'>
+				<p className='font-epilogue font-medium text-sm md:text-lg leading-[160%] text-dark-100 mb-6'>
 					Enter the email associated with your account and we’ll send an email
 					with instructions to reset your Password
 				</p>

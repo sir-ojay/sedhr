@@ -1,11 +1,14 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 type CheckboxProps = {
+	name: string;
 	label?: string;
 	value?: boolean;
 	onChange?: (value: boolean) => void;
 	size?: "sm" | "md" | "lg";
 	id?: string;
+	required?: boolean;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const Checkbox = ({
@@ -14,6 +17,8 @@ const Checkbox = ({
 	value,
 	onChange,
 	id,
+	name,
+	required = false,
 	...rest
 }: CheckboxProps) => {
 	const checkboxSize = (size: string) => {
@@ -29,6 +34,8 @@ const Checkbox = ({
 		}
 	};
 
+	const { register } = useFormContext();
+
 	return (
 		<div className='flex justify-center '>
 			<div className='flex items-center'>
@@ -37,9 +44,12 @@ const Checkbox = ({
 						size
 					)} form-check-input appearance-none border-2 border-[#D4EBEB] rounded-sm bg-white checked:bg-primary checked:border-primary focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-4 cursor-pointer`}
 					type='checkbox'
-					value=''
+					// value=''
 					id={id}
 					{...rest}
+					{...register(name, {
+						required,
+					})}
 				/>
 				<label className='text-dark-100 font-epilogue' htmlFor={id}>
 					{label}

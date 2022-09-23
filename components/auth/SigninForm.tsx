@@ -30,7 +30,7 @@ const SigninForm = () => {
 		try {
 			const user = (await login(data).unwrap()) as LoginResponse;
 			toast.success("Login successful");
-			console.log(user);
+			// console.log(user);
 			Cookies.set("sedherUser", JSON.stringify(user));
 			Cookies.set("sedherToken", user.token);
 			if (user.accountType) router.push("/feed");
@@ -59,6 +59,7 @@ const SigninForm = () => {
 				/>
 				<div className='flex justify-between items-center'>
 					<Checkbox
+						name='rememberMe'
 						value={true}
 						label='Remember me'
 						size='md'
