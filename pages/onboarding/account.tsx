@@ -25,8 +25,8 @@ const AccountPage: NextPage = () => {
 				<section>
 					<div className='font-epilogue my-[50px] text-center'>
 						{user && (
-							<h1 className='font-bold text-[26px] md:mb-3'>
-								Welcome {user?.name}
+							<h1 className='font-bold capitalize text-[26px] md:mb-3'>
+								Welcome {user?.name.toLowerCase()}
 							</h1>
 						)}
 						<p className='text-[#8A94A6] text-sm md:text-base'>
