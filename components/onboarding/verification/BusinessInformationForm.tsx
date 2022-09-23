@@ -22,7 +22,7 @@ const BusinessInformationForm = () => {
 	} = methods;
 	return (
 		<>
-			<section className='w-full bg-white p-8'>
+			<section className='w-full bg-white p-5 md:p-8'>
 				<FormProvider {...methods}>
 					<form>
 						<h4 className='font-semibold text-dark-900 font-epilogue font-[20px] mb-10'>
@@ -81,10 +81,13 @@ const BusinessInformationForm = () => {
 					onClick={() => handleStep(1)}
 					size='sm'
 					theme='outline'
-					className='w-[311px]'>
+					className='w-full md:w-[311px]'>
 					Previous Step
 				</Button>
-				<Button onClick={() => handleStep(3)} size='sm' className='w-[311px]'>
+				<Button
+					onClick={() => handleStep(3)}
+					size='sm'
+					className='w-full md:w-[311px]'>
 					Next Step
 				</Button>
 			</div>

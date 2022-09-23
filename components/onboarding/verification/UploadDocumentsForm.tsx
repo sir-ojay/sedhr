@@ -29,7 +29,7 @@ const UploadDocumentsForm = () => {
 
 	return (
 		<>
-			<section className='w-full bg-white p-8'>
+			<section className='w-full bg-white p-5 md:p-8'>
 				<FormProvider {...methods}>
 					<form>
 						<h4 className='font-semibold text-dark-900 font-epilogue font-[20px] mb-10'>
@@ -50,14 +50,14 @@ const UploadDocumentsForm = () => {
 					onClick={() => handleStep(3)}
 					size='sm'
 					theme='outline'
-					className='w-[311px]'>
+					className='w-full md:w-[311px]'>
 					Previous Step
 				</Button>
 				<Button
 					type='submit'
 					onClick={() => handleStep(5)}
 					size='sm'
-					className='w-[311px]'>
+					className='w-full md:w-[311px]'>
 					Complete
 				</Button>
 			</div>

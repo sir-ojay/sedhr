@@ -159,7 +159,7 @@ const OnboardingHeader = ({
 			<section
 				className={`${
 					step !== 3 ? "py-[100px] xl:py-[140px]" : null
-				} bg-[#e7f6fd66] p-9`}>
+				} bg-[#e7f6fd66] p-6 xl:p-9 min-h-screen`}>
 				{children}
 			</section>
 		</div>

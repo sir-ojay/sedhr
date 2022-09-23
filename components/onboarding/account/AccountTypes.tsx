@@ -9,7 +9,7 @@ type AccountTypesProps = {
 
 const AccountTypes = ({ types }: AccountTypesProps) => {
 	return (
-		<section className='w-full flex flex-wrap gap-16 justify-center items-center'>
+		<section className='w-full flex flex-wrap gap-8 md:gap-16 justify-center items-center'>
 			{types.map((type) => (
 				<AccountTypeCard key={type.title} {...type} />
 			))}

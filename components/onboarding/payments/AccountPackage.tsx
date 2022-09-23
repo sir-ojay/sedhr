@@ -12,8 +12,11 @@ const AccountPackage = () => {
 			<div className='text-neutral-60 font-medium font-epilogue'>
 				Custom Domain
 			</div>
-			<div className='text-semibold text-4xl font-epilogue text-title my-[18px]'>
-				₦3,000<span className='text-2xl text-secondary font-semibold'>/m</span>
+			<div className='text-semibold text-3xl md:text-4xl font-epilogue text-title my-[18px]'>
+				₦3,000
+				<span className='text-lg md:text-2xl text-secondary font-semibold'>
+					/m
+				</span>
 			</div>
 			<Button size='sm' className='w-full' onClick={goto}>
 				Start my free Trial
@@ -35,9 +38,9 @@ const AccountPackage = () => {
 									d='M6 11.5172C6 11.6953 6.21543 11.7846 6.34142 11.6586L9.85858 8.14142C9.93668 8.06332 9.93668 7.93668 9.85858 7.85858L6.34142 4.34142C6.21543 4.21543 6 4.30466 6 4.48284L6 11.5172Z'
 									fill='#11747D'
 									stroke='#11747D'
-									stroke-width='1.5'
-									stroke-linecap='round'
-									stroke-linejoin='round'
+									strokeWidth='1.5'
+									strokeLinecap='round'
+									strokeLinejoin='round'
 								/>
 							</svg>
 							<span className='text-sm text-dark-100'>unlimited traffic</span>

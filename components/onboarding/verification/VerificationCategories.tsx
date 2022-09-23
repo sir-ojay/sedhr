@@ -20,7 +20,7 @@ const VerificationCategories = ({
 	return (
 		<section className='space-y-[18px] mb-9'>
 			<h4 className='font-semibold text-base md:text-[20px] text-dark-900'>
-				Select your categories
+				Select a category
 			</h4>
 
 			<div className='flex items-center flex-wrap gap-x-4 gap-6'>
