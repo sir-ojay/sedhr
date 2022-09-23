@@ -51,9 +51,7 @@ export default verification;
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
 	async (context) => {
 		return {
-			props: {
-				customers: [],
-			},
+			props: {},
 		};
 	}
 );
