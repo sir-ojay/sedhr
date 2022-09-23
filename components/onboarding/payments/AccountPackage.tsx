@@ -1,9 +1,10 @@
 import Button from "@/components/global/Button";
-import Router from "next/router";
 
-const AccountPackage = () => {
-	const goto = () => Router.push("/onboarding/verification?step=1");
+type AccountPackageProps = {
+	makePayment: (amount: number) => void;
+};
 
+const AccountPackage = ({ makePayment }: AccountPackageProps) => {
 	return (
 		<div className='w-[340px] bg-white p-8'>
 			<h4 className='text-lg font-semibold font-epilogue text-primary'>
@@ -18,7 +19,7 @@ const AccountPackage = () => {
 					/m
 				</span>
 			</div>
-			<Button size='sm' className='w-full' onClick={goto}>
+			<Button size='sm' className='w-full' onClick={() => makePayment(3000)}>
 				Start my free Trial
 			</Button>
 			<div className='mt-[18px] p-4'>

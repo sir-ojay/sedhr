@@ -33,7 +33,8 @@ const start: NextPage = () => {
 						<Button
 							type='button'
 							className='w-full md:w-[418px]'
-							onClick={goto}>
+							// onClick={goto}
+						>
 							Let’s go!
 						</Button>
 					</div>

@@ -4,10 +4,41 @@ import AccountTypesHorizontalList from "@/components/onboarding/payments/Account
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import { GetServerSideProps, NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePaystackPayment } from "react-paystack";
 
 const payment: NextPage = () => {
 	const [billRange, setBillRange] = useState("monthly");
+	const [amount, setAmount] = useState<number>(0);
+
+	const config = {
+		reference: new Date().getTime().toString(),
+		email: "user@example.com",
+		amount: amount * 100,
+		publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PK as string,
+	};
+
+	// you can call this function anything
+	const onSuccess = (reference: void) => {
+		// Implementation for whatever you want to do with reference and after success call.
+		console.log(reference);
+	};
+
+	// you can call this function anything
+	const onClose = () => {
+		// implementation for  whatever you want to do when the Paystack dialog closed.
+		console.log("closed");
+	};
+
+	const initializePayment = usePaystackPayment(config);
+
+	const makePayment = (_amount: number) => {
+		setAmount(_amount);
+	};
+
+	useEffect(() => {
+		if (amount > 0) initializePayment(onSuccess, onClose);
+	}, [amount]);
 
 	return (
 		<DefaultLayout title='Sedher | Onboarding | Payment' showHeader={false}>
@@ -42,7 +73,7 @@ const payment: NextPage = () => {
 					</p>
 				</section>
 
-				<AccountPackages />
+				<AccountPackages makePayment={makePayment} />
 			</OnboardingHeader>
 		</DefaultLayout>
 	);
