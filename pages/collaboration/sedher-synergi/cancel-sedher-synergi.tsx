@@ -3,6 +3,8 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import ListNav from "@/components/global/ListNav";
 import GoBackButton from "@/components/global/GoBackButton";
 import SynergiCard from "@/components/collaboration/sedher-synergi/SynergiCard";
+import { GetServerSideProps } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 type CancelH2hProps = {
 	navigations: {
@@ -50,3 +52,12 @@ CancelSedherSynergi.defaultProps = {
 		},
 	],
 };
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

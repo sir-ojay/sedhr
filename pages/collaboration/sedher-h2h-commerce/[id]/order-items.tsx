@@ -4,6 +4,8 @@ import GoBackButton from "@/components/global/GoBackButton";
 import CartItems from "@/components/collaboration/sedher-h2h-commerce/CartItems";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import CartAside from "@/components/collaboration/sedher-h2h-commerce/CartAside";
+import { GetServerSideProps } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 const OrderItems = () => {
 	return (
@@ -39,3 +41,12 @@ const OrderItems = () => {
 };
 
 export default OrderItems;
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

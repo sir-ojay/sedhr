@@ -4,6 +4,8 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import GoBackButton from "@/components/global/GoBackButton";
 import CheckOutCard from "@/components/collaboration/sedher-h2h-commerce/CheckOutCard";
 import Button from "@/components/global/Button";
+import { GetServerSideProps } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 const CheckOut = () => {
 	const router = useRouter();
@@ -37,3 +39,12 @@ const CheckOut = () => {
 };
 
 export default CheckOut;
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);
