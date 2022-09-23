@@ -71,7 +71,11 @@ const NotificationsPage = () => {
 					<WhiteWrapper className='sticky top-[164px]' title='Filter by'>
 						<form className='flex flex-col items-start gap-5'>
 							{[1, 2, 3, 4, 5].map((checkbox) => (
-								<Checkbox key={checkbox} label='Caption' />
+								<Checkbox
+									key={checkbox}
+									name={checkbox.toString()}
+									label='Caption'
+								/>
 							))}
 						</form>
 					</WhiteWrapper>
