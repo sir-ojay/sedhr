@@ -36,7 +36,7 @@ const CompanyDetailsForm = () => {
 	} = methods;
 	return (
 		<>
-			<section className='w-full bg-white p-8'>
+			<section className='w-full bg-white p-5 md:p-8'>
 				<h4 className='font-semibold text-dark-900 font-epilogue font-[20px] mb-10'>
 					Company Detail
 				</h4>

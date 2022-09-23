@@ -13,7 +13,9 @@ const WhiteWrapper = ({
 	...rest
 }: WhiteWrapperProps) => {
 	return (
-		<section className={`bg-white p-5 rounded-xl ${className}`} {...rest}>
+		<section
+			className={`bg-white p-3 md:p-5 rounded-xl ${className}`}
+			{...rest}>
 			{(title || status) && (
 				<header className='flex items-center justify-between'>
 					{title && (

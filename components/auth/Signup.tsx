@@ -53,14 +53,14 @@ const Signup = () => {
 				},
 			});
 		} catch (err: any) {
-			toast.error(err.data.error);
+			toast.error(err?.data?.error);
 		}
 	};
 
 	const [verifyOTP] = useVerifyEmailMutation();
 
 	return (
-		<section className='w-[408px] mx-auto mt-[90px] text-center'>
+		<section className='w-full md:w-[408px] mx-auto mt-10 md:mt-[90px] text-center'>
 			{(step === "1" || step === undefined) && (
 				<>
 					<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
