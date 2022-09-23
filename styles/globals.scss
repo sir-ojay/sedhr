@@ -18,7 +18,8 @@ body {
 	background-color: #e7f6fd;
 }
 
-.nav-hover.active {
+.nav-hover.active,
+._invert {
 	img {
 		filter: invert(38%) sepia(48%) saturate(4105%) hue-rotate(212deg)
 			brightness(101%) contrast(191%);

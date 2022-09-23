@@ -76,7 +76,7 @@ const BusinessInformationForm = () => {
 					</form>
 				</FormProvider>
 			</section>
-			<div className='flex justify-between my-10'>
+			<div className='flex flex-col-reverse md:flex-row gap-3 justify-between my-10'>
 				<Button
 					onClick={() => handleStep(1)}
 					size='sm'

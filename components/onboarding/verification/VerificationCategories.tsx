@@ -19,7 +19,7 @@ const VerificationCategories = ({
 
 	return (
 		<section className='space-y-[18px] mb-9'>
-			<h4 className='font-semibold text-[20px] text-dark-900'>
+			<h4 className='font-semibold text-base md:text-[20px] text-dark-900'>
 				Select your categories
 			</h4>
 
@@ -34,7 +34,7 @@ const VerificationCategories = ({
 							category === category_
 								? "bg-[#1E5156] text-white"
 								: "border-[#B8C9C9] hover:bg-tertiary text-dark-100"
-						}  rounded-[30px]  font-normal`}>
+						}  rounded-[30px] text-sm md:text-base font-normal`}>
 						{category_}
 					</Button>
 				))}
