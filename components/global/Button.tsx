@@ -54,11 +54,11 @@ const Button: React.FC<ButtonProps> = ({
 			case "sm":
 				return "px-4 py-2";
 			case "md":
-				return "px-6 py-3";
+				return "px-4 py-2 md:px-6 md:py-3";
 			case "lg":
-				return "px-8 py-4";
+				return "px-6 py-3 md:px-8 md:py-4";
 			case "xl":
-				return "px-10 py-5";
+				return "px-8 py-4 md:px-10 md:py-5";
 			default:
 				return "px-6 py-3";
 		}

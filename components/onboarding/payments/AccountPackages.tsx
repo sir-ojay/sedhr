@@ -3,7 +3,7 @@ import AccountPackage from "./AccountPackage";
 
 const AccountPackages = () => {
 	return (
-		<div className='mt-[50px] flex items-center justify-center gap-5'>
+		<div className='mt-[50px] flex-col flex md:flex-row items-center justify-center gap-5'>
 			<AccountPackage />
 			<AccountPackage />
 			<AccountPackage />
