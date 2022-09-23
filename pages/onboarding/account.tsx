@@ -14,7 +14,9 @@ const AccountPage: NextPage = () => {
 		try {
 			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
 			setUser(user);
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	}, []);
 
 	return (
@@ -45,9 +47,7 @@ export default AccountPage;
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
 	async (context) => {
 		return {
-			props: {
-				customers: [],
-			},
+			props: {},
 		};
 	}
 );
