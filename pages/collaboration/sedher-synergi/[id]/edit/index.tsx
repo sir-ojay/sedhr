@@ -4,6 +4,8 @@ import GoBackButton from "@/components/global/GoBackButton";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import AdditionalDetailsCard from "@/components/sedher-universe/AdditionalDetailsCard";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { requireAuthentication } from "hoc/requireAuthentication";
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -248,3 +250,12 @@ const Edit = () => {
 };
 
 export default Edit;
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);

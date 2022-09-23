@@ -5,6 +5,8 @@ import H2HCard from "@/components/collaboration/sedher-h2h-commerce/H2HCard";
 import GoBackButton from "@/components/global/GoBackButton";
 import Button from "@/components/global/Button";
 import RFPCard from "@/components/collaboration/rfp/RFPCard";
+import { GetServerSideProps } from "next";
+import { requireAuthentication } from "hoc/requireAuthentication";
 
 type CompleteRFPProps = {
 	navigations: {
@@ -67,3 +69,13 @@ CompleteRFP.defaultProps = {
 		},
 	],
 };
+
+export const getServerSideProps: GetServerSideProps = requireAuthentication(
+	async (context) => {
+		return {
+			props: {
+				customers: [],
+			},
+		};
+	}
+);
