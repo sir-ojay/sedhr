@@ -35,7 +35,6 @@ const SigninForm = () => {
 			};
 			const user = (await login(body).unwrap()) as LoginResponse;
 			toast.success("Login successful");
-			// console.log(user);
 			Cookies.set("sedherUser", JSON.stringify(user));
 			Cookies.set("sedherToken", user.token);
 			if (user.accountType) router.push("/feed");
