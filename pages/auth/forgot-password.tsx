@@ -13,6 +13,11 @@ const ForgotPasswordPage: NextPage = () => {
 		},
 		mode: "onChange",
 	});
+
+	const {
+		formState: { errors, isValid },
+	} = methods;
+
 	return (
 		<AuthLayout title='Sedher | Forgot password'>
 			<section className='w-full md:w-[408px] mx-auto mt-10 md:mt-[90px] text-center'>
@@ -30,13 +35,10 @@ const ForgotPasswordPage: NextPage = () => {
 							label='Email Address'
 							placeholder='Enter your Email Address'
 							type='email'
-							value={""}
+							rules={["required", "email"]}
 							onChange={() => {}}
 						/>
-						<Button
-							theme='primary'
-							// disabled
-							className='w-full'>
+						<Button theme='primary' disabled={isValid} className='w-full'>
 							Send Instruction
 						</Button>
 						<div className='text-left text-dark-100 font-epilogue'>
