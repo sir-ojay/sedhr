@@ -12,7 +12,7 @@ import UploadDocumentsForm from "@/components/onboarding/verification/UploadDocu
 import { requireAuthentication } from "hoc/requireAuthentication";
 
 const verification: NextPage = () => {
-	const [categories, setCategories] = useState<string[]>([]);
+	const [category, setCategory] = useState("");
 
 	const router = useRouter();
 
@@ -25,13 +25,13 @@ const verification: NextPage = () => {
 			<OnboardingHeader step={3} subStep={Number(step || 1)}>
 				{(step === "1" || step === undefined) && (
 					<VerificationCategories
-						categories={categories}
-						setCategories={setCategories}
+						category={category}
+						setCategory={setCategory}
 					/>
 				)}
 
-				{categories.length > 0 && (step === "1" || step === undefined) && (
-					<PersonalInformationForm categories={categories} />
+				{category && (step === "1" || step === undefined) && (
+					<PersonalInformationForm category={category} />
 				)}
 
 				{step === "2" && <BusinessInformationForm />}
@@ -40,9 +40,7 @@ const verification: NextPage = () => {
 
 				{step === "4" && <UploadDocumentsForm />}
 
-				{categories.length === 0 && (step === "1" || step === undefined) && (
-					<NoCategories />
-				)}
+				{!category && (step === "1" || step === undefined) && <NoCategories />}
 			</OnboardingHeader>
 		</DefaultLayout>
 	);
@@ -53,9 +51,7 @@ export default verification;
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
 	async (context) => {
 		return {
-			props: {
-				customers: [],
-			},
+			props: {},
 		};
 	}
 );

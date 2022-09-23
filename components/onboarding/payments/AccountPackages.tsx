@@ -1,12 +1,17 @@
+import { type } from "os";
 import React from "react";
 import AccountPackage from "./AccountPackage";
 
-const AccountPackages = () => {
+type AccountPackagesProps = {
+	makePayment: (amount: number) => void;
+};
+
+const AccountPackages = ({ makePayment }: AccountPackagesProps) => {
 	return (
-		<div className='mt-[50px] flex items-center justify-center gap-5'>
-			<AccountPackage />
-			<AccountPackage />
-			<AccountPackage />
+		<div className='mt-[50px] flex-col flex lg:flex-row items-center justify-center gap-5'>
+			<AccountPackage makePayment={makePayment} />
+			<AccountPackage makePayment={makePayment} />
+			<AccountPackage makePayment={makePayment} />
 		</div>
 	);
 };

@@ -4,6 +4,7 @@ export interface LoginResponse {
 	profilePicture: string;
 	company: string;
 	accountType: string;
+	email: string;
 	username: string;
 	token: string;
 }

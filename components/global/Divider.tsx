@@ -9,11 +9,11 @@ const Divider = ({ label }: DividerProps) => {
 		<div
 			aria-label='Or sign in with email'
 			className='flex items-center justify-between gap-2 my-6'>
-			<div className='w-[40%] h-[1px] bg-[#B8C9C9]'></div>
-			<span className='text-center w-[60%] text-[#899A9A] font-epilogue'>
+			<div className='w-[20%] md:w-[40%] h-[1px] bg-[#B8C9C9]'></div>
+			<span className='text-center text-sm md:text-base w-[60%] text-[#899A9A] font-epilogue'>
 				{label}
 			</span>
-			<div className='w-[40%] h-[1px] bg-[#B8C9C9]'></div>
+			<div className='w-[20%] md:w-[40%] h-[1px] bg-[#B8C9C9]'></div>
 		</div>
 	);
 };

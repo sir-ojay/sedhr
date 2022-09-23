@@ -42,7 +42,7 @@ const RegisterForm = () => {
 				pathname: "/auth/signin",
 			});
 		} catch (err: any) {
-			toast.error(err.data.error);
+			toast.error(err?.data?.error);
 		}
 	};
 

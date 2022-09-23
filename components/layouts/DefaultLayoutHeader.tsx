@@ -11,12 +11,12 @@ const DefaultLayoutHeader = () => {
 	});
 	return (
 		<header className='pb-8 flex justify-between bg-white py-8 pr-9 items-center fixed top-0 right-0 w-[calc(100%-272px)] z-10'>
-			<div className='max-w-[570px] w-full'>
+			<div className='hidden xl:block max-w-[570px] w-full'>
 				<FormProvider {...methods}>
 					<Input type='search' placeholder='Search...' name='search' />
 				</FormProvider>
 			</div>
-			<div className='flex justify-between items-center gap-9 bg-tertiary p-[10px] rounded-xl cursor-pointer'>
+			<div className='hidden xl:flex justify-between items-center gap-9 bg-tertiary p-[10px] rounded-xl cursor-pointer'>
 				<button type='button'>
 					<img
 						src='/assets/icons/layouts/more.svg'

@@ -15,6 +15,7 @@ const SignupForm = () => {
 			firstName: "",
 			lastName: "",
 			email: "",
+			termsAndconditions: false,
 		},
 		mode: "onChange",
 	});
@@ -74,9 +75,11 @@ const SignupForm = () => {
 				<div className='flex justify-between items-center'>
 					<label className='flex '>
 						<Checkbox
+							name='termsAndconditions'
 							value={true}
 							size='md'
 							id='rememberMe'
+							required
 							onChange={() => {}}
 						/>
 						<div className='text-left text-dark-100 font-epilogue text-sm'>

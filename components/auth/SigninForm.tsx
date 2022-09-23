@@ -15,6 +15,7 @@ const SigninForm = () => {
 		defaultValues: {
 			email: "",
 			password: "",
+			rememberMe: false,
 		},
 		mode: "onChange",
 	});
@@ -28,9 +29,12 @@ const SigninForm = () => {
 
 	const onSubmit: SubmitHandler<LoginRequest> = async (data) => {
 		try {
-			const user = (await login(data).unwrap()) as LoginResponse;
+			const body = {
+				...data,
+				rememberMe: undefined,
+			};
+			const user = (await login(body).unwrap()) as LoginResponse;
 			toast.success("Login successful");
-			console.log(user);
 			Cookies.set("sedherUser", JSON.stringify(user));
 			Cookies.set("sedherToken", user.token);
 			if (user.accountType) router.push("/feed");
@@ -59,6 +63,7 @@ const SigninForm = () => {
 				/>
 				<div className='flex justify-between items-center'>
 					<Checkbox
+						name='rememberMe'
 						value={true}
 						label='Remember me'
 						size='md'

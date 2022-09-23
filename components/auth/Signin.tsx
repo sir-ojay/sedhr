@@ -4,11 +4,11 @@ import Divider from "@/components/global/Divider";
 
 const Signin = () => {
 	return (
-		<section className='w-[408px] mx-auto mt-[90px] text-center'>
+		<section className='w-full md:w-[408px] mx-auto mt-10 md:mt-[90px] text-center'>
 			<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
 				Welcome to Sedher
 			</h1>
-			<p className='font-epilogue font-medium text-lg leading-[160%] text-dark-100 mb-6'>
+			<p className='font-epilogue font-medium text-sm md:text-lg leading-[160%] text-dark-100 mb-6'>
 				Let us get to know you better!
 			</p>
 			<Button
