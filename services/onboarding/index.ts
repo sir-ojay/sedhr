@@ -1,4 +1,8 @@
 import {
+	GetCountriesRequest,
+	GetCountriesResponse,
+	GetStatesRequest,
+	GetStatesResponse,
 	VerifyPaymentRequest,
 	VerifyPaymentResponse,
 } from "@/types/onboarding";
@@ -8,6 +12,13 @@ const postRequest = (url: string, details: any) => ({
 	url,
 	method: "POST",
 	body: details,
+});
+
+const getRequest = (url: string, token: string) => ({
+	url,
+	headers: {
+		Authorization: `Bearer ${token}`,
+	},
 });
 
 export const onboarding = createApi({
@@ -22,7 +33,21 @@ export const onboarding = createApi({
 		>({
 			query: (credentials) => postRequest("/payments/verify", credentials),
 		}),
+		getCountries: builder.mutation<GetCountriesResponse, GetCountriesRequest>({
+			query: (credentials) => getRequest("/misc/countries", credentials.token),
+		}),
+		getStates: builder.mutation<GetStatesResponse, GetStatesRequest>({
+			query: (credentials) =>
+				getRequest(
+					`/misc/countries/states/${credentials.country}`,
+					credentials.token
+				),
+		}),
 	}),
 });
 
-export const { useVerifyPaymebtMutation } = onboarding;
+export const {
+	useVerifyPaymebtMutation,
+	useGetCountriesMutation,
+	useGetStatesMutation,
+} = onboarding;
