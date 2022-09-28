@@ -8,3 +8,20 @@ export type VerifyPaymentRequest = {
 	amount: number;
 	email: string;
 };
+
+export type GetCountriesResponse = {
+	countries: string[];
+};
+
+export type GetCountriesRequest = {
+	token: string;
+};
+
+export type GetStatesResponse = {
+	countries: string[];
+};
+
+export type GetStatesRequest = {
+	token: string;
+	country: string;
+};
