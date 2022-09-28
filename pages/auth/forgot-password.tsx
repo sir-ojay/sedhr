@@ -1,10 +1,16 @@
 import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, SubmitHandler } from "react-hook-form";
 import AuthLayout from "@/layouts/AuthLayout";
 import { GetServerSideProps, NextPage } from "next";
 import React from "react";
 import { checkAuthentication } from "hoc/checkAuthentication";
+import { useForgotPasswordMutation } from "@/services/auth";
+import {
+	ForgotPasswordRequest,
+	ForgotPasswordResponse,
+} from "@/types/auth/auth";
+import { toast } from "react-toastify";
 
 const ForgotPasswordPage: NextPage = () => {
 	const methods = useForm({
@@ -18,6 +24,24 @@ const ForgotPasswordPage: NextPage = () => {
 		formState: { errors, isValid },
 	} = methods;
 
+	const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
+
+	const onSubmit: SubmitHandler<ForgotPasswordRequest> = async (data) => {
+		try {
+			const body = {
+				email: data.email,
+			};
+			const { message } = (await forgotPassword(
+				body
+			).unwrap()) as ForgotPasswordResponse;
+
+			console.log(message);
+			toast.success(message);
+		} catch (err: any) {
+			toast.error(err?.data?.error);
+		}
+	};
+
 	return (
 		<AuthLayout title='Sedher | Forgot password'>
 			<section className='w-full md:w-[408px] mx-auto mt-10 md:mt-[90px] text-center'>
@@ -30,15 +54,21 @@ const ForgotPasswordPage: NextPage = () => {
 				</p>
 
 				<FormProvider {...methods}>
-					<form className='space-y-6'>
+					<form onSubmit={methods.handleSubmit(onSubmit)} className='space-y-6'>
 						<Input
 							label='Email Address'
 							placeholder='Enter your Email Address'
 							type='email'
+							name='email'
 							rules={["required", "email"]}
 							onChange={() => {}}
 						/>
-						<Button theme='primary' disabled={isValid} className='w-full'>
+						<Button
+							type='submit'
+							theme='primary'
+							loading={isLoading}
+							disabled={!isValid}
+							className='w-full'>
 							Send Instruction
 						</Button>
 						<div className='text-left text-dark-100 font-epilogue'>

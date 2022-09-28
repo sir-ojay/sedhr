@@ -5,6 +5,8 @@ import {
 	RegisterResponse,
 	ValidateEmailRequest,
 	ValidateEmailResponse,
+	ForgotPasswordRequest,
+	ForgotPasswordResponse,
 	VerifyEmailRequest,
 	VerifyEmailResponse,
 } from "@/types/auth/auth";
@@ -45,6 +47,12 @@ export const auth = createApi({
 		>({
 			query: (credentials) => postRequest("/validateotp", credentials),
 		}),
+		forgotPassword: builder.mutation<
+			ForgotPasswordResponse,
+			ForgotPasswordRequest
+		>({
+			query: (credentials) => postRequest("/forgot", credentials),
+		}),
 	}),
 });
 
@@ -53,4 +61,5 @@ export const {
 	useVerifyEmailMutation,
 	useValidateEmailMutation,
 	useRegisterMutation,
+	useForgotPasswordMutation,
 } = auth;
