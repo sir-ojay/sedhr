@@ -1,4 +1,6 @@
 import {
+	CompleteOnboardingRequest,
+	CompleteOnboardingResponse,
 	GetCountriesRequest,
 	GetCountriesResponse,
 	GetStatesRequest,
@@ -8,9 +10,12 @@ import {
 } from "@/types/onboarding";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const postRequest = (url: string, details: any) => ({
+const postRequest = (url: string, details: any, token?: string) => ({
 	url,
 	method: "POST",
+	headers: {
+		Authorization: `Bearer ${token}`,
+	},
 	body: details,
 });
 
@@ -27,11 +32,18 @@ export const onboarding = createApi({
 		baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL + "api",
 	}),
 	endpoints: (builder) => ({
-		verifyPaymebt: builder.mutation<
+		verifyPayment: builder.mutation<
 			VerifyPaymentResponse,
 			VerifyPaymentRequest
 		>({
 			query: (credentials) => postRequest("/payments/verify", credentials),
+		}),
+		completeOnboarding: builder.mutation<
+			CompleteOnboardingResponse,
+			CompleteOnboardingRequest
+		>({
+			query: (credentials) =>
+				postRequest("/onboard/account", credentials.body, credentials.token),
 		}),
 		getCountries: builder.mutation<GetCountriesResponse, GetCountriesRequest>({
 			query: (credentials) => getRequest("/misc/countries", credentials.token),
@@ -47,7 +59,8 @@ export const onboarding = createApi({
 });
 
 export const {
-	useVerifyPaymebtMutation,
+	useVerifyPaymentMutation,
 	useGetCountriesMutation,
 	useGetStatesMutation,
+	useCompleteOnboardingMutation,
 } = onboarding;

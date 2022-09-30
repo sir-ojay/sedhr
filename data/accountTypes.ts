@@ -16,7 +16,7 @@ export const types = [
 		icon: "business",
 	},
 	{
-		title: "HCP’s",
+		title: "HCP's",
 		description:
 			"Complete details about your company, set roles and permission",
 		buttonColor: "#FF5630E5",

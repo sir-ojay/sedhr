@@ -48,7 +48,7 @@ const SelectInput = ({
 				<option value='' hidden>
 					{option}
 				</option>
-				{options.map((option: string, index: number) => {
+				{options?.map((option: string, index: number) => {
 					return (
 						<option value={option} key={index}>
 							{option}

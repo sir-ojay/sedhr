@@ -1,5 +1,6 @@
 import { auth } from "@/services/auth";
 import { onboarding } from "@/services/onboarding";
+import { upload } from "@/services/upload";
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 
@@ -8,9 +9,14 @@ export function makeStore() {
 		reducer: {
 			[auth.reducerPath]: auth.reducer,
 			[onboarding.reducerPath]: onboarding.reducer,
+			[upload.reducerPath]: upload.reducer,
 		},
 		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware().concat(auth.middleware, onboarding.middleware),
+			getDefaultMiddleware().concat(
+				auth.middleware,
+				onboarding.middleware,
+				upload.middleware
+			),
 	});
 }
 
