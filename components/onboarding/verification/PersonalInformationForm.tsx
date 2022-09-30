@@ -12,24 +12,38 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useUpdateEffect } from "react-use";
 
+export type PersonalInformationDetails = {
+	country: string;
+	criminalHistory: string;
+	phoneNumber: string;
+	physicalAddress: string;
+	professionalRegistrationNumber: string;
+	state: string;
+};
+
 type PersonalInformationFormProps = {
 	category: string;
+	personalInformationForm: (details: PersonalInformationDetails) => void;
 };
 
 const PersonalInformationForm = ({
 	category,
+	personalInformationForm,
 }: PersonalInformationFormProps) => {
 	const router = useRouter();
 	const [countries, setCountries] = useState([]);
 	const [states, setStates] = useState([]);
 
-	const handleStep = (step: number) =>
-		router.push(`/onboarding/verification?step=${step}`);
+	const { type } = router.query;
 
 	const methods = useForm({
 		defaultValues: {
-			email: "",
+			phoneNumber: "",
+			physicalAddress: "",
 			country: "",
+			state: "",
+			criminalHistory: "",
+			professionalRegistrationNumber: "",
 		},
 		mode: "onChange",
 	});
@@ -43,6 +57,19 @@ const PersonalInformationForm = ({
 
 	const token = Cookies.get("sedherToken");
 
+	const details = watch();
+
+	const handleStep = (step: number) => {
+		personalInformationForm(details);
+		router.push({
+			pathname: "/onboarding/verification",
+			query: {
+				...router.query,
+				step,
+			},
+		});
+	};
+
 	const [getCountries, { isLoading }] = useGetCountriesMutation();
 
 	const [getStates, { isLoading: isLoadingState }] = useGetStatesMutation();
@@ -54,8 +81,8 @@ const PersonalInformationForm = ({
 					token,
 					country,
 				};
-				const data = await getStates(body as any).unwrap();
-				setStates(data as any);
+				const data = (await getStates(body as any).unwrap()) as any;
+				setStates(data.data as any);
 			} catch (err: any) {
 				toast.error(err?.data?.message);
 			}
@@ -69,8 +96,8 @@ const PersonalInformationForm = ({
 				const body = {
 					token,
 				};
-				const data = await getCountries(body as any).unwrap();
-				setCountries(data as any);
+				const data = (await getCountries(body as any).unwrap()) as any;
+				setCountries(data.data as any);
 			} catch (err: any) {
 				toast.error(err?.data?.message);
 			}
@@ -87,31 +114,17 @@ const PersonalInformationForm = ({
 						</h4>
 						<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10'>
 							<Input
-								label='First Name'
-								name='firstName'
-								placeholder='First Name'
-							/>
-							<Input
-								label='Last Name'
-								name='lastName'
-								placeholder='Last Name'
-							/>
-							<Input
-								type='email'
-								name='email'
-								label='Email'
-								placeholder='Email'
-							/>
-							<Input
 								name='phoneNumber'
 								type='tel'
 								label='Phone Number'
 								placeholder='Phone Number'
+								rules={["required"]}
 							/>
 							<Input
 								name='physicalAddress'
 								label='Physical Address'
 								placeholder='Physical Address'
+								rules={["required"]}
 							/>
 							<SelectInput
 								options={countries}
@@ -135,11 +148,13 @@ const PersonalInformationForm = ({
 								name='criminalHistory'
 								label='Criminal History'
 								placeholder='Criminal History'
+								rules={["required"]}
 							/>
 							<Input
 								name='professionalRegistrationNumber'
 								label='Professional Registration Number'
 								placeholder='Professional Registration Number'
+								rules={["required"]}
 							/>
 						</div>
 					</form>
@@ -147,8 +162,8 @@ const PersonalInformationForm = ({
 			</section>
 			<div className='flex justify-end my-10'>
 				<Button
-					disabled={category === ""}
-					onClick={() => handleStep(2)}
+					disabled={category === "" || !isValid}
+					onClick={() => handleStep(type?.toString() === "hcp's" ? 4 : 2)}
 					size='sm'
 					className='w-full md:w-[311px]'>
 					Next Step

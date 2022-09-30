@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
 
 type OnboardingHeaderProps = {
 	steps: {
@@ -18,6 +17,7 @@ type OnboardingHeaderProps = {
 	}[];
 	step: number;
 	subStep?: number;
+	totalSubSteps?: number;
 	children?: React.ReactNode;
 };
 
@@ -25,8 +25,9 @@ const OnboardingHeader = ({
 	step,
 	steps,
 	stepsMobile,
-	subStep,
+	subStep = 0,
 	children,
+	totalSubSteps = 4,
 }: OnboardingHeaderProps) => {
 	const location = useRouter();
 
@@ -149,7 +150,8 @@ const OnboardingHeader = ({
 								</p>
 							</div>
 							<div className='hidden md:block py-3 px-12 bg-[#F47D5B26] text-secondary font-epilogue text-lg font-semibold rounded-[30px]'>
-								Step {subStep}/4
+								Step {subStep > totalSubSteps ? totalSubSteps : subStep}/
+								{totalSubSteps}
 							</div>
 						</div>
 					</div>

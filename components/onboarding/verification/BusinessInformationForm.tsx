@@ -7,7 +7,15 @@ const BusinessInformationForm = () => {
 	const router = useRouter();
 
 	const handleStep = (step: number) =>
-		router.push(`/onboarding/verification?step=${step}`);
+		router.push({
+			pathname: "/onboarding/verification",
+			query: {
+				...router.query,
+				step,
+			},
+		});
+
+	const { type } = router.query;
 
 	const methods = useForm({
 		defaultValues: {
@@ -85,7 +93,9 @@ const BusinessInformationForm = () => {
 					Previous Step
 				</Button>
 				<Button
-					onClick={() => handleStep(3)}
+					onClick={() =>
+						handleStep(type?.toString() === "patient care centres" ? 3 : 4)
+					}
 					size='sm'
 					className='w-full md:w-[311px]'>
 					Next Step

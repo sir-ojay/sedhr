@@ -21,7 +21,15 @@ const CompanyDetailsForm = () => {
 	const [pharmacy, setPharmacy] = useState("");
 
 	const handleStep = (step: number) =>
-		router.push(`/onboarding/verification?step=${step}`);
+		router.push({
+			pathname: "/onboarding/verification",
+			query: {
+				...router.query,
+				step,
+			},
+		});
+
+	const { type } = router.query;
 
 	const methods = useForm({
 		defaultValues: {

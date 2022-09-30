@@ -2,7 +2,7 @@ import OnboardingHeader from "@/components/onboarding/OnboardingHeader";
 import AccountPackages from "@/components/onboarding/payments/AccountPackages";
 import AccountTypesHorizontalList from "@/components/onboarding/payments/AccountTypesHorizontalList";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { useVerifyPaymebtMutation } from "@/services/onboarding";
+import { useVerifyPaymentMutation } from "@/services/onboarding";
 import { LoginResponse } from "@/types/auth/auth";
 import { VerifyPaymentResponse } from "@/types/onboarding";
 import { requireAuthentication } from "hoc/requireAuthentication";
@@ -32,18 +32,23 @@ const payment: NextPage = () => {
 		}
 	}, []);
 
-	const [verify, { isLoading }] = useVerifyPaymebtMutation();
+	const [verify, { isLoading }] = useVerifyPaymentMutation();
 
 	const verifyPayment = async (ref: any) => {
 		try {
 			const body = {
 				reference: ref.reference as string,
 				amount: amount * 100,
-				email: user?.email as string,
+				email: user?.email.toLowerCase() as string,
 			};
 			(await verify(body).unwrap()) as VerifyPaymentResponse;
 			toast.success("payment successful");
-			router.push("/onboarding/verification");
+			router.push({
+				pathname: "/onboarding/verification",
+				query: {
+					...router.query,
+				},
+			});
 		} catch (err: any) {
 			toast.error(err?.data?.message);
 		}
@@ -51,13 +56,13 @@ const payment: NextPage = () => {
 
 	const config = {
 		reference: uuid(),
-		email: user?.email as string,
+		email: user?.email.toLowerCase() as string,
 		amount: amount * 100,
 		publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PK as string,
 	};
 
 	const onSuccess = (reference: void) => {
-		verifyPayment(reference as any);
+		setTimeout(() => verifyPayment(reference as any), 1500);
 	};
 
 	const onClose = () => {
