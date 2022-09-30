@@ -11,8 +11,11 @@ import {
 	ForgotPasswordResponse,
 } from "@/types/auth/auth";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const ForgotPasswordPage: NextPage = () => {
+	const router = useRouter();
+
 	const methods = useForm({
 		defaultValues: {
 			email: "",
@@ -31,12 +34,13 @@ const ForgotPasswordPage: NextPage = () => {
 			const body = {
 				email: data.email,
 			};
-			const { message } = (await forgotPassword(
+			const { data: response } = (await forgotPassword(
 				body
 			).unwrap()) as ForgotPasswordResponse;
 
-			console.log(message);
-			toast.success(message);
+			toast.success(response);
+			console.log(response);
+			router.push("/auth/signin");
 		} catch (err: any) {
 			toast.error(err?.data?.error);
 		}

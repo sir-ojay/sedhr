@@ -66,6 +66,8 @@ export interface ValidateEmailRequest {
 
 export interface ForgotPasswordResponse {
 	message: string;
+	data?: string;
+	success: boolean;
 }
 
 export interface ForgotPasswordRequest {

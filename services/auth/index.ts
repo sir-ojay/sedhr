@@ -51,7 +51,8 @@ export const auth = createApi({
 			ForgotPasswordResponse,
 			ForgotPasswordRequest
 		>({
-			query: (credentials) => postRequest("/forgot", credentials),
+			query: (credentials) =>
+				postRequest("https://sedher.herokuapp.com/api/forgot", credentials),
 		}),
 	}),
 });
