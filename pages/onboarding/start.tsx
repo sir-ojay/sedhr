@@ -20,7 +20,7 @@ const start: NextPage = () => {
 							/>
 						</div>
 						<h4 className='font-semibold font-clash text-2xl md:text-3xl text-primary'>
-							Welcome on board!
+							Welcome Onboard!
 						</h4>
 						{/* <p className='font-medium text-lg font-epilogue text-neutral-60 max-w-[460px]'>
 							Awesome! Your Membership ID{" "}

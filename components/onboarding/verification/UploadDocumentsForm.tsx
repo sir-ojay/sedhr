@@ -14,11 +14,11 @@ type UploadDocumentsFormProps = {
 const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
 	const router = useRouter();
 
-	const { type } = router.query;
+	const { type, idType } = router.query;
 
 	const methods = useForm({
 		defaultValues: {
-			photoId: undefined,
+			[idType?.toString().replaceAll("'", "") as string]: undefined,
 		},
 		mode: "onChange",
 	});
@@ -30,7 +30,7 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
 
 	const token = Cookies.get("sedherToken");
 
-	const photoId = watch("photoId");
+	const photoId = watch(idType?.toString().replaceAll("'", "") as string);
 
 	const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
 
@@ -42,7 +42,7 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
 				token: token as string,
 			}).unwrap()) as any;
 			data.push({
-				idType: "photoId",
+				idType,
 				idLink: result.data.secureUrl,
 				// publicId: result.data.publicId,
 			});
@@ -81,7 +81,13 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
 							Upload document
 						</h4>
 						<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10'>
-							<Input name='photoId' type='file' label='Photo ID' />
+							<Input
+								name={
+									(idType?.toString().replaceAll("'", "") as string) || "name"
+								}
+								type='file'
+								label={(idType as string) || "Name"}
+							/>
 							{/* <Input name="" type='file' label='CAC registration' />
 							<Input type='file' label='Operating permit' />
 							<Input type='file' label='Operating License' />

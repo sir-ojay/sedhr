@@ -73,7 +73,7 @@ const verification: NextPage = () => {
 			};
 			console.log("onboarding data", data);
 			const result = await completeOnboarding(data).unwrap();
-			toast.success(result.message);
+			toast.success("Onboarding completed successfully");
 			console.log("result", result);
 		} catch (err: any) {
 			console.log("err", err);

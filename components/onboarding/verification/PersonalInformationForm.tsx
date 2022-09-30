@@ -44,6 +44,8 @@ const PersonalInformationForm = ({
 			state: "",
 			criminalHistory: "",
 			professionalRegistrationNumber: "",
+			idType: "",
+			idName: "",
 		},
 		mode: "onChange",
 	});
@@ -51,21 +53,30 @@ const PersonalInformationForm = ({
 	const {
 		formState: { errors, isValid },
 		watch,
+		getValues,
 	} = methods;
 
 	const country = watch("country");
+
+	const idType = watch("idType");
 
 	const token = Cookies.get("sedherToken");
 
 	const details = watch();
 
 	const handleStep = (step: number) => {
-		personalInformationForm(details);
+		const body = {
+			...details,
+			idType: undefined,
+			idName: undefined,
+		};
+		personalInformationForm(body);
 		router.push({
 			pathname: "/onboarding/verification",
 			query: {
 				...router.query,
 				step,
+				idType: getValues("idName") || getValues("idType"),
 			},
 		});
 	};
@@ -104,6 +115,28 @@ const PersonalInformationForm = ({
 		};
 		handleGetCountries();
 	}, []);
+
+	useEffect(() => {
+		if (idType !== "Others (please specify)") {
+			router.replace({
+				pathname: "/onboarding/verification",
+				query: {
+					...router.query,
+					idType,
+				},
+			});
+		} else {
+			router.replace({
+				pathname: "/onboarding/verification",
+				query: {
+					...router.query,
+					idType: undefined,
+				},
+			});
+		}
+	}, [idType]);
+
+	useEffect(() => {}, [errors]);
 	return (
 		<>
 			<section className='w-full bg-white p-5 md:p-8'>
@@ -156,6 +189,27 @@ const PersonalInformationForm = ({
 								placeholder='Professional Registration Number'
 								rules={["required"]}
 							/>
+							<SelectInput
+								name='idType'
+								label='ID Type'
+								id='idType'
+								option='Select ID Type'
+								required
+								options={[
+									"National ID",
+									"International Passport",
+									"Driver's License",
+									"Others (please specify)",
+								]}
+							/>
+							{idType === "Others (please specify)" && (
+								<Input
+									name='idName'
+									label='Others (please specify)'
+									placeholder='Others (please specify)'
+									rules={["required"]}
+								/>
+							)}
 						</div>
 					</form>
 				</FormProvider>
@@ -163,7 +217,9 @@ const PersonalInformationForm = ({
 			<div className='flex justify-end my-10'>
 				<Button
 					disabled={category === "" || !isValid}
-					onClick={() => handleStep(type?.toString() === "hcp's" ? 4 : 2)}
+					onClick={async () => {
+						handleStep(type?.toString() === "hcp's" ? 4 : 2);
+					}}
 					size='sm'
 					className='w-full md:w-[311px]'>
 					Next Step
