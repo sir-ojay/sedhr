@@ -34,12 +34,12 @@ const ForgotPasswordPage: NextPage = () => {
 			const body = {
 				email: data.email,
 			};
-			const { data: response } = (await forgotPassword(
+			const { message } = (await forgotPassword(
 				body
 			).unwrap()) as ForgotPasswordResponse;
 
-			toast.success(response);
-			console.log(response);
+			toast.success(message);
+			console.log(message);
 			router.push("/auth/signin");
 		} catch (err: any) {
 			toast.error(err?.data?.error);
