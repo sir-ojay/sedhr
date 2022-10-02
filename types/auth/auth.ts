@@ -63,3 +63,13 @@ export interface ValidateEmailRequest {
 	email?: string;
 	otp: string;
 }
+
+export interface ForgotPasswordResponse {
+	message: string;
+	data?: string;
+	success: boolean;
+}
+
+export interface ForgotPasswordRequest {
+	email: string;
+}
