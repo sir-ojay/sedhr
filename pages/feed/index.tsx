@@ -12,8 +12,8 @@ import { GetServerSideProps } from "next";
 const feed = () => {
 	return (
 		<DefaultLayout title='Sedher | Feed'>
-			<div className='grid grid-cols-6 gap-8'>
-				<section className='col-span-4 space-y-6'>
+			<div className='grid grid-cols-1 xl:grid-cols-6 gap-8'>
+				<section className='xl:col-span-4 space-y-6'>
 					<PostStatus />
 
 					<section className='space-y-6'>
@@ -22,8 +22,8 @@ const feed = () => {
 						))}
 					</section>
 				</section>
-				<aside className='col-span-2'>
-					<div className='sticky top-[164px] overflow-auto h-[calc(100vh-160.76px)] space-y-6 pb-8 transition-all ease-in scrollbar-thin hover:scrollbar-thumb-transparent hover:scrollbar-track-transparent scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
+				<aside className='xl:col-span-2'>
+					<div className='sticky top-[164px] overflow-auto xl:h-[calc(100vh-160.76px)] space-y-6 pb-8 transition-all ease-in scrollbar-thin hover:scrollbar-thumb-transparent hover:scrollbar-track-transparent scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
 						<YouMightKnow />
 						<RecentEvents />
 						<RecentGroups />

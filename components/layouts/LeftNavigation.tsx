@@ -1,13 +1,18 @@
 import { LeftNavigationProps } from "@/types/layouts/LeftNavigationProps";
+import { Twirl as Hamburger } from "hamburger-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Navigations from "./Navigations";
 
-const LeftNavigation = ({ navigations }: LeftNavigationProps) => {
+const LeftNavigation = ({
+	navigations,
+	isOpen,
+	setOpen,
+}: LeftNavigationProps) => {
 	return (
 		<nav className='bg-white fixed top-0 left-0 w-[272px] h-full'>
-			<div className='ml-[62px] my-[32px]'>
+			<div className='ml-6 flex items-center justify-between xl:ml-[62px] xl:my-8 my-2'>
 				<Link href='/feed'>
 					<a>
 						<Image
@@ -18,6 +23,15 @@ const LeftNavigation = ({ navigations }: LeftNavigationProps) => {
 						/>
 					</a>
 				</Link>
+				<div className='xl:hidden'>
+					<Hamburger
+						color='#0b211a'
+						size={20}
+						label='Show menu'
+						toggled={isOpen}
+						toggle={setOpen}
+					/>
+				</div>
 			</div>
 			<Navigations navigations={navigations} />
 		</nav>

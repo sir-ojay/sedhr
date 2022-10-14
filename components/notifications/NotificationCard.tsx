@@ -17,7 +17,7 @@ const NotificationCard = ({ index }: NotificationCardProps) => {
 					viewBox='0 0 64 64'
 					fill='none'
 					xmlns='http://www.w3.org/2000/svg'>
-					<g clip-path='url(#clip0_1818_72918)'>
+					<g clipPath='url(#clip0_1818_72918)'>
 						<path
 							fillRule='evenodd'
 							clipRule='evenodd'
