@@ -38,36 +38,25 @@ const DefaultLayout = ({
 			<aside
 				className={`xl:hidden h-screen z-50 ${
 					isOpen
-						? "fixed top-[64px] left-0 transform transition-transform"
+						? "fixed top-0 left-0 transform transition-transform"
 						: "-translate-x-[100vw] xl:translate-x-0"
 				}`}>
-				<LeftNavigation />
+				<LeftNavigation isOpen={isOpen} setOpen={setOpen} />
 			</aside>
 			<aside className='hidden xl:block w-[272px] h-screen'>
 				<LeftNavigation />
 			</aside>
 			<section
 				className={`w-full xl:w-[calc(100%-272px)] ${
-					showHeader ? "py-8 pr-9" : ""
+					showHeader ? "py-16 xl:py-8 xl:pr-9" : ""
 				}`}>
-				{showHeader && <DefaultLayoutHeader />}
 				{showHeader && (
-					<header>
-						<div className='xl:hidden'>
-							<Hamburger
-								color='#0b211a'
-								size={32}
-								label='Show menu'
-								toggled={isOpen}
-								toggle={setOpen}
-							/>
-						</div>
-					</header>
+					<DefaultLayoutHeader isOpen={isOpen} setOpen={setOpen} />
 				)}
 				<main
 					className={`min-w-[calc(100%-272px)] ${
 						showHeader
-							? "p-6 md:p-8 rounded-xl min-h-[100vh] bg-accents-light-blue mt-[100px]"
+							? "p-6 md:p-8 rounded-xl min-h-[100vh] bg-accents-light-blue xl:mt-[100px]"
 							: null
 					}`}>
 					{children}

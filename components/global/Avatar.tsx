@@ -54,7 +54,7 @@ const Avatar = ({
 		<div className={as === "Link" ? "hover:brightness-[115%]" : ""}>
 			{as === "Link" ? (
 				<Link href={href || router.asPath}>
-					<a>
+					<a className='flex items-center'>
 						{image ? (
 							<Image
 								width={size}

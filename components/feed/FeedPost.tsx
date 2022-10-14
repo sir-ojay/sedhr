@@ -9,13 +9,20 @@ const FeedPost = () => {
 			<article>
 				<header className='flex justify-between items-start'>
 					<div className='flex gap-3 mb-4'>
-						<Avatar shape='square' name='Eko Diagnostic Centre' size={64} />
+						<div className='hidden xl:block'>
+							<Avatar shape='square' name='Eko Diagnostic Centre' size={64} />
+						</div>
+						<div className='xl:hidden'>
+							<Avatar shape='square' name='Eko Diagnostic Centre' size={48} />
+						</div>
 						<div className='space-y-[1px]'>
-							<div className='font-semibold text-dark-900'>
+							<div className='font-semibold text-sm xl:text-base text-dark-900'>
 								Eko Diagnostic Centre
 							</div>
-							<div className='text-sm text-dark-100'>Diagnostic centres</div>
-							<div className='text-sm text-accents-brown'>
+							<div className='text-xs xl:text-sm text-dark-100'>
+								Diagnostic centres
+							</div>
+							<div className='text-xs xl:text-sm text-accents-brown'>
 								Patient care centres
 							</div>
 						</div>
@@ -29,7 +36,7 @@ const FeedPost = () => {
 					</button>
 				</header>
 				<section className='space-y-5'>
-					<p className='leading-[160%]'>
+					<p className='text-sm xl:text-base leading-[160%]'>
 						Lifebridge medical diagnostics centre has been operating in Nigeria
 						for 10+ years. It has become the one of the most reliable centers to
 						conduct 1000+ unique medical tests. We pride ourselves for
@@ -49,9 +56,9 @@ const FeedPost = () => {
 						/>
 					</div>
 					<div className='flex items-center justify-between'>
-						<div className='space-x-4'>
-							<span className='text-dark-100 text-sm'>354 Likes</span>
-							<span className='text-dark-100 text-sm'>25 Comments</span>
+						<div className='space-x-4 text-xs text-dark-100 xl:text-base'>
+							<span>354 Likes</span>
+							<span>25 Comments</span>
 						</div>
 						<button type='button' className='flex items-center gap-1'>
 							<div>
@@ -61,12 +68,14 @@ const FeedPost = () => {
 									title='see more'
 								/>
 							</div>
-							<span className='text-dark-100 text-sm font-medium'>Like</span>
+							<span className='text-dark-100 text-xs xl:text-sm font-medium'>
+								Like
+							</span>
 						</button>
 					</div>
 					<hr />
 					<div className='flex items-center justify-between'>
-						<button type='button' className='flex items-center gap-4'>
+						<button type='button' className='flex items-center gap-2 xl:gap-4'>
 							<div>
 								<img
 									src='/assets/icons/feed/comment.svg'
@@ -74,9 +83,11 @@ const FeedPost = () => {
 									title='see more'
 								/>
 							</div>
-							<span className='text-dark-100 text-sm font-medium'>Comment</span>
+							<span className='text-dark-100 text-xs xl:text-sm font-medium'>
+								Comment
+							</span>
 						</button>
-						<button type='button' className='flex items-center gap-4'>
+						<button type='button' className='flex items-center gap-2 xl:gap-4'>
 							<div>
 								<img
 									src='/assets/icons/feed/share.svg'
@@ -84,7 +95,9 @@ const FeedPost = () => {
 									title='see more'
 								/>
 							</div>
-							<span className='text-dark-100 text-sm font-medium'>Share</span>
+							<span className='text-dark-100 text-xs xl:text-sm font-medium'>
+								Share
+							</span>
 						</button>
 					</div>
 				</section>

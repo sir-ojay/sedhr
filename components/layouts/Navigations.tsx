@@ -20,7 +20,7 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 							<hr />
 							<div
 								aria-label={`${navigation.name.toLowerCase()} navigation group`}
-								className='mt-5 mb-3 px-8 text-[#3772ff7f] text-sm font-semibold'>
+								className='mt-5 mb-3 px-8 text-[#3772ff7f] text-xs xl:text-sm font-semibold'>
 								{navigation.name}
 							</div>
 						</>
@@ -38,7 +38,7 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 											item.query ? item.query : ""
 										}`}>
 										<a
-											className={`nav-hover ${
+											className={`nav-hover text-sm xl:text-base ${
 												location.pathname.includes(item.href) ? "active" : ""
 											} cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
 											<img
@@ -57,7 +57,7 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 										}}
 										type='button'
 										tabIndex={0}
-										className='nav-hover flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]'>
+										className='nav-hover text-sm xl:text-base flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]'>
 										<img
 											src={`/assets/icons/layouts/${item.icon}.svg`}
 											alt={item.name}
