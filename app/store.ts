@@ -1,4 +1,5 @@
 import { auth } from "@/services/auth";
+import { feed } from "@/services/feed";
 import { onboarding } from "@/services/onboarding";
 import { upload } from "@/services/upload";
 import { configureStore } from "@reduxjs/toolkit";
@@ -10,12 +11,14 @@ export function makeStore() {
 			[auth.reducerPath]: auth.reducer,
 			[onboarding.reducerPath]: onboarding.reducer,
 			[upload.reducerPath]: upload.reducer,
+			[feed.reducerPath]: feed.reducer,
 		},
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware().concat(
 				auth.middleware,
 				onboarding.middleware,
-				upload.middleware
+				upload.middleware,
+				feed.middleware
 			),
 	});
 }
