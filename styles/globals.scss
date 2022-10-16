@@ -67,6 +67,12 @@ select {
 			1em,
 		#ffffff;
 	cursor: pointer;
+
+	&.brown-caret {
+		background: url("/assets/icons/brown-caret.svg") no-repeat right 0.8em
+				center / 1em,
+			#ffffff;
+	}
 }
 
 // modal style
