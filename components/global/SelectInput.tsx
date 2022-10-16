@@ -11,6 +11,8 @@ type SelectInputProps =
 			options: string[];
 			required?: boolean;
 			loading?: boolean;
+			theme?: "primary" | "secondary" | "plain";
+			className?: string;
 	  } & React.ChangeEventHandler<HTMLSelectElement>)
 	| any;
 
@@ -20,8 +22,10 @@ const SelectInput = ({
 	name,
 	option,
 	options,
+	theme = "primary",
 	required = false,
 	loading = false,
+	className = "",
 	...rest
 }: SelectInputProps) => {
 	const { register } = useFormContext();
@@ -40,7 +44,11 @@ const SelectInput = ({
 			)}
 			<select
 				id={id}
-				className='w-full py-3 h-[52px] px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none'
+				className={`w-full${
+					theme === "primary"
+						? "border-2 border-[#B8C9C9] h-[52px] px-4 py-3 rounded-[5px] focus:border-primary "
+						: ""
+				} outline-none ${className}`}
 				{...rest}
 				{...register(name, {
 					required,
