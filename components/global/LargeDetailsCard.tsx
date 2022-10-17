@@ -1,13 +1,29 @@
+import { LoginResponse } from "@/types/auth/auth";
+import Cookies from "js-cookie";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import SmallAvatars from "./SmallAvatars";
 
 type LargeDetailsCardProps = {
-	type: "event" | "group" | "account";
+	type: "event" | "group" | "account" | "profile";
 };
 
 const LargeDetailsCard = ({ type }: LargeDetailsCardProps) => {
+	const router = useRouter();
+	const [user, setUser] = useState<LoginResponse>();
+
+	useEffect(() => {
+		try {
+			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
+			setUser(user);
+		} catch (error) {
+			console.log(error);
+		}
+	}, []);
 	return (
 		<section className='rounded-xl bg-white overflow-hidden'>
 			<div className='relative'>
@@ -17,9 +33,10 @@ const LargeDetailsCard = ({ type }: LargeDetailsCardProps) => {
 					width={2286}
 					height={420}
 				/>
-				{type === "account" && (
+				{(type === "account" || type === "profile") && (
 					<div className='absolute top-[50%] left-8 border-8 border-white rounded-full'>
 						<Avatar
+							as='div'
 							size={140}
 							name='Salami  Wale Tayo'
 							image='/assets/images/avatar.png'
@@ -86,14 +103,14 @@ const LargeDetailsCard = ({ type }: LargeDetailsCardProps) => {
 					<SmallAvatars name='Richard Ingwe' label='+300 Attendees' />
 				</div>
 			)}
-			{type === "account" && (
+			{(type === "account" || type === "profile") && (
 				<div className='p-5 space-y-2 ml-56'>
 					<div className='flex justify-between items-center'>
 						<div className='space-y-2'>
 							<h1 className='font-semibold font-clash text-2xl text-title'>
-								Salami Wale Tayo
+								{user?.name}
 							</h1>
-							<div className='text-lg font-epilogue text-dark-100'>
+							{/* <div className='text-lg font-epilogue text-dark-100'>
 								Medical Doctor at{" "}
 								<Button
 									underline={false}
@@ -102,18 +119,29 @@ const LargeDetailsCard = ({ type }: LargeDetailsCardProps) => {
 									tag='a'>
 									Eko hospital
 								</Button>
-							</div>
+							</div> */}
 						</div>
-						<Button theme='outline'>Unfollow</Button>
+						{type === "account" && <Button theme='outline'>Unfollow</Button>}
+						{type === "profile" && (
+							<Link href={`/profile/${router.query.username}/edit`}>
+								<Button theme='outline'>Edit Profile</Button>
+							</Link>
+						)}
 					</div>
-					<Button tag='a' href='/' className='text-[#F47D5B]' underline={false}>
-						HCP
+					<Button
+						tag='a'
+						href='/'
+						className='text-[#F47D5B] uppercase'
+						underline={false}>
+						{user?.accountType}
 					</Button>
-					<div className='flex gap-2'>
-						<Button>Message</Button>
-						<Button theme='outline' icon='more' />
-						<Button theme='outline' icon='notification' />
-					</div>
+					{type === "account" && (
+						<div className='flex gap-2'>
+							<Button>Message</Button>
+							<Button theme='outline' icon='more' />
+							<Button theme='outline' icon='notification' />
+						</div>
+					)}
 				</div>
 			)}
 		</section>
