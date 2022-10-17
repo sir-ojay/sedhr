@@ -1,5 +1,6 @@
 import Checkbox from "@/components/global/Checkbox";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
+import NotificationLoader from "@/components/loaders/NotificationLoad";
 import NotificationCard from "@/components/notifications/NotificationCard";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useGetUserNotificationMutation } from "@/services/notifications";
@@ -20,7 +21,7 @@ const NotificationsPage = () => {
 	const [userNotifications, setUserNotifications] = useState([]);
 	const token = Cookies.get("sedherToken");
 
-	const [getUserNotification] = useGetUserNotificationMutation();
+	const [getUserNotification, { isLoading }] = useGetUserNotificationMutation();
 
 	useEffect(() => {
 		const handleGetNotifcation = async () => {
@@ -88,15 +89,24 @@ const NotificationsPage = () => {
 					</div>
 				</div>
 			</header>
-			{/* <div className='grid grid-cols-9 gap-6'>
+			<div className='grid  gap-6'>
+				{/* grid-cols-9 will be later apply to grid container when there is an aside */}
 				<section className='col-span-7'>
-					<WhiteWrapper>
-						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((notification) => (
-							<NotificationCard key={notification} index={notification} />
-						))}
-					</WhiteWrapper>
+					{!isLoading && (
+						<WhiteWrapper>
+							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((notification) => (
+								<NotificationCard key={notification} index={notification} />
+							))}
+						</WhiteWrapper>
+					)}
+					{/* {userNotifications === null && (
+						<WhiteWrapper>
+							You don't have any notifications available
+						</WhiteWrapper>
+					)} */}
+					<WhiteWrapper>{isLoading && <NotificationLoader />}</WhiteWrapper>
 				</section>
-				<aside className='col-span-2'>
+				<aside className='col-span-2 hidden'>
 					<WhiteWrapper className='sticky top-[164px]' title='Filter by'>
 						<FormProvider {...methods}>
 							<form className='flex flex-col items-start gap-5'>
@@ -111,10 +121,7 @@ const NotificationsPage = () => {
 						</FormProvider>
 					</WhiteWrapper>
 				</aside>
-			</div> */}
-			{userNotifications === null && (
-				<WhiteWrapper>You don't have any notifications available</WhiteWrapper>
-			)}
+			</div>
 		</DefaultLayout>
 	);
 };

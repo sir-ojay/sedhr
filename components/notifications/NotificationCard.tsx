@@ -60,11 +60,11 @@ const NotificationCard = ({ index }: NotificationCardProps) => {
 					analysing,researching and changing behaviour.
 				</p>
 			</div>
-			<div>
+			{/* <div>
 				<Button className='w-[150px]' size='sm' theme='outline'>
 					View event
 				</Button>
-			</div>
+			</div> */}
 		</article>
 	);
 };
