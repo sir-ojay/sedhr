@@ -2,6 +2,7 @@ import { auth } from "@/services/auth";
 import { feed } from "@/services/feed";
 import { onboarding } from "@/services/onboarding";
 import { upload } from "@/services/upload";
+import { notifications } from "@/services/notifications";
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 
@@ -10,6 +11,7 @@ export function makeStore() {
 		reducer: {
 			[auth.reducerPath]: auth.reducer,
 			[onboarding.reducerPath]: onboarding.reducer,
+			[notifications.reducerPath]: notifications.reducer,
 			[upload.reducerPath]: upload.reducer,
 			[feed.reducerPath]: feed.reducer,
 		},
@@ -18,7 +20,8 @@ export function makeStore() {
 				auth.middleware,
 				onboarding.middleware,
 				upload.middleware,
-				feed.middleware
+				feed.middleware,
+				notifications.middleware
 			),
 	});
 }

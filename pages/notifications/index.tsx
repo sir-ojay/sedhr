@@ -2,9 +2,13 @@ import Checkbox from "@/components/global/Checkbox";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import NotificationCard from "@/components/notifications/NotificationCard";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { useGetUserNotificationMutation } from "@/services/notifications";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
+import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const NotificationsPage = () => {
 	const methods = useForm({
@@ -13,6 +17,24 @@ const NotificationsPage = () => {
 		},
 		mode: "onChange",
 	});
+	const [userNotifications, setUserNotifications] = useState([]);
+	const token = Cookies.get("sedherToken");
+
+	const [getUserNotification] = useGetUserNotificationMutation();
+
+	useEffect(() => {
+		const handleGetNotifcation = async () => {
+			try {
+				const data = await getUserNotification(token).unwrap();
+				setUserNotifications(data.data as any);
+				console.log(userNotifications);
+			} catch (err: any) {
+				toast.error(err?.data?.message);
+			}
+		};
+		handleGetNotifcation();
+	}, []);
+
 	return (
 		<DefaultLayout title='Sedher | Notifications'>
 			<header className='flex justify-between items-center mb-9'>
@@ -66,7 +88,7 @@ const NotificationsPage = () => {
 					</div>
 				</div>
 			</header>
-			<div className='grid grid-cols-9 gap-6'>
+			{/* <div className='grid grid-cols-9 gap-6'>
 				<section className='col-span-7'>
 					<WhiteWrapper>
 						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((notification) => (
@@ -89,7 +111,10 @@ const NotificationsPage = () => {
 						</FormProvider>
 					</WhiteWrapper>
 				</aside>
-			</div>
+			</div> */}
+			{userNotifications === null && (
+				<WhiteWrapper>You don't have any notifications available</WhiteWrapper>
+			)}
 		</DefaultLayout>
 	);
 };
