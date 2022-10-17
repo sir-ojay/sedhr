@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Input from "@/components/global/Input";
 import Avatar from "../global/Avatar";
 import { FormProvider, useForm } from "react-hook-form";
 import { Twirl as Hamburger } from "hamburger-react";
+import { LoginResponse } from "@/types/auth/auth";
+import Cookies from "js-cookie";
 
 const DefaultLayoutHeader = ({ isOpen, setOpen }: any) => {
+	const [user, setUser] = useState<LoginResponse>();
+
+	useEffect(() => {
+		try {
+			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
+			setUser(user);
+			console.log(user);
+		} catch (error) {
+			console.log(error);
+		}
+	}, []);
+
 	const methods = useForm({
 		defaultValues: {
 			search: "",
@@ -28,13 +42,15 @@ const DefaultLayoutHeader = ({ isOpen, setOpen }: any) => {
 					</button> */}
 					<div className='flex items-center justify-between gap-3'>
 						<div className='text-right font-epilogue'>
-							<div className='font-semibold text-lg text-dark-900'>
-								Salami Tayo
+							<div className='font-semibold text-lg capitalize text-dark-900'>
+								{user?.name.toLowerCase()}
 							</div>
-							<div className='text-sm text-dark-100'>Patient care centres</div>
+							<div className='text-sm text-left uppercase text-dark-100'>
+								{user?.accountType.toLowerCase() || ""}
+							</div>
 						</div>
 						<Avatar
-							href='/profile/me'
+							href={`/profile/${user?.username}`}
 							name={"Salami Tayo"}
 							size={48}
 							image='/assets/icons/layouts/profile.png'
