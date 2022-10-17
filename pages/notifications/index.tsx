@@ -92,18 +92,18 @@ const NotificationsPage = () => {
 			<div className='grid  gap-6'>
 				{/* grid-cols-9 will be later apply to grid container when there is an aside */}
 				<section className='col-span-7'>
-					{!isLoading && (
+					{/* {!isLoading && (
 						<WhiteWrapper>
 							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((notification) => (
 								<NotificationCard key={notification} index={notification} />
 							))}
 						</WhiteWrapper>
-					)}
-					{/* {userNotifications === null && (
+					)} */}
+					{!isLoading && userNotifications === null && (
 						<WhiteWrapper>
 							You don't have any notifications available
 						</WhiteWrapper>
-					)} */}
+					)}
 					<WhiteWrapper>
 						{isLoading && (
 							<>
