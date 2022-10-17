@@ -31,6 +31,7 @@ export type InputProps = {
 	value?: boolean | string | number;
 	autoComplete?: string | boolean;
 	disabled?: boolean;
+	showFilePreview?: boolean;
 	step?: number;
 	name?: string;
 	className?: string;
