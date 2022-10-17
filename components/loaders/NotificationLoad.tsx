@@ -4,7 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const NotificationLoad = () => {
 	const loadCards: any = Array(9).fill(1);
 	return loadCards.map((_: any, i: any) => (
-		<div className='card-skeleton !flex gap-8' key={i}>
+		<div className='card-skeleton !flex gap-8 !pb-[20px] ' key={i}>
 			<div>
 				<Skeleton circle width={60} height={60} />
 			</div>
