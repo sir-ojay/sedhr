@@ -51,8 +51,12 @@ const RegisterForm = () => {
 			<h1 className='font-semibold text-[32px] leading-[120%] text-dark-900 font-clash'>
 				password
 			</h1>
-			<p className='font-epilogue font-medium text-lg leading-[160%] text-dark-100 mb-6'>
+			<p className='font-epilogue font-medium text-lg leading-[160%] text-dark-100 mb-2'>
 				Create your password
+			</p>
+			<p className='font-epilogue font-medium text-sm leading-[160%] text-primary mb-6'>
+				The Create Password field must have an uppercase letter, a lowercase
+				letter, a special character and at least 8 digits.
 			</p>
 			<FormProvider {...methods}>
 				<form onSubmit={methods.handleSubmit(onSubmit)} className='space-y-6'>

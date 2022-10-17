@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Twirl as Hamburger } from "hamburger-react";
 import { LoginResponse } from "@/types/auth/auth";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 const DefaultLayoutHeader = ({ isOpen, setOpen }: any) => {
 	const [user, setUser] = useState<LoginResponse>();
@@ -94,7 +95,7 @@ const DefaultLayoutHeader = ({ isOpen, setOpen }: any) => {
 					</button>
 				</div>
 				<div className='flex items-center gap-3'>
-					<button>
+					<Link href='/marketplace'>
 						<svg
 							width='25'
 							height='25'
@@ -118,8 +119,8 @@ const DefaultLayoutHeader = ({ isOpen, setOpen }: any) => {
 								</clipPath>
 							</defs>
 						</svg>
-					</button>
-					<button>
+					</Link>
+					<Link href='/notifications'>
 						<svg
 							width='25'
 							height='25'
@@ -133,8 +134,8 @@ const DefaultLayoutHeader = ({ isOpen, setOpen }: any) => {
 								fill='#515B6F'
 							/>
 						</svg>
-					</button>
-					<button>
+					</Link>
+					<Link href='/messages'>
 						<svg
 							width='25'
 							height='25'
@@ -175,7 +176,7 @@ const DefaultLayoutHeader = ({ isOpen, setOpen }: any) => {
 								</clipPath>
 							</defs>
 						</svg>
-					</button>
+					</Link>
 					<Avatar
 						href='/profile/me'
 						name={"Salami Tayo"}
