@@ -4,8 +4,15 @@ import NotificationCard from "@/components/notifications/NotificationCard";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import { GetServerSideProps } from "next";
+import { useForm, FormProvider } from "react-hook-form";
 
 const NotificationsPage = () => {
+	const methods = useForm({
+		defaultValues: {
+			message: "",
+		},
+		mode: "onChange",
+	});
 	return (
 		<DefaultLayout title='Sedher | Notifications'>
 			<header className='flex justify-between items-center mb-9'>
@@ -69,15 +76,17 @@ const NotificationsPage = () => {
 				</section>
 				<aside className='col-span-2'>
 					<WhiteWrapper className='sticky top-[164px]' title='Filter by'>
-						<form className='flex flex-col items-start gap-5'>
-							{[1, 2, 3, 4, 5].map((checkbox) => (
-								<Checkbox
-									key={checkbox}
-									name={checkbox.toString()}
-									label='Caption'
-								/>
-							))}
-						</form>
+						<FormProvider {...methods}>
+							<form className='flex flex-col items-start gap-5'>
+								{[1, 2, 3, 4, 5].map((checkbox) => (
+									<Checkbox
+										key={checkbox}
+										name={checkbox.toString()}
+										label='Caption'
+									/>
+								))}
+							</form>
+						</FormProvider>
 					</WhiteWrapper>
 				</aside>
 			</div>
