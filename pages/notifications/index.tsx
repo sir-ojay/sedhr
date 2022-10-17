@@ -104,7 +104,13 @@ const NotificationsPage = () => {
 							You don't have any notifications available
 						</WhiteWrapper>
 					)} */}
-					<WhiteWrapper>{isLoading && <NotificationLoader />}</WhiteWrapper>
+					<WhiteWrapper>
+						{isLoading && (
+							<>
+								<NotificationLoader />
+							</>
+						)}
+					</WhiteWrapper>
 				</section>
 				<aside className='col-span-2 hidden'>
 					<WhiteWrapper className='sticky top-[164px]' title='Filter by'>
