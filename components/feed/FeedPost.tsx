@@ -306,6 +306,7 @@ const FeedPost = ({
 										<Input
 											id='comment'
 											name='comment'
+											autoFocus
 											placeholder='Write a comment...'
 										/>
 									</div>
@@ -342,7 +343,7 @@ const FeedPost = ({
 												</div>
 											</div>
 											<div className='ml-12 xl:ml-16 space-y-2'>
-												<div className='p-3 text-sm xl:text-base text-dark-100 rounded border-2 border-[#D6DDEB]'>
+												<div className='p-3 text-sm xl:text-base text-dark-100 rounded border border-[#D6DDEB]'>
 													{content}
 												</div>
 												<div className='text-[#7C8493] font-thin text-xs xl:text-sm'>
