@@ -83,5 +83,5 @@ export const {
 	useLikeAPostMutation,
 	useUnLikeAPostMutation,
 	useCommentMutation,
-	useGetCommentsQuery,
+	useLazyGetCommentsQuery,
 } = feed;
