@@ -156,7 +156,7 @@ const FeedPost = ({
 							<div className='text-xs xl:text-sm text-dark-100'></div>
 							<div className='text-xs xl:text-sm capitalize text-accents-brown'>
 								{author.accountType === "hcp"
-									? author.accountType.toLocaleUpperCase()
+									? author.accountType?.toUpperCase()
 									: author.accountType}{" "}
 								{author.company && `- ${author.company}`}
 							</div>
