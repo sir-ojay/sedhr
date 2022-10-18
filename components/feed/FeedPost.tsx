@@ -1,6 +1,6 @@
 import {
 	useCommentMutation,
-	useGetCommentsQuery,
+	useLazyGetCommentsQuery,
 	useLikeAPostMutation,
 	useUnLikeAPostMutation,
 } from "@/services/feed";
@@ -11,6 +11,7 @@ import moment from "moment";
 import Image from "next/future/image";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import Avatar from "../global/Avatar";
 import Button from "../global/Button";
@@ -113,9 +114,15 @@ const FeedPost = ({
 		}
 	};
 
-	const { data, error, isLoading, isSuccess, isFetching } = useGetCommentsQuery(
-		{ token, id }
-	);
+	const [getComments, result] = useLazyGetCommentsQuery();
+
+	const { data, error, isLoading, isSuccess, isFetching } = result;
+
+	useEffect(() => {
+		if (showComments) {
+			getComments({ token, id });
+		}
+	}, [showComments]);
 
 	useEffect(() => {
 		data && setComments(data?.data.comments);
@@ -127,10 +134,20 @@ const FeedPost = ({
 				<header className='flex justify-between items-start'>
 					<div className='flex gap-3 mb-4'>
 						<div className='hidden xl:block'>
-							<Avatar shape='square' name={author?.name || "SDR"} size={64} />
+							<Avatar
+								shape='square'
+								name={author?.name || "SDR"}
+								href={`/profile/${user?.username}`}
+								size={64}
+							/>
 						</div>
 						<div className='xl:hidden'>
-							<Avatar shape='square' name={author?.name || "SDR"} size={48} />
+							<Avatar
+								shape='square'
+								name={author?.name || "SDR"}
+								href={`/profile/${user?.username}`}
+								size={48}
+							/>
 						</div>
 						<div className='space-y-[1px]'>
 							<div className='font-semibold text-sm xl:text-base text-dark-900'>
@@ -221,7 +238,7 @@ const FeedPost = ({
 								className={`text-sm xl:text-base font-medium ${
 									isLiked ? "text-primary" : "text-dark-100 "
 								}`}>
-								Like
+								{isLiked ? "Liked" : "Like"}
 							</span>
 						</button>
 					</div>
@@ -328,15 +345,20 @@ const FeedPost = ({
 												<div className='p-3 text-sm xl:text-base text-dark-100 rounded border-2 border-[#D6DDEB]'>
 													{content}
 												</div>
-												<div className='text-[#7C8493] text-xs xl:text-sm'>
+												<div className='text-[#7C8493] font-thin text-xs xl:text-sm'>
 													{moment(createdAt).fromNow()}
 												</div>
 											</div>
 										</div>
 									);
 								})}
-								{comments.length === 0 && (
-									<div className='ml-12 xl:ml-16 font-semibold'>
+								{isLoading && (
+									<div className='flex justify-center items-center'>
+										<ClipLoader color='#3b82f6' loading={isLoading} size={24} />
+									</div>
+								)}
+								{!isLoading && comments.length === 0 && (
+									<div className='ml-12 xl:ml-16 text-sm xl:text-base font-semibold'>
 										No comments yet, you could be the first to comment...
 									</div>
 								)}
