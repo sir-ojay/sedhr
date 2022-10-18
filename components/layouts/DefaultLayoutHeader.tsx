@@ -43,10 +43,10 @@ const DefaultLayoutHeader = ({ isOpen, setOpen }: any) => {
 					<div className='flex items-center justify-between gap-3'>
 						<div className='text-right font-epilogue'>
 							<div className='font-semibold text-lg capitalize text-dark-900'>
-								{user?.name.toLowerCase()}
+								{user?.name?.toLowerCase()}
 							</div>
 							<div className='text-sm text-left uppercase text-dark-100'>
-								{user?.accountType.toLowerCase() || ""}
+								{user?.accountType?.toLowerCase() || ""}
 							</div>
 						</div>
 						<Avatar
