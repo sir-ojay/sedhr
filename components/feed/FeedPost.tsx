@@ -177,8 +177,9 @@ const FeedPost = ({
 					<div className='rounded-xl w-full h-auto'>
 						{contentType === "image" && (
 							<Image
-								width={1000}
-								height={1000}
+								width={500}
+								height={500}
+								className='rounded-lg xl:rounded-xl w-full h-auto'
 								src={attachments[0]?.url}
 								alt='post'
 							/>
