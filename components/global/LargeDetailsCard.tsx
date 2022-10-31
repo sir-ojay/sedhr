@@ -12,7 +12,7 @@ type LargeDetailsCardProps = {
 	type: "event" | "group" | "account" | "profile";
 	editCoverPicture?: () => void;
 	editable?: boolean;
-	data: any;
+	data?: any;
 };
 
 const LargeDetailsCard = ({
