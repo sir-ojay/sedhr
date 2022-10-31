@@ -53,12 +53,12 @@ SedherUniverseNav.defaultProps = {
 			href: "/sedher-universe/my-connections",
 			count: 45,
 		},
-		{
-			name: "My Follows",
-			href: "/sedher-universe/my-follows",
-			count: 45,
-			query: "?t=patientcarecenters",
-		},
+		// {
+		// 	name: "My Follows",
+		// 	href: "/sedher-universe/my-follows",
+		// 	count: 45,
+		// 	query: "?t=patientcarecenters",
+		// },
 		{
 			name: "My Groups",
 			href: "/sedher-universe/my-groups",

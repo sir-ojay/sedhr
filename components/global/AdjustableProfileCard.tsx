@@ -5,6 +5,14 @@ import WhiteWrapper from "./WhiteWrapper";
 import { motion } from "framer-motion";
 import Router from "next/router";
 import SmallAvatars from "./SmallAvatars";
+import Cookies from "js-cookie";
+import {
+	useAcceptFriendRequestMutation,
+	useFollowRequestMutation,
+	useRemoveConnectionMutation,
+	useSendFriendRequestMutation,
+} from "@/services/connections";
+import Link from "next/link";
 
 type AdjustableProfileCardProps = {
 	name: string;
@@ -12,9 +20,10 @@ type AdjustableProfileCardProps = {
 	accountType?: string;
 	image?: string;
 	grid: number;
-	cardType: "connect" | "page" | "event" | "group";
+	cardType: "connect" | "connectAccept" | "page" | "event" | "group";
 	connected?: boolean;
 	href?: string;
+	username?: string;
 };
 
 const AdjustableProfileCard = ({
@@ -26,7 +35,22 @@ const AdjustableProfileCard = ({
 	grid,
 	connected = false,
 	href = "",
+	username = "",
 }: AdjustableProfileCardProps) => {
+	const token: any = Cookies.get("sedherToken");
+
+	const [sendRequest, { isLoading: isLoadingFriendRequest }] =
+		useSendFriendRequestMutation();
+
+	const [acceptRequest, { isLoading: isLoadingAcceptFriendRequest }] =
+		useAcceptFriendRequestMutation();
+
+	const [followRequest, { isLoading: isLoadingFollowRequest }] =
+		useFollowRequestMutation();
+
+	const [removeConnection, { isLoading: isLoadingRemoveConnection }] =
+		useRemoveConnectionMutation();
+
 	return (
 		<motion.article layout>
 			<WhiteWrapper>
@@ -34,9 +58,11 @@ const AdjustableProfileCard = ({
 					className={`flex ${
 						grid === 1 ? "flex-row items-center" : "flex-col"
 					} justify-between gap-6`}>
-					{(cardType === "connect" || cardType === "page") && (
+					{(cardType === "connect" ||
+						cardType === "page" ||
+						cardType === "connectAccept") && (
 						<div className='flex gap-6 items-center'>
-							<Avatar image={image} name={name} size={64} />
+							<Avatar image={image} name={name} size={64} href={href} />
 							<div>
 								<div className='space-y-2'>
 									<div className='font-semibold text-dark-900'>{name}</div>
@@ -54,7 +80,7 @@ const AdjustableProfileCard = ({
 											{accountType}
 										</div>
 									</div>
-									<div className='flex items-center gap-2'>
+									{/* <div className='flex items-center gap-2'>
 										<svg
 											width='16'
 											height='15'
@@ -70,7 +96,7 @@ const AdjustableProfileCard = ({
 											4.9{" "}
 											<span className='text-dark-100 font-normal'>(25)</span>
 										</div>
-									</div>
+									</div> */}
 								</div>
 							</div>
 						</div>
@@ -83,10 +109,15 @@ const AdjustableProfileCard = ({
 								shape='square'
 								rounded
 								size={64}
+								href={href}
 							/>
 							<div>
 								<div className='space-y-2'>
-									<div className='font-semibold text-dark-900'>{name}</div>
+									<Link href={href}>
+										<a className='font-semibold text-dark-900 hover:underline'>
+											{name}
+										</a>
+									</Link>
 									<div className='text-sm text-dark-100'>{description}</div>
 									<SmallAvatars name='Richard Ingwe' label='+300 seen' />
 								</div>
@@ -101,18 +132,43 @@ const AdjustableProfileCard = ({
 								? "w-[164px]"
 								: "w-full"
 						} flex flex-col gap-3 items-center`}>
-						{(cardType === "connect" || cardType === "page") && (
+						{(cardType === "connect" ||
+							cardType === "page" ||
+							cardType === "connectAccept") && (
 							<>
 								{cardType === "connect" && !connected ? (
-									<Button size='sm' className='w-full'>
+									<Button
+										onClick={() => sendRequest({ token, username })}
+										size='sm'
+										loading={isLoadingFriendRequest}
+										className='w-full'>
 										Connect
 									</Button>
 								) : cardType === "page" && !connected ? (
-									<Button size='sm' className='w-full'>
+									<Button
+										onClick={() => followRequest({ token, username })}
+										size='sm'
+										loading={isLoadingFollowRequest}
+										className='w-full'>
 										Follow
 									</Button>
+								) : cardType === "connectAccept" && !connected ? (
+									<Button
+										onClick={() => acceptRequest({ token, username })}
+										size='sm'
+										loading={isLoadingAcceptFriendRequest}
+										className='w-full'>
+										Accept Connection
+									</Button>
 								) : (
-									<Button size='sm' theme='outline' className='w-full'>
+									<Button
+										onClick={() => {
+											cardType === "connect" &&
+												removeConnection({ token, username });
+										}}
+										size='sm'
+										theme='outline'
+										className='w-full'>
 										{cardType === "connect" ? "Remove Connection" : "Unfollow"}
 									</Button>
 								)}
@@ -125,11 +181,12 @@ const AdjustableProfileCard = ({
 										Remove Connection
 									</Button>
 								)} */}
-								{!connected && (
-									<Button size='sm' theme='outline' className='w-full'>
-										Ignore
-									</Button>
-								)}
+								{connected ||
+									(cardType !== "connectAccept" && (
+										<Button size='sm' theme='outline' className='w-full'>
+											Ignore
+										</Button>
+									))}
 							</>
 						)}
 						{(cardType === "group" || cardType === "event") && (

@@ -9,6 +9,7 @@ import { Comment, CommentRequest, Post } from "@/types/feed";
 import Cookies from "js-cookie";
 import moment from "moment";
 import Image from "next/future/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
@@ -137,7 +138,7 @@ const FeedPost = ({
 							<Avatar
 								shape='square'
 								name={author?.name || "SDR"}
-								href={`/profile/${user?.username}`}
+								href={`/profile/${author?.username}`}
 								size={64}
 							/>
 						</div>
@@ -145,14 +146,16 @@ const FeedPost = ({
 							<Avatar
 								shape='square'
 								name={author?.name || "SDR"}
-								href={`/profile/${user?.username}`}
+								href={`/profile/${author?.username}`}
 								size={48}
 							/>
 						</div>
 						<div className='space-y-[1px]'>
-							<div className='font-semibold text-sm xl:text-base text-dark-900'>
-								{author.name}
-							</div>
+							<Link href={`/profile/${author?.username}`}>
+								<a className='font-semibold text-sm xl:text-base text-dark-900 hover:underline'>
+									{author.name}
+								</a>
+							</Link>
 							<div className='text-xs xl:text-sm text-dark-100'></div>
 							<div className='text-xs xl:text-sm capitalize text-accents-brown'>
 								{author.accountType === "hcp"

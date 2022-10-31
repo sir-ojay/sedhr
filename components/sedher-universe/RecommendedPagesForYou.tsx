@@ -1,16 +1,32 @@
+import { useGetFollowsQuery } from "@/services/connections";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
 import AdjustableProfileCard from "../global/AdjustableProfileCard";
 import WhiteWrapper from "../global/WhiteWrapper";
 
 type RecommendedPagesForYouProps = {
-	accounts: {
-		name: string;
-		description: string;
+	data: {
 		accountType: string;
-		image?: string;
+		name: string;
+		profilePicture: string;
+		username: string;
+		description: string;
+		_id: string;
 	}[];
 };
 
-const RecommendedPagesForYou = ({ accounts }: RecommendedPagesForYouProps) => {
+const RecommendedPagesForYou = () => {
+	const [follows, setFollows] = useState<RecommendedPagesForYouProps>();
+
+	const token: any = Cookies.get("sedherToken");
+
+	const { data, error, isLoading, isSuccess, isFetching } = useGetFollowsQuery({
+		token,
+	});
+
+	useEffect(() => {
+		data && setFollows(data as any);
+	}, [isSuccess, data]);
 	return (
 		<section className='space-y-3'>
 			<WhiteWrapper>
@@ -19,13 +35,23 @@ const RecommendedPagesForYou = ({ accounts }: RecommendedPagesForYouProps) => {
 				</span>
 			</WhiteWrapper>
 			<section className='space-y-3'>
-				{accounts.map((account, i) => (
+				{isLoading && (
+					<div className='space-y-6'>
+						<WhiteWrapper className='h-[140px]' />
+						<WhiteWrapper className='h-[140px]' />
+						<WhiteWrapper className='h-[140px]' />
+						<WhiteWrapper className='h-[140px]' />
+					</div>
+				)}
+				{follows?.data?.map((account, i) => (
 					<AdjustableProfileCard
-						key={account.name + i}
-						name={account.name}
-						description={account.description}
+						key={account._id}
+						name={account.name || account.username}
+						description={account.description || "No Description"}
 						accountType={account.accountType}
-						image={account.image}
+						href={`/profile/${account.username}`}
+						username={account.username}
+						// image={account.image}
 						cardType='page'
 						grid={1}
 					/>
@@ -36,26 +62,3 @@ const RecommendedPagesForYou = ({ accounts }: RecommendedPagesForYouProps) => {
 };
 
 export default RecommendedPagesForYou;
-
-RecommendedPagesForYou.defaultProps = {
-	accounts: [
-		{
-			name: "Ajayi Damilola",
-			description: "Physiotherapists",
-			accountType: "HCP",
-			image: "/assets/icons/layouts/profile.png",
-		},
-		{
-			name: "Richard Ingwe",
-			description: "Medical Physicist",
-			accountType: "HCP",
-			image: "/assets/icons/layouts/profile.png",
-		},
-		{
-			name: "Wale Abba",
-			description: "Manager",
-			accountType: "Business",
-			image: "/assets/icons/layouts/profile.png",
-		},
-	],
-};

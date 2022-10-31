@@ -46,7 +46,7 @@ const SelectInput = ({
 			)}
 			<select
 				id={id}
-				className={`w-full${
+				className={`w-full ${
 					theme === "primary"
 						? "border-2 border-[#B8C9C9] h-[52px] px-4 py-3 rounded-[5px] focus:border-primary "
 						: ""
