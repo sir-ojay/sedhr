@@ -18,3 +18,11 @@ export type SendFriendsRequest = {
 };
 
 export type SendFriendsResponse = {};
+
+export type GetFriendsRequestRequest = {
+	token: string;
+};
+
+export type GetFriendsRequestResponse = {
+	data: any;
+};
