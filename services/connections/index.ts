@@ -1,5 +1,7 @@
 import {
 	GetFriendsRequest,
+	GetFriendsRequestRequest,
+	GetFriendsRequestResponse,
 	GetFriendsResponse,
 	SendFriendsRequest,
 	SendFriendsResponse,
@@ -9,6 +11,15 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const postRequest = (url: string, details: any, token?: string) => ({
 	url,
 	method: "POST",
+	headers: {
+		Authorization: `Bearer ${token}`,
+	},
+	body: details,
+});
+
+const putRequest = (url: string, details: any, token?: string) => ({
+	url,
+	method: "PUT",
 	headers: {
 		Authorization: `Bearer ${token}`,
 	},
@@ -35,7 +46,7 @@ export const connections = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL + "api",
 	}),
-	tagTypes: ["Follow", "Connect"],
+	tagTypes: ["Follow", "Connect", "FriendsRequest"],
 	endpoints: (builder) => ({
 		getFriends: builder.query<GetFriendsResponse, GetFriendsRequest>({
 			query: (credentials) =>
@@ -59,6 +70,18 @@ export const connections = createApi({
 				),
 			invalidatesTags: ["Connect"],
 		}),
+		acceptFriendRequest: builder.mutation<
+			SendFriendsResponse,
+			SendFriendsRequest
+		>({
+			query: (credentials) =>
+				putRequest(
+					`/connections/${credentials.username}/friendship`,
+					"",
+					credentials.token
+				),
+			invalidatesTags: ["FriendsRequest"],
+		}),
 		followRequest: builder.mutation<SendFriendsResponse, SendFriendsRequest>({
 			query: (credentials) =>
 				postRequest(
@@ -68,12 +91,13 @@ export const connections = createApi({
 				),
 			invalidatesTags: ["Follow"],
 		}),
-		getFriendRequests: builder.mutation<
-			SendFriendsResponse,
-			SendFriendsRequest
+		getFriendRequests: builder.query<
+			GetFriendsRequestResponse,
+			GetFriendsRequestRequest
 		>({
 			query: (credentials) =>
-				postRequest(`/connections/friendship/request`, "", credentials.token),
+				getRequest(`/connections/friendship/request`, credentials.token),
+			providesTags: ["FriendsRequest"],
 		}),
 	}),
 });
@@ -83,5 +107,6 @@ export const {
 	useSendFriendRequestMutation,
 	useGetFollowsQuery,
 	useFollowRequestMutation,
-	useGetFriendRequestsMutation,
+	useGetFriendRequestsQuery,
+	useAcceptFriendRequestMutation,
 } = connections;

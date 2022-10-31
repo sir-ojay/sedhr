@@ -7,6 +7,7 @@ import Router from "next/router";
 import SmallAvatars from "./SmallAvatars";
 import Cookies from "js-cookie";
 import {
+	useAcceptFriendRequestMutation,
 	useFollowRequestMutation,
 	useSendFriendRequestMutation,
 } from "@/services/connections";
@@ -17,7 +18,7 @@ type AdjustableProfileCardProps = {
 	accountType?: string;
 	image?: string;
 	grid: number;
-	cardType: "connect" | "page" | "event" | "group";
+	cardType: "connect" | "connectAccept" | "page" | "event" | "group";
 	connected?: boolean;
 	href?: string;
 	username?: string;
@@ -39,6 +40,9 @@ const AdjustableProfileCard = ({
 	const [sendRequest, { isLoading: isLoadingFriendRequest }] =
 		useSendFriendRequestMutation();
 
+	const [acceptRequest, { isLoading: isLoadingAcceptFriendRequest }] =
+		useAcceptFriendRequestMutation();
+
 	const [followRequest, { isLoading: isLoadingFollowRequest }] =
 		useFollowRequestMutation();
 
@@ -49,7 +53,9 @@ const AdjustableProfileCard = ({
 					className={`flex ${
 						grid === 1 ? "flex-row items-center" : "flex-col"
 					} justify-between gap-6`}>
-					{(cardType === "connect" || cardType === "page") && (
+					{(cardType === "connect" ||
+						cardType === "page" ||
+						cardType === "connectAccept") && (
 						<div className='flex gap-6 items-center'>
 							<Avatar image={image} name={name} size={64} href={href} />
 							<div>
@@ -116,7 +122,9 @@ const AdjustableProfileCard = ({
 								? "w-[164px]"
 								: "w-full"
 						} flex flex-col gap-3 items-center`}>
-						{(cardType === "connect" || cardType === "page") && (
+						{(cardType === "connect" ||
+							cardType === "page" ||
+							cardType === "connectAccept") && (
 							<>
 								{cardType === "connect" && !connected ? (
 									<Button
@@ -134,6 +142,14 @@ const AdjustableProfileCard = ({
 										className='w-full'>
 										Follow
 									</Button>
+								) : cardType === "connectAccept" && !connected ? (
+									<Button
+										onClick={() => acceptRequest({ token, username })}
+										size='sm'
+										loading={isLoadingAcceptFriendRequest}
+										className='w-full'>
+										Accept Connection
+									</Button>
 								) : (
 									<Button size='sm' theme='outline' className='w-full'>
 										{cardType === "connect" ? "Remove Connection" : "Unfollow"}
@@ -148,11 +164,12 @@ const AdjustableProfileCard = ({
 										Remove Connection
 									</Button>
 								)} */}
-								{!connected && (
-									<Button size='sm' theme='outline' className='w-full'>
-										Ignore
-									</Button>
-								)}
+								{!connected ||
+									(cardType !== "connectAccept" && (
+										<Button size='sm' theme='outline' className='w-full'>
+											Ignore
+										</Button>
+									))}
 							</>
 						)}
 						{(cardType === "group" || cardType === "event") && (

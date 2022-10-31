@@ -3,12 +3,15 @@ import Button from "@/components/global/Button";
 import GridContainer from "@/components/global/GridContainer";
 import ListNav from "@/components/global/ListNav";
 import ListSortHeader from "@/components/global/ListSortHeader";
+import WhiteWrapper from "@/components/global/WhiteWrapper";
 import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { useGetFriendRequestsQuery } from "@/services/connections";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type MyConnectionsProps = {
 	defaultGrid: number;
@@ -18,11 +21,34 @@ type MyConnectionsProps = {
 	}[];
 };
 
+type Friends = {
+	data: {
+		accountType: string;
+		name: string;
+		profilePicture: string;
+		username: string;
+		description: string;
+		_id: string;
+	}[];
+};
+
 const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
 	const [grid, setGrid] = useState(defaultGrid);
 	const {
 		query: { t },
 	} = useRouter();
+
+	const [friendsRequests, setFriendsRequests] = useState<Friends>();
+
+	const token: any = Cookies.get("sedherToken");
+
+	const { data, error, isLoading, isSuccess, isFetching } =
+		useGetFriendRequestsQuery({ token });
+
+	useEffect(() => {
+		console.log(data);
+		data && setFriendsRequests(data);
+	}, [isSuccess, data]);
 	return (
 		<DefaultLayout title='Sedher | Sedher universe | My Connections'>
 			<SedherUniverseWrapper>
@@ -47,22 +73,30 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
 					</Button> */}
 				</div>
 
-				{t === "product" ? (
-					<GridContainer grid={grid}>
-						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
-							(card) => (
+				{t === "patientcarecenters" || t === undefined ? (
+					<>
+						<GridContainer grid={grid}>
+							{friendsRequests?.data.map((account) => (
 								<AdjustableProfileCard
-									key={card}
-									name='Ajayi Damilola'
-									description='Doctor'
-									accountType='HCP'
+									key={account._id}
+									name={account.name}
+									description={account.description || "No description"}
+									accountType={account.accountType}
+									username={account.username}
 									// image={account.image}
-									cardType='connect'
+									cardType='connectAccept'
 									grid={grid}
 								/>
-							)
+							))}
+							{isLoading &&
+								[1, 2, 3, 4, 5, 6].map((i) => (
+									<WhiteWrapper className='h-[200px]'></WhiteWrapper>
+								))}
+						</GridContainer>
+						{friendsRequests?.data.length === 0 && (
+							<div>You currently do not have any pending friend request</div>
 						)}
-					</GridContainer>
+					</>
 				) : t === "pending" ? (
 					<GridContainer grid={grid}>
 						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
