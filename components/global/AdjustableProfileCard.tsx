@@ -12,6 +12,7 @@ import {
 	useRemoveConnectionMutation,
 	useSendFriendRequestMutation,
 } from "@/services/connections";
+import Link from "next/link";
 
 type AdjustableProfileCardProps = {
 	name: string;
@@ -108,10 +109,15 @@ const AdjustableProfileCard = ({
 								shape='square'
 								rounded
 								size={64}
+								href={href}
 							/>
 							<div>
 								<div className='space-y-2'>
-									<div className='font-semibold text-dark-900'>{name}</div>
+									<Link href={href}>
+										<a className='font-semibold text-dark-900 hover:underline'>
+											{name}
+										</a>
+									</Link>
 									<div className='text-sm text-dark-100'>{description}</div>
 									<SmallAvatars name='Richard Ingwe' label='+300 seen' />
 								</div>
