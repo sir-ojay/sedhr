@@ -62,7 +62,9 @@ const YouMightKnow = () => {
 				{friends &&
 					friends.data
 						?.slice(0, 3)
-						.map((account) => <YouMightKnowCard account={account} />)}
+						.map((account) => (
+							<YouMightKnowCard key={account._id} account={account} />
+						))}
 			</section>
 		</WhiteWrapper>
 	);

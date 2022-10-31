@@ -41,6 +41,21 @@ const feed = () => {
 				<section className='xl:col-span-4 space-y-6'>
 					<PostStatus />
 
+					{posts && posts?.posts?.length > 0 && (
+						<section className='space-y-6'>
+							{posts?.posts?.map((post) => (
+								<FeedPost key={post.id} {...post} />
+							))}
+						</section>
+					)}
+
+					{!isLoading && posts?.posts?.length === 0 && (
+						<div>
+							You have no post yet, please post something or connect with people
+							or groups so you can see their posts
+						</div>
+					)}
+
 					{isLoading && (
 						<div className='w-full space-y-6'>
 							{[1, 2, 3, 4, 5].map((i) => (
@@ -63,21 +78,6 @@ const feed = () => {
 							<ClipLoader color='#3b82f6' loading={isLoading} size={120} />
 						</div>
 					)} */}
-
-					{posts && posts?.posts?.length > 0 && (
-						<section className='space-y-6'>
-							{posts?.posts?.map((post) => (
-								<FeedPost key={post.id} {...post} />
-							))}
-						</section>
-					)}
-
-					{!isLoading && posts?.posts?.length === 0 && (
-						<div>
-							You have no post yet, please post something or connect with people
-							or groups so you can see their posts
-						</div>
-					)}
 				</section>
 				<aside className='xl:col-span-2 hidden xl:block'>
 					<div className='sticky top-[164px] overflow-auto xl:h-[calc(100vh-160.76px)] space-y-6 pb-8 transition-all ease-in scrollbar-thin hover:scrollbar-thumb-transparent hover:scrollbar-track-transparent scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
