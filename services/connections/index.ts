@@ -35,14 +35,17 @@ export const connections = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL + "api",
 	}),
+	tagTypes: ["Follow", "Connect"],
 	endpoints: (builder) => ({
 		getFriends: builder.query<GetFriendsResponse, GetFriendsRequest>({
 			query: (credentials) =>
 				getRequest("/connections/findfriends", credentials.token),
+			providesTags: ["Connect"],
 		}),
 		getFollows: builder.query<GetFriendsResponse, GetFriendsRequest>({
 			query: (credentials) =>
 				getRequest("/connections/findfollows", credentials.token),
+			providesTags: ["Follow"],
 		}),
 		sendFriendRequest: builder.mutation<
 			SendFriendsResponse,
@@ -54,6 +57,23 @@ export const connections = createApi({
 					"",
 					credentials.token
 				),
+			invalidatesTags: ["Connect"],
+		}),
+		followRequest: builder.mutation<SendFriendsResponse, SendFriendsRequest>({
+			query: (credentials) =>
+				postRequest(
+					`/connections/${credentials.username}/follow`,
+					"",
+					credentials.token
+				),
+			invalidatesTags: ["Follow"],
+		}),
+		getFriendRequests: builder.mutation<
+			SendFriendsResponse,
+			SendFriendsRequest
+		>({
+			query: (credentials) =>
+				postRequest(`/connections/friendship/request`, "", credentials.token),
 		}),
 	}),
 });
@@ -62,4 +82,6 @@ export const {
 	useGetFriendsQuery,
 	useSendFriendRequestMutation,
 	useGetFollowsQuery,
+	useFollowRequestMutation,
+	useGetFriendRequestsMutation,
 } = connections;

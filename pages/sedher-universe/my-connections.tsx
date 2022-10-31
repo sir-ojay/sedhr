@@ -40,11 +40,11 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
 						className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
 						Received(2)
 					</Button>
-					<Button
+					{/* <Button
 						theme='plain'
 						className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
 						Sent(12)
-					</Button>
+					</Button> */}
 				</div>
 
 				{t === "product" ? (

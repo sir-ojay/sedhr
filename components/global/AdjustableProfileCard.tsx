@@ -5,6 +5,11 @@ import WhiteWrapper from "./WhiteWrapper";
 import { motion } from "framer-motion";
 import Router from "next/router";
 import SmallAvatars from "./SmallAvatars";
+import Cookies from "js-cookie";
+import {
+	useFollowRequestMutation,
+	useSendFriendRequestMutation,
+} from "@/services/connections";
 
 type AdjustableProfileCardProps = {
 	name: string;
@@ -15,6 +20,7 @@ type AdjustableProfileCardProps = {
 	cardType: "connect" | "page" | "event" | "group";
 	connected?: boolean;
 	href?: string;
+	username?: string;
 };
 
 const AdjustableProfileCard = ({
@@ -26,7 +32,16 @@ const AdjustableProfileCard = ({
 	grid,
 	connected = false,
 	href = "",
+	username = "",
 }: AdjustableProfileCardProps) => {
+	const token: any = Cookies.get("sedherToken");
+
+	const [sendRequest, { isLoading: isLoadingFriendRequest }] =
+		useSendFriendRequestMutation();
+
+	const [followRequest, { isLoading: isLoadingFollowRequest }] =
+		useFollowRequestMutation();
+
 	return (
 		<motion.article layout>
 			<WhiteWrapper>
@@ -36,7 +51,7 @@ const AdjustableProfileCard = ({
 					} justify-between gap-6`}>
 					{(cardType === "connect" || cardType === "page") && (
 						<div className='flex gap-6 items-center'>
-							<Avatar image={image} name={name} size={64} />
+							<Avatar image={image} name={name} size={64} href={href} />
 							<div>
 								<div className='space-y-2'>
 									<div className='font-semibold text-dark-900'>{name}</div>
@@ -104,11 +119,19 @@ const AdjustableProfileCard = ({
 						{(cardType === "connect" || cardType === "page") && (
 							<>
 								{cardType === "connect" && !connected ? (
-									<Button size='sm' className='w-full'>
+									<Button
+										onClick={() => sendRequest({ token, username })}
+										size='sm'
+										loading={isLoadingFriendRequest}
+										className='w-full'>
 										Connect
 									</Button>
 								) : cardType === "page" && !connected ? (
-									<Button size='sm' className='w-full'>
+									<Button
+										onClick={() => followRequest({ token, username })}
+										size='sm'
+										loading={isLoadingFollowRequest}
+										className='w-full'>
 										Follow
 									</Button>
 								) : (

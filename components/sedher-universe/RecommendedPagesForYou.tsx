@@ -49,6 +49,8 @@ const RecommendedPagesForYou = () => {
 						name={account.name || account.username}
 						description={account.description || "No Description"}
 						accountType={account.accountType}
+						href={`/profile/${account.username}`}
+						username={account.username}
 						// image={account.image}
 						cardType='page'
 						grid={1}

@@ -44,10 +44,12 @@ const PeopleYouMayKnow = () => {
 				)}
 				{friends?.data.map((account, i) => (
 					<AdjustableProfileCard
-						key={account.name + i}
+						key={account._id}
 						name={account.name || account.username}
 						description={account?.description || "No Description"}
 						accountType={account.accountType}
+						href={`/profile/${account.username}`}
+						username={account.username}
 						// image={account.image}
 						cardType='connect'
 						grid={1}
