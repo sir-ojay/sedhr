@@ -20,7 +20,7 @@ const MyGroups = () => {
 							<Button
 								theme='plain'
 								className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
-								Events
+								Received
 							</Button>
 							<Button
 								theme='plain'

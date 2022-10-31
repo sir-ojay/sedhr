@@ -6,7 +6,10 @@ import ListSortHeader from "@/components/global/ListSortHeader";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { useGetFriendRequestsQuery } from "@/services/connections";
+import {
+	useGetFriendRequestsQuery,
+	useGetFriendsListQuery,
+} from "@/services/connections";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
@@ -34,55 +37,82 @@ type Friends = {
 
 const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
 	const [grid, setGrid] = useState(defaultGrid);
+	const [tab, setTab] = useState("friends");
+
 	const {
 		query: { t },
 	} = useRouter();
 
 	const [friendsRequests, setFriendsRequests] = useState<Friends>();
+	const [friends, setFriends] = useState<Friends>();
 
 	const token: any = Cookies.get("sedherToken");
 
 	const { data, error, isLoading, isSuccess, isFetching } =
 		useGetFriendRequestsQuery({ token });
 
+	const {
+		data: friendsData,
+		isLoading: friendsIsLoading,
+		isSuccess: friendsIsSuccess,
+	} = useGetFriendsListQuery({ token });
+
 	useEffect(() => {
 		console.log(data);
 		data && setFriendsRequests(data);
+	}, [isSuccess, data]);
+
+	useEffect(() => {
+		console.log(friendsData);
+		friendsData && setFriends(friendsData);
 	}, [isSuccess, data]);
 	return (
 		<DefaultLayout title='Sedher | Sedher universe | My Connections'>
 			<SedherUniverseWrapper>
 				<ListSortHeader
 					title='My Connections'
-					results={73000}
+					// results={73000}
 					setGrid={setGrid}
 					defaultGrid={defaultGrid}
 				/>
 				<ListNav navs={navs} />
 
-				<div className='flex items-center gap-3'>
-					<Button
-						theme='plain'
-						className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
-						Received(2)
-					</Button>
-					{/* <Button
-						theme='plain'
-						className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
-						Sent(12)
-					</Button> */}
-				</div>
+				{(t === "hcps" || t === undefined) && (
+					<div className='flex items-center gap-3'>
+						<Button
+							onClick={() => setTab("friends")}
+							theme='plain'
+							className={`border-2 border-[#B8C9C9] rounded-full ${
+								tab === "friends"
+									? " text-primary bg-tertiary"
+									: "text-[#4C4475]"
+							}`}>
+							Friends(12)
+						</Button>
+						<Button
+							onClick={() => setTab("requests")}
+							theme='plain'
+							className={`border-2 border-[#B8C9C9] rounded-full ${
+								tab === "requests"
+									? " text-primary bg-tertiary"
+									: "text-[#4C4475]"
+							}`}>
+							Received(2)
+						</Button>
+					</div>
+				)}
 
-				{t === "patientcarecenters" || t === undefined ? (
+				{(t === "hcps" || t === undefined) && tab === "requests" && (
 					<>
 						<GridContainer grid={grid}>
-							{friendsRequests?.data.map((account) => (
+							{friendsRequests?.data.map((account, i) => (
 								<AdjustableProfileCard
-									key={account._id}
+									key={account._id + i}
 									name={account.name}
 									description={account.description || "No description"}
 									accountType={account.accountType}
 									username={account.username}
+									href={`/profile/${account.username}`}
 									// image={account.image}
 									cardType='connectAccept'
 									grid={grid}
@@ -90,46 +120,127 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
 							))}
 							{isLoading &&
 								[1, 2, 3, 4, 5, 6].map((i) => (
-									<WhiteWrapper className='h-[200px]'></WhiteWrapper>
+									<WhiteWrapper key={i} className='h-[200px]'></WhiteWrapper>
 								))}
 						</GridContainer>
-						{friendsRequests?.data.length === 0 && (
-							<div>You currently do not have any pending friend request</div>
+						{friendsRequests?.data.length === 0 && tab === "requests" && (
+							<div>
+								You currently do not have any pending connection request
+							</div>
 						)}
 					</>
-				) : t === "pending" ? (
-					<GridContainer grid={grid}>
-						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
-							(card) => (
+				)}
+
+				{(t === "hcps" || t === undefined) && tab === "friends" && (
+					<>
+						<GridContainer grid={grid}>
+							{friends?.data.map((account, i) => (
 								<AdjustableProfileCard
-									key={card}
-									name='Ajayi Damilola'
-									description='Doctor'
-									accountType='HCP'
+									key={account._id + 1}
+									name={account.name}
+									description={account.description || "No description"}
+									accountType={account.accountType}
+									href={`/profile/${account.username}`}
+									username={account.username}
 									// image={account.image}
 									cardType='connect'
+									connected
 									grid={grid}
 								/>
-							)
+							))}
+							{isLoading &&
+								[1, 2, 3, 4, 5, 6].map((i) => (
+									<WhiteWrapper key={i} className='h-[200px]'></WhiteWrapper>
+								))}
+						</GridContainer>
+						{friends?.data.length === 0 && (
+							<div>You currently do not have any connection</div>
 						)}
-					</GridContainer>
-				) : (
-					<GridContainer grid={grid}>
-						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
-							(card) => (
+					</>
+				)}
+
+				{t === "patientcarecenters" && (
+					<>
+						<GridContainer grid={grid}>
+							{friends?.data.map((account, i) => (
 								<AdjustableProfileCard
-									connected={true}
-									key={card}
-									name='Ajayi Damilola'
-									description='Doctor'
-									accountType='HCP'
+									key={account._id + 1}
+									name={account.name}
+									description={account.description || "No description"}
+									accountType={account.accountType}
+									href={`/profile/${account.username}`}
+									username={account.username}
 									// image={account.image}
 									cardType='connect'
+									connected
 									grid={grid}
 								/>
-							)
+							))}
+							{isLoading &&
+								[1, 2, 3, 4, 5, 6].map((i) => (
+									<WhiteWrapper key={i} className='h-[200px]'></WhiteWrapper>
+								))}
+						</GridContainer>
+						{friends?.data.length === 0 && (
+							<div>You currently do not have any connection</div>
 						)}
-					</GridContainer>
+					</>
+				)}
+
+				{t === "business" && (
+					<>
+						<GridContainer grid={grid}>
+							{friends?.data.map((account, i) => (
+								<AdjustableProfileCard
+									key={account._id + 1}
+									name={account.name}
+									description={account.description || "No description"}
+									accountType={account.accountType}
+									href={`/profile/${account.username}`}
+									username={account.username}
+									// image={account.image}
+									cardType='connect'
+									connected
+									grid={grid}
+								/>
+							))}
+							{isLoading &&
+								[1, 2, 3, 4, 5, 6].map((i) => (
+									<WhiteWrapper key={i} className='h-[200px]'></WhiteWrapper>
+								))}
+						</GridContainer>
+						{friends?.data.length === 0 && (
+							<div>You currently do not have any connection</div>
+						)}
+					</>
+				)}
+
+				{t === "notforprofit" && (
+					<>
+						<GridContainer grid={grid}>
+							{friends?.data.map((account, i) => (
+								<AdjustableProfileCard
+									key={account._id + 1}
+									name={account.name}
+									description={account.description || "No description"}
+									accountType={account.accountType}
+									href={`/profile/${account.username}`}
+									username={account.username}
+									// image={account.image}
+									cardType='connect'
+									connected
+									grid={grid}
+								/>
+							))}
+							{isLoading &&
+								[1, 2, 3, 4, 5, 6].map((i) => (
+									<WhiteWrapper key={i} className='h-[200px]'></WhiteWrapper>
+								))}
+						</GridContainer>
+						{friends?.data.length === 0 && (
+							<div>You currently do not have any connection</div>
+						)}
+					</>
 				)}
 			</SedherUniverseWrapper>
 		</DefaultLayout>
@@ -153,10 +264,10 @@ MyConnections.defaultProps = {
 			name: "HCP’s",
 			href: "/sedher-universe/my-connections?t=hcps",
 		},
-		{
-			name: "Sedher Luminaries",
-			href: "/sedher-universe/my-connections?t=sedherluminaries",
-		},
+		// {
+		// 	name: "Sedher Luminaries",
+		// 	href: "/sedher-universe/my-connections?t=sedherluminaries",
+		// },
 		{
 			name: "Not for profit",
 			href: "/sedher-universe/my-connections?t=notforprofit",
