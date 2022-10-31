@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import ProgressBar from "./ProgressBar/ProgressBar";
 
@@ -29,7 +29,9 @@ const SelectInput = ({
 	...rest
 }: SelectInputProps) => {
 	const { register } = useFormContext();
-
+	useEffect(() => {
+		console.log(option);
+	}, [option]);
 	return (
 		<label htmlFor={id} className='flex flex-col relative'>
 			<span className='w-full font-bold text-left text-title mb-1'>

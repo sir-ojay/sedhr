@@ -3,6 +3,7 @@ import { ValidationRules } from "@/components/global/Input";
 export type InputProps = {
 	label?: string;
 	placeholder?: string;
+	filePadding?: string;
 	type?:
 		| "text"
 		| "password"

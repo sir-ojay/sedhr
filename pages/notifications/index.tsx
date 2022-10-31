@@ -35,6 +35,7 @@ const NotificationsPage = () => {
 		};
 		handleGetNotifcation();
 	}, []);
+	console.log(userNotifications);
 
 	return (
 		<DefaultLayout title='Sedher | Notifications'>
@@ -99,7 +100,7 @@ const NotificationsPage = () => {
 							))}
 						</WhiteWrapper>
 					)} */}
-					{!isLoading && userNotifications === null && (
+					{!isLoading && userNotifications.length === 0 && (
 						<WhiteWrapper>
 							You don't have any notifications available
 						</WhiteWrapper>
