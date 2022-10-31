@@ -1,4 +1,6 @@
 import {
+	CreateEventRequest,
+	CreateEventResponse,
 	GetMyEventsRequest,
 	GetMyEventsResponse,
 	GetReceivedEventsRequest,
@@ -44,7 +46,7 @@ export const events = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL + "api",
 	}),
-	tagTypes: ["Follow", "Connect", "FriendsRequest", "Friends"],
+	tagTypes: ["Event"],
 	endpoints: (builder) => ({
 		getReceivedEvents: builder.query<
 			GetReceivedEventsResponse,
@@ -52,11 +54,22 @@ export const events = createApi({
 		>({
 			query: (credentials) =>
 				getRequest(`/events/users/${credentials.username}`, credentials.token),
+			providesTags: ["Event"],
 		}),
 		getMyEvents: builder.query<GetMyEventsResponse, GetMyEventsRequest>({
 			query: (credentials) => getRequest("/events/users/me", credentials.token),
+			providesTags: ["Event"],
+		}),
+		createEvent: builder.mutation<CreateEventResponse, CreateEventRequest>({
+			query: (credentials) =>
+				postRequest("/events", credentials.body, credentials.token),
+			invalidatesTags: ["Event"],
 		}),
 	}),
 });
 
-export const { useGetReceivedEventsQuery, useGetMyEventsQuery } = events;
+export const {
+	useGetReceivedEventsQuery,
+	useGetMyEventsQuery,
+	useCreateEventMutation,
+} = events;

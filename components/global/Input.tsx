@@ -289,7 +289,7 @@ const Input = ({
 							{fileUploaded ? (
 								<div className='p-4 dashed-file-blue'>
 									<div className='p-4 bg-accents-light-blue rounded-[10px]'>
-										<img src={URL.createObjectURL(watchValue[0])} alt='' />
+										<img src={URL?.createObjectURL(watchValue[0])} alt='' />
 									</div>
 									<button className='cursor-pointer rounded-full flex items-center justify-center'>
 										<button
@@ -361,8 +361,10 @@ const Input = ({
 										</defs>
 									</svg>
 									<div className='text-dark-100'>
-										<span className='text-primary'>Click to replace</span> or
-										drag and drop
+										<span className='text-primary'>
+											{placeholder || "Click to replace"}
+										</span>{" "}
+										or drag and drop
 									</div>
 									<div className='text-[#C1C5D0]'>
 										SVG, PNG, JPG or GIF (max. 400 x 400px)
