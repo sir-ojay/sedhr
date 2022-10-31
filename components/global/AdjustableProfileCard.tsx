@@ -54,7 +54,7 @@ const AdjustableProfileCard = ({
 											{accountType}
 										</div>
 									</div>
-									<div className='flex items-center gap-2'>
+									{/* <div className='flex items-center gap-2'>
 										<svg
 											width='16'
 											height='15'
@@ -70,7 +70,7 @@ const AdjustableProfileCard = ({
 											4.9{" "}
 											<span className='text-dark-100 font-normal'>(25)</span>
 										</div>
-									</div>
+									</div> */}
 								</div>
 							</div>
 						</div>

@@ -2,6 +2,7 @@ import { auth } from "@/services/auth";
 import { feed } from "@/services/feed";
 import { onboarding } from "@/services/onboarding";
 import { upload } from "@/services/upload";
+import { connections } from "@/services/connections";
 import { notifications } from "@/services/notifications";
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
@@ -14,6 +15,7 @@ export function makeStore() {
 			[notifications.reducerPath]: notifications.reducer,
 			[upload.reducerPath]: upload.reducer,
 			[feed.reducerPath]: feed.reducer,
+			[connections.reducerPath]: connections.reducer,
 		},
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware().concat(
@@ -21,7 +23,8 @@ export function makeStore() {
 				onboarding.middleware,
 				upload.middleware,
 				feed.middleware,
-				notifications.middleware
+				notifications.middleware,
+				connections.middleware
 			),
 	});
 }
