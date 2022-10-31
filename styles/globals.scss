@@ -98,6 +98,7 @@ select {
 
 .ReactModal__Overlay--after-open {
 	opacity: 1;
+	height: 100%;
 }
 
 .ReactModal__Overlay--before-close {
@@ -107,11 +108,15 @@ select {
 .ReactModal__Content {
 	transform: scale(0.5);
 	transition: all 300ms ease-in-out;
+	position: absolute;
+	inset: 40;
 }
 
 .ReactModal__Content--after-open {
 	transform: scale(1);
 	opacity: 1;
+	overflow-y: auto;
+	height: 100vh;
 }
 
 .ReactModal__Content--before-close {

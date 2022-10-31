@@ -32,6 +32,7 @@ const Input = ({
 	showFilePreview = false,
 	autoComplete = "off",
 	disabled = false,
+	filePadding,
 	...rest
 }: InputProps) => {
 	const [errorMessage, setErrorMessage] = useState("");
@@ -287,7 +288,8 @@ const Input = ({
 					{showFilePreview && (
 						<>
 							{fileUploaded ? (
-								<div className='p-4 dashed-file-blue'>
+								<div
+									className={`${filePadding ? "p-0" : "p-4 "}dashed-file-blue`}>
 									<div className='p-4 bg-accents-light-blue rounded-[10px]'>
 										<img src={URL?.createObjectURL(watchValue[0])} alt='' />
 									</div>

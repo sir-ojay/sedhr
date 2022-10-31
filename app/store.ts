@@ -7,6 +7,7 @@ import { events } from "@/services/events";
 import { notifications } from "@/services/notifications";
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
+import { profile } from "@/services/profile";
 
 export function makeStore() {
 	return configureStore({
@@ -16,6 +17,7 @@ export function makeStore() {
 			[notifications.reducerPath]: notifications.reducer,
 			[upload.reducerPath]: upload.reducer,
 			[feed.reducerPath]: feed.reducer,
+			[profile.reducerPath]: profile.reducer,
 			[events.reducerPath]: events.reducer,
 			[connections.reducerPath]: connections.reducer,
 		},
@@ -26,6 +28,7 @@ export function makeStore() {
 				upload.middleware,
 				feed.middleware,
 				notifications.middleware,
+				profile.middleware,
 				events.middleware,
 				connections.middleware
 			),
