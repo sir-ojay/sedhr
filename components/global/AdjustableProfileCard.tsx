@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 import {
 	useAcceptFriendRequestMutation,
 	useFollowRequestMutation,
+	useRemoveConnectionMutation,
 	useSendFriendRequestMutation,
 } from "@/services/connections";
 
@@ -45,6 +46,9 @@ const AdjustableProfileCard = ({
 
 	const [followRequest, { isLoading: isLoadingFollowRequest }] =
 		useFollowRequestMutation();
+
+	const [removeConnection, { isLoading: isLoadingRemoveConnection }] =
+		useRemoveConnectionMutation();
 
 	return (
 		<motion.article layout>
@@ -151,7 +155,14 @@ const AdjustableProfileCard = ({
 										Accept Connection
 									</Button>
 								) : (
-									<Button size='sm' theme='outline' className='w-full'>
+									<Button
+										onClick={() => {
+											cardType === "connect" &&
+												removeConnection({ token, username });
+										}}
+										size='sm'
+										theme='outline'
+										className='w-full'>
 										{cardType === "connect" ? "Remove Connection" : "Unfollow"}
 									</Button>
 								)}
@@ -164,7 +175,7 @@ const AdjustableProfileCard = ({
 										Remove Connection
 									</Button>
 								)} */}
-								{!connected ||
+								{connected ||
 									(cardType !== "connectAccept" && (
 										<Button size='sm' theme='outline' className='w-full'>
 											Ignore
