@@ -9,6 +9,8 @@ import {
 	ForgotPasswordResponse,
 	VerifyEmailRequest,
 	VerifyEmailResponse,
+	ResetPasswordResponse,
+	ResetPasswordRequest,
 } from "@/types/auth/auth";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -22,14 +24,6 @@ export const auth = createApi({
 	reducerPath: "auth",
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL + "api/auth",
-		// prepareHeaders: (headers, { getState }) => {
-		// 	// By default, if we have a token in the store, let's use that for authenticated requests
-		// 	const token = (getState() as RootState).auth.token;
-		// 	if (token) {
-		// 		headers.set("authorization", `Bearer ${token}`);
-		// 	}
-		// 	return headers;
-		// },
 	}),
 	endpoints: (builder) => ({
 		login: builder.mutation<LoginResponse, LoginRequest>({
@@ -53,6 +47,13 @@ export const auth = createApi({
 		>({
 			query: (credentials) => postRequest("/forgot", credentials),
 		}),
+		resetPassword: builder.mutation<
+			ResetPasswordResponse,
+			ResetPasswordRequest
+		>({
+			query: (credentials) =>
+				postRequest(`/change-password/${credentials.token}`, credentials.body),
+		}),
 	}),
 });
 
@@ -62,4 +63,5 @@ export const {
 	useValidateEmailMutation,
 	useRegisterMutation,
 	useForgotPasswordMutation,
+	useResetPasswordMutation,
 } = auth;

@@ -73,3 +73,15 @@ export interface ForgotPasswordResponse {
 export interface ForgotPasswordRequest {
 	email: string;
 }
+
+export interface ResetPasswordResponse {
+	message: string;
+}
+
+export interface ResetPasswordRequest {
+	token: string;
+	body: {
+		password: string;
+		confirmpassword: string;
+	};
+}
