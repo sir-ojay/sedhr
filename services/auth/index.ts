@@ -33,19 +33,19 @@ export const auth = createApi({
 	}),
 	endpoints: (builder) => ({
 		login: builder.mutation<LoginResponse, LoginRequest>({
-			query: (credentials) => postRequest("/loginbyemail", credentials),
+			query: (credentials) => postRequest("/login-by-email", credentials),
 		}),
 		register: builder.mutation<RegisterResponse, RegisterRequest>({
 			query: (credentials) => postRequest("/register", credentials),
 		}),
 		verifyEmail: builder.mutation<VerifyEmailResponse, VerifyEmailRequest>({
-			query: (credentials) => postRequest("/sendotp", credentials),
+			query: (credentials) => postRequest("/send-otp", credentials),
 		}),
 		validateEmail: builder.mutation<
 			ValidateEmailResponse,
 			ValidateEmailRequest
 		>({
-			query: (credentials) => postRequest("/validateotp", credentials),
+			query: (credentials) => postRequest("/validate-otp", credentials),
 		}),
 		forgotPassword: builder.mutation<
 			ForgotPasswordResponse,
