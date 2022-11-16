@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { Post } from "@/types/feed";
+import { useUserProfileDetailsQuery } from "@/services/profile";
 
 type Posts = {
 	previous: string;
@@ -44,6 +45,13 @@ const Activity = () => {
 	const [posts, setPosts] = useState<Posts>();
 	const token: any = Cookies.get("sedherToken");
 
+	const username = router.query.username?.toString() as string;
+	const { data: userData, isLoading: loading } = useUserProfileDetailsQuery({
+		token,
+		id: username || "",
+	});
+	console.log(userData);
+
 	const { data, error, isLoading, isSuccess, isFetching } = useGetTimelineQuery(
 		{ token }
 	);
@@ -56,7 +64,7 @@ const Activity = () => {
 		<DefaultLayout>
 			<div className='flex flex-col lg:grid lg:grid-cols-9 gap-8'>
 				<div className='col-span-6 space-y-5'>
-					<LargeDetailsCard type='profile' />
+					<LargeDetailsCard type='profile' data={userData && userData.data} />
 					<ListNav navs={navs} type='slug' />
 					<div>
 						<div className='flex items-center gap-3'>
@@ -101,7 +109,10 @@ const Activity = () => {
 					</div>
 				</div>
 
-				<AdditionalDetailsCard type='profile' />
+				<AdditionalDetailsCard
+					email={userData && userData.data.email}
+					type='profile'
+				/>
 			</div>
 		</DefaultLayout>
 	);

@@ -22,13 +22,20 @@ const updateRequest = (url: string, details: any, token?: string) => ({
 	},
 	body: details,
 });
-
+const deleteRequest = (url: string, token: string) => ({
+	url,
+	method: "DELETE",
+	headers: {
+		Authorization: `Bearer ${token}`,
+	},
+});
 export const profile = createApi({
 	reducerPath: "profile",
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL + "api",
 	}),
 	tagTypes: ["Profile"],
+
 	endpoints: (builder) => ({
 		updateCoverPhoto: builder.mutation({
 			query: (credentials) =>
@@ -37,6 +44,7 @@ export const profile = createApi({
 					credentials.body,
 					credentials.token
 				),
+			invalidatesTags: ["Profile"],
 		}),
 		userProfileDetails: builder.query({
 			query: (credentials) =>
@@ -45,15 +53,42 @@ export const profile = createApi({
 		}),
 		updateProfilePhoto: builder.mutation({
 			query: (credentials) =>
-				updateRequest(
+				postRequest(
 					"/users/profile-picture",
 					credentials.body,
 					credentials.token
 				),
+			invalidatesTags: ["Profile"],
 		}),
 		addEducation: builder.mutation({
 			query: (credentials) =>
 				postRequest("/users/education", credentials.body, credentials.token),
+			invalidatesTags: ["Profile"],
+		}),
+		addExperience: builder.mutation({
+			query: (credentials) =>
+				postRequest("/users/experience", credentials.body, credentials.token),
+			invalidatesTags: ["Profile"],
+		}),
+		addLicense: builder.mutation({
+			query: (credentials) =>
+				postRequest("/users/license", credentials.body, credentials.token),
+			invalidatesTags: ["Profile"],
+		}),
+		addAbout: builder.mutation({
+			query: (credentials) =>
+				postRequest("/users/about", credentials.body, credentials.token),
+			invalidatesTags: ["Profile"],
+		}),
+		addSkills: builder.mutation({
+			query: (credentials) =>
+				postRequest("/users/skill", credentials.body, credentials.token),
+			invalidatesTags: ["Profile"],
+		}),
+		deleteEducation: builder.mutation({
+			query: (credentials) =>
+				deleteRequest(`/users/education/${credentials.id}`, credentials.token),
+			invalidatesTags: ["Profile"],
 		}),
 	}),
 });
@@ -61,6 +96,11 @@ export const profile = createApi({
 export const {
 	useUpdateCoverPhotoMutation,
 	useUpdateProfilePhotoMutation,
+	useAddAboutMutation,
 	useAddEducationMutation,
+	useAddExperienceMutation,
+	useAddLicenseMutation,
+	useAddSkillsMutation,
+	useDeleteEducationMutation,
 	useUserProfileDetailsQuery,
 } = profile;
