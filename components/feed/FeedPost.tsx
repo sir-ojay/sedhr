@@ -8,7 +8,7 @@ import { LoginResponse } from "@/types/auth/auth";
 import { Comment, CommentRequest, Post } from "@/types/feed";
 import Cookies from "js-cookie";
 import moment from "moment";
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
@@ -151,10 +151,10 @@ const FeedPost = ({
 							/>
 						</div>
 						<div className='space-y-[1px]'>
-							<Link href={`/profile/${author?.username}`}>
-								<a className='font-semibold text-sm xl:text-base text-dark-900 hover:underline'>
-									{author.name}
-								</a>
+							<Link
+								href={`/profile/${author?.username}`}
+								className='font-semibold text-sm xl:text-base text-dark-900 hover:underline'>
+								{author.name}
 							</Link>
 							<div className='text-xs xl:text-sm text-dark-100'></div>
 							<div className='text-xs xl:text-sm capitalize text-accents-brown'>

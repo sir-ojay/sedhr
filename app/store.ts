@@ -8,6 +8,7 @@ import { notifications } from "@/services/notifications";
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { profile } from "@/services/profile";
+import { collaboration } from "@/services/collaborations";
 
 export function makeStore() {
 	return configureStore({
@@ -20,6 +21,7 @@ export function makeStore() {
 			[profile.reducerPath]: profile.reducer,
 			[events.reducerPath]: events.reducer,
 			[connections.reducerPath]: connections.reducer,
+			[collaboration.reducerPath]: collaboration.reducer,
 		},
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware().concat(
@@ -30,7 +32,8 @@ export function makeStore() {
 				notifications.middleware,
 				profile.middleware,
 				events.middleware,
-				connections.middleware
+				connections.middleware,
+				collaboration.middleware
 			),
 	});
 }

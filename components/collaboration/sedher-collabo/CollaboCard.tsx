@@ -21,6 +21,7 @@ const CollaboCard = ({ type, star }: CollaboCardProps) => {
 					width={341}
 					height={192}
 					layout='responsive'
+					alt=''
 				/>
 				<div className='space-y-3 p-5'>
 					<div className='flex items-center gap-2'>

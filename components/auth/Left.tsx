@@ -66,6 +66,7 @@ const Left = () => {
 							src='/assets/icons/connect.svg'
 							width={56}
 							height={40}
+							alt='connect'
 						/>
 					</div>
 					<div className='text-dark-900 text-[20px] font-bold'>100K+</div>

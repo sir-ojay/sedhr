@@ -47,40 +47,40 @@ const OnboardingHeader = ({
 								key={_step.title + index}
 								className={`${_step.title === "dash" ? "flex-1" : null}`}>
 								{_step.title !== "dash" ? (
-									<Link href={`/onboarding/${_step.title.toLowerCase()}`}>
-										<a className='flex gap-4 cursor-pointer'>
+									<Link
+										href={`/onboarding/${_step.title.toLowerCase()}`}
+										className='flex gap-4 cursor-pointer'>
+										<div
+											className={`w-14 h-14 ${
+												step === _step.step
+													? "bg-primary"
+													: step > _step.step
+													? "bg-[#44BE9D]"
+													: "bg-[#D4EBEB]"
+											} rounded-full flex justify-center items-center`}>
+											<img
+												className={`${
+													step === _step.step ? "tab-active" : null
+												}`}
+												src={`/assets/icons/layouts/onboarding-layout/${
+													step > _step.step ? "completed" : _step.icon
+												}.svg`}
+												alt={_step.icon}
+											/>
+										</div>
+										<div>
+											<div className='font-semibold text-lg font-epilogue leading-[160%] text-title'>
+												{_step.title}
+											</div>
 											<div
-												className={`w-14 h-14 ${
+												className={`font-epilogue ${
 													step === _step.step
-														? "bg-primary"
-														: step > _step.step
-														? "bg-[#44BE9D]"
-														: "bg-[#D4EBEB]"
-												} rounded-full flex justify-center items-center`}>
-												<img
-													className={`${
-														step === _step.step ? "tab-active" : null
-													}`}
-													src={`/assets/icons/layouts/onboarding-layout/${
-														step > _step.step ? "completed" : _step.icon
-													}.svg`}
-													alt={_step.icon}
-												/>
+														? "text-primary"
+														: "text-[#899A9A]"
+												}`}>
+												{_step.description}
 											</div>
-											<div>
-												<div className='font-semibold text-lg font-epilogue leading-[160%] text-title'>
-													{_step.title}
-												</div>
-												<div
-													className={`font-epilogue ${
-														step === _step.step
-															? "text-primary"
-															: "text-[#899A9A]"
-													}`}>
-													{_step.description}
-												</div>
-											</div>
-										</a>
+										</div>
 									</Link>
 								) : (
 									<>

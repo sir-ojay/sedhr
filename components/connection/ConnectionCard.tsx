@@ -26,10 +26,10 @@ const ConnectionCard = ({ type, star }: ConnectionCardProps) => {
 							name='Adewale Odewale'
 						/>
 						<div>
-							<Link href='/connection/1'>
-								<a className='font-semibold text-dark-900 hover:underline'>
-									Adewale Odewale
-								</a>
+							<Link
+								href='/connection/1'
+								className='font-semibold text-dark-900 hover:underline'>
+								Adewale Odewale
 							</Link>
 							<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
 								Medical Doctor

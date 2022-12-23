@@ -87,6 +87,7 @@ const LargeDetailsCard = ({
 					src={data && data.coverPicture}
 					width={2286}
 					height={420}
+					alt=''
 				/>
 
 				{(type === "account" || type === "profile") && (

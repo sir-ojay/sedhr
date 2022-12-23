@@ -27,14 +27,12 @@ const SedherUniverseNav = ({ navigations }: SedherUniverseNavProps) => {
 						{navigations?.map((item) => (
 							<Link
 								key={item.name}
-								href={`${item.href}${item.query ? item.query : ""}`}>
-								<a
-									className={`nav-hover ${
-										location.pathname.includes(item.href) ? "active" : null
-									} cursor-pointer flex items-center justify-between w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
-									<div className='leading-[160%] font-medium'>{item.name}</div>
-									<div className='leading-[160%] font-medium'>{item.count}</div>
-								</a>
+								href={`${item.href}${item.query ? item.query : ""}`}
+								className={`nav-hover ${
+									location.pathname.includes(item.href) ? "active" : null
+								} cursor-pointer flex items-center justify-between w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
+								<div className='leading-[160%] font-medium'>{item.name}</div>
+								<div className='leading-[160%] font-medium'>{item.count}</div>
 							</Link>
 						))}
 					</li>

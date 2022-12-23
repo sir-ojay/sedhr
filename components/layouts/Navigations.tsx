@@ -36,19 +36,17 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 									<Link
 										href={`${item.href}${item.slug ? item.slug : ""}${
 											item.query ? item.query : ""
-										}`}>
-										<a
-											className={`nav-hover text-sm xl:text-base ${
-												location.pathname.includes(item.href) ? "active" : ""
-											} cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
-											<img
-												src={`/assets/icons/layouts/${item.icon}.svg`}
-												className='group-hover:invert-[25%] group-hover:sepia-[49%] group-hover:saturate-[527%] group-hover:hue-rotate-[137deg] group-hover:brightness-[93%]'
-											/>
-											<div className='leading-[160%] font-medium'>
-												{item.name}
-											</div>
-										</a>
+										}`}
+										className={`nav-hover text-sm xl:text-base ${
+											location.pathname.includes(item.href) ? "active" : ""
+										} cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
+										<img
+											src={`/assets/icons/layouts/${item.icon}.svg`}
+											className='group-hover:invert-[25%] group-hover:sepia-[49%] group-hover:saturate-[527%] group-hover:hue-rotate-[137deg] group-hover:brightness-[93%]'
+										/>
+										<div className='leading-[160%] font-medium'>
+											{item.name}
+										</div>
 									</Link>
 								) : (
 									<button

@@ -113,10 +113,10 @@ const AdjustableProfileCard = ({
 							/>
 							<div>
 								<div className='space-y-2'>
-									<Link href={href}>
-										<a className='font-semibold text-dark-900 hover:underline'>
-											{name}
-										</a>
+									<Link
+										href={href}
+										className='font-semibold text-dark-900 hover:underline'>
+										{name}
 									</Link>
 									<div className='text-sm text-dark-100'>{description}</div>
 									<SmallAvatars name='Richard Ingwe' label='+300 seen' />

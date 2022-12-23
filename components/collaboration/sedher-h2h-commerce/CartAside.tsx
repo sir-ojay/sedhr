@@ -58,6 +58,7 @@ const CartAside = () => {
 									width={24}
 									height={24}
 									// layout='responsive'
+									alt=''
 								/>
 							</div>
 							<div>
@@ -78,15 +79,17 @@ const CartAside = () => {
 						<div className='flex gap-4 items-center mt-3 '>
 							<div className='w-[124px] '>
 								<Image
+									alt=''
 									className='w-full '
 									src='/assets/images/flutterwave.png'
-									width={"100%"}
+									width={"100"}
 									height={35}
 									// layout='responsive'
 								/>
 							</div>
 							<div className='w-[68px] h-[100%] '>
 								<Image
+									alt=''
 									className='w-full'
 									src='/assets/images/paystack.png'
 									width={68}

@@ -14,14 +14,12 @@ const LeftNavigation = ({
 		<nav className='bg-white fixed top-0 left-0 w-[272px] h-full'>
 			<div className='ml-6 flex items-center justify-between xl:ml-[62px] xl:my-8 my-2'>
 				<Link href='/feed'>
-					<a>
-						<Image
-							src='/assets/icons/logo.svg'
-							width={125}
-							height={53}
-							alt='sedher home logo'
-						/>
-					</a>
+					<Image
+						src='/assets/icons/logo.svg'
+						width={125}
+						height={53}
+						alt='sedher home logo'
+					/>
 				</Link>
 				<div className='xl:hidden'>
 					<Hamburger

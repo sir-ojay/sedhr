@@ -29,10 +29,10 @@ const ServiceCard = () => {
 					/>
 					<div className='w-full flex justify-between'>
 						<div>
-							<Link href='/connection/1'>
-								<a className='font-semibold text-xl text-[#2A2069] hover:underline'>
-									Thomas clinics
-								</a>
+							<Link
+								href='/connection/1'
+								className='font-semibold text-xl text-[#2A2069] hover:underline'>
+								Thomas clinics
 							</Link>
 							<div className=' text-dark-400 text-base font-normal font-epilogue text-dark-100'>
 								Dental clinics

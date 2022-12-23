@@ -8,6 +8,7 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -53,9 +54,11 @@ const SedherH2hCommerce = ({ navigations }: SedherH2hCommerceProps) => {
 								className='font-semibold text-lg text-dark-900'>
 								Sedher H2H Commerce
 							</div>
-							<Button icon='plus' size='sm' className='w-[234px]'>
-								Create H2H
-							</Button>
+							<Link href='/collaboration/sedher-h2h-commerce/create?step=1'>
+								<Button icon='plus' size='sm' className='w-[234px]'>
+									Create H2H
+								</Button>
+							</Link>
 						</WhiteWrapper>
 
 						<WhiteWrapper>

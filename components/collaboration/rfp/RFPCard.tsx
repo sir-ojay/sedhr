@@ -2,7 +2,9 @@ import Avatar from "@/components/global/Avatar";
 import Button from "@/components/global/Button";
 import StatusPill from "@/components/global/StatusPill";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
+import { RFP } from "@/types/collaboration";
 import { motion } from "framer-motion";
+import moment from "moment";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -10,7 +12,12 @@ type Props = {
 	type?: "default" | "active" | "saved" | "complete";
 };
 
-const RFPCard = ({ type = "default" }: Props) => {
+const RFPCard = ({
+	type = "default",
+	description,
+	productName,
+	updatedAt,
+}: Props & RFP) => {
 	const router = useRouter();
 
 	return (
@@ -25,10 +32,10 @@ const RFPCard = ({ type = "default" }: Props) => {
 							name='Thomas clinics'
 						/>
 						<div>
-							<Link href='/connection/1'>
-								<a className='font-semibold text-[#2A2069] hover:underline'>
-									Thomas clinics
-								</a>
+							<Link
+								href='/connection/1'
+								className='font-semibold text-[#2A2069] hover:underline'>
+								Thomas clinics
 							</Link>
 							<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
 								Dental clinics
@@ -41,15 +48,14 @@ const RFPCard = ({ type = "default" }: Props) => {
 					<hr />
 					<div className='flex items-center gap-2'>
 						<StatusPill text='Product' bg='#1AD48D1A' textColor='#1AD48D' />
-						<span className='text-sm text-[#4C4475]'>Friday 13 June</span>
+						<span className='text-sm text-[#4C4475]'>
+							{moment(updatedAt).format("DD, MMMM yy")}
+						</span>
 					</div>
 					<h4 className='font-semibold text-sm text-[#2A2069] hover:underline'>
-						Quis amet rutrum sem.
+						{productName}
 					</h4>
-					<div className='text-sm text-[#4C4475]'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam tempor
-						semper amet, morbi. Egestas massa ac aliquam quam velit.
-					</div>
+					<div className='text-sm text-[#4C4475]'>{description}</div>
 					{type === "saved" ||
 						(type === "default" && (
 							<div className='flex items-center gap-5'>

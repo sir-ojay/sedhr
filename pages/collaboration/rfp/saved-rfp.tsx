@@ -44,7 +44,34 @@ const SavedRFP = ({ navigations }: SavedRFPProps) => {
 
 				<section className='grid md:grid-cols-2 xl:grid-cols-3 gap-8'>
 					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
-						<RFPCard key={card} type='saved' />
+						<RFPCard
+							key={card}
+							type='saved'
+							_id={""}
+							userId={""}
+							productName={""}
+							category={""}
+							description={""}
+							proposal={{
+								description: [],
+								timelines: [],
+							}}
+							communications={{
+								channels: [],
+								responseToEmail: "",
+								responseToFeedback: "",
+								note: "",
+							}}
+							timelines={[]}
+							paymentDetails={{
+								paymentType: "FIXED",
+								prices: [],
+							}}
+							code={0}
+							status={"pending"}
+							createdAt={""}
+							updatedAt={""}
+						/>
 					))}
 				</section>
 			</div>

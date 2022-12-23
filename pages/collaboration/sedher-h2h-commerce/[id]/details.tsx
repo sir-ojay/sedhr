@@ -25,6 +25,7 @@ const Details = () => {
 								width={562}
 								height={269}
 								layout='responsive'
+								alt=''
 							/>
 						</div>
 					</WhiteWrapper>

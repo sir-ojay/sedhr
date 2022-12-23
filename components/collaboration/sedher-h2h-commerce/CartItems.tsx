@@ -9,10 +9,11 @@ const CartItems = () => {
 			<div className='flex justify-between space-x-5 w-full'>
 				<div className='w-[160px] min-w-[160px]'>
 					<Image
-						className='w-full'
+						alt=''
 						src='/assets/images/collaborate.png'
-						width={"100%"}
-						height={"100%"}
+						className='w-full'
+						width={"100"}
+						height={"100"}
 						layout='responsive'
 					/>
 				</div>
@@ -30,7 +31,7 @@ const CartItems = () => {
 						NGN 300,000.00
 					</h5>
 					<div className='flex justify-between gap-5'>
-						<Button className='w-full'  theme='outline'>
+						<Button className='w-full' theme='outline'>
 							Save
 						</Button>
 						<Button className='w-full' theme='outline'>

@@ -110,6 +110,7 @@ const index = () => {
 									width={562}
 									height={269}
 									layout='responsive'
+									alt='collabo'
 								/>
 							</div>
 							<div className='space-y-6'>

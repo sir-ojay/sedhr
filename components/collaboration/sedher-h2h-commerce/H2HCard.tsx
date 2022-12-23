@@ -27,10 +27,10 @@ const H2HCard = ({ type }: H2HCardProps) => {
 						/>
 						<div className='w-full flex justify-between '>
 							<div>
-								<Link href='/connection/1'>
-									<a className='font-semibold text-[#2A2069] hover:underline'>
-										Thomas clinics
-									</a>
+								<Link
+									href='/connection/1'
+									className='font-semibold text-[#2A2069] hover:underline'>
+									Thomas clinics
 								</Link>
 								<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
 									Dental clinics
@@ -71,6 +71,7 @@ const H2HCard = ({ type }: H2HCardProps) => {
 					</div>
 					<div className='rounded-xl overflow-hidden'>
 						<Image
+							alt=''
 							className='w-full'
 							src='/assets/images/collabo.jpg'
 							width={341}

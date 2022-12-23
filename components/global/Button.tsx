@@ -99,14 +99,11 @@ const Button: React.FC<ButtonProps> = ({
 							? `https://${href}`
 							: href
 						: href || router.pathname
-				}>
-				<a
-					className={`${LinkTheme(theme)} ${
-						underline ? "underline" : null
-					} ${className}`}
-					{...rest}>
-					{children}
-				</a>
+				}
+				className={`${LinkTheme(theme)} ${
+					underline ? "underline" : null
+				} ${className}`}>
+				{children}
 			</Link>
 		);
 	}
@@ -125,6 +122,7 @@ const Button: React.FC<ButtonProps> = ({
 					src={`/assets/icons/${icon}.svg`}
 					width={iconSize(size)}
 					height={iconSize(size)}
+					alt={icon}
 				/>
 			)}
 			{iconBlue && (
@@ -132,6 +130,7 @@ const Button: React.FC<ButtonProps> = ({
 					src={`/assets/icons/${icon}.svg`}
 					width={iconSize(size)}
 					height={iconSize(size)}
+					alt=''
 				/>
 			)}
 			{children}

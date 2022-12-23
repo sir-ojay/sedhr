@@ -52,6 +52,7 @@ const Card = ({ navigations }: CardProps) => {
 											src='/assets/images/flags.png'
 											width={24}
 											height={16}
+											alt='flag'
 											// layout='responsive'
 										/>
 										<h5 className='ml-3'>Nigeria</h5>
@@ -90,6 +91,7 @@ const Card = ({ navigations }: CardProps) => {
 										src='/assets/images/card.png'
 										width={251}
 										height={144}
+										alt='card'
 										// layout='responsive'
 									/>
 								</div>

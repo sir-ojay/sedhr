@@ -21,7 +21,7 @@ const ListNav = ({ navs, type = "query" }: ListNavProps) => {
 					<li key={nav.name}>
 						<Link href={nav.href}>
 							{type === "query" ? (
-								<a
+								<div
 									className={`font-semibold px-5 pb-2 ${
 										nav.href.includes(
 											`=${Object.values(location?.query)[0]}`
@@ -31,16 +31,16 @@ const ListNav = ({ navs, type = "query" }: ListNavProps) => {
 											: "text-dark-100"
 									}`}>
 									{nav.name}
-								</a>
+								</div>
 							) : (
-								<a
+								<div
 									className={`font-semibold px-5 pb-2 ${
 										location.pathname.includes(nav.href)
 											? "border-b-4 border-b-primary text-dark-900"
 											: "text-dark-100"
 									}`}>
 									{nav.name}
-								</a>
+								</div>
 							)}
 						</Link>
 					</li>

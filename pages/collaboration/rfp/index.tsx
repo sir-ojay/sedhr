@@ -6,10 +6,13 @@ import GridContainer from "@/components/global/GridContainer";
 import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { useGetRFPsQuery } from "@/services/collaborations";
+import { RFP } from "@/types/collaboration";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 type RFPProps = {
@@ -20,10 +23,12 @@ type RFPProps = {
 		count: number;
 	}[];
 	grid: number;
+	RFPs: RFP[];
 };
 
-const RFP = ({ navigations }: RFPProps) => {
+const RFPPage = ({ navigations }: RFPProps) => {
 	const [grid, setGrid] = useState(2);
+	const [rfpData, setRFPData] = useState<RFP[]>([]);
 
 	const getGrid = (grid: number) => {
 		setGrid(grid);
@@ -37,6 +42,18 @@ const RFP = ({ navigations }: RFPProps) => {
 		},
 		mode: "onChange",
 	});
+
+	const token: any = Cookies.get("sedherToken");
+
+	const { data, error, isLoading, isSuccess, isFetching } = useGetRFPsQuery({
+		token,
+	});
+
+	useEffect(() => {
+		console.log(data);
+		data && setRFPData(data.data as RFP[]);
+	}, [isSuccess, data]);
+
 	return (
 		<DefaultLayout title='Sedher | Collaboration | RFP'>
 			<CollaborationWrapper getGrid={getGrid}>
@@ -56,14 +73,14 @@ const RFP = ({ navigations }: RFPProps) => {
 							</div>
 							<Button
 								icon='plus'
-								onClick={() => router.push("/collaboration/rfp/templates")}
+								onClick={() => router.push("/collaboration/rfp/create?step=1")}
 								size='sm'
 								className='w-[234px]'>
 								Create RFP
 							</Button>
 						</WhiteWrapper>
 
-						<div className='flex items-center gap-3'>
+						{/* <div className='flex items-center gap-3'>
 							<Button
 								theme='plain'
 								className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
@@ -79,7 +96,7 @@ const RFP = ({ navigations }: RFPProps) => {
 								className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
 								Service RFP
 							</Button>
-						</div>
+						</div> */}
 
 						<WhiteWrapper>
 							<FormProvider {...methods}>
@@ -98,11 +115,9 @@ const RFP = ({ navigations }: RFPProps) => {
 						</WhiteWrapper>
 
 						<GridContainer grid={grid}>
-							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
-								(card) => (
-									<RFPCard key={card} />
-								)
-							)}
+							{rfpData?.map((card) => (
+								<RFPCard key={card._id} {...card} />
+							))}
 						</GridContainer>
 					</section>
 				</div>
@@ -111,9 +126,9 @@ const RFP = ({ navigations }: RFPProps) => {
 	);
 };
 
-export default RFP;
+export default RFPPage;
 
-RFP.defaultProps = {
+RFPPage.defaultProps = {
 	navigations: [
 		{
 			name: "Active RFP",
