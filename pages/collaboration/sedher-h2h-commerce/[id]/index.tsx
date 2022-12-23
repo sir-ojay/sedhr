@@ -6,13 +6,30 @@ import StatusPill from "@/components/global/StatusPill";
 import Switch from "@/components/global/Switch";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { useGetH2HsQuery } from "@/services/collaborations";
+import { H2H } from "@/types/collaboration";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const index = () => {
 	const router = useRouter();
+	const [h2hData, setH2HData] = useState<H2H[]>([]);
+
+	const token: any = Cookies.get("sedherToken");
+
+	const { data, error, isLoading, isSuccess, isFetching } = useGetH2HsQuery({
+		token,
+	});
+
+	useEffect(() => {
+		console.log(data);
+		data && setH2HData(data.data as H2H[]);
+	}, [isSuccess, data]);
+
 	return (
 		<DefaultLayout title='Sedher | Collaboration | create RFP'>
 			<CollaborationWrapper showHeader={false}>
@@ -27,49 +44,21 @@ const index = () => {
 				<div className='grid grid-cols-6 gap-8'>
 					<section className='col-span-2 space-y-8'>
 						<section className='space-y-8'>
-							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
-								(card) => (
-									<H2HCard
-										key={card}
-										type='Product'
-										productDetails={{
-											name: "",
-											category: "",
-											description: "",
-											quantity: 0,
-										}}
-										itemDetails={{
-											modelOrType: "",
-											description: "",
-										}}
-										technicalDetails={{
-											dimensions: "",
-											weight: "",
-										}}
-										pickupLocation={{
-											address: "",
-											lga: "",
-											state: "",
-											country: "",
-										}}
-										paymentDetails={{
-											paymentType: "FIXED",
-											prices: [],
-										}}
-										_id={""}
-										userId={""}
-										code={""}
-										images={[]}
-										shipmentDetails={""}
-										createdAt={""}
-										updatedAt={""}
-									/>
-								)
+							{isLoading && (
+								<div className='space-y-8'>
+									{[1, 2, 3, 4, 5, 6].map((card) => (
+										<WhiteWrapper key={card} className='h-[400px] w-full' />
+									))}
+								</div>
 							)}
+
+							{h2hData.map((card) => (
+								<H2HCard key={card._id} type='Product' {...card} />
+							))}
 						</section>
 					</section>
 					<section className='col-span-4 space-y-8'>
-						<article className='bg-primary p-4 rounded-xl space-y-6'>
+						{/* <article className='bg-primary p-4 rounded-xl space-y-6'>
 							<div className='flex items-center justify-between'>
 								<h3 className='text-white font-semibold'>
 									Learning how Request for proposal(RFP) Works
@@ -103,7 +92,7 @@ const index = () => {
 									Watch Tutorial
 								</Button>
 							</div>
-						</article>
+						</article> */}
 
 						<WhiteWrapper className='space-y-6'>
 							<div className='flex w-full gap-5'>

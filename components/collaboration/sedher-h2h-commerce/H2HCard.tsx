@@ -13,7 +13,12 @@ type H2HCardProps = {
 	type?: string;
 };
 
-const H2HCard = ({ type, createdAt, productDetails }: H2HCardProps & H2H) => {
+const H2HCard = ({
+	type,
+	createdAt,
+	productDetails,
+	_id,
+}: H2HCardProps & H2H) => {
 	const router = useRouter();
 
 	return (
@@ -107,9 +112,7 @@ const H2HCard = ({ type, createdAt, productDetails }: H2HCardProps & H2H) => {
 								className='w-full'
 								theme='outline'
 								onClick={() =>
-									router.push(
-										"/collaboration/sedher-h2h-commerce/thomas-clinics"
-									)
+									router.push(`/collaboration/sedher-h2h-commerce/${_id}`)
 								}>
 								View H2H
 							</Button>
