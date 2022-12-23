@@ -102,7 +102,6 @@ const create = () => {
 				},
 				token,
 			};
-			// console.log(details);
 			const result = (await create(
 				details as any
 			).unwrap()) as CreateH2HResponse;

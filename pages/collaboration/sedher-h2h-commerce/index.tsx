@@ -6,11 +6,14 @@ import GridContainer from "@/components/global/GridContainer";
 import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { useGetH2HsQuery } from "@/services/collaborations";
+import { H2H } from "@/types/collaboration";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 type SedherH2hCommerceProps = {
@@ -25,6 +28,7 @@ type SedherH2hCommerceProps = {
 
 const SedherH2hCommerce = ({ navigations }: SedherH2hCommerceProps) => {
 	const [grid, setGrid] = useState(2);
+	const [h2hData, setH2HData] = useState<H2H[]>([]);
 
 	const getGrid = (grid: number) => {
 		setGrid(grid);
@@ -37,6 +41,18 @@ const SedherH2hCommerce = ({ navigations }: SedherH2hCommerceProps) => {
 		},
 		mode: "onChange",
 	});
+
+	const token: any = Cookies.get("sedherToken");
+
+	const { data, error, isLoading, isSuccess, isFetching } = useGetH2HsQuery({
+		token,
+	});
+
+	useEffect(() => {
+		console.log(data);
+		data && setH2HData(data.data as H2H[]);
+	}, [isSuccess, data]);
+
 	return (
 		<DefaultLayout title='Sedher | Collaboration | SedherH2hCommerce'>
 			<CollaborationWrapper getGrid={getGrid}>
@@ -61,7 +77,7 @@ const SedherH2hCommerce = ({ navigations }: SedherH2hCommerceProps) => {
 							</Link>
 						</WhiteWrapper>
 
-						<WhiteWrapper>
+						{/* <WhiteWrapper>
 							<FormProvider {...methods}>
 								<form action=''>
 									<div
@@ -75,14 +91,20 @@ const SedherH2hCommerce = ({ navigations }: SedherH2hCommerceProps) => {
 									</p>
 								</form>
 							</FormProvider>
-						</WhiteWrapper>
+						</WhiteWrapper> */}
+
+						{isLoading && (
+							<GridContainer grid={grid}>
+								{[1, 2, 3, 4, 5, 6].map((card) => (
+									<WhiteWrapper key={card} className='h-[400px] w-full' />
+								))}
+							</GridContainer>
+						)}
 
 						<GridContainer grid={grid}>
-							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
-								(card) => (
-									<H2HCard key={card} type='all' />
-								)
-							)}
+							{h2hData.map((card) => (
+								<H2HCard key={card._id} type='all' {...card} />
+							))}
 						</GridContainer>
 					</section>
 				</div>

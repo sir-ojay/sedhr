@@ -2,7 +2,9 @@ import Avatar from "@/components/global/Avatar";
 import Button from "@/components/global/Button";
 import StatusPill from "@/components/global/StatusPill";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
+import { H2H } from "@/types/collaboration";
 import { motion } from "framer-motion";
+import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -11,7 +13,7 @@ type H2HCardProps = {
 	type?: string;
 };
 
-const H2HCard = ({ type }: H2HCardProps) => {
+const H2HCard = ({ type, createdAt, productDetails }: H2HCardProps & H2H) => {
 	const router = useRouter();
 
 	return (
@@ -76,21 +78,27 @@ const H2HCard = ({ type }: H2HCardProps) => {
 							src='/assets/images/collabo.jpg'
 							width={341}
 							height={192}
-							layout='responsive'
+							// layout='responsive'
 						/>
 					</div>
 					<div className='flex items-center gap-2'>
-						<StatusPill text='Product' bg='#1AD48D1A' textColor='#1AD48D' />
-						<span className='text-sm text-[#4C4475]'>
-							Created Friday 13 June
-						</span>
+						<StatusPill
+							text={productDetails.category}
+							bg='#1AD48D1A'
+							textColor='#1AD48D'
+						/>
 					</div>
+					<span className='text-sm text-[#4C4475]'>
+						Created {moment(createdAt).format("Do, MMMM YYYY")}
+					</span>
 					<h4 className='font-semibold text-sm text-[#2A2069] hover:underline'>
-						Quis amet rutrum sem.
+						{productDetails.name}
 					</h4>
 					<div className='text-sm text-[#4C4475]'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam tempor
-						semper amet, morbi. Egestas massa ac aliquam quam velit.
+						{productDetails.description}
+					</div>
+					<div className='text-sm text-[#4C4475]'>
+						Quantity - {productDetails.quantity}
 					</div>
 					<div className='flex items-center gap-5'>
 						{type !== "cancel" && type !== "complete" && type !== "saved" && (

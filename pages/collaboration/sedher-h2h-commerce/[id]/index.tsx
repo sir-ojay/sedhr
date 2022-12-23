@@ -29,7 +29,41 @@ const index = () => {
 						<section className='space-y-8'>
 							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
 								(card) => (
-									<H2HCard key={card} type='Product' />
+									<H2HCard
+										key={card}
+										type='Product'
+										productDetails={{
+											name: "",
+											category: "",
+											description: "",
+											quantity: 0,
+										}}
+										itemDetails={{
+											modelOrType: "",
+											description: "",
+										}}
+										technicalDetails={{
+											dimensions: "",
+											weight: "",
+										}}
+										pickupLocation={{
+											address: "",
+											lga: "",
+											state: "",
+											country: "",
+										}}
+										paymentDetails={{
+											paymentType: "FIXED",
+											prices: [],
+										}}
+										_id={""}
+										userId={""}
+										code={""}
+										images={[]}
+										shipmentDetails={""}
+										createdAt={""}
+										updatedAt={""}
+									/>
 								)
 							)}
 						</section>
