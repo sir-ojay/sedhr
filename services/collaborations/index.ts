@@ -1,6 +1,8 @@
 import {
 	CreateH2HRequest,
 	CreateH2HResponse,
+	GetH2HRequest,
+	GetH2HResponse,
 	GetH2HSRequest,
 	GetH2HSResponse,
 	GetRFPSRequest,
@@ -53,6 +55,10 @@ export const collaboration = createApi({
 		getH2Hs: builder.query<GetH2HSResponse, GetH2HSRequest>({
 			query: (credentials) => getRequest("/h2hs", credentials.token),
 		}),
+		getH2H: builder.query<GetH2HResponse, GetH2HRequest>({
+			query: (credentials) =>
+				getRequest(`/h2hs/${credentials.id}`, credentials.token),
+		}),
 		createH2H: builder.mutation<CreateH2HResponse, CreateH2HRequest>({
 			query: (credentials) =>
 				postRequest(`/h2hs`, credentials.body, credentials.token),
@@ -60,5 +66,9 @@ export const collaboration = createApi({
 	}),
 });
 
-export const { useGetRFPsQuery, useCreateH2HMutation, useGetH2HsQuery } =
-	collaboration;
+export const {
+	useGetRFPsQuery,
+	useCreateH2HMutation,
+	useGetH2HsQuery,
+	useGetH2HQuery,
+} = collaboration;

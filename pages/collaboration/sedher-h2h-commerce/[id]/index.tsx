@@ -6,7 +6,7 @@ import StatusPill from "@/components/global/StatusPill";
 import Switch from "@/components/global/Switch";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
-import { useGetH2HsQuery } from "@/services/collaborations";
+import { useGetH2HQuery, useGetH2HsQuery } from "@/services/collaborations";
 import { H2H } from "@/types/collaboration";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import Cookies from "js-cookie";
@@ -23,6 +23,11 @@ const index = () => {
 
 	const { data, error, isLoading, isSuccess, isFetching } = useGetH2HsQuery({
 		token,
+	});
+
+	const { data: h2hIDData, isLoading: isLoadingh2h } = useGetH2HQuery({
+		token,
+		id: router.query.id?.toString()!,
 	});
 
 	useEffect(() => {
@@ -57,8 +62,14 @@ const index = () => {
 							))}
 						</section>
 					</section>
-					<section className='col-span-4 space-y-8'>
-						{/* <article className='bg-primary p-4 rounded-xl space-y-6'>
+					{isLoadingh2h && (
+						<div className='col-span-4'>
+							<WhiteWrapper className='w-full h-[700px]'></WhiteWrapper>
+						</div>
+					)}
+					{!isLoadingh2h && (
+						<section className='col-span-4 space-y-8'>
+							{/* <article className='bg-primary p-4 rounded-xl space-y-6'>
 							<div className='flex items-center justify-between'>
 								<h3 className='text-white font-semibold'>
 									Learning how Request for proposal(RFP) Works
@@ -94,89 +105,81 @@ const index = () => {
 							</div>
 						</article> */}
 
-						<WhiteWrapper className='space-y-6'>
-							<div className='flex w-full gap-5'>
-								<div>
-									<Avatar name='Thomas clinics' rounded size={100} />
-								</div>
-								<div className='w-full space-y-2'>
-									<div className='flex justify-between'>
-										<h3 className='text-2xl font-semibold text-dark-900'>
-											Thomas clinics
-										</h3>
-										<StatusPill
-											text='Service'
-											bg='#FF39561A'
-											textColor='#FF3956'
-										/>
+							<WhiteWrapper className='space-y-6'>
+								<div className='flex w-full gap-5'>
+									<div>
+										<Avatar name='Thomas clinics' rounded size={100} />
 									</div>
-									<div className='text-lg space-x-3'>
-										<span className='text-dark-100'>Dental clinics</span>
-										<span className='text-[#F47D5B]'>
-											Patient care centres{" "}
-										</span>
+									<div className='w-full space-y-2'>
+										<div className='flex justify-between'>
+											<h3 className='text-2xl font-semibold text-dark-900'>
+												Thomas clinics
+											</h3>
+											<StatusPill
+												text='Service'
+												bg='#FF39561A'
+												textColor='#FF3956'
+											/>
+										</div>
+										<div className='text-lg space-x-3'>
+											<span className='text-dark-100'>Dental clinics</span>
+											<span className='text-[#F47D5B]'>
+												Patient care centres{" "}
+											</span>
+										</div>
+										<div className='text-base text-dark-100'>
+											Friday 13 June
+										</div>
+										<Button
+											theme='outline'
+											onClick={() => router.push("/connection/1")}>
+											view profile
+										</Button>
 									</div>
-									<div className='text-base text-dark-100'>Friday 13 June</div>
-									<Button
-										theme='outline'
-										onClick={() => router.push("/connection/1")}>
-										view profile
-									</Button>
 								</div>
-							</div>
 
-							<hr />
-							<div className='rounded-xl overflow-hidden'>
-								<Image
-									className='w-full'
-									src='/assets/images/collabo.jpg'
-									width={562}
-									height={269}
-									layout='responsive'
-									alt='collabo'
-								/>
-							</div>
-							<div className='space-y-6'>
-								<div className='flex justify-between'>
-									<div className='text-xl font-semibold text-dark-900'>
-										Quis amet rutrum sem.
-									</div>
-									<Switch label='Saved H2H' />
+								<hr />
+								<div className='rounded-xl overflow-hidden'>
+									<Image
+										className='w-full'
+										src='/assets/images/collabo.jpg'
+										width={562}
+										height={269}
+										layout='responsive'
+										alt='collabo'
+									/>
 								</div>
-								<p className='text-dark-100 leading-8'>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Imperdiet at egestas pellentesque et tristique tellus iaculis
-									at. Sem erat a ultrices duis nibh. Commodo vestibulum
-									vulputate malesuada mauris amet faucibus vitae. Fusce ut sed
-									fermentum vitae, massa. Semper tortor amet odio tellus lectus
-									et sapien imperdiet. Nisl purus dictum malesuada malesuada
-									maecenas fermentum egestas non. Iaculis molestie viverra
-									gravida sed dui cras pulvinar ac mus. Neque nulla eu lectus
-									eget nulla sed. Risus quam scelerisque mauris ipsum. Lobortis
-									aliquam sollicitudin nisi, velit nibh morbi enim. Ac senectus
-									et purus et sit. Neque viverra lacus, amet mattis maecenas id
-									in nam. Posuere pharetra, massa dui lacus enim at pharetra.
-									Commodo, cras consectetur nisl, justo, fermentum leo, fames
-									ultrices habitant. Non etiam duis lacus, euismod ornare
-									commodo varius. Auctor diam ornare sit tincidunt laoreet nunc
-									a imperdiet lectus. Donec mattis ac lectus interdum interdum
-									nec. Aliquet eu vitae sit nibh turpis tincidunt erat ultrices
-									ut. Ante.
-								</p>
+								<div className='space-y-6'>
+									<div className='flex justify-between'>
+										<div className='text-xl font-semibold text-dark-900'>
+											{h2hIDData?.data.productDetails.name}
+										</div>
+										<Switch label='Saved H2H' />
+									</div>
+									<p className='text-dark-100 leading-8'>
+										{h2hIDData?.data.productDetails.description}
+									</p>
+								</div>
+							</WhiteWrapper>
+							<div className='flex justify-between'>
+								<Button
+									onClick={() =>
+										router.push("/collaboration/sedher-h2h-commerce")
+									}
+									theme='outline'>
+									Go Back
+								</Button>
+								<Button
+									onClick={() =>
+										router.push(
+											`/collaboration/sedher-h2h-commerce/${h2hIDData?.data._id}/details`
+										)
+									}>
+									View full Details
+								</Button>
 							</div>
-						</WhiteWrapper>
-						<div className='flex justify-between'>
-							<Button theme='outline'>Cancel</Button>
-							<Button
-								onClick={() =>
-									router.push(
-										"/collaboration/sedher-h2h-commerce/thomas-clinics/details"
-									)
-								}>
-								View full Details
-							</Button>
-						</div>
-					</section>
+						</section>
+					)}
 				</div>
 			</CollaborationWrapper>
 		</DefaultLayout>

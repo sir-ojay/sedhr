@@ -5,13 +5,22 @@ import LabelValue from "@/components/global/LabelValue";
 import StatusPill from "@/components/global/StatusPill";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { useGetH2HQuery } from "@/services/collaborations";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
 const Details = () => {
 	const router = useRouter();
+
+	const token: any = Cookies.get("sedherToken");
+
+	const { data, isLoading } = useGetH2HQuery({
+		token,
+		id: router.query.id?.toString()!,
+	});
 
 	return (
 		<DefaultLayout title='Sedher | Collaboration | RFP'>
@@ -33,26 +42,10 @@ const Details = () => {
 					<WhiteWrapper>
 						<div className='space-y-4'>
 							<h4 className='font-semibold text-xl font-archivo text-[#2A2069]'>
-								About this item
+								{data?.data.productDetails.name}
 							</h4>
 							<p className='text-dark-100 leading-8'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Imperdiet at egestas pellentesque et tristique tellus iaculis
-								at. Sem erat a ultrices duis nibh. Commodo vestibulum vulputate
-								malesuada mauris amet faucibus vitae. Fusce ut sed fermentum
-								vitae, massa. Semper tortor amet odio tellus lectus et sapien
-								imperdiet. Nisl purus dictum malesuada malesuada maecenas
-								fermentum egestas non. Iaculis molestie viverra gravida sed dui
-								cras pulvinar ac mus. Neque nulla eu lectus eget nulla sed.
-								Risus quam scelerisque mauris ipsum. Lobortis aliquam
-								sollicitudin nisi, velit nibh morbi enim. Ac senectus et purus
-								et sit. Neque viverra lacus, amet mattis maecenas id in nam.
-								Posuere pharetra, massa dui lacus enim at pharetra. Commodo,
-								cras consectetur nisl, justo, fermentum leo, fames ultrices
-								habitant. Non etiam duis lacus, euismod ornare commodo varius.
-								Auctor diam ornare sit tincidunt laoreet nunc a imperdiet
-								lectus. Donec mattis ac lectus interdum interdum nec. Aliquet eu
-								vitae sit nibh turpis tincidunt erat ultrices ut. Ante.
+								{data?.data.productDetails.description}
 							</p>
 						</div>
 					</WhiteWrapper>
@@ -88,10 +81,13 @@ const Details = () => {
 								Techincal Details
 							</h4>
 							<div className='space-y-4'>
-								<LabelValue label='Weight Approx' value='14,500 kg' />
+								<LabelValue
+									label='Weight Approx'
+									value={data?.data.technicalDetails.weight || "N/A"}
+								/>
 								<LabelValue
 									label='Dimensions(length,width and height)'
-									value='6,500,4,564,4,456 '
+									value={data?.data.technicalDetails.dimensions || "N/A"}
 								/>
 							</div>
 						</div>
@@ -159,25 +155,25 @@ const Details = () => {
 								<div className='space-y-4'>
 									<LabelValue
 										label='Name'
-										value=' 1600 W Universal Machining Centre'
+										value={data?.data.productDetails.name || "N/A"}
 										orientation='vertical'
 									/>
 									<LabelValue
-										label='item number'
-										value=' 4556778'
+										label='Item Description'
+										value={data?.data.itemDetails.description || "N/A"}
 										orientation='vertical'
 									/>
 									<LabelValue
 										label='Model / type'
-										value='MH 1600 W'
+										value={data?.data.itemDetails.modelOrType || "N/A"}
 										orientation='vertical'
 									/>
 									<LabelValue
 										label='Year of manufacture'
-										value='20 june, 2022'
+										value={"N/A"}
 										orientation='vertical'
 									/>
-									<LabelValue
+									{/* <LabelValue
 										label='Item available from'
 										value='Immediately'
 										orientation='vertical'
@@ -186,12 +182,12 @@ const Details = () => {
 										label='Item condition'
 										value='unchecked'
 										orientation='vertical'
-									/>
+									/> */}
 									<LabelValue
-										label='location'
-										value='nigeria,lagos obawole, show map'
+										label='Pickup location'
+										value={data?.data.pickupLocation.address || "N/A"}
 										orientation='vertical'
-										isLink={true}
+										// isLink={true}
 									/>
 								</div>
 							</div>

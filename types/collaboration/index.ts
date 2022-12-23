@@ -91,3 +91,13 @@ export type GetH2HSResponse = {
 export type GetH2HSRequest = {
 	token: string;
 };
+
+export type GetH2HResponse = {
+	message: string;
+	data: H2H;
+};
+
+export type GetH2HRequest = {
+	token: string;
+	id: string;
+};
