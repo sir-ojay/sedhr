@@ -114,6 +114,14 @@ const RFPPage = ({ navigations }: RFPProps) => {
 							</FormProvider>
 						</WhiteWrapper>
 
+						{isLoading && (
+							<GridContainer grid={grid}>
+								{[1, 2, 3, 4, 5, 6].map((card) => (
+									<WhiteWrapper key={card} className='h-[400px] w-full' />
+								))}
+							</GridContainer>
+						)}
+
 						<GridContainer grid={grid}>
 							{rfpData?.map((card) => (
 								<RFPCard key={card._id} {...card} />
