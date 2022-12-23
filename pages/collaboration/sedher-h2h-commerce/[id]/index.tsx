@@ -158,7 +158,7 @@ const index = () => {
 										<div className='text-xl font-semibold text-dark-900'>
 											{h2hIDData?.data.productDetails.name}
 										</div>
-										<Switch label='Saved H2H' />
+										{/* <Switch label='Saved H2H' /> */}
 									</div>
 									<p className='text-dark-100 leading-8'>
 										{h2hIDData?.data.productDetails.description}

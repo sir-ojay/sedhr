@@ -56,13 +56,13 @@ const SedherH2hCommerce = ({ navigations }: SedherH2hCommerceProps) => {
 	return (
 		<DefaultLayout title='Sedher | Collaboration | SedherH2hCommerce'>
 			<CollaborationWrapper getGrid={getGrid}>
-				<div className='grid grid-cols-6 gap-8'>
-					<section className='col-span-2 space-y-6'>
+				<div className='grid grid-cols-1 gap-8'>
+					{/* <section className='col-span-2 space-y-6'>
 						<CollaborationNav
 							title='My Sedher H2H Commerce'
 							navigations={navigations}
 						/>
-					</section>
+					</section> */}
 					<section className='col-span-4 space-y-6'>
 						<WhiteWrapper className='flex items-center justify-between'>
 							<div

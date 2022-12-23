@@ -80,7 +80,7 @@ const H2HCard = ({
 					<div className='rounded-xl overflow-hidden'>
 						<Image
 							alt=''
-							className='w-full h-[250px] object-cover'
+							className='w-full h-[350px] object-cover'
 							src={
 								images[0] === "cloudinary-link-here"
 									? "/assets/images/collabo.jpg"

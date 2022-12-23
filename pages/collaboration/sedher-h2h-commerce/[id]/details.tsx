@@ -53,7 +53,7 @@ const Details = () => {
 							</p>
 						</div>
 					</WhiteWrapper>
-					<WhiteWrapper>
+					{/* <WhiteWrapper>
 						<div className='space-y-4'>
 							<h4 className='font-semibold text-xl font-archivo text-black'>
 								cost and benefits
@@ -78,7 +78,7 @@ const Details = () => {
 								/>
 							</div>
 						</div>
-					</WhiteWrapper>
+					</WhiteWrapper> */}
 					<WhiteWrapper>
 						<div className='space-y-4'>
 							<h4 className='font-semibold text-xl font-archivo text-black'>
@@ -97,21 +97,17 @@ const Details = () => {
 						</div>
 					</WhiteWrapper>
 					<div className='flex justify-between !mt-[47px]'>
-						<Button
-							onClick={() =>
-								router.push("/collaboration/sedher-h2h-commerce/create")
-							}
-							theme='outline'>
+						<Button onClick={() => router.back()} theme='outline'>
 							Back
 						</Button>
-						<Button
+						{/* <Button
 							onClick={() =>
 								router.push(
 									"/collaboration/sedher-h2h-commerce/thomas-clinics/order-items"
 								)
 							}>
 							Place Order
-						</Button>
+						</Button> */}
 					</div>
 				</section>
 				<section className='col-span-2 space-y-6'>
