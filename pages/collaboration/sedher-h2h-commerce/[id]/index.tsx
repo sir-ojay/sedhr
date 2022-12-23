@@ -141,11 +141,15 @@ const index = () => {
 								<hr />
 								<div className='rounded-xl overflow-hidden'>
 									<Image
-										className='w-full'
-										src='/assets/images/collabo.jpg'
-										width={562}
+										className='w-full h-[500px] object-cover'
+										src={
+											h2hIDData?.data?.images[0] === "cloudinary-link-here"
+												? "/assets/images/collabo.jpg"
+												: h2hIDData?.data.images[0] ||
+												  "/assets/images/collabo.jpg"
+										}
+										width={300}
 										height={269}
-										layout='responsive'
 										alt='collabo'
 									/>
 								</div>

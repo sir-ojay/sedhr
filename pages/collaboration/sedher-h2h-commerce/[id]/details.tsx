@@ -29,9 +29,13 @@ const Details = () => {
 					<WhiteWrapper>
 						<div className='rounded-xl overflow-hidden'>
 							<Image
-								className='w-full'
-								src='/assets/images/collabo.jpg'
-								width={562}
+								className='w-full h-[300px] object-cover'
+								src={
+									data?.data?.images[0] === "cloudinary-link-here"
+										? "/assets/images/collabo.jpg"
+										: data?.data.images[0] || ""
+								}
+								width={300}
 								height={269}
 								layout='responsive'
 								alt=''

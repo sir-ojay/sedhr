@@ -4,6 +4,7 @@ import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useCreateH2HMutation } from "@/services/collaborations";
+import { useUploadDocumentMutation } from "@/services/upload";
 import { CreateH2HRequest, CreateH2HResponse } from "@/types/collaboration";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import Cookies from "js-cookie";
@@ -18,7 +19,7 @@ const create = () => {
 	const { step } = router.query;
 	const methods = useForm({
 		defaultValues: {
-			images: null,
+			image: null,
 			name: "",
 			description: "",
 			category: "",
@@ -44,6 +45,8 @@ const create = () => {
 		formState: { errors, isValid },
 	} = methods;
 
+	const [upload, { isLoading: isLoadingUpload }] = useUploadDocumentMutation();
+
 	const [create, { isLoading }] = useCreateH2HMutation();
 
 	const token = Cookies.get("sedherToken");
@@ -63,8 +66,14 @@ const create = () => {
 			state,
 			country,
 			shipmentDetails,
+			image,
 		} = data;
 		try {
+			const url = (await upload({
+				file: image as any,
+				token: token as string,
+			}).unwrap()) as any;
+
 			const details = {
 				body: {
 					// code: "6756655",
@@ -74,7 +83,7 @@ const create = () => {
 						description,
 						quantity,
 					},
-					images: ["cloudinary-link-here"],
+					images: [url.data.secureUrl],
 					itemDetails: {
 						modelOrType,
 						description: itemDescription,
@@ -133,7 +142,7 @@ const create = () => {
 								</div>
 							</WhiteWrapper> */}
 								<WhiteWrapper title='Upload Image'>
-									<Input name='images' type='file' placeholder='Product Name' />
+									<Input name='image' showFilePreview type='file' />
 								</WhiteWrapper>
 								<WhiteWrapper title='Product Details'>
 									<div className='space-y-6'>

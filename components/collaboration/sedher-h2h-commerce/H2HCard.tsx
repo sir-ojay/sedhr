@@ -18,12 +18,13 @@ const H2HCard = ({
 	createdAt,
 	productDetails,
 	_id,
+	images,
 }: H2HCardProps & H2H) => {
 	const router = useRouter();
 
 	return (
 		<motion.article layout>
-			<WhiteWrapper>
+			<WhiteWrapper className='h-full flex flex-col justify-between space-y-5'>
 				<div className='space-y-3'>
 					<div className='flex gap-3 mb-3'>
 						<Avatar
@@ -79,8 +80,12 @@ const H2HCard = ({
 					<div className='rounded-xl overflow-hidden'>
 						<Image
 							alt=''
-							className='w-full'
-							src='/assets/images/collabo.jpg'
+							className='w-full h-[250px] object-cover'
+							src={
+								images[0] === "cloudinary-link-here"
+									? "/assets/images/collabo.jpg"
+									: images[0]
+							}
 							width={341}
 							height={192}
 							// layout='responsive'
@@ -93,31 +98,31 @@ const H2HCard = ({
 							textColor='#1AD48D'
 						/>
 					</div>
-					<span className='text-sm text-[#4C4475]'>
+					<div className='text-sm text-[#4C4475]'>
 						Created {moment(createdAt).format("Do, MMMM YYYY")}
-					</span>
+					</div>
 					<h4 className='font-semibold text-sm text-[#2A2069] hover:underline'>
 						{productDetails.name}
 					</h4>
-					<div className='text-sm text-[#4C4475]'>
+					<div className='text-sm text-[#4C4475] line-clamp-4'>
 						{productDetails.description}
 					</div>
 					<div className='text-sm text-[#4C4475]'>
 						Quantity - {productDetails.quantity}
 					</div>
-					<div className='flex items-center gap-5'>
-						{type !== "cancel" && type !== "complete" && type !== "saved" && (
-							<Button
-								href='/connection/user-profile/2'
-								className='w-full'
-								theme='outline'
-								onClick={() =>
-									router.push(`/collaboration/sedher-h2h-commerce/${_id}`)
-								}>
-								View H2H
-							</Button>
-						)}
-					</div>
+				</div>
+				<div className='flex items-center gap-5'>
+					{type !== "cancel" && type !== "complete" && type !== "saved" && (
+						<Button
+							href='/connection/user-profile/2'
+							className='w-full'
+							theme='outline'
+							onClick={() =>
+								router.push(`/collaboration/sedher-h2h-commerce/${_id}`)
+							}>
+							View H2H
+						</Button>
+					)}
 				</div>
 			</WhiteWrapper>
 		</motion.article>
