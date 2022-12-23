@@ -23,6 +23,15 @@ const create = () => {
 			description: "",
 			category: "",
 			quantity: "",
+			modelOrType: "",
+			itemDescription: "",
+			dimensions: "",
+			weight: "",
+			address: "",
+			lga: "",
+			state: "",
+			country: "",
+			shipmentDetails: "",
 		},
 		mode: "onChange",
 	});
@@ -40,32 +49,47 @@ const create = () => {
 	const token = Cookies.get("sedherToken");
 
 	const onSubmit: SubmitHandler<CreateH2HRequest | any> = async (data) => {
+		const {
+			name,
+			category,
+			description,
+			quantity,
+			modelOrType,
+			itemDescription,
+			dimensions,
+			weight,
+			address,
+			lga,
+			state,
+			country,
+			shipmentDetails,
+		} = data;
 		try {
 			const details = {
 				body: {
-					code: "6756655",
+					// code: "6756655",
 					productDetails: {
-						name: "Another PRoduct",
-						category: "payment for bills",
-						description: "payment item title 1",
-						quantity: 2,
+						name,
+						category,
+						description,
+						quantity,
 					},
 					images: ["cloudinary-link-here"],
 					itemDetails: {
-						modelOrType: "string",
-						description: "string",
+						modelOrType,
+						description: itemDescription,
 					},
 					technicalDetails: {
-						dimensions: "string",
-						weight: "string",
+						dimensions,
+						weight,
 					},
 					pickupLocation: {
-						address: "string",
-						lga: "string",
-						state: "string",
-						country: "Nigeria",
+						address,
+						lga,
+						state,
+						country,
 					},
-					shipmentDetails: "purchase-order",
+					shipmentDetails,
 					paymentDetails: {
 						paymentType: "FIXED",
 						prices: [
@@ -84,6 +108,7 @@ const create = () => {
 			).unwrap()) as CreateH2HResponse;
 			console.log(result);
 			toast.success("H2H created successfully");
+			router.push("/collaboration/sedher-h2h-commerce");
 		} catch (err: any) {
 			toast.error(err?.data?.message);
 		}
@@ -136,7 +161,7 @@ const create = () => {
 										/>
 									</div>
 								</WhiteWrapper>
-								<WhiteWrapper title='Technical Details'>
+								<WhiteWrapper title='Item Details'>
 									<div className='space-y-6'>
 										<Input
 											name='modelOrType'
@@ -144,7 +169,7 @@ const create = () => {
 											placeholder='Model or Type'
 										/>
 										<Input
-											name='description'
+											name='itemDescription'
 											label='Item Description'
 											placeholder='Item Description'
 										/>
