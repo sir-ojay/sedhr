@@ -34,7 +34,7 @@ const RegisterForm = () => {
 				lastName: lastName?.toString() || ("" as string),
 				email: email?.toString() || ("" as string),
 				password: data.password as string,
-				confirmpassword: data.confirmpassword as string,
+				confirmPassword: data.confirmpassword as string,
 			};
 			const user = await register(body).unwrap();
 			toast.success(user.message);

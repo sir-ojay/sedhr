@@ -30,7 +30,7 @@ export interface RegisterRequest {
 	firstName: string;
 	lastName: string;
 	password: string;
-	confirmpassword: string;
+	confirmPassword: string;
 }
 
 export interface VerifyEmailResponse {
