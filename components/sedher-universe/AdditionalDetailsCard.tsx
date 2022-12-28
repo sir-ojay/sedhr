@@ -3,9 +3,10 @@ import WhiteWrapper from "../global/WhiteWrapper";
 
 type AdditionalDetailsCardProps = {
 	type: "group" | "event" | "account" | "experience" | "profile";
+	email?: string;
 };
 
-const AdditionalDetailsCard = ({ type }: AdditionalDetailsCardProps) => {
+const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 	return (
 		<div className='col-span-3 '>
 			<div className='sticky top-[164px] space-y-5'>
@@ -62,7 +63,7 @@ const AdditionalDetailsCard = ({ type }: AdditionalDetailsCardProps) => {
 								</svg>
 								<div className='font-epilogue'>
 									<div className='text-[#4C4475'>Email</div>
-									<div className='text-[#2A2069]'>jakegyll@email.com</div>
+									<div className='text-[#2A2069]'>{email}</div>
 								</div>
 							</div>
 							<div className='flex gap-4'>

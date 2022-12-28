@@ -16,7 +16,7 @@ const AnalyticsCard = ({
 }: AnalyticsCardProps) => {
 	return (
 		<WhiteWrapper title={title}>
-			<div className='flex justify-between '>
+			<div className='flex justify-between  gap-3'>
 				<div>
 					<h4 className='font-archivo font-semibold text-[#25324B] text-base '>
 						{totalViews} profile Views

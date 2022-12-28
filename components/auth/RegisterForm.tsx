@@ -15,7 +15,7 @@ const RegisterForm = () => {
 	const methods = useForm({
 		defaultValues: {
 			password: "",
-			confirmpassword: "",
+			confirmPassword: "",
 		},
 		mode: "onChange",
 	});
