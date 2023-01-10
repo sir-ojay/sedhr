@@ -2,6 +2,7 @@ import Avatar from "@/components/global/Avatar";
 import Button from "@/components/global/Button";
 import StatusPill from "@/components/global/StatusPill";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
+import { Snergi } from "@/types/collaboration";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +13,14 @@ type SynergiCardProps = {
 	star?: boolean;
 };
 
-const SynergiCard = ({ type, star }: SynergiCardProps) => {
+const SynergiCard = ({
+	type,
+	star,
+	bookings,
+	id,
+	locationDetails,
+	equipments,
+}: SynergiCardProps & Snergi) => {
 	const router = useRouter();
 
 	return (
@@ -87,31 +95,42 @@ const SynergiCard = ({ type, star }: SynergiCardProps) => {
 					</div>
 					<div className='flex justify-between items-center gap-2'>
 						<span className='text-sm text-[#4C4475]'>
-							Distance <span className='text-[#FF3956]'>7KM</span>
+							{locationDetails?.country || ""}, {locationDetails?.state || ""}
 						</span>
-						<StatusPill text='Machine' bg='#1AD48D1A' textColor='#1AD48D' />
+						<StatusPill
+							text={bookings?.category.split("-").join(" ") || ""}
+							bg='#1AD48D1A'
+							textColor='#1AD48D'
+						/>
 					</div>
 					<div className='rounded-xl overflow-hidden'>
 						<Image
 							alt=''
-							className='w-full'
-							src='/assets/images/collabo.jpg'
+							className='w-full h-[192px] object-cover'
+							src={
+								equipments?.imageUrl ===
+								"https://user-profile0link.com/synergy/book.png"
+									? "/assets/images/collabo.jpg"
+									: equipments?.imageUrl || "/assets/images/collabo.jpg"
+							}
 							width={341}
 							height={192}
-							layout='responsive'
 						/>
 					</div>
 					<h4 className='font-semibold text-sm text-[#2A2069] hover:underline'>
-						Quis amet rutrum sem.
+						{bookings?.title}
 					</h4>
-					<div className='text-sm text-[#4C4475]'>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quam tempor
-						semper amet, morbi. Egestas massa ac aliquam quam velit.
+					<div className='text-sm text-[#4C4475] line-clamp-4'>
+						{bookings?.description}
 					</div>
 					<div className='flex items-center gap-5'>
 						<Button
 							onClick={() =>
-								router.push("/collaboration/sedher-synergi/gideon/edit")
+								router.push(
+									type === "create"
+										? "/collaboration/sedher-synergi/gideon/edit"
+										: `/collaboration/sedher-synergi/${id}`
+								)
 							}
 							className='w-full'
 							theme='outline'>

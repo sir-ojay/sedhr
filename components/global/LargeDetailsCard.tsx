@@ -149,6 +149,7 @@ const LargeDetailsCard = ({
 						className='absolute top-[50%] left-8 border-8 border-white rounded-full'
 						onClick={editProfilePhoto}>
 						<Image
+							alt=''
 							className='rounded-full border-2 border-[#B8C9C9]  '
 							src={data && data?.profilePicture}
 							width={140}

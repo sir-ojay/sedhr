@@ -6,10 +6,13 @@ import GridContainer from "@/components/global/GridContainer";
 import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
+import { useGetSnergisQuery } from "@/services/collaborations";
+import { Snergi } from "@/types/collaboration";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 type SedherSynergiProps = {
@@ -24,6 +27,7 @@ type SedherSynergiProps = {
 
 const SedherSynergi = ({ navigations }: SedherSynergiProps) => {
 	const [grid, setGrid] = useState(2);
+	const [snergiData, setSnergiData] = useState<Snergi[]>([]);
 
 	const getGrid = (grid: number) => {
 		setGrid(grid);
@@ -36,6 +40,17 @@ const SedherSynergi = ({ navigations }: SedherSynergiProps) => {
 		},
 		mode: "onChange",
 	});
+
+	const token: any = Cookies.get("sedherToken");
+
+	const { data, error, isLoading, isSuccess, isFetching } = useGetSnergisQuery({
+		token,
+	});
+
+	useEffect(() => {
+		console.log(data);
+		data && setSnergiData(data.data as Snergi[]);
+	}, [isSuccess, data]);
 
 	return (
 		<DefaultLayout title='Sedher | Collaboration | Sedher Synergi'>
@@ -59,13 +74,13 @@ const SedherSynergi = ({ navigations }: SedherSynergiProps) => {
 								size='sm'
 								className='w-[234px]'
 								onClick={() =>
-									router.push("/collaboration/sedher-synergi/templates")
+									router.push("/collaboration/sedher-synergi/create?step=1")
 								}>
-								Create H2H
+								Create
 							</Button>
 						</WhiteWrapper>
 
-						<WhiteWrapper>
+						{/* <WhiteWrapper>
 							<FormProvider {...methods}>
 								<form action=''>
 									<div
@@ -79,14 +94,19 @@ const SedherSynergi = ({ navigations }: SedherSynergiProps) => {
 									</p>
 								</form>
 							</FormProvider>
-						</WhiteWrapper>
+						</WhiteWrapper> */}
+						{isLoading && (
+							<GridContainer grid={grid}>
+								{[1, 2, 3, 4, 5, 6].map((card) => (
+									<WhiteWrapper key={card} className='h-[400px] w-full' />
+								))}
+							</GridContainer>
+						)}
 
 						<GridContainer grid={grid}>
-							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(
-								(card) => (
-									<SynergiCard key={card} type='all' />
-								)
-							)}
+							{snergiData.map((card) => (
+								<SynergiCard key={card.id} type='all' {...card} />
+							))}
 						</GridContainer>
 					</section>
 				</div>

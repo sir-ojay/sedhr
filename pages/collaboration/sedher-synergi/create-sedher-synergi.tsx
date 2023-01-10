@@ -23,7 +23,44 @@ const CreateSedherSynergi = ({ navigations }: CreateH2hProps) => {
 				<ListNav type='slug' navs={navigations} />
 				<section className='grid md:grid-cols-2 xl:grid-cols-3 gap-8 '>
 					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
-						<SynergiCard type='create' key={card} />
+						<SynergiCard
+							type='create'
+							key={card}
+							bookings={{
+								title: "",
+								category: "",
+								bookingPageLink: "",
+								description: "",
+							}}
+							equipments={{
+								imageUrl: "",
+								buildYear: "",
+								condition: "",
+								availability: "",
+								status: "",
+								weight: "",
+								dimension: "",
+								serialNumber: "",
+								documents: [],
+							}}
+							event={{
+								date: {
+									range: [],
+								},
+								availabilties: [],
+								availabilities: [],
+							}}
+							locationDetails={{
+								street: "",
+								lga: "",
+								state: "",
+								country: "",
+							}}
+							code={""}
+							createdAt={""}
+							updatedAt={""}
+							id={""}
+						/>
 					))}
 				</section>
 			</div>

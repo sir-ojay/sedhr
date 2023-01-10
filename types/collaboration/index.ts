@@ -101,3 +101,77 @@ export type GetH2HRequest = {
 	token: string;
 	id: string;
 };
+
+export type Snergi = {
+	bookings?: {
+		title: string;
+		category: string;
+		bookingPageLink: string;
+		description: string;
+	};
+	equipments?: {
+		imageUrl: string;
+		buildYear: string;
+		condition: string;
+		availability: string;
+		status: string;
+		weight: string;
+		dimension: string;
+		serialNumber: string;
+		documents: string[];
+	};
+	event?: {
+		date: {
+			range: [];
+		};
+		availabilties: [];
+		availabilities: [];
+	};
+	locationDetails?: {
+		street: string;
+		lga: string;
+		state: string;
+		country: string;
+	};
+	paymentDetails?: {
+		prices: [
+			{
+				value: number;
+				_id: string;
+			}
+		];
+		total: 500000;
+	};
+	code?: string;
+	createdAt?: string;
+	updatedAt?: string;
+	id?: string;
+};
+
+export type GetSnergisResponse = {
+	message: string;
+	data: Snergi[];
+};
+
+export type GetSnergisRequest = {
+	token: string;
+};
+
+export type GetSnergiResponse = {
+	message: string;
+	data: Snergi;
+};
+
+export type GetSnergiRequest = {
+	token: string;
+	id: string;
+};
+
+export type CreateSnergiRequest = {
+	token: string;
+	body: {};
+};
+
+export type CreateSnergiResponse = {
+	message: string;
+};

@@ -1,0 +1,41 @@
+.progressBar {
+  @apply bg-gray-100 border border-gray-200 rounded relative;
+  -webkit-box-shadow: inset 0px 4px 8px rgba(91, 91, 91, 0.08);
+          box-shadow: inset 0px 4px 8px rgba(91, 91, 91, 0.08);
+  height: 8px;
+  overflow: hidden;
+}
+.progressBar .progress {
+  @apply bg-primary absolute;
+  @apply inset-0;
+}
+.progressBar.indeterminate {
+  @apply border-none shadow-none rounded-none;
+  height: 6px;
+}
+.progressBar.indeterminate .progress {
+  -webkit-animation: loading 0.5s infinite;
+          animation: loading 0.5s infinite;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    left: -70%;
+  }
+  100% {
+    left: 70%;
+  }
+}
+
+@keyframes loading {
+  0% {
+    left: -70%;
+  }
+  100% {
+    left: 70%;
+  }
+}
