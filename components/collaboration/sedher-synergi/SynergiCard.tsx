@@ -106,7 +106,7 @@ const SynergiCard = ({
 					<div className='rounded-xl overflow-hidden'>
 						<Image
 							alt=''
-							className='w-full h-[192px] object-cover'
+							className='w-full h-[340px] object-cover'
 							src={
 								equipments?.imageUrl ===
 								"https://user-profile0link.com/synergy/book.png"
