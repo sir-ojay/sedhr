@@ -9,11 +9,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { profile } from "@/services/profile";
 import { collaboration } from "@/services/collaborations";
+import { settings } from "@/services/settings";
 
 export function makeStore() {
 	return configureStore({
 		reducer: {
 			[auth.reducerPath]: auth.reducer,
+			[settings.reducerPath]: settings.reducer,
 			[onboarding.reducerPath]: onboarding.reducer,
 			[notifications.reducerPath]: notifications.reducer,
 			[upload.reducerPath]: upload.reducer,
@@ -26,6 +28,7 @@ export function makeStore() {
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware().concat(
 				auth.middleware,
+				settings.middleware,
 				onboarding.middleware,
 				upload.middleware,
 				feed.middleware,

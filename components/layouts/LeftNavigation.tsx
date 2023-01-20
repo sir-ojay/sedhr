@@ -53,32 +53,32 @@ LeftNavigation.defaultProps = {
 				// 	icon: "my-connections",
 				// 	href: "/my-connections",
 				// },
-				{
-					name: "My Cart",
-					icon: "my-cart",
-					href: "/my-cart",
-					slug: "/my-products",
-					query: "?t=product",
-				},
-				{
-					name: "My Items",
-					icon: "my-items",
-					href: "/my-items",
-					slug: "/my-products",
-					query: "?t=product",
-				},
+				// {
+				// 	name: "My Cart",
+				// 	icon: "my-cart",
+				// 	href: "/my-cart",
+				// 	slug: "/my-products",
+				// 	query: "?t=product",
+				// },
+				// {
+				// 	name: "My Items",
+				// 	icon: "my-items",
+				// 	href: "/my-items",
+				// 	slug: "/my-products",
+				// 	query: "?t=product",
+				// },
 				{
 					name: "Sedher Universe",
 					icon: "sedher-universe",
 					// slug: "/my-connections",
 					href: "/sedher-universe",
 				},
-				{
-					name: "More Sedher",
-					icon: "more",
-					// href of More Sedher is null because it is not a link, but a button
-					href: null,
-				},
+				// {
+				// 	name: "More Sedher",
+				// 	icon: "more",
+				// 	// href of More Sedher is null because it is not a link, but a button
+				// 	href: null,
+				// },
 			],
 		},
 		{
@@ -115,11 +115,11 @@ LeftNavigation.defaultProps = {
 					icon: "notifications",
 					href: "/notifications",
 				},
-				{
-					name: "Messages",
-					icon: "messages",
-					href: "/messages",
-				},
+				// {
+				// 	name: "Messages",
+				// 	icon: "messages",
+				// 	href: "/messages",
+				// },
 				{
 					name: "Profile",
 					icon: "profile",
@@ -135,11 +135,11 @@ LeftNavigation.defaultProps = {
 					icon: "settings",
 					href: "/settings",
 				},
-				{
-					name: "Help center",
-					icon: "help-center",
-					href: "/help-center",
-				},
+				// {
+				// 	name: "Help center",
+				// 	icon: "help-center",
+				// 	href: "/help-center",
+				// },
 				{
 					name: "Logout",
 					icon: "logout",

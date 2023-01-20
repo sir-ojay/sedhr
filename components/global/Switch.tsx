@@ -1,8 +1,13 @@
 type SwitchProps = {
-	label: string;
+	label?: string;
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	value?: any;
+	bgFalse?: string;
+	bgTrue?: string;
+	id?: string;
 };
 
-const Switch = ({ label }: SwitchProps) => {
+const Switch = ({ label, onChange, value }: SwitchProps) => {
 	return (
 		<div className='flex'>
 			<div className='form-check flex form-switch space-x-[10px]'>
@@ -16,6 +21,9 @@ const Switch = ({ label }: SwitchProps) => {
 					type='checkbox'
 					role='switch'
 					id='flexSwitchCheckDefault'
+					onChange={onChange}
+					value={value}
+					checked={value}
 				/>
 			</div>
 		</div>
