@@ -119,6 +119,7 @@ const create = () => {
 			router.push("/collaboration/sedher-h2h-commerce");
 		} catch (err: any) {
 			toast.error(err?.data?.message);
+			console.log(err);
 		}
 	};
 	return (

@@ -35,7 +35,7 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 								<div className='font-epilogue'>
 									<div className='text-[#4C4475]'>Pofile link</div>
 									<div className='text-[#3772FF] cursor-pointer '>
-										eventlink.com/jrgry6788ll
+										eventlink.com/jrgry6788ll2
 									</div>
 								</div>
 							</div>
@@ -240,7 +240,7 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 								<div className='font-epilogue'>
 									<div className='text-dark-100'>Event Link</div>
 									<Button href='/' tag='a' className='text-dark-900'>
-										eventlink.com/jrgry6788ll
+										eventlink.com/jrgry6788ll2
 									</Button>
 								</div>
 							</div>

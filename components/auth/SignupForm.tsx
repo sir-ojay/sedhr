@@ -34,7 +34,6 @@ const SignupForm = () => {
 			};
 			const user = await verifyOTP(body).unwrap();
 			toast.success(user.message);
-			console.log(user);
 			router.push({
 				pathname: "/auth/signup",
 				query: {
@@ -46,7 +45,6 @@ const SignupForm = () => {
 				},
 			});
 		} catch (err: any) {
-			console.log("err", err);
 			toast.error(err?.data?.message);
 		}
 	};
