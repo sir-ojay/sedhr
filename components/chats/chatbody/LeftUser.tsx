@@ -2,9 +2,6 @@ import React from "react";
 import Avatar from "@/components/global/Avatar";
 
 const LeftUser = ({ message }: any) => {
-  let date = Date.now(message.timestamp);
-  console.log(message);
-
   return (
     <div className="flex  mb-4  space-x-6">
       <Avatar

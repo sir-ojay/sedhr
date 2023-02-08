@@ -4,16 +4,12 @@ import LeftUser from "./LeftUser";
 import { GetChatResponse } from "@/types/collaboration";
 
 
-const index = ({ data, user }: any) => {
-  let sender = user && JSON.parse(user);
-
-   
+const index = ({ data, user:sender }: any) => {
   return (
     <div>
       {data && (
         <div>
-          {data?.map((message, key) => {
-            console.log(message.timestamp); 
+          {data?.map((message:any, key:number) => {
             return message.sender.username == sender.username ? (
               <RightUser key={key} message={message} />
             ) : (

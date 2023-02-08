@@ -2,8 +2,6 @@ import React from "react";
 import Avatar from "@/components/global/Avatar";
 
 const RightUser = ({message}:any) => {
-  let date = Date.now( message.timestamp);
-  console.log(message);
   return (
     <div className="flex justify-end mb-4 space-x-6">
       <div className="max-w-sm">

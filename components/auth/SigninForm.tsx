@@ -40,7 +40,6 @@ const SigninForm = () => {
 			if (user.accountType) router.push("/feed");
 			else router.push("/onboarding/account");
 		} catch (err: any) {
-			console.log(err);
 			toast.error(err?.data?.error?.message);
 		}
 	};

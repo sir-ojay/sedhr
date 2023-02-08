@@ -6,15 +6,14 @@ import { Chat } from "@/types/collaboration";
 
 type SingleChatsProps = {
   card: Chat;
-  EachUser:any;
+  getUserIds:any;
 };
-const SingleChats = ({EachUser, card }: SingleChatsProps) => {
-  console.log(card)
+const SingleChats = ({getUserIds, card }: SingleChatsProps) => {
   const {
     query: { view },
   } = useRouter();
   return (
-    <div onClick={()=>{EachUser(card?.recipient?._id,card.sender);}} className={card ? "mt-4" : ""}>
+    <div onClick={()=>{getUserIds({receiverId:card?.recipient?._id,senderId:card.sender});}} className={card ? "mt-4" : ""}>
       <div className={card ? "bg-[#F5FBFE]" : " "}>
         <div className="flex space-x-5 py-4 px-4">
           <Avatar
@@ -26,7 +25,8 @@ const SingleChats = ({EachUser, card }: SingleChatsProps) => {
           <div className="w-3/4">
             <div className="flex justify-between">
               <h4 className="font-semibold bg-light-blue flex justify-between   text-dark-900 text-base font-archivo cursor-pointer">
-                {card.recipient.name ?card.recipient.name:"N/A" }
+                {"N/A" }
+                {/* {card.recipient.name ?card.recipient.name:"N/A" } */}
               </h4>
               <p className="font-normal text-base text-neutral-60">
                 12 mins ago
