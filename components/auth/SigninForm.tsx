@@ -35,8 +35,12 @@ const SigninForm = () => {
 			};
 			const user = (await login(body).unwrap()) as LoginResponse;
 			toast.success("Login successful");
-			Cookies.set("sedherUser", JSON.stringify(user));
-			Cookies.set("sedherToken", user.token);
+			Cookies.set("sedherUser", JSON.stringify(user), {
+				expires: 1,
+			});
+			Cookies.set("sedherToken", user.token, {
+				expires: 1,
+			});
 			if (user.accountType) router.push("/feed");
 			else router.push("/onboarding/account");
 		} catch (err: any) {
