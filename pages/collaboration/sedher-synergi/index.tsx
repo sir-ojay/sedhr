@@ -122,18 +122,18 @@ SedherSynergi.defaultProps = {
 		{
 			name: "Active Sedher Synergi",
 			href: "/collaboration/sedher-synergi/active-sedher-synergi",
-			count: 2,
+			count: "",
 			// query: "?t=product",
 		},
 		{
 			name: "Previous Sedher Synergi",
 			href: "/collaboration/sedher-synergi/previous-sedher-synergi",
-			count: 45,
+			count: "",
 		},
 		{
 			name: "Cancel Sedher Synergi",
 			href: "/collaboration/sedher-synergi/cancel-sedher-synergi",
-			count: 5,
+			count: "",
 		},
 	],
 };

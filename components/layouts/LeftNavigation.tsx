@@ -84,11 +84,11 @@ LeftNavigation.defaultProps = {
 		{
 			name: "SERVICES",
 			links: [
-				{
-					name: "Connection",
-					icon: "connection",
-					href: "/connection",
-				},
+				// {
+				// 	name: "Connection",
+				// 	icon: "connection",
+				// 	href: "/connection",
+				// },
 				{
 					name: "Collaboration",
 					icon: "collaboration",
@@ -103,7 +103,7 @@ LeftNavigation.defaultProps = {
 				{
 					name: "Marketplace",
 					icon: "marketplace",
-					href: "/marketplace",
+					href: null,
 				},
 			],
 		},
@@ -130,11 +130,11 @@ LeftNavigation.defaultProps = {
 		{
 			name: "SETTINGS",
 			links: [
-				{
-					name: "Settings",
-					icon: "settings",
-					href: "/settings",
-				},
+				// {
+				// 	name: "Settings",
+				// 	icon: "settings",
+				// 	href: "/settings",
+				// },
 				// {
 				// 	name: "Help center",
 				// 	icon: "help-center",

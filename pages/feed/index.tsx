@@ -82,8 +82,8 @@ const feed = () => {
 				<aside className='xl:col-span-2 hidden xl:block'>
 					<div className='sticky top-[164px] overflow-auto xl:h-[calc(100vh-160.76px)] space-y-6 pb-8 transition-all ease-in scrollbar-thin hover:scrollbar-thumb-transparent hover:scrollbar-track-transparent scrollbar-thumb-rounded-full scrollbar-track-rounded-full'>
 						<YouMightKnow />
-						<RecentEvents />
-						<RecentGroups />
+						{/* <RecentEvents />
+						<RecentGroups /> */}
 					</div>
 				</aside>
 			</div>

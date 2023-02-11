@@ -58,16 +58,15 @@ export type Post = {
 };
 
 export type Comment = {
-	_id: string;
-	authorId: {
-		_id: string;
-		username: string;
-		name: string;
-		profilePicture: string;
+	comment: {
+		content: string;
+		createdAt: string;
+		isEdited: boolean;
+		id: string;
 	};
-	content: string;
-	isEdited: boolean;
-	createdAt: string;
+	name: string;
+	profilePicture: string;
+	username: string;
 };
 
 export type GetTimelineRequest = {

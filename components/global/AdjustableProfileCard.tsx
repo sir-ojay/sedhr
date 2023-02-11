@@ -119,7 +119,7 @@ const AdjustableProfileCard = ({
 										{name}
 									</Link>
 									<div className='text-sm text-dark-100'>{description}</div>
-									<SmallAvatars name='Richard Ingwe' label='+300 seen' />
+									{/* <SmallAvatars name='Richard Ingwe' label='+300 seen' /> */}
 								</div>
 							</div>
 						</div>
@@ -191,7 +191,7 @@ const AdjustableProfileCard = ({
 						)}
 						{(cardType === "group" || cardType === "event") && (
 							<Button
-								onClick={() => Router.push(href)}
+								// onClick={() => Router.push(href)}
 								size='sm'
 								theme='outline'
 								className='w-full'>

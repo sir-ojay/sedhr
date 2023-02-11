@@ -59,6 +59,8 @@ const payment: NextPage = () => {
 		email: user?.email.toLowerCase() as string,
 		amount: amount * 100,
 		publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PK as string,
+		userId: user?._id as string,
+		paymentItem: "Sedher Subscription",
 	};
 
 	const onSuccess = (reference: void) => {

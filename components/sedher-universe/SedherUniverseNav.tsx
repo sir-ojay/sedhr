@@ -49,28 +49,28 @@ SedherUniverseNav.defaultProps = {
 		{
 			name: "My Connections",
 			href: "/sedher-universe/my-connections",
-			count: 45,
+			count: "",
 		},
 		// {
 		// 	name: "My Follows",
 		// 	href: "/sedher-universe/my-follows",
-		// 	count: 45,
+		// 	count: '',
 		// 	query: "?t=patientcarecenters",
 		// },
-		{
-			name: "My Groups",
-			href: "/sedher-universe/my-groups",
-			count: 45,
-		},
+		// {
+		// 	name: "My Groups",
+		// 	href: "/sedher-universe/my-groups",
+		// 	count: "",
+		// },
 		{
 			name: "My Events",
 			href: "/sedher-universe/my-events",
-			count: 45,
+			count: "",
 		},
 		// {
 		// 	name: "My Forums",
 		// 	href: "/sedher-universe/my-forums",
-		// 	count: 45,
+		// 	count: '',
 		// },
 	],
 };
