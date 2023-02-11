@@ -8,12 +8,13 @@ type ChatsWrapperProps = {
   children: React.ReactNode;
 };
 
-const ChatsWrapper = ({ children ,getUserIds }: ChatsWrapperProps & any) => {
+const ChatsWrapper = ({ children, getUserIds }: ChatsWrapperProps & any) => {
   const token = Cookies.get("sedherToken") as string;
 
-let  { data , isLoading } = useGetConversationQuery({
+  let { data, isLoading } = useGetConversationQuery({
     token,
   });
+  console.log(data);
   return (
     <div className="grid grid-cols-6 gap-8">
       <section className="col-span-2 space-y-6 ">
@@ -21,9 +22,9 @@ let  { data , isLoading } = useGetConversationQuery({
           <WhiteWrapper>
             {data?.data?.map((card) => (
               <SingleChats
-              getUserIds={getUserIds}
+                getUserIds={getUserIds}
                 card={card}
-                key={card.recipient._id}
+                key={card?.conversationPartner?._id}
               />
             ))}
           </WhiteWrapper>

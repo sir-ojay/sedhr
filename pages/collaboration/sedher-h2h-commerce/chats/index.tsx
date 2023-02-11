@@ -7,6 +7,7 @@ import { GetServerSideProps } from "next";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import dynamic from "next/dynamic";
 
+
 const ChatSection = dynamic(() =>
 import ("@/components/chats/ChatSection"), {   ssr: false });
 type ChatsProps = {
@@ -34,7 +35,7 @@ console.log({userIds})
       <FormProvider {...methods}>
         <section className="space-y-6">
           <ChatsWrapper getUserIds ={getUserIds}>
-            <ChatSection userIds={userIds}/>
+            {/* <ChatSection userIds={userIds}/> */}
           </ChatsWrapper>
         </section>
       </FormProvider>

@@ -24,8 +24,8 @@ export type RFP = {
     note: string;
   };
   timelines: {
-    fieldName: string;
-    value: string;
+    fieldName?: string;
+    value?: string;
   }[];
   paymentDetails: {
     paymentType: "FIXED";
@@ -85,6 +85,7 @@ export type H2H = {
   shipmentDetails: string;
   createdAt: string;
   updatedAt: string;
+owner: string;
 };
 
 export type GetH2HSResponse = {
@@ -118,7 +119,13 @@ export type Chat = {
     profilePicture: string;
     username: string;
   };
-  recipient: { _id: string };
+  conversationPartner: { 
+    _id: string;
+    name:string;
+    accountType:string;
+    profilePicture:string;
+  };
+  recipientId: string ;
   content: string;
   _id: string;
   timestamp: string;
@@ -134,8 +141,10 @@ export type CreateChatRequest = {
   body: {};
 };
 export type GetChatResponse = {
-  message: string;
-  data:any
+  message: any;
+  data:{
+    messages:[]
+  }
 };
 
 export type GetChatRequest = {

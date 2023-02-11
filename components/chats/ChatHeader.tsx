@@ -1,20 +1,23 @@
 import React from 'react';
 import Avatar from "../global/Avatar";
 
-const ChatHeader = () => {
+const ChatHeader = ({userIds}:any) => {
+	console.log(userIds?.conversationPartner?.profilePicture)
   return (
 <>
 			<div className='flex items-center justify-center mt-[12px]'>
-				<div className='flex flex-col text-center '>
+				<div className='flex flex-col text-center justify-center content-center '>
+					 <div className="flex justify-center content-center ">
 					<Avatar
 						size={88}
 						name={"Jan Mayer"}
 						shape='circle'
-						image='/assets/icons/layouts/profile.png'
+						image={userIds?.conversationPartner?.profilePicture}
 					/>
+					</div>
 					<div>
 						<h4 className='font-semibold bg-light-blue   text-dark-900 text-[24px] font-archivo cursor-pointer'>
-							Jan Mayer
+						{userIds?.conversationPartner?.name}
 						</h4>
 						<p className='font-normal text-base text-neutral-60'>
 							Designer candidate
