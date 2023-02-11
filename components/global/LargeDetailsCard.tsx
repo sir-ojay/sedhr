@@ -18,6 +18,7 @@ type LargeDetailsCardProps = {
 	editCoverPicture?: () => void;
 	editable?: boolean;
 	data?: any;
+	loading?: boolean;
 };
 
 const LargeDetailsCard = ({
@@ -25,6 +26,7 @@ const LargeDetailsCard = ({
 	editable,
 	editCoverPicture,
 	data,
+	loading,
 }: LargeDetailsCardProps) => {
 	const methods = useForm({
 		mode: "onChange",
@@ -48,6 +50,7 @@ const LargeDetailsCard = ({
 		setShowProfilePhoto(!showProfilePhoto);
 	};
 	const token = Cookies.get("sedherToken");
+
 	const [upload, { isLoading: isLoadingUploadDocument }] =
 		useUploadDocumentMutation();
 
@@ -137,7 +140,7 @@ const LargeDetailsCard = ({
 					</button>
 				)}
 				<Image
-					className='w-full bg-cover object-cover  '
+					className='w-full max-h-[140px] bg-cover object-cover'
 					src={data && data?.coverPicture}
 					width={2286}
 					height={420}
@@ -300,7 +303,9 @@ const LargeDetailsCard = ({
 						<div className='mt-6'>
 							<div className='flex items-center justify-end'>
 								<Button
-									loading={isLoadingUpload || isLoadingUploadDocument}
+									loading={
+										isLoadingUpload || isLoadingUploadDocument || loading
+									}
 									type='submit'
 									size='sm'
 									className='text-sm xl:text-base font-normal '>
