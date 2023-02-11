@@ -7,9 +7,11 @@ import { GetServerSideProps } from "next";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import dynamic from "next/dynamic";
 
+
 const ChatSection = dynamic(() => import("@/components/chats/ChatSection"), {
   ssr: false,
 });
+
 type ChatsProps = {
   defaultGrid: number;
   navs: {
@@ -34,8 +36,11 @@ const Chats = () => {
     <DefaultLayout title="Sedher | h2h Chat">
       <FormProvider {...methods}>
         <section className="space-y-6">
+
           <ChatsWrapper getUserIds={getUserIds}>
             <ChatSection userIds={userIds} />
+
+
           </ChatsWrapper>
         </section>
       </FormProvider>

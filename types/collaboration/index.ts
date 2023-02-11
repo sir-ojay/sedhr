@@ -1,13 +1,14 @@
 export type GetRFPSResponse = {
-  message: string;
-  data: RFP[];
+	message: string;
+	data: RFP[];
 };
 
 export type GetRFPSRequest = {
-  token: string;
+	token: string;
 };
 
 export type RFP = {
+
   _id: string;
   userId: string;
   productName: string;
@@ -38,18 +39,20 @@ export type RFP = {
   status: "pending" | "approved" | "rejected";
   createdAt: string;
   updatedAt: string;
+
 };
 
 export type CreateH2HRequest = {
-  token: string;
-  body: {};
+	token: string;
+	body: {};
 };
 
 export type CreateH2HResponse = {
-  message: string;
+	message: string;
 };
 
 export type H2H = {
+
   productDetails: {
     name: string;
     category: string;
@@ -86,28 +89,30 @@ export type H2H = {
   createdAt: string;
   updatedAt: string;
 owner: string;
+
 };
 
 export type GetH2HSResponse = {
-  message: string;
-  data: H2H[];
+	message: string;
+	data: H2H[];
 };
 
 export type GetH2HSRequest = {
-  token: string;
+	token: string;
 };
 
 export type GetH2HResponse = {
-  message: string;
-  data: H2H;
+	message: string;
+	data: H2H;
 };
 
 export type GetH2HRequest = {
-  token: string;
-  id: string;
+	token: string;
+	id: string;
 };
 
 export type Chat = {
+
   lastMessage: string;
   senderId: {
     _id: string;
@@ -129,109 +134,116 @@ export type Chat = {
   content: string;
   _id: string;
   timestamp: string;
+
 };
 
 export type CreateChatResponse = {
-  message: string;
-  getData: Chat;
+	message: string;
+	getData: Chat;
 };
 
 export type CreateChatRequest = {
-  token: string;
-  body: {};
+	token: string;
+	body: {};
 };
 export type GetChatResponse = {
+
   message: any;
   data:{
     messages:[]
   }
+
 };
 
 export type GetChatRequest = {
-  token: string;
-  senderId: string;
-  receiverId: string;
+	token: string;
+	senderId: string;
+	receiverId: string;
 };
 export type GetConvoResponse = {
-  message: string;
-  data: Chat[];
+	message: string;
+	data: Chat[];
 };
 
 export type GetConvoRequest = {
-  token: string;
+	token: string;
 };
 
 export type Snergi = {
-  bookings?: {
-    title: string;
-    category: string;
-    bookingPageLink: string;
-    description: string;
-  };
-  equipments?: {
-    imageUrl: string;
-    buildYear: string;
-    condition: string;
-    availability: string;
-    status: string;
-    weight: string;
-    dimension: string;
-    serialNumber: string;
-    documents: string[];
-  };
-  event?: {
-    date: {
-      range: [];
-    };
-    availabilties: [];
-    availabilities: [];
-  };
-  locationDetails?: {
-    street: string;
-    lga: string;
-    state: string;
-    country: string;
-  };
-  paymentDetails?: {
-    prices: [
-      {
-        value: number;
-        _id: string;
-      }
-    ];
-    total: 500000;
-  };
-  code?: string;
-  createdAt?: string;
-  updatedAt?: string;
-  id?: string;
+	bookings?: {
+		title: string;
+		category: string;
+		bookingPageLink: string;
+		description: string;
+	};
+	equipments?: {
+		imageUrl: string;
+		buildYear: string;
+		condition: string;
+		availability: string;
+		status: string;
+		weight: string;
+		dimension: string;
+		serialNumber: string;
+		documents: string[];
+	};
+	event?: {
+		date: {
+			range: [];
+		};
+		availabilties: [];
+		availabilities: [];
+	};
+	locationDetails?: {
+		street: string;
+		lga: string;
+		state: string;
+		country: string;
+	};
+	paymentDetails?: {
+		prices: [
+			{
+				value: number;
+				_id: string;
+			}
+		];
+		total: 500000;
+	};
+	owner?: {
+		accountType: string;
+		name: string;
+		profilePicture: string;
+	};
+	code?: string;
+	createdAt?: string;
+	updatedAt?: string;
+	id?: string;
 };
 
 export type GetSnergisResponse = {
-  message: string;
-  data: Snergi[];
+	message: string;
+	data: Snergi[];
 };
 
 export type GetSnergisRequest = {
-  token: string;
-  id: string;
+	token: string;
 };
 
 export type GetSnergiResponse = {
-  message: string;
-  data: Snergi;
+	message: string;
+	data: Snergi;
 };
 
 export type GetSnergiRequest = {
-  token: string;
-  id: string;
+	token: string;
+	id: string;
 };
 
 export type CreateSnergiRequest = {
-  token: string;
-  body: {};
+	token: string;
+	body: {};
 };
 
 export type CreateSnergiResponse = {
-  message: string;
+	message: string;
 };

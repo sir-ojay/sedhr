@@ -33,14 +33,14 @@ const Activity = () => {
 			name: "Activity",
 			href: `/profile/${userId}/activity`,
 		},
-		{
-			name: "Events",
-			href: `/profile/${userId}/event`,
-		},
-		{
-			name: "Group",
-			href: `/profile/${userId}/group`,
-		},
+		// {
+		// 	name: "Events",
+		// 	href: `/profile/${userId}/event`,
+		// },
+		// {
+		// 	name: "Group",
+		// 	href: `/profile/${userId}/group`,
+		// },
 	];
 	const [posts, setPosts] = useState<Posts>();
 	const token: any = Cookies.get("sedherToken");
@@ -64,9 +64,16 @@ const Activity = () => {
 		<DefaultLayout>
 			<div className='flex flex-col lg:grid lg:grid-cols-9 gap-8'>
 				<div className='col-span-6 space-y-5'>
-					<LargeDetailsCard type='profile' data={userData && userData.data} />
-					<ListNav navs={navs} type='slug' />
-					<div>
+					{!isLoading && (
+						<>
+							<LargeDetailsCard
+								type='profile'
+								data={userData && userData.data}
+							/>
+							<ListNav navs={navs} type='slug' />
+						</>
+					)}
+					{/* <div>
 						<div className='flex items-center gap-3'>
 							<Button
 								theme='plain'
@@ -84,7 +91,7 @@ const Activity = () => {
 								Document
 							</Button>
 						</div>
-					</div>
+					</div> */}
 					<div>
 						{isLoading && (
 							<div className='flex justify-center items-center pt-10'>

@@ -20,6 +20,7 @@ const SynergiCard = ({
 	id,
 	locationDetails,
 	equipments,
+	owner,
 }: SynergiCardProps & Snergi) => {
 	const router = useRouter();
 
@@ -32,20 +33,21 @@ const SynergiCard = ({
 							href='/connection/1'
 							shape='square'
 							size={54}
-							name='Thomas clinics'
+							name={owner?.name!}
+							image={owner?.profilePicture!}
 						/>
 						<div className='w-full flex justify-between'>
 							<div>
 								<Link
 									href='/connection/1'
 									className='font-semibold text-[#2A2069] hover:underline'>
-									Thomas clinics
+									{owner?.name}
 								</Link>
-								<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
+								{/* <div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
 									Dental clinics
-								</div>
+								</div> */}
 								<div className='text-sm text-accents-brown'>
-									Patient care centres
+									{owner?.accountType}
 								</div>
 							</div>
 							<div>
