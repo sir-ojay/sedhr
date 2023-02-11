@@ -4,9 +4,14 @@ import WhiteWrapper from "../global/WhiteWrapper";
 type AdditionalDetailsCardProps = {
 	type: "group" | "event" | "account" | "experience" | "profile";
 	email?: string;
+	username?: string;
 };
 
-const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
+const AdditionalDetailsCard = ({
+	type,
+	email,
+	username,
+}: AdditionalDetailsCardProps) => {
 	return (
 		<div className='col-span-3 '>
 			<div className='sticky top-[164px] space-y-5'>
@@ -16,12 +21,13 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 					</h5>
 					{type === "profile" && (
 						<div className='mt-4 space-y-4'>
-							<div className='flex gap-4'>
+							<div className='flex gap-4 w-full overflow-hidden'>
 								<svg
 									width='24'
 									height='24'
 									viewBox='0 0 24 24'
 									fill='none'
+									className='w-6 h-6'
 									xmlns='http://www.w3.org/2000/svg'>
 									<path
 										d='M16 7C16 8.06087 15.5786 9.07828 14.8284 9.82843C14.0783 10.5786 13.0609 11 12 11C10.9391 11 9.92172 10.5786 9.17157 9.82843C8.42143 9.07828 8 8.06087 8 7C8 5.93913 8.42143 4.92172 9.17157 4.17157C9.92172 3.42143 10.9391 3 12 3C13.0609 3 14.0783 3.42143 14.8284 4.17157C15.5786 4.92172 16 5.93913 16 7V7ZM12 14C10.1435 14 8.36301 14.7375 7.05025 16.0503C5.7375 17.363 5 19.1435 5 21H19C19 19.1435 18.2625 17.363 16.9497 16.0503C15.637 14.7375 13.8565 14 12 14V14Z'
@@ -32,10 +38,10 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 									/>
 								</svg>
 
-								<div className='font-epilogue'>
-									<div className='text-[#4C4475]'>Pofile link</div>
-									<div className='text-[#3772FF] cursor-pointer '>
-										eventlink.com/jrgry6788ll2
+								<div className='font-epilogue w-[calc(100%-40px)]'>
+									<div className='text-[#4C4475]'>Profile link</div>
+									<div className='text-[#3772FF] w-full cursor-pointer text-sm break-words'>
+										{process.env.NEXT_PUBLIC_APP_URL + `profile/${username}`}
 									</div>
 								</div>
 							</div>
@@ -105,7 +111,7 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 
 								<div className='font-epilogue'>
 									<div className='text-[#4C4475'>Connected</div>
-									<div className='text-[#2A2069]'>April 20, 2020</div>
+									<div className='text-[#2A2069]'>December 20, 2022</div>
 								</div>
 							</div>
 							<div className='flex gap-4'>
@@ -140,7 +146,7 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 
 								<div className='font-epilogue'>
 									<div className='text-[#4C4475'>Languages</div>
-									<div className='text-[#2A2069]'>English, French</div>
+									<div className='text-[#2A2069]'>English</div>
 								</div>
 							</div>
 						</div>

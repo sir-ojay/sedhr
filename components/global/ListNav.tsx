@@ -35,7 +35,7 @@ const ListNav = ({ navs, type = "query" }: ListNavProps) => {
 							) : (
 								<div
 									className={`font-semibold px-5 pb-2 ${
-										location.pathname.includes(nav.href)
+										location.asPath === nav.href
 											? "border-b-4 border-b-primary text-dark-900"
 											: "text-dark-100"
 									}`}>
