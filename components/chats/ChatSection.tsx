@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { ZIM } from 'zego-zim-web';
 import { appID,generateToken } from "@/helpers/zegoToken";
 import JWT from "jsonwebtoken"
+import GoBackButton from "../global/GoBackButton";
 
 
 ZIM.create({ appID });
@@ -43,9 +44,10 @@ let  user: any = JSON.parse(Cookies.get("sedherUser") as string)
   const [messages, setMessage] = useState<any[]>([])
   useEffect(()=>{
     if(data?.data){ 
-      setMessage([...data?.data].reverse())
+      console.log(data?.data?.messages)
+      setMessage([...data?.data?.messages].reverse())
     }
-  },[data?.data])
+  },[data?.data?.messages])
   const memoizedCallback = useCallback(
     () => {
       handleLogin()
@@ -66,15 +68,14 @@ let  user: any = JSON.parse(Cookies.get("sedherUser") as string)
 
 //     // Set up and listen for the callback for receiving one-to-one messages. 
     zim.on('receivePeerMessage', function (zim, { messageList, fromConversationID }) {
-          let response= {
+          let response:any = {
             content :messageList[0].message,
             id:messageList[0].senderUserID,
-            sender:{id:messageList[0].senderUserID
-            },
+            sender:{id:messageList[0].senderUserID},
             profilePicture:"none",
             username:"none",
            } 
-    setMessage((previousMessages:any[])=>[...previousMessages,response])
+    setMessage((previousMessages)=>[...previousMessages,response])
     });
 
 //     // Set up and listen for the callback for token expires.
@@ -89,12 +90,17 @@ return (<>
 </>)
 
  return (
-    <WhiteWrapper>
-      <ChatHeader />
-      <ChatBody user={user} data={messages} />
-      <ChatBottom chatController={zim} userIds={userIds}/>
-    </WhiteWrapper>
-  );
+   <>
+     {" "}
+     <GoBackButton label="Chat" />
+     
+     <WhiteWrapper>
+       <ChatHeader userIds={userIds} />
+       <ChatBody user={user} userIds={userIds} data={messages} />
+       <ChatBottom chatController={zim} userIds={userIds} />
+     </WhiteWrapper>
+   </>
+ );
 };
  
 export default ChatSection 

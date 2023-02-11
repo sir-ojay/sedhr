@@ -24,14 +24,12 @@ const Details = () => {
     token,
     id: router.query.id?.toString()!,
   });
+  console.log(data?.data?.owner)
   const [chat] = useCreateMessageMutation();
   const startChat = async () => {
     const result = await chat({
       token,
-      body: { content: "Hello ", receiverId:  "63e2f880dfaddd3d3fa9b11b"}, 
-      // body: { content: "Hello ", receiverId:  "63e243c8ceb38670b1965fae"}, 
-      
-      // body: { content: "Hello ", receiverId: router.query.id?.toString()! }, 
+      body: { content: "Hello ", receiverId: data?.data?.owner}, 
     }).unwrap();
     router.push("/collaboration/sedher-h2h-commerce/chats");
   };

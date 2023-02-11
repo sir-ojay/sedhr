@@ -13,27 +13,31 @@ const SingleChats = ({getUserIds, card }: SingleChatsProps) => {
     query: { view },
   } = useRouter();
   return (
-    <div onClick={()=>{getUserIds({receiverId:card?.recipient?._id,senderId:card.sender});}} className={card ? "mt-4" : ""}>
+    <div onClick={()=>{getUserIds({
+      receiverId:card?.recipientId ,
+      senderId:card.senderId,
+      conversationPartner:card.conversationPartner,
+    });}} className={card ? "mt-4" : ""}>
       <div className={card ? "bg-[#F5FBFE]" : " "}>
         <div className="flex space-x-5 py-4 px-4">
           <Avatar
             size={48}
-            name={"Jan Mayer"}
+            name={card.conversationPartner.name}
             shape="circle"
-            image="/assets/icons/layouts/profile.png"
+            image={card.conversationPartner.profilePicture}
           />
           <div className="w-3/4">
             <div className="flex justify-between">
               <h4 className="font-semibold bg-light-blue flex justify-between   text-dark-900 text-base font-archivo cursor-pointer">
-                {"N/A" }
-                {/* {card.recipient.name ?card.recipient.name:"N/A" } */}
+              {card.conversationPartner.name ||  "N/A"} 
               </h4>
               <p className="font-normal text-base text-neutral-60">
                 12 mins ago
               </p>
             </div>
             <div className="text-accents-brown mb-1 text-[15px]">
-              HCP <span className=" text-neutral-80 "> Designer candidate</span>
+              {card.conversationPartner.accountType}
+         <span className=" text-neutral-80 "> Designer candidate</span>
             </div>
             {view !== "emails" && (
               <div className="text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]">
