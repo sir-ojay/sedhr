@@ -26,6 +26,7 @@ const Details = () => {
   });
   console.log(data?.data?.owner)
   const [chat] = useCreateMessageMutation();
+
   const startChat = async () => {
     const result = await chat({
       token,
