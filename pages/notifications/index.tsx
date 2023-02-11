@@ -11,6 +11,16 @@ import { useEffect, useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { toast } from "react-toastify";
 
+export type NotificationsProps = {
+	category: string;
+	content: string;
+	createdAt: string;
+	title: string;
+	updatedAt: string;
+	userId: string;
+	_id: string;
+};
+
 const NotificationsPage = () => {
 	const methods = useForm({
 		defaultValues: {
@@ -18,7 +28,9 @@ const NotificationsPage = () => {
 		},
 		mode: "onChange",
 	});
-	const [userNotifications, setUserNotifications] = useState([]);
+	const [userNotifications, setUserNotifications] =
+		useState<NotificationsProps[]>();
+
 	const token = Cookies.get("sedherToken");
 
 	const [getUserNotification, { isLoading }] = useGetUserNotificationMutation();
@@ -27,15 +39,13 @@ const NotificationsPage = () => {
 		const handleGetNotifcation = async () => {
 			try {
 				const data = await getUserNotification(token).unwrap();
-				setUserNotifications(data.data as any);
-				console.log(userNotifications);
+				setUserNotifications(data.data);
 			} catch (err: any) {
 				toast.error(err?.data?.message);
 			}
 		};
 		handleGetNotifcation();
 	}, []);
-	console.log(userNotifications);
 
 	return (
 		<DefaultLayout title='Sedher | Notifications'>
@@ -43,7 +53,7 @@ const NotificationsPage = () => {
 				<div>
 					<div className='font-bold text-2xl text-dark-900'>Notifications</div>
 				</div>
-				<div className='flex items-center gap-4 font-epilogue'>
+				{/* <div className='flex items-center gap-4 font-epilogue'>
 					<div className='text-dark-100'>Sort by:</div>
 					<div className='flex items-center gap-2 font-medium cursor-pointer'>
 						Most Recent
@@ -88,19 +98,23 @@ const NotificationsPage = () => {
 							</svg>
 						</button>
 					</div>
-				</div>
+				</div> */}
 			</header>
 			<div className='grid  gap-6'>
 				{/* grid-cols-9 will be later apply to grid container when there is an aside */}
 				<section className='col-span-7'>
-					{/* {!isLoading && (
+					{!isLoading && (
 						<WhiteWrapper>
-							{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((notification) => (
-								<NotificationCard key={notification} index={notification} />
+							{userNotifications?.map((notification, index) => (
+								<NotificationCard
+									{...notification}
+									key={notification._id}
+									index={index}
+								/>
 							))}
 						</WhiteWrapper>
-					)} */}
-					{!isLoading && userNotifications.length === 0 && (
+					)}
+					{!isLoading && userNotifications?.length === 0 && (
 						<WhiteWrapper>
 							You don't have any notifications available
 						</WhiteWrapper>

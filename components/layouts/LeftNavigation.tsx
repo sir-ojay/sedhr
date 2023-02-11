@@ -103,7 +103,7 @@ LeftNavigation.defaultProps = {
 				{
 					name: "Marketplace",
 					icon: "marketplace",
-					href: "/marketplace",
+					href: null,
 				},
 			],
 		},
