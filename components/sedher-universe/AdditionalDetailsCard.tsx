@@ -26,9 +26,9 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 									<path
 										d='M16 7C16 8.06087 15.5786 9.07828 14.8284 9.82843C14.0783 10.5786 13.0609 11 12 11C10.9391 11 9.92172 10.5786 9.17157 9.82843C8.42143 9.07828 8 8.06087 8 7C8 5.93913 8.42143 4.92172 9.17157 4.17157C9.92172 3.42143 10.9391 3 12 3C13.0609 3 14.0783 3.42143 14.8284 4.17157C15.5786 4.92172 16 5.93913 16 7V7ZM12 14C10.1435 14 8.36301 14.7375 7.05025 16.0503C5.7375 17.363 5 19.1435 5 21H19C19 19.1435 18.2625 17.363 16.9497 16.0503C15.637 14.7375 13.8565 14 12 14V14Z'
 										stroke='#25324B'
-										stroke-width='2'
-										stroke-linecap='round'
-										stroke-linejoin='round'
+										strokeWidth='2'
+										strokeLinecap='round'
+										strokeLinejoin='round'
 									/>
 								</svg>
 
@@ -77,23 +77,23 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 										<path
 											d='M16 4H8C7.44772 4 7 4.44772 7 5V19C7 19.5523 7.44772 20 8 20H16C16.5523 20 17 19.5523 17 19V5C17 4.44772 16.5523 4 16 4Z'
 											stroke='#4C4475'
-											stroke-width='2'
-											stroke-linecap='round'
-											stroke-linejoin='round'
+											strokeWidth='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'
 										/>
 										<path
 											d='M11 5H13'
 											stroke='#4C4475'
-											stroke-width='2'
-											stroke-linecap='round'
-											stroke-linejoin='round'
+											strokeWidth='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'
 										/>
 										<path
 											d='M12 17V17.01'
 											stroke='#2A2069'
-											stroke-width='2'
-											stroke-linecap='round'
-											stroke-linejoin='round'
+											strokeWidth='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'
 										/>
 									</g>
 									<defs>
@@ -119,16 +119,16 @@ const AdditionalDetailsCard = ({ type, email }: AdditionalDetailsCardProps) => {
 										<path
 											d='M5 7H12M10 5V7C10 9.12173 9.47322 11.1566 8.53553 12.6569C7.59785 14.1571 6.32608 15 5 15M6 11C5.99834 12.0318 6.69452 13.0241 7.94307 13.7695C9.19163 14.5149 10.896 14.9558 12.7 15'
 											stroke='#4C4475'
-											stroke-width='2'
-											stroke-linecap='round'
-											stroke-linejoin='round'
+											strokeWidth='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'
 										/>
 										<path
 											d='M11 19L15 10L19 19M18.1 17H11.9'
 											stroke='#4C4475'
-											stroke-width='2'
-											stroke-linecap='round'
-											stroke-linejoin='round'
+											strokeWidth='2'
+											strokeLinecap='round'
+											strokeLinejoin='round'
 										/>
 									</g>
 									<defs>
