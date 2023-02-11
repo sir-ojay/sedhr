@@ -168,13 +168,13 @@ const FeedPost = ({
 							</div>
 						</div>
 					</div>
-					<button type='button' className='transform rotate-90'>
+					{/* <button type='button' className='transform rotate-90'>
 						<img
 							src='/assets/icons/layouts/more.svg'
 							alt='see more'
 							title='see more'
 						/>
-					</button>
+					</button> */}
 				</header>
 				<section className='space-y-5'>
 					<p className='text-sm xl:text-base leading-[160%]'>
@@ -265,20 +265,20 @@ const FeedPost = ({
 									Comment
 								</span>
 							</button>
-							<button
+							{/* <button
 								type='button'
 								className='flex items-center gap-2 xl:gap-4'>
 								<div>
 									<img
 										src='/assets/icons/feed/share.svg'
-										alt='see more'
-										title='see more'
+										alt='share'
+										title='share'
 									/>
 								</div>
 								<span className='text-dark-100 text-xs xl:text-sm font-medium'>
 									Share
 								</span>
-							</button>
+							</button> */}
 						</div>
 					)}
 					{showComments && (
@@ -318,31 +318,35 @@ const FeedPost = ({
 
 							<div className='mt-6 space-y-2'>
 								{comments.map((comment) => {
-									const { isEdited, _id, authorId, content, createdAt } =
-										comment;
+									const {
+										name,
+										username,
+										profilePicture = "",
+										comment: { id, isEdited, content, createdAt },
+									} = comment;
 									return (
-										<div key={_id}>
+										<div key={id}>
 											<div className='flex items-center gap-4'>
 												<div>
 													<div className='hidden xl:block'>
 														<Avatar
-															name={authorId?.name || "SDR"}
+															name={name || "SDR"}
 															size={48}
-															href={`/profile/${authorId?.username}`}
-															image='/assets/icons/layouts/profile.png'
+															href={`/profile/${username}`}
+															image={profilePicture}
 														/>
 													</div>
 													<div className='xl:hidden'>
 														<Avatar
 															name={user?.name || "SDR"}
 															size={35}
-															href={`/profile/${authorId?.username}`}
-															image='/assets/icons/layouts/profile.png'
+															href={`/profile/${username}`}
+															image={profilePicture}
 														/>
 													</div>
 												</div>
 												<div className='text-title text-sm xl:text-base font-semibold'>
-													{authorId.name}
+													{name}
 												</div>
 											</div>
 											<div className='ml-12 xl:ml-16 space-y-2'>

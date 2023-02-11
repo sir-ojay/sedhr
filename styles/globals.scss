@@ -116,7 +116,8 @@ select {
 	transform: scale(1);
 	opacity: 1;
 	overflow-y: auto;
-	height: 80vh;
+	max-height: 80vh;
+	overflow-y: scroll;
 }
 
 .ReactModal__Content--before-close {

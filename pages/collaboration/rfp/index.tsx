@@ -141,17 +141,17 @@ RFPPage.defaultProps = {
 		{
 			name: "Active RFP",
 			href: "/collaboration/rfp/active-rfp",
-			count: 45,
+			count: "",
 		},
 		{
 			name: "Complete RFP",
 			href: "/collaboration/rfp/complete-rfp",
-			count: 45,
+			count: "",
 		},
 		{
 			name: "Saved RFP",
 			href: "/collaboration/rfp/saved-rfp",
-			count: 45,
+			count: "",
 		},
 	],
 };

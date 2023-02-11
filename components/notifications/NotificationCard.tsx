@@ -1,16 +1,23 @@
+import Link from "next/link";
+import { NotificationsProps } from "pages/notifications";
 import Button from "../global/Button";
 
 type NotificationCardProps = {
 	index: number;
-};
+} & NotificationsProps;
 
-const NotificationCard = ({ index }: NotificationCardProps) => {
+const NotificationCard = ({
+	index,
+	content,
+	_id,
+	createdAt,
+	userId,
+	category,
+}: NotificationCardProps) => {
 	return (
 		<article
-			className={`flex items-center pb-6 ${index !== 1 ? "pt-6" : ""} ${
-				index !== 10 ? "border-b-2 boreder-[#B8C9C9]" : ""
-			}`}>
-			<div className='flex gap-6'>
+			className={`flex items-center justify-between pb-6 pt-6 border-b-2 border-[#B8C9C9]`}>
+			<div className='flex gap-6 items-center'>
 				<svg
 					width='64'
 					height='64'
@@ -54,17 +61,15 @@ const NotificationCard = ({ index }: NotificationCardProps) => {
 						</clipPath>
 					</defs>
 				</svg>
-				<p className='w-[calc(100%-64px)] max-w-[60%] text-dark-900 leading-[150%]'>
-					As an Applied Doctor in the field of Consumer and Society, I am
-					specializedin creating business opportunities by observing,
-					analysing,researching and changing behaviour.
+				<p className='w-[calc(100%-64px)] max-w-[60%] text-dark-900 leading-[150%] line-clamp-2'>
+					{content}
 				</p>
 			</div>
-			{/* <div>
+			<Link href='/feed' passHref>
 				<Button className='w-[150px]' size='sm' theme='outline'>
-					View event
+					{category === "posts" ? "View Post" : "View"}
 				</Button>
-			</div> */}
+			</Link>
 		</article>
 	);
 };
