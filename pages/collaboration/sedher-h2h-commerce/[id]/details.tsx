@@ -24,15 +24,19 @@ const Details = () => {
     token,
     id: router.query.id?.toString()!,
   });
-  console.log(data?.data?.owner)
-  const [chat] = useCreateMessageMutation();
-
+  console.log(data?.data?.owner);
+  const [chat, messageMutationData] = useCreateMessageMutation();
   const startChat = async () => {
-    const result = await chat({
-      token,
-      body: { content: "Hello ", receiverId: data?.data?.owner}, 
-    }).unwrap();
-    router.push("/collaboration/sedher-h2h-commerce/chats");
+    try {
+      const result = await chat({
+        token,
+        body: { content: "Hello ", receiverId: data?.data?.owner },
+      }).unwrap();
+      router.push("/collaboration/sedher-h2h-commerce/chats");
+    } catch (error: any) {
+      alert(error?.data?.error);
+      // console.log(err );
+    }
   };
   return (
     <DefaultLayout title="Sedher | Collaboration | RFP">
