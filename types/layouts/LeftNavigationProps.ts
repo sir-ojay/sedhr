@@ -9,6 +9,7 @@ export type LeftNavigationProps = {
 			icon: string;
 			query?: string;
 			slug?: string;
+			external?: boolean;
 		}[];
 	}[];
 };

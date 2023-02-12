@@ -37,6 +37,7 @@ const Navigations = ({ navigations }: LeftNavigationProps) => {
 										href={`${item.href}${item.slug ? item.slug : ""}${
 											item.query ? item.query : ""
 										}`}
+										target={item.external ? "_blank" : "_self"}
 										className={`nav-hover text-sm xl:text-base ${
 											location.pathname.includes(item.href) ? "active" : ""
 										} cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}>
