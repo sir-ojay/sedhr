@@ -31,13 +31,13 @@ const SingleChats = ({getUserIds, card }: SingleChatsProps) => {
               <h4 className="font-semibold bg-light-blue flex justify-between   text-dark-900 text-base font-archivo cursor-pointer">
               {card.conversationPartner.name ||  "N/A"} 
               </h4>
-              <p className="font-normal text-base text-neutral-60">
+              {/* <p className="font-normal text-base text-neutral-60">
                 12 mins ago
-              </p>
+              </p> */}
             </div>
             <div className="text-accents-brown mb-1 text-[15px]">
               {card.conversationPartner.accountType}
-         <span className=" text-neutral-80 "> Designer candidate</span>
+         {/* <span className=" text-neutral-80 "> Designer candidate</span> */}
             </div>
             {view !== "emails" && (
               <div className="text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]">

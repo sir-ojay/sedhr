@@ -19,9 +19,9 @@ const ChatHeader = ({userIds}:any) => {
 						<h4 className='font-semibold bg-light-blue   text-dark-900 text-[24px] font-archivo cursor-pointer'>
 						{userIds?.conversationPartner?.name}
 						</h4>
-						<p className='font-normal text-base text-neutral-60'>
+						{/* <p className='font-normal text-base text-neutral-60'>
 							Designer candidate
-						</p>
+						</p> */}
 					</div>
 				</div>
 			</div>
