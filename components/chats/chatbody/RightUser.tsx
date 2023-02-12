@@ -12,9 +12,9 @@ const RightUser = ({message}:any) => {
           {message?.content}
         </p>
         
-        <p className="font-normal text-right py-2 text-base text-neutral-60">
+        {/* <p className="font-normal text-right py-2 text-base text-neutral-60">
           12 mins ago
-        </p>
+        </p> */}
       </div>
       <Avatar
         size={44}

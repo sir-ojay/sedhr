@@ -15,9 +15,9 @@ const LeftUser = ({ message,userIds }: any) => {
         <p className=" border border-[#D6DDEB] bg-white px-4 py-3">
           {message?.content}
         </p>
-        <p className="font-normal  py-2 text-base text-neutral-60">
+        {/* <p className="font-normal  py-2 text-base text-neutral-60">
           12 mins ago
-        </p>
+        </p> */}
       </div>
     </div>
   );
