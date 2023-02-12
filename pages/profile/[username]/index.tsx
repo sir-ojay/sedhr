@@ -20,10 +20,12 @@ import {
 	useUserProfileDetailsQuery,
 } from "@/services/profile";
 import { useUploadDocumentMutation } from "@/services/upload";
+import { LoginResponse } from "@/types/auth/auth";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import education from "./details/education";
 
@@ -65,7 +67,17 @@ const ProfilePage = () => {
 		formState: { errors, isValid },
 	} = methods;
 
-	const user = JSON.parse(Cookies.get("sedherUser") || "{}");
+	const [user, setUser] = useState<LoginResponse>();
+
+	useEffect(() => {
+		try {
+			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
+			setUser(user);
+		} catch (error) {
+			console.log(error);
+		}
+	}, []);
+
 	// const name = user.name?.replace(/\s/g, "").toLowerCase();
 	// const username = user.username?.replace(/\s/g, "").toLowerCase();
 
@@ -79,6 +91,8 @@ const ProfilePage = () => {
 		id: username || "",
 	});
 	console.log(data);
+
+	const editable = user?.username === username;
 
 	//load existing data from database
 	// useEffect(() => {
@@ -124,67 +138,78 @@ const ProfilePage = () => {
 	const navigations = [
 		{
 			name: "Home",
-			href: `/profile/`,
+			href: `/profile/${username}`,
 		},
 		{
 			name: "Activity",
 			href: `/profile/${username}/activity`,
 		},
-		{
-			name: "Events",
-			href: `/profile/${username}/event`,
-		},
-		{
-			name: "Group",
-			href: `/profile/${username}/group`,
-		},
+		// {
+		// 	name: "Events",
+		// 	href: `/profile/${username}/event`,
+		// },
+		// {
+		// 	name: "Group",
+		// 	href: `/profile/${username}/group`,
+		// },
 	];
 
 	return (
 		<DefaultLayout title='Sedher | Profile'>
-			<div className='flex flex-col lg:grid lg:grid-cols-9 gap-8'>
-				<div className='col-span-6 space-y-5'>
-					<LargeDetailsCard
+			{!isLoading && (
+				<div className='flex flex-col lg:grid lg:grid-cols-9 gap-8'>
+					<div className='col-span-6 space-y-5'>
+						<LargeDetailsCard
+							type='profile'
+							editCoverPicture={editCoverPicture}
+							editable={editable}
+							data={data && data.data}
+							loading={isLoadingUpload || isLoadingUploadDocument}
+						/>
+						<ListNav navs={navigations} type='slug' />
+						<AboutCard
+							editable={true}
+							title='About Me'
+							description={data && data.data.about}
+						/>
+						{/* <AnalyticsCard
+							title='Analytics'
+							totalViews={6}
+							totalImpressions={1}
+							totalAppearances={0}
+						/> */}
+						<WhiteWrapper>
+							<Experience experiences={data && data.data.experiences} />
+						</WhiteWrapper>
+						<WhiteWrapper>
+							<Education educations={data && data.data.educations} />
+						</WhiteWrapper>
+						<WhiteWrapper>
+							<LicensesCertificate educations={data && data.data.educations} />
+						</WhiteWrapper>
+						{/* <SkillsCard
+							skills={[
+								"Communication",
+								"Ceneral Medicine",
+								"Detail Oriented",
+								"Leadership",
+								"Psychiatry",
+							]}
+						/>
+						<RecommendationCard /> */}
+					</div>
+					<AdditionalDetailsCard
+						email={data && data.data.email}
+						username={data && data.data.username}
 						type='profile'
-						editCoverPicture={editCoverPicture}
-						editable={true}
-						data={data && data.data}
 					/>
-					<ListNav navs={navigations} type='slug' />
-					<AboutCard
-						editable={true}
-						title='About Me'
-						description={data && data.data.about}
-					/>
-					<AnalyticsCard
-						title='Analytics'
-						totalViews={6}
-						totalImpressions={1}
-						totalAppearances={0}
-					/>
-					<WhiteWrapper>
-						<Experience experiences={data && data.data.experiences} />
-					</WhiteWrapper>
-					<WhiteWrapper>
-						<Education educations={data && data.data.educations} />
-					</WhiteWrapper>
-					<WhiteWrapper>
-						<LicensesCertificate educations={data && data.data.educations} />
-					</WhiteWrapper>
-					<SkillsCard
-						skills={[
-							"Communication",
-							"Ceneral Medicine",
-							"Detail Oriented",
-							"Leadership",
-							"Psychiatry",
-						]}
-					/>
-					<RecommendationCard />
 				</div>
-				<AdditionalDetailsCard email={data && data.data.email} type='profile' />
-			</div>
-
+			)}
+			{isLoading && (
+				<div className='flex justify-center items-center pt-10'>
+					<ClipLoader color='#3b82f6' loading={isLoading} size={120} />
+				</div>
+			)}
 			<Modal
 				show={showEditCoverPicture}
 				onRequestClose={() => editCoverPicture()}>
