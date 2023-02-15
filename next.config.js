@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   typescript: {
-  ignoreBuildErrors: true,
-},
+    ignoreBuildErrors: true,
+  },
   reactStrictMode: true,
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ["res.cloudinary.com"],
   },
+
 };
