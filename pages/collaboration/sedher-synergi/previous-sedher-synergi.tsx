@@ -5,6 +5,7 @@ import GoBackButton from "@/components/global/GoBackButton";
 import SynergiCard from "@/components/collaboration/sedher-synergi/SynergiCard";
 import { GetServerSideProps } from "next";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import { useGetSnergisQuery } from "@/services/collaborations";
 
 type ActiveH2hProps = {
 	navigations: {
@@ -15,20 +16,36 @@ type ActiveH2hProps = {
 	}[];
 };
 const ActiveSedherSynergi = ({ navigations }: ActiveH2hProps) => {
+	const { data, error, isLoading, isSuccess, isFetching } = useGetSnergisQuery({
+    token: "token",
+  });
+  console.log(data);
 	return (
-		<DefaultLayout>
-			<div className='space-y-8'>
-				<GoBackButton label='My Sedher Synergi' />
+    <DefaultLayout>
+      <div className="space-y-8">
+        <GoBackButton label="My Sedher Synergi" />
 
-				<ListNav type='slug' navs={navigations} />
-				<section className='grid md:grid-cols-2 xl:grid-cols-3 gap-8 '>
-					{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((card) => (
-						<SynergiCard type='complete' key={card} />
-					))}
-				</section>
-			</div>
-		</DefaultLayout>
-	);
+        <ListNav type="slug" navs={navigations} />
+        <section className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 ">
+          {data?.data?.map((card) => (
+            <SynergiCard
+              type="saved"
+              owner={card.owner}
+              key={card.id}
+              bookings={card.bookings}
+              equipments={card.equipments}
+              event={card.event}
+              locationDetails={card.locationDetails}
+              code={""}
+              createdAt={""}
+              updatedAt={card.updatedAt}
+              id={card.id}
+            />
+          ))}
+        </section>
+      </div>
+    </DefaultLayout>
+  );
 };
 
 export default ActiveSedherSynergi;

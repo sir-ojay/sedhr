@@ -146,7 +146,7 @@ const Edit = () => {
 													<Button
 														onClick={() =>
 															router.push(
-																"/collaboration/sedher-synergi/gideon/edit/view"
+																"/collaboration/sedher-synergi/1/edit/view"
 															)
 														}
 														className='w-full'>
