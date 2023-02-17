@@ -57,10 +57,10 @@ CollaborationWrapper.defaultProps = {
 			name: "RFP",
 			href: "/collaboration/rfp",
 		},
-		// {
-		// 	name: "Sedher collabo",
-		// 	href: "/collaboration/sedher-collabo",
-		// },
+		{
+			name: "Sedher collabo",
+			href: "/collaboration/sedher-collabo",
+		},
 		{
 			name: "Sedher H2H Commerce",
 			href: "/collaboration/sedher-h2h-commerce",
@@ -69,13 +69,13 @@ CollaborationWrapper.defaultProps = {
 			name: "Sedher Synergi",
 			href: "/collaboration/sedher-synergi",
 		},
-		// {
-		// 	name: "Sedher Luminaries",
-		// 	href: "/collaboration/sedher-luminaries",
-		// },
-		// {
-		// 	name: "Communication",
-		// 	href: "/collaboration/communication/my-groups",
-		// },
+		{
+			name: "Sedher Luminaries",
+			href: "/collaboration/sedher-luminaries",
+		},
+		{
+			name: "Communication",
+			href: "/collaboration/communication/my-groups",
+		},
 	],
 };
