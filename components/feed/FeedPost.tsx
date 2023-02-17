@@ -168,13 +168,13 @@ const FeedPost = ({
 							</div>
 						</div>
 					</div>
-					{/* <button type='button' className='transform rotate-90'>
+					<button type='button' className='transform rotate-90'>
 						<img
 							src='/assets/icons/layouts/more.svg'
 							alt='see more'
 							title='see more'
 						/>
-					</button> */}
+					</button>
 				</header>
 				<section className='space-y-5'>
 					<p className='text-sm xl:text-base leading-[160%]'>
@@ -265,7 +265,7 @@ const FeedPost = ({
 									Comment
 								</span>
 							</button>
-							{/* <button
+							<button
 								type='button'
 								className='flex items-center gap-2 xl:gap-4'>
 								<div>
@@ -278,7 +278,7 @@ const FeedPost = ({
 								<span className='text-dark-100 text-xs xl:text-sm font-medium'>
 									Share
 								</span>
-							</button> */}
+							</button>
 						</div>
 					)}
 					{showComments && (
