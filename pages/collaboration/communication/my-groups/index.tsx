@@ -7,6 +7,7 @@ import React from "react";
 
 const MyGroups = () => {
 	return (
+		
 		<DefaultLayout title='Sedher | Collaboration | Communication | My Groups'>
 			<CommunicationWrapper>
 				<section className='space-y-5'>

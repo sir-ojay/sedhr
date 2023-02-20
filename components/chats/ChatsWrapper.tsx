@@ -4,6 +4,7 @@ import SingleChats from "./SingleChats";
 import Cookies from "js-cookie";
 import { useGetConversationQuery } from "@/services/collaborations";
 import { GetConvoResponse } from "@/types/collaboration";
+
 type ChatsWrapperProps = {
   children: React.ReactNode;
 };
@@ -14,7 +15,7 @@ const ChatsWrapper = ({ children, getUserIds }: ChatsWrapperProps & any) => {
   let { data, isLoading } = useGetConversationQuery({
     token,
   });
-  console.log(data);
+  // console.log(data);
   return (
     <div className="grid grid-cols-6 gap-8">
       <section className="col-span-2 space-y-6 ">

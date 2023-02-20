@@ -1,9 +1,9 @@
 import CollaborationNav from "@/components/collaboration/CollaborationNav";
 import CollaborationWrapper from "@/components/collaboration/CollaborationWrapper";
 import LuminariesCard from "@/components/collaboration/sedher-luminaries/LuminariesCard";
-import Button from "@/components/global/Button";
-import GridContainer from "@/components/global/GridContainer";
-import Input from "@/components/global/Input";
+// import Button from "@/components/global/Button";
+// import GridContainer from "@/components/global/GridContainer";
+// import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
@@ -40,13 +40,13 @@ const SedherLuminaries = ({ navigations }: SedherLuminariesProps) => {
 		<DefaultLayout title='Sedher | Collaboration | SedherLuminaries'>
 			<CollaborationWrapper getGrid={getGrid}>
 				<div className='grid grid-cols-6 gap-8'>
-					<section className='col-span-2 space-y-6'>
+					{/* <section className='col-span-2 space-y-6'>
 						<CollaborationNav
 							title='My Sedher Luminaries'
 							navigations={navigations}
 						/>
-					</section>
-					<section className='col-span-4 space-y-6'>
+					</section> */}
+					{/* <section className='col-span-4 space-y-6'>
 						<WhiteWrapper className='flex items-center justify-between'>
 							<div
 								title='Request for Proposal'
@@ -87,35 +87,39 @@ const SedherLuminaries = ({ navigations }: SedherLuminariesProps) => {
 								)
 							)}
 						</GridContainer>
-					</section>
+					</section> */}
 				</div>
 			</CollaborationWrapper>
+			<WhiteWrapper>
+                <h3 className='text-lg leading-normal font-medium'> Features coming soon...</h3>
+               
+			</WhiteWrapper>
 		</DefaultLayout>
 	);
 };
 
 export default SedherLuminaries;
 
-SedherLuminaries.defaultProps = {
-	navigations: [
-		{
-			name: "Active Luminaries",
-			href: "/collaboration/sedher-luminaries/active",
-			count: 45,
-			// query: "?t=product",
-		},
-		{
-			name: "Completed Luminaries ",
-			href: "/collaboration/sedher-luminaries/completed",
-			count: 45,
-		},
-		{
-			name: "Cancelled Luminaries ",
-			href: "/collaboration/sedher-luminaries/cancelled",
-			count: 45,
-		},
-	],
-};
+// SedherLuminaries.defaultProps = {
+// 	navigations: [
+// 		{
+// 			name: "Active Luminaries",
+// 			href: "/collaboration/sedher-luminaries/active",
+// 			count: 45,
+// 			// query: "?t=product",
+// 		},
+// 		{
+// 			name: "Completed Luminaries ",
+// 			href: "/collaboration/sedher-luminaries/completed",
+// 			count: 45,
+// 		},
+// 		{
+// 			name: "Cancelled Luminaries ",
+// 			href: "/collaboration/sedher-luminaries/cancelled",
+// 			count: 45,
+// 		},
+// 	],
+// };
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
 	async (context) => {
 		return {

@@ -57,11 +57,11 @@ SedherUniverseNav.defaultProps = {
 		// 	count: '',
 		// 	query: "?t=patientcarecenters",
 		// },
-		// {
-		// 	name: "My Groups",
-		// 	href: "/sedher-universe/my-groups",
-		// 	count: "",
-		// },
+		{
+			name: "My Groups",
+			href: "/sedher-universe/my-groups",
+			count: "",
+		},
 		{
 			name: "My Events",
 			href: "/sedher-universe/my-events",

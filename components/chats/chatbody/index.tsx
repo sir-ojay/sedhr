@@ -4,7 +4,8 @@ import LeftUser from "./LeftUser";
 import { GetChatResponse } from "@/types/collaboration";
 
 
-const index = ({ data, user:sender,userIds }: any) => {
+
+const index = ({ data, user:sender,userIds , timeconverter}: any) => {
   return (
     <div>
       {data && (

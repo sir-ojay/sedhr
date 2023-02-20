@@ -7,7 +7,9 @@ const index = () => {
 		Router.push("/collaboration/communication/my-groups");
 	}, []);
 	return (
+		
 		<DefaultLayout title='Sedher | Collaboration | Communication'></DefaultLayout>
+		
 	);
 };
 

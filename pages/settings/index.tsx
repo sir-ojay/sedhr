@@ -26,6 +26,7 @@ const index = () => {
 	const { data, error, isLoading, isSuccess, isFetching } = useGetSettingsQuery(
 		{ token }
 	);
+	console.log(data);
 
 	useEffect(() => {
 		setSettings(data?.data);

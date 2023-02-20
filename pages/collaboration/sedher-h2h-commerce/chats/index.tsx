@@ -36,11 +36,8 @@ const Chats = () => {
     <DefaultLayout title="Sedher | h2h Chat">
       <FormProvider {...methods}>
         <section className="space-y-6">
-
           <ChatsWrapper getUserIds={getUserIds}>
             <ChatSection userIds={userIds} />
-
-
           </ChatsWrapper>
         </section>
       </FormProvider>

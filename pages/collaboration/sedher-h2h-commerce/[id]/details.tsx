@@ -25,16 +25,18 @@ const Details = () => {
     id: router.query.id?.toString()!,
   });
   console.log(data?.data?.owner);
+
   const [chat, messageMutationData] = useCreateMessageMutation();
   const startChat = async () => {
     try {
       const result = await chat({
         token,
-        body: { content: "Hello ", receiverId: data?.data?.owner },
+        body: { content: "Hello ", receiverId: data?.data?.owner,contentType:"text" },
       }).unwrap();
       router.push("/collaboration/sedher-h2h-commerce/chats");
     } catch (error: any) {
       alert(error?.data?.error);
+      console.log(error?.data?.error);
       // console.log(err );
     }
   };
