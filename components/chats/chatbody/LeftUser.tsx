@@ -1,7 +1,8 @@
 import React from "react";
 import Avatar from "@/components/global/Avatar";
+import Timeconverter from "@/helpers/timeconverter";
 
-const LeftUser = ({ message,userIds }: any) => {
+const LeftUser = ({ message, userIds }: any) => {
   return (
     <div className="flex  mb-4  space-x-6">
       <Avatar
@@ -11,13 +12,17 @@ const LeftUser = ({ message,userIds }: any) => {
         image={userIds?.conversationPartner?.profilePicture}
       />
       <div className="max-w-sm  ">
-        <h6 className=" font-semibold text-base py-2">{message?.sender?.username} </h6>
-        <p className=" border border-[#D6DDEB] bg-white px-4 py-3">
-          {message?.content}
+        <h6 className=" font-semibold text-base py-2">
+          {message?.sender?.username}{" "}
+        </h6>
+        {message.contentType == "image" ? (
+          <div>image component</div>
+        ) : (
+          <p className="bg-[#F8F8FD] px-4 py-3">{message?.content}</p>
+        )}
+        <p className="font-normal text-right py-2 text-base text-neutral-60">
+          {Timeconverter(message?.timestamp)}
         </p>
-        {/* <p className="font-normal  py-2 text-base text-neutral-60">
-          12 mins ago
-        </p> */}
       </div>
     </div>
   );

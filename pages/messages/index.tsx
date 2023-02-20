@@ -6,10 +6,17 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import ChatProfileHeader from "@/components/messages/ChatProfileHeader";
-import ConversationSection from "@/components/messages/ConversationSection";
+// import ConversationSection from "@/components/messages/ConversationSection";
 import { FormProvider, useForm } from "react-hook-form";
 import { GetServerSideProps } from "next";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import dynamic from "next/dynamic";
+import GoBackButton from "../../components/global/GoBackButton";
+
+
+const ConversationSection = dynamic(() => import("@/components/messages/ConversationSection"), {
+	ssr: false,
+  });
 
 type MessagesProps = {
 	defaultGrid: number;
@@ -19,6 +26,8 @@ type MessagesProps = {
 	}[];
 };
 const Messages = ({ navs, defaultGrid }: MessagesProps) => {
+	const [userIds, getUserIds] = useState({});
+	console.log({ userIds });
 	const [grid, setGrid] = useState(defaultGrid);
 	const {
 		query: { view },
@@ -32,19 +41,20 @@ const Messages = ({ navs, defaultGrid }: MessagesProps) => {
 	return (
 		<DefaultLayout title='Sedher | Messages'>
 			<FormProvider {...methods}>
+			<GoBackButton label="Messages" />
 				<section className='space-y-6'>
 					<ListSortHeader
-						title='Messages'
+						title=''
 						results={73}
 						setGrid={setGrid}
 						defaultGrid={defaultGrid}
 					/>
 
-					<ListNav navs={navs} />
+					{/* <ListNav navs={navs} /> */}
 					{view === "chats" || view === undefined ? (
-						<MessagesWrapper>
-							<ChatProfileHeader />
-							<ConversationSection />
+						<MessagesWrapper getUserIds={getUserIds}>
+							<ChatProfileHeader userIds={userIds}/>
+							<ConversationSection userIds={userIds}/>
 						</MessagesWrapper>
 					) : ( " "
 						// <MessagesWrapper>

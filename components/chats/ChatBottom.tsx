@@ -52,8 +52,7 @@ const ChatBottom = ({chatController,userIds}:any) => {
     <div>
       <div className="flex items-center mt-28 w-full gap-4 py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px]">
         <div>
-
-         
+    
           <svg
             width="24"
             height="24"
