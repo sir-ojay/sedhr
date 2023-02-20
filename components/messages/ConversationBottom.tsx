@@ -1,16 +1,51 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../global/Button";
 import Input from "../global/Input";
+import { useCreateMessageMutation } from "@/services/collaborations";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+import JWT from "jsonwebtoken"
 
-const ConversationBottom = () => {
+const ConversationBottom = ({chatController,userIds}:any) => {
 	const methods = useForm({
 		defaultValues: {
 			message: "",
 		},
 		mode: "onChange",
 	});
+	const [value, setValue] = useState("");
+
+	const token = Cookies.get("sedherToken") as string;
+	
+	let {id} = JWT.decode(token) as {id:string}
+  
+	const [chat] = useCreateMessageMutation();
+	const router = useRouter();
+  
+	const sendChat = async () => {
+	  // chatController.
+	  let messageTextObj = { type: 1, message: value };
+	  let config = {
+		priority: 1 // Set priority for the message. 1: Low (by default). 2: Medium. 3: High.
+	};
+  
+	let receiverId = (id == userIds.senderId) ? userIds.receiverId:userIds.senderId
+	  chatController.sendMessage(messageTextObj, receiverId, 0, config)
+	  .then(function ({ message }:any) {
+	  })
+	  const result = await chat({
+		token,
+		body: {
+		  content: value,
+		  receiverId: receiverId,
+		  contentType:"text"
+		},
+	  }).unwrap();
+	  setValue("")
+	};
+
 	return (
 		<div>
 			<div className='flex items-center mt-28 w-full gap-4 py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px]'>
@@ -38,13 +73,15 @@ const ConversationBottom = () => {
 							type='text'
 							className=' focus:border-primary outline-none w-full'
 							placeholder='Reply message'
+							value={value}
+							onChange={(e) => setValue(e.target.value)}
 						/>
 					</FormProvider>
 				</div>
 
 				<div className='flex'>
 					<img src='/assets/icons/emoji.svg' alt='emoji' title='emoji' />
-					<Button icon='Icon' className='ml-4 rounded-none'></Button>
+					<Button icon='Icon' className='ml-4 rounded-none'  onClick={sendChat}></Button>
 				</div>
 			</div>
 		</div>
