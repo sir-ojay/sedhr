@@ -106,7 +106,7 @@ export const connections = createApi({
 			GetFriendsRequestRequest
 		>({
 			query: (credentials) =>
-				getRequest(`/connections/friendship/request`, credentials.token),
+				getRequest(`/connections/friendship/requests/received`, credentials.token),
 			providesTags: ["FriendsRequest"],
 		}),
 		getFriendsList: builder.query<

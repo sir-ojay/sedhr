@@ -1,7 +1,7 @@
 import CollaborationNav from "@/components/collaboration/CollaborationNav";
 import CollaborationWrapper from "@/components/collaboration/CollaborationWrapper";
-import CollaboCard from "@/components/collaboration/sedher-collabo/CollaboCard";
-import GridContainer from "@/components/global/GridContainer";
+// import CollaboCard from "@/components/collaboration/sedher-collabo/CollaboCard";
+// import GridContainer from "@/components/global/GridContainer";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useRouter } from "next/router";
@@ -28,15 +28,18 @@ const SedherCollabo = ({ navigations }: SedherCollaboProps) => {
 
 	return (
 		<DefaultLayout title='Sedher | Collaboration | Sedher Collabo'>
+
+
 			<CollaborationWrapper getGrid={getGrid}>
 				<div className='grid grid-cols-6 gap-8'>
-					<section className='col-span-2 space-y-6'>
+					
+					{/* <section className='col-span-2 space-y-6'>
 						<CollaborationNav
 							title='My Sedher collabo'
 							navigations={navigations}
 						/>
-					</section>
-					<section className='col-span-4 space-y-6'>
+					</section> */}
+					{/* <section className='col-span-4 space-y-6'>
 						<WhiteWrapper className='flex items-center justify-between'>
 							<div
 								title='Request for Proposal'
@@ -52,27 +55,31 @@ const SedherCollabo = ({ navigations }: SedherCollaboProps) => {
 								)
 							)}
 						</GridContainer>
-					</section>
+					</section> */}
 				</div>
 			</CollaborationWrapper>
+			<WhiteWrapper>
+                <h3 className='text-lg leading-normal font-medium'> Features coming soon...</h3>
+               
+			</WhiteWrapper>
 		</DefaultLayout>
 	);
 };
 
 export default SedherCollabo;
 
-SedherCollabo.defaultProps = {
-	navigations: [
-		{
-			name: "Active collabo",
-			href: "/collaboration/sedher-collabo/active-collabo",
-			count: 1,
-			// query: "?t=product",
-		},
-		{
-			name: "Complete Collabo",
-			href: "/collaboration/sedher-collabo/",
-			count: 2,
-		},
-	],
-};
+// SedherCollabo.defaultProps = {
+// 	navigations: [
+// 		// {
+// 		// 	name: "Active collabo",
+// 		// 	href: "/collaboration/sedher-collabo/active-collabo",
+// 		// 	count: 1,
+// 		// 	// query: "?t=product",
+// 		// },
+// 		// {
+// 		// 	name: "Complete Collabo",
+// 		// 	href: "/collaboration/sedher-collabo/",
+// 		// 	count: 2,
+// 		// },
+// 	],
+// };

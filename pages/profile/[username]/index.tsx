@@ -144,14 +144,14 @@ const ProfilePage = () => {
 			name: "Activity",
 			href: `/profile/${username}/activity`,
 		},
-		// {
-		// 	name: "Events",
-		// 	href: `/profile/${username}/event`,
-		// },
-		// {
-		// 	name: "Group",
-		// 	href: `/profile/${username}/group`,
-		// },
+		{
+			name: "Events",
+			href: `/profile/${username}/event`,
+		},
+		{
+			name: "Group",
+			href: `/profile/${username}/group`,
+		},
 	];
 
 	return (

@@ -33,14 +33,14 @@ const Activity = () => {
 			name: "Activity",
 			href: `/profile/${userId}/activity`,
 		},
-		// {
-		// 	name: "Events",
-		// 	href: `/profile/${userId}/event`,
-		// },
-		// {
-		// 	name: "Group",
-		// 	href: `/profile/${userId}/group`,
-		// },
+		{
+			name: "Events",
+			href: `/profile/${userId}/event`,
+		},
+		{
+			name: "Group",
+			href: `/profile/${userId}/group`,
+		},
 	];
 	const [posts, setPosts] = useState<Posts>();
 	const token: any = Cookies.get("sedherToken");
@@ -74,23 +74,23 @@ const Activity = () => {
 						</>
 					)}
 					{/* <div>
-						<div className='flex items-center gap-3'>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
-								All Activity
-							</Button>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
-								Post
-							</Button>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
-								Document
-							</Button>
-						</div>
+						// <div className='flex items-center gap-3'>
+						// 	<Button
+						// 		theme='plain'
+						// 		className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
+						// 		All Activity
+						// 	</Button>
+						// 	<Button
+						// 		theme='plain'
+						// 		className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
+						// 		Post
+						// 	</Button>
+						// 	<Button
+						// 		theme='plain'
+						// 		className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
+						// 		Document
+						// 	</Button>
+						// </div>
 					</div> */}
 					<div>
 						{isLoading && (

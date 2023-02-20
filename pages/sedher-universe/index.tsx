@@ -14,8 +14,8 @@ const index = () => {
 				<section className='space-y-6'>
 					<PeopleYouMayKnow />
 					<RecommendedPagesForYou />
-					{/* <EventsForYou /> */}
-					{/* <GroupsForYou /> */}
+					<EventsForYou />
+					<GroupsForYou />
 				</section>
 			</SedherUniverseWrapper>
 		</DefaultLayout>

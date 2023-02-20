@@ -48,18 +48,18 @@ LeftNavigation.defaultProps = {
 					icon: "feed",
 					href: "/feed",
 				},
-				{
-					name: "My Connections",
-					icon: "my-connections",
-					href: "/my-connections",
-				},
-				{
-					name: "My Cart",
-					icon: "my-cart",
-					href: "/my-cart",
-					slug: "/my-products",
-					query: "?t=product",
-				},
+				// {
+				// 	name: "My Connections",
+				// 	icon: "my-connections",
+				// 	href: "/my-connections",
+				// },
+				// {
+				// 	name: "My Cart",
+				// 	icon: "my-cart",
+				// 	href: "/my-cart",
+				// 	slug: "/my-products",
+				// 	query: "?t=product",
+				// },
 				{
 					name: "My Items",
 					icon: "my-items",
@@ -73,12 +73,12 @@ LeftNavigation.defaultProps = {
 					// slug: "/my-connections",
 					href: "/sedher-universe",
 				},
-				{
-					name: "More Sedher",
-					icon: "more",
-					// href of More Sedher is null because it is not a link, but a button
-					href: null,
-				},
+				// {
+				// 	name: "More Sedher",
+				// 	icon: "more",
+				// 	// href of More Sedher is null because it is not a link, but a button
+				// 	href: null,
+				// },
 			],
 		},
 		{
