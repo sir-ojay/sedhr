@@ -18,6 +18,9 @@ let zim = ZIM.getInstance();
 const ChatSection = ({ userIds }: any) => {
   const [toksen, setToken] = useState<string>("");
 
+  const [displayFile, setDisplayFile] = useState("");
+  
+
   const token = Cookies.get("sedherToken") as string;
   let { id } = JWT.decode(token) as { id: string };
 
@@ -108,8 +111,18 @@ const ChatSection = ({ userIds }: any) => {
           <GoBackButton label="Chat" />
           <WhiteWrapper>
             <ChatHeader userIds={userIds} />
-            <ChatBody user={user} userIds={userIds} data={messages} />
-            <ChatBottom chatController={zim} userIds={userIds} />
+            <ChatBody
+              user={user}
+              userIds={userIds}
+              data={messages}
+              displayFile={displayFile}
+            />
+            <ChatBottom
+              chatController={zim}
+              userIds={userIds}
+              displayFile={displayFile}
+              setDisplayFile={setDisplayFile}
+            />
           </WhiteWrapper>
         </>
       )}
