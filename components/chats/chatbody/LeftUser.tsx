@@ -2,7 +2,7 @@ import React from "react";
 import Avatar from "@/components/global/Avatar";
 import Timeconverter from "@/helpers/timeconverter";
 
-const LeftUser = ({ message, userIds }: any) => {
+const LeftUser = ({ message, userIds}: any) => {
   return (
     <div className="flex  mb-4  space-x-6">
       <Avatar
@@ -16,7 +16,9 @@ const LeftUser = ({ message, userIds }: any) => {
           {message?.sender?.username}{" "}
         </h6>
         {message.contentType == "image" ? (
-          <div>image component</div>
+          <div>
+          <img src={message.attachment[0]}/>
+          </div>
         ) : (
           <p className="bg-[#F8F8FD] px-4 py-3">{message?.content}</p>
         )}

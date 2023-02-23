@@ -7,52 +7,84 @@ import { useCreateMessageMutation } from "@/services/collaborations";
 
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import JWT from "jsonwebtoken"
+import JWT from "jsonwebtoken";
 
-const ChatBottom = ({chatController,userIds}:any) => {
+const ChatBottom = ({ chatController, userIds , displayFile, setDisplayFile}: any) => {
+  const [file, setFile] =useState<any>("");
+
   const methods = useForm({
     defaultValues: {
       message: "",
     },
     mode: "onChange",
+  
   });
+
+
+const onFileChange = (e) => {
+  setFile(e?.target?.files?.[0])
+}
+
 
   const [value, setValue] = useState("");
 
   const token = Cookies.get("sedherToken") as string;
-  
-  let {id} = JWT.decode(token) as {id:string}
+
+  let { id } = JWT.decode(token) as { id: string };
 
   const [chat] = useCreateMessageMutation();
   const router = useRouter();
-
   const sendChat = async () => {
-    // chatController.
-    let messageTextObj = { type: 1, message: value };
-    let config = {
-      priority: 1 // Set priority for the message. 1: Low (by default). 2: Medium. 3: High.
-  };
+    if(!(!!value || !!file)){
+      alert("please add a message or upload a file")
+      return 
+    }
 
-  let receiverId = (id == userIds.senderId) ? userIds.receiverId:userIds.senderId
-    chatController.sendMessage(messageTextObj, receiverId, 0, config)
-    .then(function ({ message }:any) {
-    })
-    const result = await chat({
+   
+    const  receiverId =
+    id == userIds.senderId ? userIds.receiverId : userIds.senderId;
+
+  const formData = new FormData(); 
+  {
+    file &&   formData.append('data', file, file.name)
+  }
+;
+  formData.append('contentType',  file ? "image":"text" );
+  formData.append('receiverId', receiverId);
+  formData.append('content', value || "uploaded file");
+   
+
+   
+
+      
+    const result = chat({
       token,
-      body: {
-        content: value,
-        receiverId: receiverId,
-        contentType:"text"
-      },
-    }).unwrap();
-    setValue("")
+      body: formData, 
+    }).unwrap().then(async (res)=>{
+      let messageTextObj = { type: 1, message: value };
+      let config = {
+        priority: 1, // Set priority for the message. 1: Low (by default). 2: Medium. 3: High.
+      };
+      // console.log(res.data.content         )
+      // console.log(res.getData.attachment        )
+      // console.log(res.getData.attechment)
+      setValue("");
+      setFile(null)
+  
+      // await chatController
+      // .sendMessage(messageTextObj, receiverId, 0, config)
+      // .then(function ({ message }: any) {});
+      
+   
+    });
+
   };
 
   return (
     <div>
       <div className="flex items-center mt-28 w-full gap-4 py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px]">
         <div>
-    
+          <label htmlFor="file">
           <svg
             width="24"
             height="24"
@@ -70,6 +102,14 @@ const ChatBottom = ({chatController,userIds}:any) => {
               />
             </g>
           </svg>
+          </label>
+         
+          <input type="file" id="file"  onChange={
+            onFileChange
+            
+            
+            }  style={{display:'none'}} accept=".jpeg, .jpeg, .png, .mp3, .mp4"/>
+
         </div>
         <div className="flex-1">
           <FormProvider {...methods}>

@@ -22,14 +22,17 @@ import {
 } from "@/types/collaboration";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const postRequest = (url: string, details: any, token?: string) => ({
+const postRequest = (url: string, details: any, token?: string) => 
+{
+ 
+return   {
   url,
   method: "POST",
   headers: {
     Authorization: `Bearer ${token}`,
   },
   body: details,
-});
+}}
 
 const putRequest = (url: string, details: any, token?: string) => ({
   url,

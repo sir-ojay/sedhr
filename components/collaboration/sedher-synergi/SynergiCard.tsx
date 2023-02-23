@@ -136,7 +136,7 @@ const SynergiCard = ({
                     `/collaboration/sedher-synergi/${id}`
                   ) : (
                     <PopupButton
-                      url="https://calendly.com/prince-ibrahim76"
+                      url="https://calendly.com/sedher"
                       rootElement={document.getElementById("__next")}
                       text="Book Appointment"
                     />
@@ -150,7 +150,7 @@ const SynergiCard = ({
                 "Edit Details"
               ) : (
                 <PopupButton
-                  url="https://calendly.com/prince-ibrahim76"
+                  url="https://calendly.com/sedher"
                   rootElement={document.getElementById("__next")}
                   text="Book Appointment"
                 />
