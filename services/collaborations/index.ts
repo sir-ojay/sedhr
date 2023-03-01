@@ -5,6 +5,8 @@ import {
   CreateH2HResponse,
   CreateSnergiRequest,
   CreateSnergiResponse,
+  CreateBookingResponse,
+  CreateBookingRequest,
   GetH2HRequest,
   GetH2HResponse,
   GetH2HSRequest,
@@ -15,6 +17,10 @@ import {
   GetSnergiResponse,
   GetSnergisRequest,
   GetSnergisResponse,
+  GetBookingResponse,
+  GetBookingRequest,
+  GetAvailabilityResponse,
+  GetAvailabilityRequest,
   GetChatResponse,
   GetChatRequest,
   GetConvoResponse,
@@ -63,7 +69,7 @@ export const collaboration = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL + "api",
   }),
-  tagTypes: ["Synergi", "H2H", "RFP", "Chat"],
+  tagTypes: ["Synergi", "H2H", "RFP", "Chat", "Booking", "Available"],
   endpoints: (builder) => ({
     getRFPs: builder.query<GetRFPSResponse, GetRFPSRequest>({
       query: (credentials) => getRequest("/rfps", credentials.token),
@@ -114,6 +120,29 @@ export const collaboration = createApi({
         postRequest(`/synergies`, credentials.body, credentials.token),
       invalidatesTags: ["Synergi"],
     }),
+    createBooking: builder.mutation<CreateBookingResponse, CreateBookingRequest>({
+      query: (credentials) =>
+        postRequest(`/synergies/${credentials.id}/bookings`, credentials.body, credentials.token),
+      invalidatesTags: ["Booking"],
+    }),
+    getBooking: builder.query<GetBookingResponse, GetBookingRequest>({
+      query: (credentials) =>
+        getRequest(
+          `/synergies/${credentials.id}/bookings`,
+          credentials.token
+        ),
+      providesTags: ["Booking"],
+    }),
+    getAvailability: builder.query<GetAvailabilityResponse, GetAvailabilityRequest>({
+      query: (credentials) =>
+       {
+        console.log({credentials})
+        return  getRequest(
+          `/synergies/${credentials.id}/availabilities?dateSlot=${credentials.time}`,
+          credentials.token
+        )},
+      providesTags: ["Available"],
+    }),
   }),
 });
 
@@ -128,4 +157,7 @@ export const {
   useGetSnergisQuery,
   useGetSnergiQuery,
   useCreateSnergiMutation,
+  useCreateBookingMutation,
+  useGetBookingQuery,
+  useGetAvailabilityQuery
 } = collaboration;

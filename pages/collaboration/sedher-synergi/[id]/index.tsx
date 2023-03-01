@@ -106,11 +106,12 @@ const Details = () => {
                 Back
               </Button>
               <Button
+              
                 onClick={() =>
-                  router.push("/collaboration/sedher-synergi/create")
+                  router.push(`/collaboration/sedher-synergi/${snergiData?.id}/book-appointment`)
                 }
               >
-                Create a new Booking
+                Book Now
               </Button>
             </div>
           </section>

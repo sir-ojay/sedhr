@@ -5,77 +5,292 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import { GetServerSideProps } from "next";
-import React from "react";
+import Button from "@/components/global/Button";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+import JWT from "jsonwebtoken";
+import { Booking } from "@/types/collaboration";
+import moment from "moment";
+
+import { useGetBookingQuery } from "@/services/collaborations";
 
 const Detail = () => {
-	return (
-		<DefaultLayout>
-			<div className='space-y-8'>
-				<GoBackButton
-					label='Quis amet rutrum sem.'
-					desc='Ensectetur adipiscing elit. Odio ullamcorper sed urna'
-				/>
-			</div>
-			<div className='grid grid-cols-6 gap-8'>
-				<section className='col-span-4 space-y-6'>
-					<WhiteWrapper>
-						<div className='space-y-4'>
-							<h4 className='font-semibold text-xl font-archivo text-[#2A2069]'>
-								Quis amet rutrum sem.
-							</h4>
-							<p className='text-dark-100 leading-8'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Imperdiet at egestas pellentesque et tristique tellus iaculis
-								at. Sem erat a ultrices duis nibh. Commodo vestibulum vulputate
-							</p>
-						</div>
-					</WhiteWrapper>
-					<WhiteWrapper>
-						<div className='space-y-4'>
-							<h4 className='font-semibold text-xl font-archivo text-black'>
-								Patient Details
-							</h4>
-							<div className='space-y-4'>
-								<LabelValue label='Patient name' value='Convallis.' />
-								<LabelValue label='condition' value='Ndfergsffdcc.' />
-								<LabelValue label='gender' value='Male.' />
-								<LabelValue label='age ' value='300.' />
-								<LabelValue label='Image ' value='View image.' isLink />
-							</div>
-						</div>
-					</WhiteWrapper>
-					<WhiteWrapper>
-						<div className='space-y-4'>
-							<h4 className='font-semibold text-xl font-archivo text-black'>
-								Patient Details
-							</h4>
-							<div className='space-y-4'>
-								<LabelValue label='Patient name' value='Convallis.' />
-								<LabelValue label='condition' value='Ndfergsffdcc.' />
-								<LabelValue label='gender' value='Male.' />
-								<LabelValue label='age ' value='300.' />
-								<LabelValue label='Image ' value='View image.' isLink />
-							</div>
-						</div>
-					</WhiteWrapper>
-				</section>
-				<section className='col-span-2 space-y-6'>
-					<WhiteWrapper>
-						<ServiceCard />
-					</WhiteWrapper>
-				</section>
-			</div>
-		</DefaultLayout>
-	);
+//   const moment = require("moment");
+
+//   const dateTime = moment.utc("2023-02-22:10:30:00Z");
+//   const newDateTime = dateTime.local().add(30, "minutes");
+//   const time = newDateTime.format("HH:mm");
+
+  const token = Cookies.get("sedherToken") as string;
+  let user = JWT.decode(token) as { id: string };
+  console.log(user?.id);
+  const [synergi, setSynergi] = useState<any>();
+  const router = useRouter();
+  const [bookingData, setBookingData] = useState<Booking>();
+  console.log(bookingData);
+  useEffect(() => {
+    if (bookingData) {
+      const userSynergi = [...(bookingData as Array<any>)].reverse().find((data: any) => {
+        console.log(data.synergy.owner, user.id);
+        return data.synergy.owner == user.id;
+      });
+      setSynergi(userSynergi);
+      console.log(userSynergi);
+    }
+  }, [bookingData]);
+
+  const { data, isSuccess } = useGetBookingQuery({
+    token,
+    id: router.query.id?.toString()!,
+  });
+
+  useEffect(() => {
+    // console.log(data);
+    // @ts-ignore: Unreachable code error
+    data && setBookingData(data?.data);
+  }, [isSuccess, data]);
+
+  return (
+    <DefaultLayout>
+      <div className="space-y-8">
+        <GoBackButton
+          label="Sedher Synergi"
+          desc="Ensectetur adipiscing elit. Odio ullamcorper sed urna"
+        />
+      </div>
+
+      <div className="grid grid-cols-6 gap-8">
+        <section className="col-span-4 space-y-6">
+          <WhiteWrapper>
+            <div className="flex justify-between space-x-8">
+              <div className=" w-[182px]">
+                <div className="rounded-xl mb-5">
+                  <Image
+                    width={182}
+                    height={132}
+                    // layout='responsive'
+                    src={
+                      "/assets/images/productCard.jpg" ||
+                      `${synergi?.synergy?.equipments?.imageUrl}`
+                    }
+                    alt="post"
+                  />
+                </div>
+                <div>
+                  <Button
+                    theme="plain"
+                    size="sm"
+                    className=" w-full text-primary border  border-[#DDE4F6]"
+                  >
+                    View Details
+                  </Button>
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className=" flex justify-between bg-[#F5FBFE] p-[15px]">
+                  <div className="flex-1  pl-2">
+                    <div className="flex space-x-4">
+                      {/* <div>
+												<Image
+													width={24}
+													height={24}
+													// layout='responsive'
+													src='/assets/icons/notify.svg'
+													alt='notify'
+												/>
+											</div> */}
+                      <div>
+                        <div>
+                          <Image
+                            width={24}
+                            height={24}
+                            // layout='responsive'
+                            src="/assets/icons/notify.svg"
+                            alt="notify"
+                          />
+                        </div>
+                        <div className="mb-3">
+                          <h6 className="text-[#7C8493] font-archivo text-sm font-normal ">
+                            Appointment Date
+                          </h6>
+                          <p className="text-[#2A2069] font-medium font-epilogue text-sm">
+                            {synergi?.appointment.dateSlot}
+                            {synergi?.appointment.selectedSlots.map(
+                              (timeSlot) => {
+                                return (
+                                  <div>
+                                    <div>
+                                      {new Date(timeSlot).getHours() - 1}:
+                                      {new Date(timeSlot).getMinutes()} -
+                                      {new Date(timeSlot).getHours() }:
+                                      {new Date(timeSlot).getMinutes()  - 30}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            )}
+                            {/* 26/07/22(9:00Am-10:00pm) */}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex space-x-4">
+                      <div>
+                        <Image
+                          width={24}
+                          height={24}
+                          // layout='responsive'
+                          src="/assets/icons/notify.svg"
+                          alt="notify"
+                        />
+                      </div>
+                      <div>
+                        <div className="mb-3">
+                          <h6 className="text-[#7C8493] text-sm  font-archivo font-normal ">
+                            Created on
+                          </h6>
+                          <p className="text-[#2A2069] font-medium font-epilogue text-sm">
+                             {synergi?.createdAt}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex space-x-4">
+                      <div>
+                        <Image
+                          width={24}
+                          height={24}
+                          // layout='responsive'
+                          src="/assets/icons/notify.svg"
+                          alt="notify"
+                        />
+                      </div>
+                      <div>
+                        <div className="mb-3">
+                          <h6 className="text-[#7C8493] text-sm  font-archivo font-normal ">
+                            Address
+                          </h6>
+                          <h3 className="text-[#2A2069] font-medium font-epilogue text-sm">
+                            {synergi?.synergy.locationDetails?.street}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-[1px] h-50 bg-[#B8C9C9]" />
+                  <div className="flex-1  pl-4 pr-4">
+                    <div className="flex space-x-4">
+                      <div>
+                        <Image
+                          width={10}
+                          height={10}
+                          // layout='responsive'
+                          src="/assets/icons/star.svg"
+                          alt="star"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <div className="mb-3">
+                          <h6 className="text-[#7C8493] font-archivo font-normal ">
+                            Rate
+                          </h6>
+                          <p className="text-[#2A2069] font-medium font-epilogue text-sm">
+                            <span className="text-[#FFCF14]">5.0</span> (67
+                            reviews)
+                          </p>
+                        </div>
+                        <div className="mb-3">
+                          <Button
+                            theme="plain"
+                            size="sm"
+                            className=" w-full text-primary border  border-[#DDE4F6]"
+                          >
+                            Edit Appointment
+                          </Button>
+                        </div>
+                        <div className="mb-3">
+                          <Button
+                            onClick={() =>
+                              router.push(
+                                "/collaboration/sedher-synergi/1/edit/view"
+                              )
+                            }
+                            className="w-full"
+                          >
+                            Pay Now ({synergi?.synergy.paymentDetails?.total})
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </WhiteWrapper>
+          <WhiteWrapper>
+            <div className="space-y-4">
+              <h4 className="font-semibold text-xl font-archivo text-[#2A2069]">
+              Description
+              </h4>
+              <p className="text-dark-100 leading-8">{synergi?.description}</p>
+            </div>
+          </WhiteWrapper>
+          <WhiteWrapper>
+            <div className="space-y-4">
+              <h4 className="font-semibold text-xl font-archivo text-black">
+                Patient Details
+              </h4>
+              <div className="space-y-4">
+                <LabelValue
+                  label="Patient name"
+                  value={`${synergi?.patients[0]?.firstName} ${synergi?.patients[0]?.lastName}`}
+                />
+                <LabelValue
+                  label="condition"
+                  value={synergi?.patients[0]?.condition}
+                />
+                <LabelValue
+                  label="gender"
+                  value={synergi?.patients[0]?.gender}
+                />
+                <LabelValue label="age " value={synergi?.patients[0]?.age} />
+                <LabelValue
+                  label="Image "
+                  value={synergi?.patients[0]?.attachment[0]}
+                  isLink
+                />
+              </div>
+            </div>
+          </WhiteWrapper>
+        </section>
+        <section className="col-span-2 space-y-6">
+          <WhiteWrapper>
+            <ServiceCard data={data} synergi={synergi}/>
+          </WhiteWrapper>
+
+          <Button
+            theme="plain"
+            size="sm"
+            // textColor='#FF3956'
+            className=" w-full  border text-[#FF3956] border-[#DDE4F6] "
+          >
+            Cancel
+          </Button>
+        </section>
+      </div>
+    </DefaultLayout>
+  );
 };
 
 export default Detail;
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
-	async (context) => {
-		return {
-			props: {
-				customers: [],
-			},
-		};
-	}
+  async (context) => {
+    return {
+      props: {
+        customers: [],
+      },
+    };
+  }
 );

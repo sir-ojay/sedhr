@@ -239,3 +239,67 @@ export type CreateSnergiRequest = {
 export type CreateSnergiResponse = {
   message: string;
 };
+
+export type Booking = {
+  description?: string;
+  patients?: [
+    {
+      firstName: string;
+      lastName: string;
+      age: string;
+      gender: string;
+      condition: string;
+      attachments: [];
+    }
+  ];
+  appointment?: {
+    dateSlot: string;
+    selectedSlots?: string[];
+    communicationChannels?: string[];
+  };
+};
+
+export type CreateBookingResponse = {
+  message: string;
+  data: Booking[];
+  id: string;
+};
+
+export type CreateBookingRequest = {
+  token: string;
+  body: {};
+  id:string
+};
+
+export type GetBookingResponse = {
+  message: string;
+  data: Booking;
+  id: string;
+};
+
+export type GetBookingRequest = {
+  token: string;
+  id: string;
+};
+
+export type Available = {
+  spots?: [
+    {
+      startTime?: string;
+      status?: string;
+    }
+  ];
+  date?: string;
+};
+
+export type GetAvailabilityResponse = {
+  message: string;
+  data: Booking;
+  id: string;
+};
+
+export type GetAvailabilityRequest = {
+  token: string;
+  id: string;
+  time: string;
+};

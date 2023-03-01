@@ -12,6 +12,7 @@ const NotificationCard = ({
 	_id,
 	createdAt,
 	userId,
+	title,
 	category,
 }: NotificationCardProps) => {
 	return (
@@ -62,7 +63,8 @@ const NotificationCard = ({
 					</defs>
 				</svg>
 				<p className='w-[calc(100%-64px)] max-w-[60%] text-dark-900 leading-[150%] line-clamp-2'>
-					{content}
+					{title}
+
 				</p>
 			</div>
 			<Link href='/feed' passHref>
