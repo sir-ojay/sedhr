@@ -5,8 +5,10 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import Link from "next/link";
 import React from "react";
 
-const ServiceCard = () => {
+const ServiceCard = ({synergi,data}:any) => {
+	console.log(synergi, data)
 	return (
+		<>
 		<WhiteWrapper>
 			<div className='space-y-7'>
 				<div className='flex  justify-between'>
@@ -17,7 +19,7 @@ const ServiceCard = () => {
 						statusStyle=' font-semibold font-archivo flex justify-between items-center '
 					/>
 					<span className='text-[#616A6A] text-sm font-normal'>
-						Friday 13 June
+						Friday 13 June 
 					</span>
 				</div>
 				<div className='flex  gap-3 mb-3'>
@@ -51,6 +53,8 @@ const ServiceCard = () => {
 				</Button>
 			</div>
 		</WhiteWrapper>
+	
+		</>
 	);
 };
 

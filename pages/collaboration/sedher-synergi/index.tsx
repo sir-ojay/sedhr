@@ -101,8 +101,8 @@ const SedherSynergi = ({ navigations }: SedherSynergiProps) => {
             </WhiteWrapper>
             {isLoading && (
               <GridContainer grid={grid}>
-                {[1, 2, 3, 4, 5, 6].map((card) => (
-                  <WhiteWrapper key={card} className="h-[400px] w-full" />
+                {snergiData.map((card) => (
+                  <WhiteWrapper key={card.id} className="h-[400px] w-full" />
                 ))}
               </GridContainer>
             )}

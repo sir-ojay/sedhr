@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { PopupButton } from "react-calendly";
+// import { PopupButton } from "react-calendly";
 
 type SynergiCardProps = {
 	type?: string;
@@ -130,23 +130,26 @@ const SynergiCard = ({
           </div>
           <div className="flex items-center gap-5">
             <Button
+              // onClick={() =>
+              //   router.push(
+              //     type === "create" ? (
+              //       `/collaboration/sedher-synergi/${id}`
+              //     ) : (
+              //       // <PopupButton
+              //       //   url="https://calendly.com/sedher"
+              //       //   rootElement={document.getElementById("__next")}
+              //       //   text="Book Appointment"
+              //       // />
+              //       `/collaboration/sedher-synergi/${id}`
+              //     )
+              //   )
+              // }
               onClick={() =>
-                router.push(
-                  type === "create" ? (
-                    `/collaboration/sedher-synergi/${id}`
-                  ) : (
-                    <PopupButton
-                      url="https://calendly.com/sedher"
-                      rootElement={document.getElementById("__next")}
-                      text="Book Appointment"
-                    />
-                  )
-                )
-              }
+                router.push( `/collaboration/sedher-synergi/${id}` )}
               className="w-full"
               theme="outline"
             >
-              {type === "create" ? (
+              {/* {type === "create" ? (
                 "Edit Details"
               ) : (
                 <PopupButton
@@ -154,7 +157,11 @@ const SynergiCard = ({
                   rootElement={document.getElementById("__next")}
                   text="Book Appointment"
                 />
-              )}
+                "Book Appointment"
+              )} */}
+             
+                Book Appointment
+      
             </Button>
           </div>
         </div>
