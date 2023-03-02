@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Button from "./Button";
@@ -8,14 +8,14 @@ import { useGetSnergiQuery } from "@/services/collaborations";
 import { Snergi } from "@/types/collaboration";
 import Cookies from "js-cookie";
 
-const Calendr = ({presentData, availableData}:any) => {
+const Calendr = ({ presentData, availableData }: any) => {
   const router = useRouter();
   const [snergiData, setSnergiData] = useState<Snergi>();
-//   console.log(snergiData);
+  //   console.log(snergiData);
 
   const token: any = Cookies.get("sedherToken");
 
-  const { data, isLoading, isSuccess } = useGetSnergiQuery({
+  const { data, isSuccess } = useGetSnergiQuery({
     token,
     id: router.query.id?.toString()!,
   });
@@ -32,16 +32,15 @@ const Calendr = ({presentData, availableData}:any) => {
 
   const [value, onChange] = useState<any>(new Date());
   const [showTime, setShowTime] = useState(false);
-  const date  = (valu:Date)=>{
-    valu = valu || value
-  // console.log(valu);
+  const date = (valu: Date) => {
+    valu = valu || value;
+    // console.log(valu);
 
-    let year =String(valu.getFullYear())
-    let month =String(valu.getMonth()+1)
-    let day =String(valu.getDate())
-    return year+"-"+month+"-"+day
-
-  }
+    let year = String(valu.getFullYear());
+    let month = String(valu.getMonth() + 1);
+    let day = String(valu.getDate());
+    return year + "-" + month + "-" + day;
+  };
   return (
     <div className="pr-9">
       <div>
@@ -57,18 +56,23 @@ const Calendr = ({presentData, availableData}:any) => {
           <p>
             <span>Start:</span>
             {/* {value[0].year()} */}
-            {date(value?.[0] ) }
+            {date(value?.[0])}
             &nbsp; &nbsp;
             {/* <span>End:</span>
             {value[1].toDateString()} */}
           </p>
         ) : (
-          <p>
+          <p className="text-primary mt-2">
             <span>Default selected date:</span>
             {value.toDateString()}
           </p>
         )}
-        <Time showTime={showTime} value={date(value[0])} presentData={presentData}  availableData={availableData} />
+        <Time
+          showTime={showTime}
+          value={date(value[0])}
+          presentData={presentData}
+          availableData={availableData}
+        />
       </div>
       <Button
         onClick={() =>
