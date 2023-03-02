@@ -18,19 +18,56 @@ import { v4 as uuid } from "uuid";
 import { LoginResponse } from "@/types/auth/auth";
 import { VerifyPaymentResponse } from "@/types/onboarding";
 import { useVerifyPaymentMutation } from "@/services/onboarding";
-import moment from "moment";
+// import moment from "moment";
 import { useGetBookingQuery } from "@/services/collaborations";
 
 const Detail = () => {
 
   const router = useRouter();
 
-  // Payment functions
-
   const [amount, setAmount] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const [userDetails, setUserDetails] = useState<LoginResponse>();
+  //   const moment = require("moment");
+
+  //   const dateTime = moment.utc("2023-02-22:10:30:00Z");
+  //   const newDateTime = dateTime.local().add(30, "minutes");
+  //   const time = newDateTime.format("HH:mm");
+
+  const token = Cookies.get("sedherToken") as string;
+  let user = JWT.decode(token) as { id: string };
+  // console.log(user?.id);
+  const [synergi, setSynergi] = useState<any>();
+  
+  const [bookingData, setBookingData] = useState<Booking>();
+
+  
+  const { data, isSuccess } = useGetBookingQuery({
+    token,
+    id: router.query.id?.toString()!,
+  });
+  // console.log(bookingData);
   useEffect(() => {
+    if (bookingData) {
+      const userSynergi = [...(bookingData as Array<any>)]
+        .reverse()
+        .find((data: any) => {
+          // console.log(data.synergy.owner, user.id);
+          return data.synergy.owner == user.id;
+        });
+      setSynergi(userSynergi);
+      // console.log(userSynergi);
+    }
+  }, [bookingData]);
+
+
+  useEffect(() => {
+    // console.log(data);
+    // @ts-ignore: Unreachable code error
+    data && setBookingData(data?.data);
+  }, [isSuccess, data]);
+
+	useEffect(() => {
 		try {
 			const userpayer = JSON.parse(Cookies.get("sedherUser") || "{}");
 			setUserDetails(userpayer);
@@ -88,42 +125,6 @@ const Detail = () => {
   useEffect(() => {
     if (amount > 0) initializePayment(onSuccess, onClose);
   }, [amount, count]);
-    const moment = require("moment");
-
-  //   const dateTime = moment.utc("2023-02-22:10:30:00Z");
-  //   const newDateTime = dateTime.local().add(30, "minutes");
-  //   const time = newDateTime.format("HH:mm");
-
-  // Get booking functions
-  const token = Cookies.get("sedherToken") as string;
-  let user = JWT.decode(token) as { id: string };
-  // console.log(user?.id);
-  const [synergi, setSynergi] = useState<any>();
-  
-  const [bookingData, setBookingData] = useState<Booking>();
-  console.log(bookingData);
-
-  useEffect(() => {
-    if (bookingData) {
-      const userSynergi = [...(bookingData as Array<any>)]
-        .reverse()
-        .find((data: any) => {
-          console.log(data.synergy.owner, user.id);
-          return data.synergy.owner == user.id;
-        });
-      setSynergi(userSynergi);
-      // console.log(userSynergi);
-    }
-  }, [bookingData]);
-
-  const { data, isSuccess } = useGetBookingQuery({
-    token,
-    id: router.query.id?.toString()!,
-  });
-
-  useEffect(() => {
-    data && setBookingData(data?.data);
-  }, [isSuccess, data]);
 
   return (
     <DefaultLayout>
@@ -189,18 +190,16 @@ const Detail = () => {
                             Appointment Date
                           </h6>
                           <p className="text-[#2A2069] font-medium font-epilogue text-sm">
-                          {moment(synergi?.appointment.dateSlot).format("DD, MMMM YYYY")}
-                            {/* {synergi?.appointment.dateSlot} */}
+                            {synergi?.appointment.dateSlot}
                             {synergi?.appointment.selectedSlots.map(
                               (timeSlot) => {
                                 return (
                                   <div>
                                     <div>
-                                      {moment(timeSlot).format("HH:mm")} 
-                                      {/* {new Date(timeSlot).getHours() - 1}:
+                                      {new Date(timeSlot).getHours() - 1}:
                                       {new Date(timeSlot).getMinutes()} -
                                       {new Date(timeSlot).getHours()}:
-                                      {new Date(timeSlot).getMinutes() - 30} */}
+                                      {new Date(timeSlot).getMinutes() - 30}
                                     </div>
                                   </div>
                                 );
@@ -227,7 +226,7 @@ const Detail = () => {
                             Created on
                           </h6>
                           <p className="text-[#2A2069] font-medium font-epilogue text-sm">
-                            {moment(synergi?.createdAt).format("Do, MMMM YYYY")}
+                            {synergi?.createdAt}
                           </p>
                         </div>
                       </div>
@@ -287,8 +286,8 @@ const Detail = () => {
                         </div>
                         <div className="mb-3">
                           <Button
-                            onClick={() => makePayment(synergi?.synergy.paymentDetails?.total)}
                             className="w-full"
+                            onClick={() => makePayment(300)}
                           >
                             Pay Now ({synergi?.synergy.paymentDetails?.total})
                           </Button>

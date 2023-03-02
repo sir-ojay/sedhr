@@ -7,8 +7,6 @@ import Button from "@/components/global/Button";
 import { FormProvider, useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-
-import JWT from "jsonwebtoken";
 import { useGetSnergiQuery } from "@/services/collaborations";
 import { Snergi } from "@/types/collaboration";
 
@@ -21,7 +19,7 @@ const PatientDetail = () => {
 
   const token: any = Cookies.get("sedherToken");
 
-  const { data, isLoading, isSuccess } = useGetSnergiQuery({
+  const { data, isSuccess } = useGetSnergiQuery({
     token,
     id: router.query.id?.toString()!,
   });
@@ -69,13 +67,7 @@ const PatientDetail = () => {
   const handleSubmit =  (e) => {
     e.preventDefault()
 
-    // const formData = new FormData();
-    // {
-    //   file && formData.append("data", file, file.name);
-    // }
-    // formData.append("contentType", file ? "image" : "text");
-    // formData.append("content", value || "uploaded file");
-console.log(router.query)
+// console.log(router.query)
     const result = Booking({
       token,
       id:router.query.id?.toString()!,
@@ -96,13 +88,8 @@ console.log(router.query)
     })
       .unwrap()
       .then(async (res) => {
-        console.log({res})
-        let messageTextObj = { type: 1, message: value };
-        let config = {
-          priority: 1, // Set priority for the message. 1: Low (by default). 2: Medium. 3: High.
-        };
-
-        // setValue("");
+        // console.log({res})
+    
         setFile(null);
 
         router.push(
