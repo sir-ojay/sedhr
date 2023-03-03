@@ -48,19 +48,19 @@ const Times = ({ value }: any) => {
     localStorage.setItem("appointment", JSON.stringify(appointment));
   }
   return (
-    <div className="times">
+    <div className="times grid-rows-2">
       {availableData?.spots &&
         availableData?.spots?.map((slots) => {
           // console.log({slots})
           return (
-            <div>
+            <div className="w-full mt-1  text-primary text-[16px] grid-cols-2">
               <button onClick={(e) => displayInfo(slots.startTime)}>
                 {moment(slots.startTime).format("HH:mm")} - {slots.status}
               </button>
             </div>
           );
         })}
-      <div>{info ? `Your appointment is set to time - ${moment(event).format("HH:MM")} on this date ${moment(value).format("DD, MM YYYY")}` : null}</div>
+      <div className="w-full mt-1   text-[16px]">{info ? `Your appointment is set to time - ${moment(event).format("HH:MM")} on this date ${moment(value).format("DD, MM YYYY")}` : null}</div>
     </div>
   );
 };

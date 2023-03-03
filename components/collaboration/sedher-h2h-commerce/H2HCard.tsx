@@ -99,7 +99,7 @@ const H2HCard = ({
 						/>
 					</div>
 					<div className='text-sm text-[#4C4475]'>
-						Created {moment(createdAt).format("Do, MMMM YYYY")}
+						Created {moment(createdAt).format("Dd, MMMM YYYY")}
 					</div>
 					<h4 className='font-semibold text-sm text-[#2A2069] hover:underline'>
 						{productDetails.name}

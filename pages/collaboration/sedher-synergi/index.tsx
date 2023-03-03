@@ -28,7 +28,7 @@ type SedherSynergiProps = {
 const SedherSynergi = ({ navigations }: SedherSynergiProps) => {
   const [grid, setGrid] = useState(2);
   const [snergiData, setSnergiData] = useState<Snergi[]>([]);
-  console.log(snergiData);
+  // console.log(snergiData);
 
   const getGrid = (grid: number) => {
     setGrid(grid);

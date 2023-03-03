@@ -292,6 +292,7 @@ export type Available = {
   date?: string;
 };
 
+
 export type GetAvailabilityResponse = {
   message: string;
   data: Booking;
