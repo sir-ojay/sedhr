@@ -22,7 +22,6 @@ import moment from "moment";
 import { useGetBookingQuery } from "@/services/collaborations";
 
 const Detail = () => {
-
   const router = useRouter();
 
   // Payment functions
@@ -31,18 +30,17 @@ const Detail = () => {
   const [count, setCount] = useState<number>(0);
   const [userDetails, setUserDetails] = useState<LoginResponse>();
   useEffect(() => {
-		try {
-			const userpayer = JSON.parse(Cookies.get("sedherUser") || "{}");
-			setUserDetails(userpayer);
-		} catch (error) {
-			// console.log(error);
-		}
-	}, []);
+    try {
+      const userpayer = JSON.parse(Cookies.get("sedherUser") || "{}");
+      setUserDetails(userpayer);
+    } catch (error) {
+      // console.log(error);
+    }
+  }, []);
   const [verify] = useVerifyPaymentMutation();
 
   const verifyPayment = async (ref: any) => {
     try {
-
       const body = {
         reference: ref.reference as string,
         amount: amount * 100,
@@ -55,8 +53,7 @@ const Detail = () => {
         query: {
           ...router.query,
         },
-      }
-      );
+      });
     } catch (err: any) {
       toast.error(err?.data?.message);
     }
@@ -88,7 +85,7 @@ const Detail = () => {
   useEffect(() => {
     if (amount > 0) initializePayment(onSuccess, onClose);
   }, [amount, count]);
-    const moment = require("moment");
+  const moment = require("moment");
 
   //   const dateTime = moment.utc("2023-02-22:10:30:00Z");
   //   const newDateTime = dateTime.local().add(30, "minutes");
@@ -99,7 +96,7 @@ const Detail = () => {
   let user = JWT.decode(token) as { id: string };
   // console.log(user?.id);
   const [synergi, setSynergi] = useState<any>();
-  
+
   const [bookingData, setBookingData] = useState<Booking>();
   console.log(bookingData);
 
@@ -134,14 +131,14 @@ const Detail = () => {
         />
       </div>
 
-      <div className="grid grid-cols-6 gap-8">
+      <div className="grid grid-cols-6 gap-8 mt-5">
         <section className="col-span-4 space-y-6">
           <WhiteWrapper>
-            <div className="flex justify-between space-x-8">
+            <div className="flex justify-between space-x-3">
               <div className=" w-[182px]">
                 <div className="rounded-xl mb-5">
                   <Image
-                    width={182}
+                    width={165}
                     height={132}
                     // layout='responsive'
                     src={
@@ -155,14 +152,14 @@ const Detail = () => {
                   <Button
                     theme="plain"
                     size="sm"
-                    className=" w-full text-primary border  border-[#DDE4F6]"
+                    className=" w-[90%] text-primary border  border-[#DDE4F6]"
                   >
                     View Details
                   </Button>
                 </div>
               </div>
               <div className="flex-1">
-                <div className=" flex justify-between bg-[#F5FBFE] p-[15px]">
+                <div className=" flex justify-between bg-[#F5FBFE] p-[12px]">
                   <div className="flex-1  pl-2">
                     <div className="flex space-x-4">
                       {/* <div>
@@ -177,8 +174,8 @@ const Detail = () => {
                       <div>
                         <div>
                           <Image
-                            width={24}
-                            height={24}
+                            width={22}
+                            height={22}
                             // layout='responsive'
                             src="/assets/icons/notify.svg"
                             alt="notify"
@@ -189,14 +186,15 @@ const Detail = () => {
                             Appointment Date
                           </h6>
                           <p className="text-[#2A2069] font-medium font-epilogue text-sm">
-                          {moment(synergi?.appointment.dateSlot).format("DD, MMMM YYYY")}
-                            {/* {synergi?.appointment.dateSlot} */}
+                            {moment(synergi?.appointment.dateSlot).format(
+                              "DD, MMMM YYYY"
+                            )}
                             {synergi?.appointment.selectedSlots.map(
                               (timeSlot) => {
                                 return (
                                   <div>
                                     <div>
-                                      {moment(timeSlot).format("HH:mm")} 
+                                      {moment(timeSlot).format("HH:mm")}
                                       {/* {new Date(timeSlot).getHours() - 1}:
                                       {new Date(timeSlot).getMinutes()} -
                                       {new Date(timeSlot).getHours()}:
@@ -213,13 +211,13 @@ const Detail = () => {
                     </div>
                     <div className="flex space-x-4">
                       <div>
-                        <Image
-                          width={24}
-                          height={24}
-                          // layout='responsive'
-                          src="/assets/icons/notify.svg"
-                          alt="notify"
-                        />
+                      <Image
+                            width={22}
+                            height={22}
+                            // layout='responsive'
+                            src="/assets/icons/notify.svg"
+                            alt="notify"
+                          />
                       </div>
                       <div>
                         <div className="mb-3">
@@ -234,13 +232,13 @@ const Detail = () => {
                     </div>
                     <div className="flex space-x-4">
                       <div>
-                        <Image
-                          width={24}
-                          height={24}
-                          // layout='responsive'
-                          src="/assets/icons/notify.svg"
-                          alt="notify"
-                        />
+                      <Image
+                            width={22}
+                            height={22}
+                            // layout='responsive'
+                            src="/assets/icons/notify.svg"
+                            alt="notify"
+                          />
                       </div>
                       <div>
                         <div className="mb-3">
@@ -255,8 +253,8 @@ const Detail = () => {
                     </div>
                   </div>
                   <div className="w-[1px] h-50 bg-[#B8C9C9]" />
-                  <div className="flex-1  pl-4 pr-4">
-                    <div className="flex space-x-4">
+                  <div className="flex-1  pl-2 pr-2">
+                    <div className="flex space-x-2">
                       <div>
                         <Image
                           width={10}
@@ -280,14 +278,18 @@ const Detail = () => {
                           <Button
                             theme="plain"
                             size="sm"
-                            className=" w-full text-primary border  border-[#DDE4F6]"
+                            className=" w text-primary border  border-[#DDE4F6]"
                           >
                             Edit Appointment
                           </Button>
                         </div>
                         <div className="mb-3">
                           <Button
-                            onClick={() => makePayment(synergi?.synergy.paymentDetails?.total)}
+                            onClick={() =>
+                              makePayment(
+                                synergi?.synergy.paymentDetails?.total
+                              )
+                            }
                             className="w-full"
                           >
                             Pay Now ({synergi?.synergy.paymentDetails?.total})
@@ -338,7 +340,7 @@ const Detail = () => {
         </section>
         <section className="col-span-2 space-y-6">
           <WhiteWrapper>
-            <ServiceCard data={data} synergi={synergi} />
+            <ServiceCard  />
           </WhiteWrapper>
 
           <Button

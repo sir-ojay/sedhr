@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 const Details = () => {
   const router = useRouter();
   const [snergiData, setSnergiData] = useState<Snergi>();
-//   console.log(snergiData);
+  //   console.log(snergiData);
 
   const token: any = Cookies.get("sedherToken");
 
@@ -106,9 +106,10 @@ const Details = () => {
                 Back
               </Button>
               <Button
-              
                 onClick={() =>
-                  router.push(`/collaboration/sedher-synergi/${snergiData?.id}/book-appointment`)
+                  router.push(
+                    `/collaboration/sedher-synergi/${snergiData?.id}/book-appointment`
+                  )
                 }
               >
                 Book Now
@@ -120,12 +121,18 @@ const Details = () => {
               <div>
                 <div className="flex w-full gap-5">
                   <div>
-                    <Avatar name="Thomas clinics" rounded size={100} />
+                    <Avatar
+                      href="/connection/1"
+                      shape="square"
+                      size={64}
+                      name={snergiData?.owner?.name!}
+                      image={snergiData?.owner?.profilePicture!}
+                    />
                   </div>
                   <div className="w-full space-y-2">
                     <div className="flex justify-between">
-                      <h3 className="text-2xl font-semibold text-dark-900">
-                        Thomas clinics
+                      <h3 className="text-l font-semibold text-dark-900">
+                        {snergiData?.owner?.name}
                       </h3>
                       <StatusPill
                         text="Service"
@@ -134,13 +141,13 @@ const Details = () => {
                       />
                     </div>
                     <div className="text-lg space-x-3">
-                      <span className="text-dark-100">Dental clinics</span>
+                      {/* <span className="text-dark-100">Dental clinics</span> */}
                       <span className="text-[#F47D5B]">
-                        Patient care centres{" "}
+                        {snergiData?.owner?.accountType}
                       </span>
                     </div>
                     <div className="text-base text-dark-100">
-                      Friday 13 June
+                    {moment(snergiData?.createdAt).format("DD, MMMM yy")}
                     </div>
                   </div>
                 </div>
