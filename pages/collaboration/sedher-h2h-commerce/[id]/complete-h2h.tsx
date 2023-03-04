@@ -5,6 +5,7 @@ import H2HCard from "@/components/collaboration/sedher-h2h-commerce/H2HCard";
 import GoBackButton from "@/components/global/GoBackButton";
 import { GetServerSideProps } from "next";
 import { requireAuthentication } from "hoc/requireAuthentication";
+import { profile } from "console";
 
 type CompleteH2hProps = {
 	navigations: {
@@ -48,7 +49,9 @@ const CompleteH2h = ({ navigations }: CompleteH2hProps) => {
 							}}
 							paymentDetails={{
 								paymentType: "FIXED",
-								prices: [],
+								prices: [{
+									value: 4000,
+								}],
 							}}
 							_id={""}
 							userId={""}
