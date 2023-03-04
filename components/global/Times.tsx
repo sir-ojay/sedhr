@@ -48,20 +48,32 @@ const Times = ({ value }: any) => {
     localStorage.setItem("appointment", JSON.stringify(appointment));
   }
   return (
-    <div className="times grid-rows-2">
-      {availableData?.spots &&
-        availableData?.spots?.map((slots) => {
-          // console.log({slots})
-          return (
-            <div className="w-full mt-1  text-primary text-[16px] grid-cols-2">
-              <button onClick={(e) => displayInfo(slots.startTime)}>
-                {moment(slots.startTime).format("HH:mm")} - {slots.status}
-              </button>
-            </div>
-          );
-        })}
-      <div className="w-full mt-1   text-[16px]">{info ? `Your appointment is set to time - ${moment(event).format("HH:MM")} on this date ${moment(value).format("DD, MM YYYY")}` : null}</div>
-    </div>
+    <>
+      <div className="w-full mt-1  text-[18px] w-[90%]">
+        {info
+          ? `Your appointment is set to time - ${moment(event).format(
+              "HH:MM"
+            )} on  ${moment(value).format(
+              "DD, MMMM YYYY"
+            )}, scroll down, click the button to continue booking.`
+          : null}
+      </div>
+      <div className="times ">
+        {availableData?.spots &&
+          availableData?.spots?.map((slots) => {
+            // console.log({slots})
+            return (
+              <div className="mt-1  text-primary text-[16px]">
+                <div className=" grid-rows-2">
+                  <button onClick={(e) => displayInfo(slots.startTime)}>
+                    {moment(slots.startTime).format("HH:mm")} - {slots.status}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+      </div>
+    </>
   );
 };
 

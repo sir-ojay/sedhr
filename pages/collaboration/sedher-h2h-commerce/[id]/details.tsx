@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 const Details = () => {
   const router = useRouter();
@@ -31,7 +32,11 @@ const Details = () => {
     try {
       const result = await chat({
         token,
-        body: { content: "Hello ", receiverId: data?.data?.owner,contentType:"text" },
+        body: {
+          content: "Hello ",
+          receiverId: data?.data?.owner,
+          contentType: "text",
+        },
       }).unwrap();
       router.push("/collaboration/sedher-h2h-commerce/chats");
     } catch (error: any) {
@@ -110,11 +115,11 @@ const Details = () => {
               <div className="space-y-4">
                 <LabelValue
                   label="Weight Approx"
-                  value={data?.data.technicalDetails.weight || "N/A"}
+                  value={data?.data.technicalDetails.weight!}
                 />
                 <LabelValue
                   label="Dimensions(length,width and height)"
-                  value={data?.data.technicalDetails.dimensions || "N/A"}
+                  value={data?.data.technicalDetails.dimensions!}
                 />
               </div>
             </div>
@@ -139,12 +144,18 @@ const Details = () => {
             <div>
               <div className="flex w-full gap-5">
                 <div>
-                  <Avatar name="Thomas clinics" rounded size={100} />
+                  <Avatar
+                    href="/connection/1"
+                    shape="square"
+                    size={54}
+                    name={data?.data.owner?.name!}
+                    image={data?.data.owner?.profilePicture!}
+                  />
                 </div>
                 <div className="w-full space-y-2">
                   <div className="flex justify-between">
                     <h3 className="text-2xl font-semibold text-dark-900">
-                      Thomas clinics
+                      {data?.data.owner.name}
                     </h3>
                     <StatusPill
                       text="Service"
@@ -153,12 +164,14 @@ const Details = () => {
                     />
                   </div>
                   <div className="text-lg space-x-3">
-                    <span className="text-dark-100">Dental clinics</span>
+                    {/* <span className="text-dark-100">Dental clinics</span> */}
                     <span className="text-[#F47D5B]">
-                      Patient care centres{" "}
+                      {data?.data.owner.name}
                     </span>
                   </div>
-                  <div className="text-base text-dark-100">Friday 13 June</div>
+                  <div className="text-base text-dark-100">
+                    {moment(data?.data.createdAt).format("DD, MMMM yy")}
+                  </div>
                 </div>
               </div>
               <Button
@@ -180,24 +193,24 @@ const Details = () => {
                 <div className="space-y-4">
                   <LabelValue
                     label="Name"
-                    value={data?.data.productDetails.name || "N/A"}
+                    value={data?.data.productDetails.name!}
                     orientation="vertical"
                   />
                   <LabelValue
                     label="Item Description"
-                    value={data?.data.itemDetails.description || "N/A"}
+                    value={data?.data.itemDetails.description!}
                     orientation="vertical"
                   />
                   <LabelValue
                     label="Model / type"
-                    value={data?.data.itemDetails.modelOrType || "N/A"}
+                    value={data?.data.itemDetails.modelOrType!}
                     orientation="vertical"
                   />
-                  <LabelValue
+                  {/* <LabelValue
                     label="Year of manufacture"
                     value={"N/A"}
                     orientation="vertical"
-                  />
+                  /> */}
                   {/* <LabelValue
 										label='Item available from'
 										value='Immediately'
@@ -211,8 +224,7 @@ const Details = () => {
                   <LabelValue
                     label="Pickup location"
                     orientation="vertical"
-                    value={"N/A"}
-                    // isLink={true}
+                    value={`${data?.data.pickupLocation.address}, ${data?.data.pickupLocation.lga}, ${data?.data.pickupLocation.state}, ${data?.data.pickupLocation.country}.`}
                   />
                 </div>
               </div>

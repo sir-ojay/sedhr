@@ -19,6 +19,7 @@ const H2HCard = ({
 	productDetails,
 	_id,
 	images,
+	owner
 }: H2HCardProps & H2H) => {
 	const router = useRouter();
 
@@ -30,21 +31,22 @@ const H2HCard = ({
 						<Avatar
 							href='/connection/1'
 							shape='square'
-							size={54}
-							name='Thomas clinics'
+							size={64}
+							image={owner?.profilePicture}
+							name={owner?.name}
 						/>
 						<div className='w-full flex justify-between '>
 							<div>
 								<Link
 									href='/connection/1'
 									className='font-semibold text-[#2A2069] hover:underline'>
-									Thomas clinics
+									{owner?.name}
 								</Link>
-								<div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
+								{/* <div className='text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]'>
 									Dental clinics
-								</div>
+								</div> */}
 								<div className='text-sm text-accents-brown'>
-									Patient care centres
+									{owner?.accountType}
 								</div>
 							</div>
 

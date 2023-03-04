@@ -126,7 +126,7 @@ const Details = () => {
                       shape="square"
                       size={64}
                       name={snergiData?.owner?.name!}
-                      image={snergiData?.owner?.profilePicture!}
+                      image={snergiData?.owner?.profilePicture}
                     />
                   </div>
                   <div className="w-full space-y-2">

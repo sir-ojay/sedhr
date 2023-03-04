@@ -85,7 +85,11 @@ export type H2H = {
   shipmentDetails: string;
   createdAt: string;
   updatedAt: string;
-  owner: string;
+  owner: {
+    accountType: string;
+    name: string;
+    profilePicture: string;
+  };
 };
 
 export type GetH2HSResponse = {
@@ -268,7 +272,7 @@ export type CreateBookingResponse = {
 export type CreateBookingRequest = {
   token: string;
   body: {};
-  id:string
+  id: string;
 };
 
 export type GetBookingResponse = {
@@ -291,7 +295,6 @@ export type Available = {
   ];
   date?: string;
 };
-
 
 export type GetAvailabilityResponse = {
   message: string;

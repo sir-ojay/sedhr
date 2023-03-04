@@ -3,7 +3,7 @@ import H2HCard from "@/components/collaboration/sedher-h2h-commerce/H2HCard";
 import Avatar from "@/components/global/Avatar";
 import Button from "@/components/global/Button";
 import StatusPill from "@/components/global/StatusPill";
-import Switch from "@/components/global/Switch";
+// import Switch from "@/components/global/Switch";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useGetH2HQuery, useGetH2HsQuery } from "@/services/collaborations";
@@ -14,62 +14,65 @@ import { GetServerSideProps } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import moment from "moment";
 
 const index = () => {
-	const router = useRouter();
-	const [h2hData, setH2HData] = useState<H2H[]>([]);
+  const router = useRouter();
+  const [h2hData, setH2HData] = useState<H2H[]>([]);
 
-	const token: any = Cookies.get("sedherToken");
+  const token: any = Cookies.get("sedherToken");
 
-	const { data, error, isLoading, isSuccess, isFetching } = useGetH2HsQuery({
-		token,
-	});
+  const { data, isLoading, isSuccess, isFetching } = useGetH2HsQuery({
+    token,
+  });
 
-	const { data: h2hIDData, isLoading: isLoadingh2h } = useGetH2HQuery({
-		token,
-		id: router.query.id?.toString()!,
-	});
+  const { data: h2hIDData, isLoading: isLoadingh2h } = useGetH2HQuery({
+    token,
+    id: router.query.id?.toString()!,
+  });
+  console.log(h2hIDData);
 
-	useEffect(() => {
-		console.log(data);
-		data && setH2HData(data.data as H2H[]);
-	}, [isSuccess, data]);
+  useEffect(() => {
+    console.log(data);
+    data && setH2HData(data.data as H2H[]);
+  }, [isSuccess, data]);
 
-	return (
-		<DefaultLayout title='Sedher | Collaboration | create RFP'>
-			<CollaborationWrapper showHeader={false}>
-				<WhiteWrapper className='flex items-center justify-between w-full'>
-					<div
-						title='Request for Proposal'
-						className='font-semibold text-lg text-dark-900 w-full'>
-						Request for Proposal
-					</div>
-				</WhiteWrapper>
+  return (
+    <DefaultLayout title="Sedher | Collaboration | create RFP">
+      <CollaborationWrapper showHeader={false}>
+        <WhiteWrapper className="flex items-center justify-between w-full">
+          <div
+            title="Request for Proposal"
+            className="font-semibold text-lg text-dark-900 w-full"
+          >
+            Request for Proposal
+          </div>
+        </WhiteWrapper>
 
-				<div className='grid grid-cols-6 gap-8'>
-					<section className='col-span-2 space-y-8'>
-						<section className='space-y-8'>
-							{isLoading && (
-								<div className='space-y-8'>
-									{[1, 2, 3, 4, 5, 6].map((card) => (
-										<WhiteWrapper key={card} className='h-[400px] w-full' />
-									))}
-								</div>
-							)}
+        <div className="grid grid-cols-6 gap-8">
+          <section className="col-span-2 space-y-8">
+            <section className="space-y-8">
+              {isLoading && (
+                <div className="space-y-8">
+                  {h2hData.map((card) => (
+                    <WhiteWrapper key={card._id} className="h-[400px] w-full" />
+                  ))}
+                </div>
+              )}
 
-							{h2hData.map((card) => (
-								<H2HCard key={card._id} type='Product' {...card} />
-							))}
-						</section>
-					</section>
-					{isLoadingh2h && (
-						<div className='col-span-4'>
-							<WhiteWrapper className='w-full h-[700px]'></WhiteWrapper>
-						</div>
-					)}
-					{!isLoadingh2h && (
-						<section className='col-span-4 space-y-8'>
-							{/* <article className='bg-primary p-4 rounded-xl space-y-6'>
+              {h2hData.map((card) => (
+                <H2HCard key={card._id} type="Product" {...card} />
+              ))}
+            </section>
+          </section>
+          {isLoadingh2h && (
+            <div className="col-span-4">
+              <WhiteWrapper className="w-full h-[700px]"></WhiteWrapper>
+            </div>
+          )}
+          {!isLoadingh2h && (
+            <section className="col-span-4 space-y-8">
+              {/* <article className='bg-primary p-4 rounded-xl space-y-6'>
 							<div className='flex items-center justify-between'>
 								<h3 className='text-white font-semibold'>
 									Learning how Request for proposal(RFP) Works
@@ -105,98 +108,107 @@ const index = () => {
 							</div>
 						</article> */}
 
-							<WhiteWrapper className='space-y-6'>
-								<div className='flex w-full gap-5'>
-									<div>
-										<Avatar name='Thomas clinics' rounded size={100} />
-									</div>
-									<div className='w-full space-y-2'>
-										<div className='flex justify-between'>
-											<h3 className='text-2xl font-semibold text-dark-900'>
-												Thomas clinics
-											</h3>
-											<StatusPill
-												text='Service'
-												bg='#FF39561A'
-												textColor='#FF3956'
-											/>
-										</div>
-										<div className='text-lg space-x-3'>
-											<span className='text-dark-100'>Dental clinics</span>
-											<span className='text-[#F47D5B]'>
-												Patient care centres{" "}
-											</span>
-										</div>
-										<div className='text-base text-dark-100'>
-											Friday 13 June
-										</div>
-										<Button
-											theme='outline'
-											onClick={() => router.push("/connection/1")}>
-											view profile
-										</Button>
-									</div>
-								</div>
+              <WhiteWrapper className="space-y-6">
+                <div className="flex w-full gap-5">
+                  <div>
+                    <Avatar
+                      href="/connection/1"
+                      shape="square"
+                      size={54}
+                      name={h2hIDData?.data.owner?.name!}
+                      image={h2hIDData?.data.owner?.profilePicture!}
+                    />
+                  </div>
+                  <div className="w-full space-y-2">
+                    <div className="flex justify-between">
+                      <h3 className="text-2xl font-semibold text-dark-900">
+                        {h2hIDData?.data.owner?.name}
+                      </h3>
+                      <StatusPill
+                        text="Service"
+                        bg="#FF39561A"
+                        textColor="#FF3956"
+                      />
+                    </div>
+                    <div className="text-lg space-x-3">
+                      {/* <span className="text-dark-100">Dental clinics</span> */}
+                      <span className="text-[#F47D5B]">
+                        {h2hIDData?.data.owner.accountType}
+                      </span>
+                    </div>
+                    <div className="text-base text-dark-100">
+                      {moment(h2hIDData?.data.createdAt).format("DD, MMMM yy")}
+                    </div>
+                    <Button
+                      theme="outline"
+                      onClick={() => router.push("/connection/1")}
+                    >
+                      view profile
+                    </Button>
+                  </div>
+                </div>
 
-								<hr />
-								<div className='rounded-xl overflow-hidden'>
-									<Image
-										className='w-full h-[500px] object-cover'
-										src={
-											h2hIDData?.data?.images[0] === "cloudinary-link-here"
-												? "/assets/images/collabo.jpg"
-												: h2hIDData?.data.images[0] ||
-												  "/assets/images/collabo.jpg"
-										}
-										width={300}
-										height={269}
-										alt='collabo'
-									/>
-								</div>
-								<div className='space-y-6'>
-									<div className='flex justify-between'>
-										<div className='text-xl font-semibold text-dark-900'>
-											{h2hIDData?.data.productDetails.name}
-										</div>
-										{/* <Switch label='Saved H2H' /> */}
-									</div>
-									<p className='text-dark-100 leading-8'>
-										{h2hIDData?.data.productDetails.description}
-									</p>
-								</div>
-							</WhiteWrapper>
-							<div className='flex justify-between'>
-								<Button
-									onClick={() =>
-										router.push("/collaboration/sedher-h2h-commerce")
-									}
-									theme='outline'>
-									Go Back
-								</Button>
-								<Button
-									onClick={() =>
-										router.push(
-											`/collaboration/sedher-h2h-commerce/${h2hIDData?.data._id}/details`
-										)
-									}>
-									View full Details
-								</Button>
-							</div>
-						</section>
-					)}
-				</div>
-			</CollaborationWrapper>
-		</DefaultLayout>
-	);
+                <hr />
+                <div className="rounded-xl overflow-hidden">
+                  <Image
+                    className="w-full h-[500px] object-cover"
+                    src={
+                      h2hIDData?.data?.images[0] === "cloudinary-link-here"
+                        ? "/assets/images/collabo.jpg"
+                        : h2hIDData?.data.images[0] ||
+                          "/assets/images/collabo.jpg"
+                    }
+                    width={300}
+                    height={269}
+                    alt="collabo"
+                  />
+                </div>
+                <div className="space-y-6">
+                  <div className="flex justify-between">
+                    <div className="text-xl font-semibold text-dark-900">
+                      {h2hIDData?.data.productDetails.name}
+                    </div>
+                    {/* <Switch label='Saved H2H' /> */}
+                  </div>
+                  <p className="text-dark-100 leading-8">
+                    {h2hIDData?.data.productDetails.description}
+                  </p>
+                </div>
+              </WhiteWrapper>
+              <div className="flex justify-between">
+                <Button
+                  onClick={() =>
+                    router.push("/collaboration/sedher-h2h-commerce")
+                  }
+                  theme="outline"
+                >
+                  Go Back
+                </Button>
+                <Button
+                  onClick={() =>
+                    router.push(
+                      `/collaboration/sedher-h2h-commerce/${h2hIDData?.data._id}/details`
+                    )
+                  }
+                >
+                  View full Details
+                </Button>
+              </div>
+            </section>
+          )}
+        </div>
+      </CollaborationWrapper>
+    </DefaultLayout>
+  );
 };
 
 export default index;
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
-	async (context) => {
-		return {
-			props: {
-				customers: [],
-			},
-		};
-	}
+  async (context) => {
+    return {
+      props: {
+        customers: [],
+      },
+    };
+  }
 );
