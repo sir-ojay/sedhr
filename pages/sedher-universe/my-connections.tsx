@@ -137,6 +137,7 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
         {(t === "hcps" || t === undefined) && tab === "friends" && (
           <>
             <GridContainer grid={grid}>
+              {/* {data?.data} */}
               {friends?.data.map((account, i) => (
                 <AdjustableProfileCard
                   key={account._id + 1}

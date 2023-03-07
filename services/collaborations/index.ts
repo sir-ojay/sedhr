@@ -136,6 +136,7 @@ export const collaboration = createApi({
     getAvailability: builder.query<GetAvailabilityResponse, GetAvailabilityRequest>({
       query: (credentials) =>
        {
+        // console.log({credentials})
         return  getRequest(
           `/synergies/${credentials.id}/availabilities?dateSlot=${credentials.time}`,
           credentials.token
