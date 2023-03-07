@@ -18,7 +18,7 @@ import { v4 as uuid } from "uuid";
 import { LoginResponse } from "@/types/auth/auth";
 import { VerifyPaymentResponse } from "@/types/onboarding";
 import { useVerifyPaymentMutation } from "@/services/onboarding";
-import moment from "moment";
+import moment, { min } from "moment";
 import { useGetBookingQuery } from "@/services/collaborations";
 
 const Detail = () => {
@@ -189,26 +189,12 @@ const Detail = () => {
                             Appointment Date
                           </h6>
                           <p className="text-[#2A2069] font-medium font-epilogue text-sm">
-                            {/* {moment(synergi?.appointment.dateSlot).format(
+                            {moment(synergi?.appointment.dateSlot).format(
                               "DD, MMMM YYYY"
-                            )}
-                            {synergi?.appointment.selectedSlots.map(
-                              (timeSlot:any) => {
-                                return (
-                                  <div>
-                                    <div>
-                                      {moment(timeSlot).format("HH:mm")}
-                                      {new Date(timeSlot).getHours() - 1}:
-                                      {new Date(timeSlot).getMinutes()} -
-                                      {new Date(timeSlot).getHours()}:
-                                      {new Date(timeSlot).getMinutes() - 30}
-                                    </div>
-                                  </div>
-                                );
-                              }
-                            )} */}
-                            
-                            {/* 26/07/22(9:00Am-10:00pm) */}
+                            )} <br />
+                            {moment(synergi?.appointment.selectedSlots[0]).format(
+                             "HH:mm"
+                            )} -  {moment(synergi?.appointment.selectedSlots[0]).format("hh","")+ 30}
                           </p>
                         </div>
                       </div>
