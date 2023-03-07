@@ -105,6 +105,8 @@ const YouMightKnowCard = ({ account }: any) => {
 					Connect
 				</Button>
 				<Button className='w-full' size='sm' theme='outline'
+				
+				
 		>
 					Ignore
 				</Button>

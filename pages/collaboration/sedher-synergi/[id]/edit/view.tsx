@@ -102,14 +102,17 @@ const Detail = () => {
 
   useEffect(() => {
     if (bookingData) {
-      const userSynergi = [...(bookingData as Array<any>)]
-        .reverse()
-        .find((data: any) => {
-          console.log(data.synergy.owner, user.id);
-          return data.synergy.owner == user.id;
-        });
+      const userSynergi = [...(bookingData as Array<any>)].pop()
+        // .reverse()
+        // .find((data: any) => {
+        //   console.log(data.synergy.owner, user.id);
+        //   return data.synergy.owner == user.id;
+          
+        // });
+      
       setSynergi(userSynergi);
-      // console.log(userSynergi);
+      // setSynergi(bookingData);
+      console.log(userSynergi);
     }
   }, [bookingData]);
 
@@ -186,24 +189,25 @@ const Detail = () => {
                             Appointment Date
                           </h6>
                           <p className="text-[#2A2069] font-medium font-epilogue text-sm">
-                            {moment(synergi?.appointment.dateSlot).format(
+                            {/* {moment(synergi?.appointment.dateSlot).format(
                               "DD, MMMM YYYY"
                             )}
                             {synergi?.appointment.selectedSlots.map(
-                              (timeSlot) => {
+                              (timeSlot:any) => {
                                 return (
                                   <div>
                                     <div>
                                       {moment(timeSlot).format("HH:mm")}
-                                      {/* {new Date(timeSlot).getHours() - 1}:
+                                      {new Date(timeSlot).getHours() - 1}:
                                       {new Date(timeSlot).getMinutes()} -
                                       {new Date(timeSlot).getHours()}:
-                                      {new Date(timeSlot).getMinutes() - 30} */}
+                                      {new Date(timeSlot).getMinutes() - 30}
                                     </div>
                                   </div>
                                 );
                               }
-                            )}
+                            )} */}
+                            
                             {/* 26/07/22(9:00Am-10:00pm) */}
                           </p>
                         </div>
