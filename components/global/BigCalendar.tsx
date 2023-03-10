@@ -22,16 +22,6 @@ const BigCalendar = (props: any) => {
   });
 
   useEffect(() => {
-    // @ts-ignore: Unreachable code error
-    // console.log(data?.data.spots)
-    // let bookinds = data.data.spots.map((spot)=>{
-    //   return {
-    //     // startT
-    //     title: spot.status,
-    //     start: spot.startTime,
-    //     end: spot.startTime,
-    //   }
-    // })
     data &&
       setAvailableData(
         data?.data?.spots.map((spot) => {
@@ -44,10 +34,6 @@ const BigCalendar = (props: any) => {
         })
       );
   }, [isSuccess, data]);
-
-  const handleClick = () => {
-    router.back();
-  };
 
   console.log(availableData);
 

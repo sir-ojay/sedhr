@@ -9,6 +9,7 @@ import { Snergi } from "@/types/collaboration";
 import Cookies from "js-cookie";
 
 const Calendr = ({ presentData, availableData }: any) => {
+  // Synergi functions to get the unique id
   const router = useRouter();
   const [snergiData, setSnergiData] = useState<Snergi>();
   //   console.log(snergiData);
@@ -30,6 +31,8 @@ const Calendr = ({ presentData, availableData }: any) => {
     router.back();
   };
 
+  // Booking functions
+
   const [value, onChange] = useState<any>(new Date());
   const [showTime, setShowTime] = useState(false);
   const date = (valu: Date) => {
@@ -47,7 +50,7 @@ const Calendr = ({ presentData, availableData }: any) => {
         <Calendar
           onChange={onChange}
           value={value}
-          selectRange={true}
+          // selectRange={true}
           onClickDay={() => setShowTime(true)}
         />
       </div>
@@ -62,17 +65,12 @@ const Calendr = ({ presentData, availableData }: any) => {
             {value[1].toDateString()} */}
           </p>
         ) : (
-          <p className="text-primary mt-2">
+          <p className="text-current text-lg mt-2">
             <span>Default selected date:</span>
             {value.toDateString()}
           </p>
         )}
-        <Time
-          showTime={showTime}
-          value={date(value[0])}
-          presentData={presentData}
-          availableData={availableData}
-        />
+        <Time showTime={showTime} value={date(value[0])} />
       </div>
       <Button
         onClick={() =>
@@ -89,7 +87,7 @@ const Calendr = ({ presentData, availableData }: any) => {
         onClick={handleClick}
         theme="outline"
         size="sm"
-        className=" w-full mt-5  border text-pr border-[#DDE4F6]  	"
+        className="w-full mt-5  border text-pr border-[#DDE4F6]"
       >
         Back
       </Button>

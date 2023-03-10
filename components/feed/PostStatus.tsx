@@ -142,6 +142,7 @@ const PostStatus = () => {
 				<button
 					onClick={() => setShowPostModal(true)}
 					className='w-[calc(100%-72px)] text-sm xl:text-base px-4 py-2 xl:py-3 text-dark-100 text-left bg-accents-light-blue rounded-[5px]'>
+					
 					What do you want to write about?
 				</button>
 			</div>
