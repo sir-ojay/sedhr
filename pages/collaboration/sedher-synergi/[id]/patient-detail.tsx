@@ -102,13 +102,13 @@ const PatientDetail = () => {
     <DefaultLayout>
       <GoBackButton label="1600 W Universal Machine Centre" />
 
-      <WhiteWrapper className="flex justify-between mt-5">
+      {/* <WhiteWrapper className="flex justify-between mt-5">
         <div>
           <b>Patient Information</b>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
         </div>
         <Button type="submit">Add Patient Details</Button>
-      </WhiteWrapper>
+      </WhiteWrapper> */}
 
       <FormProvider {...methods}>
         <form   onSubmit={handleSubmit}>

@@ -191,7 +191,7 @@ const AdjustableProfileCard = ({
 						)}
 						{(cardType === "group" || cardType === "event") && (
 							<Button
-								// onClick={() => Router.push(href)}
+								onClick={() => Router.push('/feature-coming')}
 								size='sm'
 								theme='outline'
 								className='w-full'>

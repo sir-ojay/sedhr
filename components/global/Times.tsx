@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "react-calendar/dist/Calendar.css";
-import Calendar from "react-calendar";
 import { useRouter } from "next/router";
 import { useGetAvailabilityQuery } from "@/services/collaborations";
 import { Available } from "@/types/collaboration";
@@ -63,13 +62,16 @@ const Times = ({ value }: any) => {
           availableData?.spots?.map((slots) => {
             // console.log({slots})
             return (
-              <div className="mt-1  text-primary text-[16px]">
-                <div className=" grid-rows-2">
-                  <button onClick={(e) => displayInfo(slots.startTime)}>
+              <button
+                className=" w-1/4 max-[650px]:w-1/2"
+                onClick={(e) => displayInfo(slots.startTime)}
+              >
+                <div className="mt-2 mr-3 p-5 min-w-min  text-primary text-[16px] border  border-[#DDE4F6] rounded-md hover:border-[#26A4FF] ">
+                  <p>
                     {moment(slots.startTime).format("HH:mm")} - {slots.status}
-                  </button>
+                  </p>
                 </div>
-              </div>
+              </button>
             );
           })}
       </div>
