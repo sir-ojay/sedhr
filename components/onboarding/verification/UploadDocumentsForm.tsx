@@ -43,7 +43,7 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
 			}).unwrap()) as any;
 			data.push({
 				idType,
-				idLink: result.data.secureUrl,
+				idLink: result.data[0],
 				// publicId: result.data.publicId,
 			});
 			documentsInfo(data);

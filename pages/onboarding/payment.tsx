@@ -64,7 +64,7 @@ const payment: NextPage = () => {
 	};
 
 	const onSuccess = (reference: void) => {
-		setTimeout(() => verifyPayment(reference as any), 1500);
+		setTimeout(() => verifyPayment(reference as any), 2500);
 	};
 
 	const onClose = () => {
@@ -102,7 +102,7 @@ const payment: NextPage = () => {
 									? "bg-white text-primary"
 									: "text-[#11747d67]"
 							}`}>
-							Bill monthly
+							x Bill monthly
 						</div>
 						<div
 							onClick={() => setBillRange("annually")}

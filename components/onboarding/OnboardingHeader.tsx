@@ -1,6 +1,8 @@
+import { LoginResponse } from "@/types/auth/auth";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 type OnboardingHeaderProps = {
 	steps: {
@@ -29,7 +31,17 @@ const OnboardingHeader = ({
 	children,
 	totalSubSteps = 4,
 }: OnboardingHeaderProps) => {
+	const [user, setUser] = useState<LoginResponse>();
 	const location = useRouter();
+
+	useEffect(() => {
+		try {
+			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
+			// user.hasOnboarded ? location.push("/feed") : setUser(user);
+		} catch (error) {
+			console.log(error);
+		}
+	}, []);
 
 	const logout = () => {
 		Cookies.remove("sedherToken");
