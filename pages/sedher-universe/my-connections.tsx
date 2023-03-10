@@ -59,20 +59,27 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
   } = useGetFriendsListQuery({ token });
 
   useEffect(() => {
-    // console.log(data);
+    console.log(data);
     data && setFriendsRequests(data);
   }, [isSuccess, data]);
 
   useEffect(() => {
-    // console.log(friendsData);
+    console.log(friendsData);
     friendsData && setFriends(friendsData);
   }, [isSuccess, data]);
   return (
     <DefaultLayout title="Sedher | Sedher universe | My Connections">
-      <SedherUniverseWrapper>
-        <ListSortHeader
+
+<WhiteWrapper>
+        <h3 className="text-lg leading-normal font-medium">
+          {" "}
+          Features coming soon...
+        </h3>
+      </WhiteWrapper>
+      {/* <SedherUniverseWrapper> */}
+        {/* <ListSortHeader
           title="My Connections"
-          // results={73000}
+          results={73000}
           setGrid={setGrid}
           defaultGrid={defaultGrid}
         />
@@ -116,7 +123,7 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
                   accountType={account.accountType}
                   username={account.username}
                   href={`/profile/${account.username}`}
-                  // image={account.image}
+                  image={account.image}
                   cardType="connectAccept"
                   grid={grid}
                 />
@@ -137,7 +144,7 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
         {(t === "hcps" || t === undefined) && tab === "friends" && (
           <>
             <GridContainer grid={grid}>
-              {/* {data?.data} */}
+              {data?.data}
               {friends?.data.map((account, i) => (
                 <AdjustableProfileCard
                   key={account._id + 1}
@@ -146,7 +153,7 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
                   accountType={account.accountType}
                   href={`/profile/${account.username}`}
                   username={account.username}
-                  // image={account.image}
+                  image={account.image}
                   cardType="connect"
                   connected
                   grid={grid}
@@ -174,7 +181,7 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
                   accountType={account.accountType}
                   href={`/profile/${account.username}`}
                   username={account.username}
-                  // image={account.image}
+                  image={account.image}
                   cardType="connect"
                   connected
                   grid={grid}
@@ -202,7 +209,7 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
                   accountType={account.accountType}
                   href={`/profile/${account.username}`}
                   username={account.username}
-                  // image={account.image}
+                  image={account.image}
                   cardType="connect"
                   connected
                   grid={grid}
@@ -230,7 +237,7 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
                   accountType={account.accountType}
                   href={`/profile/${account.username}`}
                   username={account.username}
-                  // image={account.image}
+                  image={account.image}
                   cardType="connect"
                   connected
                   grid={grid}
@@ -245,8 +252,8 @@ const MyConnections = ({ navs, defaultGrid }: MyConnectionsProps) => {
               <div>You currently do not have any connection</div>
             )}
           </>
-        )}
-      </SedherUniverseWrapper>
+        )} */}
+      {/* </SedherUniverseWrapper> */}
     </DefaultLayout>
   );
 };
