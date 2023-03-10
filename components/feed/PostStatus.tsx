@@ -62,7 +62,7 @@ const PostStatus = () => {
 							: "text",
 						attachment: [
 							{
-								url: url.data.secureUrl,
+								url: url.data[0],
 								contentType: data.media[0].type
 									.split("/")[0]
 									.toString()
