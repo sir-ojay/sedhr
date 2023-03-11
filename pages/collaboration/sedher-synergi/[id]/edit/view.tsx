@@ -194,9 +194,8 @@ const Detail = () => {
                             )} <br />
                             {moment(synergi?.appointment.selectedSlots[0]).format(
                              "HH:mm"
-                            )} -
-                              {/* ({moment(synergi?.appointment.selectedSlots[0]).format("hh")}: 30mins) */}
-                         -  ({moment(moment(synergi?.appointment.selectedSlots[0]).format("hh:mm") + 30*60*1000)})
+                            )}
+                         -  {moment(synergi?.appointment.selectedSlots[0]).add(30, 'minutes').format("HH:mm")}
                           </p>
                         </div>
                       </div>

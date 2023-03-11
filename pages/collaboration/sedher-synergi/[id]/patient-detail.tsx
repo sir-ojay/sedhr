@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { useGetSnergiQuery } from "@/services/collaborations";
 import { Snergi } from "@/types/collaboration";
-
 import { useCreateBookingMutation } from "@/services/collaborations";
 
 const PatientDetail = () => {
