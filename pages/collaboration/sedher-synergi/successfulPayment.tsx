@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
-import DefaultLayout from "@/layouts/DefaultLayout";
+import DefaultLayout from "@/layouts/DefaultLayout"; 
+import  { useRouter } from "next/router";
 
 const successfulPayment = () => {
+  const router = useRouter();
+  useEffect(()=>{
+if(!router.query.bookingData){
+  router.back()
+} 
+  },[])
+
   return (
     <DefaultLayout title="Sedher | Finances">
       <div className="flex justify-center">

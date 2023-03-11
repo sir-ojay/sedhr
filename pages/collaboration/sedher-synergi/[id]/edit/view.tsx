@@ -29,6 +29,10 @@ const Detail = () => {
   const [amount, setAmount] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const [userDetails, setUserDetails] = useState<LoginResponse>();
+  const [synergi, setSynergi] = useState<any>();
+
+  const [bookingData, setBookingData] = useState<Booking>();
+  console.log(bookingData);
 
   const token = Cookies.get("sedherToken") as string;
   let user = JWT.decode(token) as { id: string };
@@ -55,6 +59,10 @@ const Detail = () => {
       toast.success("payment successful");
       router.push({
         pathname: "/collaboration/sedher-synergi/successfulPayment",
+        query: {
+          ...router.query,
+          bookingData: JSON.stringify(bookingData),
+        },
       });
     } catch (err: any) {
       toast.error(err?.data?.message);
@@ -94,11 +102,6 @@ const Detail = () => {
   //   const time = newDateTime.format("HH:mm");
 
   // Get booking functions
-
-  const [synergi, setSynergi] = useState<any>();
-
-  const [bookingData, setBookingData] = useState<Booking>();
-  console.log(bookingData);
 
   useEffect(() => {
     if (bookingData) {
