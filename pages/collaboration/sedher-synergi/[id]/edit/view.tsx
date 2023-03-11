@@ -18,7 +18,7 @@ import { v4 as uuid } from "uuid";
 import { LoginResponse } from "@/types/auth/auth";
 import { VerifyPaymentResponse } from "@/types/onboarding";
 import { useVerifyPaymentMutation } from "@/services/onboarding";
-import moment, { min } from "moment";
+import moment from "moment";
 import { useGetBookingQuery } from "@/services/collaborations";
 
 const Detail = () => {
@@ -29,6 +29,11 @@ const Detail = () => {
   const [amount, setAmount] = useState<number>(0);
   const [count, setCount] = useState<number>(0);
   const [userDetails, setUserDetails] = useState<LoginResponse>();
+
+  const token = Cookies.get("sedherToken") as string;
+  let user = JWT.decode(token) as { id: string };
+  console.log(user?.id);
+
   useEffect(() => {
     try {
       const userpayer = JSON.parse(Cookies.get("sedherUser") || "{}");
@@ -50,25 +55,23 @@ const Detail = () => {
       toast.success("payment successful");
       router.push({
         pathname: "/collaboration/sedher-synergi/successfulPayment",
-        query: {
-          ...router.query,
-        },
       });
     } catch (err: any) {
       toast.error(err?.data?.message);
     }
   };
-
+  console.log({ user });
   const config = {
     reference: uuid(),
-    email: "prince.ibrahim76@gmail.com",
+    email: userDetails?.email.toLowerCase() as string,
     amount: amount * 100,
-    publicKey: "pk_live_ebab2cc4eaf68834bc414ba3c3c08e4147657e22",
-    // userId: user?._id as string,
+    publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PK as string,
+    userId: user?.id as string,
     paymentItem: "Sedher Subscription",
   };
   const onSuccess = (reference: void) => {
-    setTimeout(() => verifyPayment(reference as any), 1500);
+    console.log(reference);
+    setTimeout(() => verifyPayment(reference as any), 2500);
   };
 
   const onClose = () => {
@@ -85,16 +88,13 @@ const Detail = () => {
   useEffect(() => {
     if (amount > 0) initializePayment(onSuccess, onClose);
   }, [amount, count]);
-  const moment = require("moment");
 
   //   const dateTime = moment.utc("2023-02-22:10:30:00Z");
   //   const newDateTime = dateTime.local().add(30, "minutes");
   //   const time = newDateTime.format("HH:mm");
 
   // Get booking functions
-  const token = Cookies.get("sedherToken") as string;
-  let user = JWT.decode(token) as { id: string };
-  // console.log(user?.id);
+
   const [synergi, setSynergi] = useState<any>();
 
   const [bookingData, setBookingData] = useState<Booking>();
@@ -102,14 +102,14 @@ const Detail = () => {
 
   useEffect(() => {
     if (bookingData) {
-      const userSynergi = [...(bookingData as Array<any>)].pop()
-        // .reverse()
-        // .find((data: any) => {
-        //   console.log(data.synergy.owner, user.id);
-        //   return data.synergy.owner == user.id;
-          
-        // });
-      
+      const userSynergi = [...(bookingData as Array<any>)].pop();
+      // .reverse()
+      // .find((data: any) => {
+      //   console.log(data.synergy.owner, user.id);
+      //   return data.synergy.owner == user.id;
+
+      // });
+
       setSynergi(userSynergi);
       // setSynergi(bookingData);
       console.log(userSynergi);
@@ -191,24 +191,28 @@ const Detail = () => {
                           <p className="text-[#2A2069] font-medium font-epilogue text-sm">
                             {moment(synergi?.appointment.dateSlot).format(
                               "DD, MMMM YYYY"
-                            )} <br />
-                            {moment(synergi?.appointment.selectedSlots[0]).format(
-                             "HH:mm"
-                            )}
-                         -  {moment(synergi?.appointment.selectedSlots[0]).add(30, 'minutes').format("HH:mm")}
+                            )}{" "}
+                            <br />
+                            {moment(
+                              synergi?.appointment.selectedSlots[0]
+                            ).format("HH:mm")}
+                            -{" "}
+                            {moment(synergi?.appointment.selectedSlots[0])
+                              .add(30, "minutes")
+                              .format("HH:mm")}
                           </p>
                         </div>
                       </div>
                     </div>
                     <div className="flex space-x-4">
                       <div>
-                      <Image
-                            width={22}
-                            height={22}
-                            // layout='responsive'
-                            src="/assets/icons/notify.svg"
-                            alt="notify"
-                          />
+                        <Image
+                          width={22}
+                          height={22}
+                          // layout='responsive'
+                          src="/assets/icons/notify.svg"
+                          alt="notify"
+                        />
                       </div>
                       <div>
                         <div className="mb-3">
@@ -223,13 +227,13 @@ const Detail = () => {
                     </div>
                     <div className="flex space-x-4">
                       <div>
-                      <Image
-                            width={22}
-                            height={22}
-                            // layout='responsive'
-                            src="/assets/icons/notify.svg"
-                            alt="notify"
-                          />
+                        <Image
+                          width={22}
+                          height={22}
+                          // layout='responsive'
+                          src="/assets/icons/notify.svg"
+                          alt="notify"
+                        />
                       </div>
                       <div>
                         <div className="mb-3">
@@ -331,7 +335,7 @@ const Detail = () => {
         </section>
         <section className="col-span-2 space-y-6">
           <WhiteWrapper>
-            <ServiceCard  />
+            <ServiceCard />
           </WhiteWrapper>
 
           <Button
