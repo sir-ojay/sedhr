@@ -1,7 +1,7 @@
-// import ConnectionCard from "@/components/connection/ConnectionCard";
-// import GridContainer from "@/components/global/GridContainer";
-// import ListNav from "@/components/global/ListNav";
-// import ListSortHeader from "@/components/global/ListSortHeader";
+import ConnectionCard from "@/components/connection/ConnectionCard";
+import GridContainer from "@/components/global/GridContainer";
+import ListNav from "@/components/global/ListNav";
+import ListSortHeader from "@/components/global/ListSortHeader";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
@@ -9,30 +9,22 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-
 type ConnectionProps = {
 	defaultGrid: number;
 	navs: {
 		name: string;
 		href: string;
 	}[];
-
 };
 const Connection = ({ navs, defaultGrid }: ConnectionProps) => {
-	// const [grid, setGrid] = useState(defaultGrid);
-	// const {
-	// 	query: { t },
-	// } = useRouter();
+	const [grid, setGrid] = useState(defaultGrid);
+	const {
+		query: { t },
+	} = useRouter();
 
 	return (
 		<DefaultLayout title='Sedher | Connection'>
-		  <WhiteWrapper>
-        <h3 className="text-lg leading-normal font-medium">
-          {" "}
-          Features coming soon...
-        </h3>
-      </WhiteWrapper>
-			{/* <section className='space-y-6'>
+			<section className='space-y-6'>
 				<ListSortHeader
 					title='Connection'
 					setGrid={setGrid}
@@ -87,7 +79,7 @@ const Connection = ({ navs, defaultGrid }: ConnectionProps) => {
 						))}
 					</GridContainer>
 				)}
-			</section> */}
+			</section>
 		</DefaultLayout>
 	);
 };

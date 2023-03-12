@@ -1,8 +1,8 @@
 import {
   GetFriendsRequest,
+  GetFriendsResponse,
   GetFriendsRequestRequest,
   GetFriendsRequestResponse,
-  GetFriendsResponse,
   SendFriendsRequest,
   SendFriendsResponse,
 } from "@/types/connections";
