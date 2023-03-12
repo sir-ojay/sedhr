@@ -23,19 +23,19 @@ type AdjustableProfileCardProps = {
 	cardType: "connect" | "connectAccept" | "page" | "event" | "group";
 	connected?: boolean;
 	href?: string;
-	username?: string;
+	username?: any;
 };
 
 const AdjustableProfileCard = ({
 	name,
 	description,
 	accountType,
-	image = "",
+	image,
 	cardType,
 	grid,
 	connected = false,
-	href = "",
-	username = "",
+	href ,
+	username,
 }: AdjustableProfileCardProps) => {
 	const token: any = Cookies.get("sedherToken");
 
@@ -114,7 +114,7 @@ const AdjustableProfileCard = ({
 							<div>
 								<div className='space-y-2'>
 									<Link
-										href={href}
+										 href={'href'} 
 										className='font-semibold text-dark-900 hover:underline'>
 										{name}
 									</Link>

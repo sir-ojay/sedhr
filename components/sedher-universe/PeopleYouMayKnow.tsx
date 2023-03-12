@@ -17,6 +17,7 @@ type PeopleYouMayKnowProps = {
 
 const PeopleYouMayKnow = () => {
 	const [friends, setFriends] = useState<PeopleYouMayKnowProps>();
+	// console.log(friends);
 
 	const token: any = Cookies.get("sedherToken");
 
@@ -50,7 +51,7 @@ const PeopleYouMayKnow = () => {
 						accountType={account.accountType}
 						href={`/profile/${account.username}`}
 						username={account.username}
-						// image={account.image}
+						image={account.profilePicture}
 						cardType='connect'
 						grid={1}
 					/>

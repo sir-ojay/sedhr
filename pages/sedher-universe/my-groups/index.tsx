@@ -1,7 +1,7 @@
-// import AdjustableProfileCard from "@/components/global/AdjustableProfileCard";
-// import Button from "@/components/global/Button";
+import AdjustableProfileCard from "@/components/global/AdjustableProfileCard";
+import Button from "@/components/global/Button";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
-// import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
+import SedherUniverseWrapper from "@/components/sedher-universe/SedherUniverseWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import { GetServerSideProps } from "next";
@@ -10,13 +10,7 @@ import React from "react";
 const MyGroups = () => {
 	return (
 		<DefaultLayout title='Sedher | Sedher universe | My Groups'>
-			 <WhiteWrapper>
-        <h3 className="text-lg leading-normal font-medium">
-          {" "}
-          Features coming soon...
-        </h3>
-      </WhiteWrapper>
-			{/* <SedherUniverseWrapper>
+			<SedherUniverseWrapper>
 				<section className='space-y-5'>
 					<WhiteWrapper>
 						<span className='font-semibold text-dark-900'>Groups for you</span>
@@ -52,7 +46,7 @@ const MyGroups = () => {
 						)}
 					</section>
 				</section>
-			</SedherUniverseWrapper> */}
+			</SedherUniverseWrapper>
 		</DefaultLayout>
 	);
 };
