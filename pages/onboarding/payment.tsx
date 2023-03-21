@@ -111,7 +111,7 @@ const payment: NextPage = () => {
 									? "bg-white text-primary"
 									: "text-[#11747d67]"
 							}`}>
-							Billed Annually
+							Bill Annually
 						</div>
 					</div>
 
