@@ -154,7 +154,7 @@ const Details = () => {
                 </div>
                 <div className="w-full space-y-2">
                   <div className="flex justify-between">
-                    <h3 className="text-2xl font-semibold text-dark-900">
+                    <h3 className="text-l font-semibold text-dark-900">
                       {data?.data.owner.name}
                     </h3>
                     <StatusPill
@@ -166,7 +166,7 @@ const Details = () => {
                   <div className="text-lg space-x-3">
                     {/* <span className="text-dark-100">Dental clinics</span> */}
                     <span className="text-[#F47D5B]">
-                      {data?.data.owner.name}
+                      {data?.data.owner.accountType}
                     </span>
                   </div>
                   <div className="text-base text-dark-100">

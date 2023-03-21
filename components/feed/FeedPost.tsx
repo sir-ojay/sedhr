@@ -47,14 +47,12 @@ const FeedPost = ({
 
   const token: any = Cookies.get("sedherToken");
 
-
-
   const handleLikeAPost = async () => {
-	setDisabled(true);
+    setDisabled(true);
     try {
       likeAPost({ token, id }).then((res) => {
         // console.log(res);
-		setDisabled(false);
+        setDisabled(false);
         setLikesCount(likesCount + 1);
         setIsLiked(true);
       });
@@ -66,10 +64,10 @@ const FeedPost = ({
   };
 
   const handleUnLikeAPost = async () => {
-	setDisabled(true);
+    setDisabled(true);
     try {
       UnLikeAPost({ token, id }).then(() => {
-		setDisabled(false);
+        setDisabled(false);
         setLikesCount(likesCount - 1);
         setIsLiked(false);
       });
@@ -225,7 +223,7 @@ const FeedPost = ({
             <button
               onClick={isLiked ? handleUnLikeAPost : handleLikeAPost}
               type="button"
-			  disabled={disabled}
+              disabled={disabled}
               className="flex items-center gap-1 p-2 rounded-lg hover:bg-accents-light-blue"
             >
               <div>

@@ -16,23 +16,57 @@ export type CompleteOnboardingResponse = {
 
 export type CompleteOnboardingRequest = {
 	token: string;
-	body: {
-		accountType: "hcp" | "pcc" | "business" | "nonprofit";
-		phoneNumber?: string;
-		physicalAddress?: string;
-		membershipNumber?: string;
-		dateOfBirth?: string;
+	body:{
+		accountType: "hcp" | "pcc" | "business" | "non-profit";
 		category: string;
+		phoneNumber: string;
+		physicalAddress: string;
+		lga: string;
 		state: string;
+		stateOfOrigin: string;
 		country: string;
-		professionalRegistrationNumber?: string;
-		criminalHistory?: string;
-		idDetails: {
-			idLink: string;
-			idType: string;
-			publicId?: string;
-		}[];
-	};
+		businessName: string;
+		businessEmail: string;
+		businessPhone: string;
+		businessWebsite: string;
+		businessAddress: string;
+		businessLga: string;
+		businessState: string;
+		annualRevenue: string;
+		businessCountry: string;
+		accountName: 'None';
+		accountNumber: 'None';
+		bankName?: 'None';
+		idDetails: [
+			{
+				idType: string;
+				idLink: string;
+			}
+			
+		],
+		dateOfBirth: string;
+		criminalHistory?: 'None';
+		numberOfBeds?: string;
+		averagePatientTurnover: string;
+		numberOfTheaters?: string;
+		numberOfXrayMachines?: string;
+		numberOfUltrasoundMachines?: string;
+		numberOfIcu: string;
+		numberOfMriMachines?: string;
+		numberOfAnaestheticMachines: string;
+		numberOfEcgMachines: string;
+		numberOfEmergencyRooms?: string;
+		numberOfLaboratories?: string;
+		numberOfPharmacies?: string;
+		numberOfMonitors: string;
+		numberOfCTScanners: string;
+		platformManager: [
+			{
+				name: string;
+				email: string;
+			}
+		]
+	}
 };
 
 export type GetCountriesResponse = {

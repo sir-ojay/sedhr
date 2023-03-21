@@ -38,10 +38,7 @@ export const onboarding = createApi({
 		>({
 			query: (credentials) => postRequest("/payments/verify", credentials),
 		}),
-		completeOnboarding: builder.mutation<
-			CompleteOnboardingResponse,
-			CompleteOnboardingRequest
-		>({
+		completeOnboarding: builder.mutation<CompleteOnboardingResponse,CompleteOnboardingRequest>({
 			query: (credentials) =>
 				postRequest("/onboard/account", credentials.body, credentials.token),
 		}),

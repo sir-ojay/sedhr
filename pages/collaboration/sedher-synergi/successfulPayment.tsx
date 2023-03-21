@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout"; 
-import  { useRouter } from "next/router";
+import  {useRouter } from "next/router";
+import Button from "@/components/global/Button";
 
 const successfulPayment = () => {
   const router = useRouter();
+  const backToFeed = () => router.push('/feed');
   useEffect(()=>{
 if(!router.query.bookingData){
   router.back()
@@ -31,6 +33,14 @@ if(!router.query.bookingData){
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
             sapien tellus, vel imperdiet at. Molestie malesuada.
           </p>
+
+          <Button
+							type='button'
+							className='w-full md:w-[418px]'
+							onClick={backToFeed}
+						>
+							Let’s go!
+						</Button>
         </WhiteWrapper>
       </div>
     </DefaultLayout>

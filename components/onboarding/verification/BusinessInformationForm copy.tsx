@@ -5,8 +5,14 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useEffect } from "react";
 
 export type BusinessInformationDetails = {
+  lga?: string;
+  category: string;
   phoneNumber: string;
-  businessName: string;
+  physicalAddress: string;
+  state?: string;
+  stateOfOrigin: string;
+  country: string;
+  businessName?: string;
   businessEmail: string;
   businessPhone: string;
   businessWebsite: string;
@@ -15,16 +21,15 @@ export type BusinessInformationDetails = {
   businessState: string;
   annualRevenue: string;
   businessCountry: string;
-  accountName: string;
-  accountNumber: string;
-  bankName: string;
 };
 
 type BusinessInformationFormProps = {
-  businessInformationForm: (detailsValue: BusinessInformationDetails) => void;
+  // category: string;
+  businessInformationForm: (details: BusinessInformationDetails) => void;
 };
 
 const BusinessInformationForm = ({
+
   businessInformationForm,
 }: BusinessInformationFormProps) => {
   const router = useRouter();
@@ -32,7 +37,13 @@ const BusinessInformationForm = ({
 
   const methods = useForm({
     defaultValues: {
+      category: "",
       phoneNumber: "",
+      physicalAddress: "",
+      lga: "",
+      state: "",
+      stateOfOrigin: "",
+      country: "",
       businessName: "",
       businessEmail: "",
       businessPhone: "",
@@ -42,9 +53,8 @@ const BusinessInformationForm = ({
       businessState: "",
       annualRevenue: "",
       businessCountry: "",
-      accountName: "None",
-      accountNumber: "None",
-      bankName: "None",
+      idName: "",
+      idType: "",
       platformManager: [
         {
           name: "",
@@ -61,11 +71,14 @@ const BusinessInformationForm = ({
     getValues,
   } = methods;
 
-  const detailsValue = watch();
+  const details = watch();
+  const idType = watch("idType");
 
   const handleStep = (step: number) => {
     const body = {
-      ...detailsValue,
+      ...details,
+      idType: undefined,
+      idName: undefined,
     };
     businessInformationForm(body);
     router.push({
@@ -73,10 +86,11 @@ const BusinessInformationForm = ({
       query: {
         ...router.query,
         step,
+        idType: getValues("idName") || getValues("idType"),
       },
     });
   };
-
+  
   useEffect(() => {}, [errors]);
   return (
     <>
@@ -115,60 +129,31 @@ const BusinessInformationForm = ({
                 placeholder="Business Website"
                 rules={["required"]}
               />
-              <Input
-                name="businessCountry"
-                label="Country"
-                placeholder="Business Country"
-              />
+              <Input name="physicalAddress" label="Physical Address" placeholder="Physical Address" />
               <Input
                 name="businessAddress"
                 label="Registered Business Address"
                 placeholder="Registered Business Address"
                 rules={["required"]}
               />
-              <Input
-                name="businessState"
-                label="State"
-                placeholder="State"
-                rules={["required"]}
-              />
-              <Input
-                name="businessLga"
-                label="LGA"
-                placeholder="LGA"
-                rules={["required"]}
-              />
-              <Input
-                name="annualRevenue"
-                label="Annual Revenue"
-                placeholder="Annual Revenue"
-                rules={["required"]}
-              />
+              <Input name="state" label="State" placeholder="State"   rules={["required"]}/>
+              <Input name="lga" label="LGA" placeholder="LGA"   rules={["required"]}/>
+              <Input name='annualRevenue' label="Annual Revenue" placeholder="Annual Revenue"   rules={["required"]}/>
+             
+             
             </div>
 
             <h4 className="font-semibold text-dark-900 font-epilogue font-[20px] my-10">
               Plaform manager
             </h4>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+              <Input name='platformManager[0].name' label="Full Name" placeholder="Full Name" />
+              <Input name="platformManager[0].email" type="email" label="Email" placeholder="Email" />
               <Input
-                name="platformManager[0].name"
-                label="Full Name"
-                placeholder="Full Name"
-                rules={["required"]}
-              />
-              <Input
-                name="platformManager[0].email"
-                type="email"
-                label="Email"
-                rules={["required"]}
-                placeholder="Email"
-              />
-              <Input
-                name="phoneNumber"
+			  name="phoneNumber"
                 type="tel"
                 label="Phone Number"
                 placeholder="Phone Number"
-                rules={["required"]}
               />
             </div>
           </form>
