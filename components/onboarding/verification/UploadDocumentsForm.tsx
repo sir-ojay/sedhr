@@ -34,25 +34,25 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
 
   const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
 
-  const handleUpload = async () => {
-    try {
-      let data: any = [];
-      const result = (await uploadDocument({
-        file: photoId as any,
-        token: token as string,
-      }).unwrap()) as any;
-      data.push({
-        idType,
-        idLink: result.data[0],
-        // publicId: result.data.publicId,
-       
-      });
-      console.log(result.data[0]);
-      documentsInfo(data);
-    } catch (err: any) {
-      toast.error(err?.data?.message || err.data.error);
-    }
-  };
+
+	const handleUpload = async () => {
+		try {
+			let data: any = [];
+			const result = (await uploadDocument({
+				file: photoId as any,
+				token: token as string,
+			}).unwrap()) as any;
+			data.push({
+				idType,
+				idLink: result.data[0],
+				// publicId: result.data.publicId,
+			});
+			documentsInfo(data);
+		} catch (err: any) {
+			toast.error(err?.data?.message || err.data.error);
+		}
+	};
+
 
   const handleStep = async (step: number) => {
     if (step === 5) {

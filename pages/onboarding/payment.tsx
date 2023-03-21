@@ -102,7 +102,7 @@ const payment: NextPage = () => {
 									? "bg-white text-primary"
 									: "text-[#11747d67]"
 							}`}>
-							Bill monthly
+							x Bill monthly
 						</div>
 						<div
 							onClick={() => setBillRange("annually")}
