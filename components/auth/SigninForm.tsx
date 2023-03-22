@@ -78,7 +78,7 @@ const SigninForm = () => {
 						tag='a'
 						href='/auth/forgot-password'
 						className='text-[#616A6A]'>
-						Forgot password
+					Forget password
 					</Button>
 				</div>
 				<Button
@@ -90,7 +90,8 @@ const SigninForm = () => {
 					Login
 				</Button>
 				<div className='text-left text-dark-100 font-epilogue'>
-					{`Already have an account? `}
+					{/* {`Already have an account? `} */}
+					{`Don’t have an account?  `}
 					<Button
 						tag='a'
 						href='/auth/signup?step=1'

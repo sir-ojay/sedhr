@@ -30,7 +30,8 @@ const AccountTypeCard = ({
 					{title}
 				</h2>
 				<p className='text-dark-100 text-sm md:text-base leading-[150%]'>
-					Complete details about your company, set roles and permission
+					{/* Complete details about your company, set roles and permission */}
+					{description}
 					<span className='text-secondary cursor-pointer'> read more....</span>
 				</p>
 			</div>
