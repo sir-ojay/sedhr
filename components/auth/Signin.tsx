@@ -9,7 +9,8 @@ const Signin = () => {
 				Welcome to Sedher Health
 			</h1>
 			<p className='font-epilogue font-medium text-sm md:text-lg leading-[160%] text-dark-100 mb-6'>
-				Let us get to know you better!
+				{/* Let us get to know you better! */}
+				Get access to everything Sedher Health offers
 			</p>
 			{/* <Button
 				theme='plain'
