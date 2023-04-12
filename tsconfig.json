@@ -56,7 +56,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "components/collaboration/rfp/ReviewnB"  ],
   "exclude": [
     "node_modules"
   ]

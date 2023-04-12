@@ -21,9 +21,9 @@ const CreateRFPWrapper = ({ children, steps, step }: CreateRFPWrapperProps) => {
 							<div className='font-epilogue capitalize font-semibold text-[20px] text-dark-900'>
 								Create Request for Proposal
 							</div>
-							<div className='text-dark-900'>
+							{/* <div className='text-dark-900'>
 								collaborate with your follow connection
-							</div>
+							</div> */}
 						</div>
 					</div>
 					<section>{children}</section>
@@ -31,7 +31,7 @@ const CreateRFPWrapper = ({ children, steps, step }: CreateRFPWrapperProps) => {
 				<section className='col-span-2'>
 					<Button
 						theme='plain'
-						icon='video'
+						icon='video.svg'
 						size='sm'
 						className='w-[210px] h-fit py-3 bg-primary rounded-[5px] text-white'>
 						Watch Tutorial
@@ -92,27 +92,27 @@ export default CreateRFPWrapper;
 CreateRFPWrapper.defaultProps = {
 	steps: [
 		{
-			title: "Engagement Details",
+			title: "RFP Details",
 			no: 1,
 		},
 		{
-			title: "Proposal",
+			title: "Bid Selection Timeline",
 			no: 2,
 		},
 		{
-			title: "Communication ",
+			title: "Selection Criteria",
 			no: 3,
 		},
 		{
-			title: "Timeline",
+			title: "Budget",
 			no: 4,
 		},
 		{
-			title: "Payment Detail",
+			title: "Make Payment",
 			no: 5,
 		},
 		{
-			title: "Contact",
+			title: "Review & Submit",
 			no: 6,
 		},
 	],

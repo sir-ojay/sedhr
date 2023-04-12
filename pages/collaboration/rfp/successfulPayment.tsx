@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
-import DefaultLayout from "@/layouts/DefaultLayout"; 
-import  {useRouter } from "next/router";
+import DefaultLayout from "@/layouts/DefaultLayout";
+import { useRouter } from "next/router";
 import Button from "@/components/global/Button";
 
 const successfulPayment = () => {
   const router = useRouter();
-  const backToFeed = () => router.push('/feed')
-  useEffect(()=>{
-if(!router.query.bookingData){
-  router.back()
-} 
-  },[])
+  const backToFeed = () => router.push("/feed");
+    useEffect(()=>{
+  if(!router.query.rfpData  ){
+    router.back()
+  }
+    },[])
 
   return (
-    <DefaultLayout title="Sedher | Booking">
+    <DefaultLayout title="Sedher | RFP">
       <div className="flex justify-center h-[100%]">
         <WhiteWrapper className="text-center w-[70%] h-[100%] mt-[12px]">
           <div className=" flex flex-col items-center justify-center">

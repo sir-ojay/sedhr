@@ -110,7 +110,7 @@ const AdditionalDetailsCard = ({
 								</svg>
 
 								<div className='font-epilogue'>
-									<div className='text-[#4C4475'>Connected</div>
+									<div className='text-[#4C4475]'>Connected</div>
 									<div className='text-[#2A2069]'>December 20, 2022</div>
 								</div>
 							</div>
