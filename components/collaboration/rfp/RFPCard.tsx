@@ -14,7 +14,7 @@ type Props = {
 
 const RFPCard = ({
   type = "default",
-  description,
+  // description,
   productName,
   updatedAt,
 }: Props & RFP) => {
@@ -57,7 +57,7 @@ const RFPCard = ({
           <h4 className="font-semibold text-sm text-[#2A2069] hover:underline">
             {productName}
           </h4>
-          <div className="text-sm text-[#4C4475]">{description}</div>
+          {/* <div className="text-sm text-[#4C4475]">{description}</div> */}
 
           <div className="flex items-center gap-5">
             <Button
