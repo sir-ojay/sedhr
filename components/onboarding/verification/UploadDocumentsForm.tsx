@@ -33,7 +33,7 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
   const photoId = watch(idType?.toString().replaceAll("'", "") as string);
 
   const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
-
+console.log({photoId})
 
 	const handleUpload = async () => {
 		try {
@@ -52,6 +52,8 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
 			toast.error(err?.data?.message || err.data.error);
 		}
 	};
+
+ 
 
 
   const handleStep = async (step: number) => {

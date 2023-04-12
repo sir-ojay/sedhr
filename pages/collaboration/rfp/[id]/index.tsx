@@ -1,40 +1,62 @@
-import CollaborationWrapper from "@/components/collaboration/CollaborationWrapper";
-import RFPCard from "@/components/collaboration/rfp/RFPCard";
-import Avatar from "@/components/global/Avatar";
-import Button from "@/components/global/Button";
-import Input from "@/components/global/Input";
-import RadioInputGroup from "@/components/global/RadioInputGroup";
-import StatusPill from "@/components/global/StatusPill";
-import Switch from "@/components/global/Switch";
-import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { FormProvider, useForm } from "react-hook-form";
+import VendorInfo from "@/components/collaboration/rfp/VendorInfo";
+import ApplicantProfile from "@/components/collaboration/rfp/ApplicantProfile";
+import Attachment from "@/components/collaboration/rfp/Attachment";
+import { useState } from "react";
+import WhiteWrapper from "@/components/global/WhiteWrapper";
+import Button from "@/components/global/Button";
+import GoBackButton from "@/components/global/GoBackButton";
 
+export type Control = {
+  control: any;
+};
 const index = () => {
-	const router = useRouter();
-	const methods = useForm({
-		defaultValues: {
-			term: "",
-		},
-		mode: "onChange",
-	});
-	return (
-		<DefaultLayout title='Sedher | Collaboration | create RFP'>
-			<FormProvider {...methods}>
-				<CollaborationWrapper showHeader={false}>
-					<WhiteWrapper className='flex items-center justify-between w-full'>
+  const router = useRouter();
+
+  const [isOpen, setIsOpen] = useState<Boolean>(true);
+  const control = () => setIsOpen(!isOpen);
+
+  return (
+    <DefaultLayout title="Sedher | Collaboration | create RFP">
+      <>
+        {/* <WhiteWrapper className='flex items-center justify-between w-full'>
 						<div
 							title='Request for Proposal'
 							className='font-semibold text-lg text-dark-900 w-full'>
 							Request for Proposal
 						</div>
-					</WhiteWrapper>
+					</WhiteWrapper> */}
 
-					<div className='grid grid-cols-6 gap-8'>
-						<section className='col-span-2 space-y-8'>
+        <div className="flex items-center justify-between mb-4">
+          <GoBackButton label="Respond  to an RFP" />
+
+          <Button
+            icon="plus"
+            onClick={() => router.push("/collaboration/rfp/create?step=1")}
+            size="sm"
+            className="w-[234px]"
+          >
+            Create RFP
+          </Button>
+        </div>
+
+        <div className="grid grid-cols-6 gap-8">
+          <section className="col-span-2 space-y-8">
+            <VendorInfo />
+          </section>
+          <section className="col-span-4 space-y-8">
+            {isOpen ? (
+              <ApplicantProfile control={control} />
+            ) : (
+              <Attachment control={control} />
+            )}
+          </section>
+          {/* <section className='col-span-2 space-y-8'>
+							
+						
 							<div className='flex items-center gap-3'>
 								<Button
 									theme='plain'
@@ -52,6 +74,7 @@ const index = () => {
 									Service RFP
 								</Button>
 							</div>
+
 
 							<section className='space-y-8'>
 								{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
@@ -85,9 +108,9 @@ const index = () => {
 										/>
 									)
 								)}
-							</section>
-						</section>
-						<section className='col-span-4 space-y-8'>
+							</section> 
+						</section> */}
+          {/* <section className='col-span-4 space-y-8'>
 							<article className='bg-primary p-4 rounded-xl space-y-6'>
 								<div className='flex items-center justify-between'>
 									<h3 className='text-white font-semibold'>
@@ -657,21 +680,20 @@ const index = () => {
 									<Button>Order for RFP</Button>
 								</div>
 							</WhiteWrapper>
-						</section>
-					</div>
-				</CollaborationWrapper>
-			</FormProvider>
-		</DefaultLayout>
-	);
+						</section> */}
+        </div>
+      </>
+    </DefaultLayout>
+  );
 };
 
 export default index;
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
-	async (context) => {
-		return {
-			props: {
-				customers: [],
-			},
-		};
-	}
+  async (context) => {
+    return {
+      props: {
+        customers: [],
+      },
+    };
+  }
 );

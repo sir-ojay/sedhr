@@ -1,222 +1,115 @@
 import CreateRFPWrapper from "@/components/collaboration/rfp/CreateRFPWrapper";
-import Button from "@/components/global/Button";
-import Input from "@/components/global/Input";
-import WhiteWrapper from "@/components/global/WhiteWrapper";
+import { useEffect, useState } from "react";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { FormProvider, useForm } from "react-hook-form";
+import RfpDeatails, {RfpDetails} from "@/components/collaboration/rfp/RfpDeatails";
+import BidSelectionT , {Bids}from "@/components/collaboration/rfp/BidSelectionT";
+import SelectionCriteria, {CriteriaPath} from "@/components/collaboration/rfp/SelectionCriteria";
+import Budget , {BudgetValues}from "@/components/collaboration/rfp/Budget";
+import MakePayment from "@/components/collaboration/rfp/MakePayment";
+import GetReview , {CodeValues}from "pages/collaboration/rfp/[id]/GetReview";
+import { useCreateRFPMutation } from "@/services/collaborations";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const create = () => {
-	const router = useRouter();
 
-	const { step } = router.query;
-	const methods = useForm({
-		defaultValues: {
-			term: "",
-		},
-		mode: "onChange",
-	});
-	return (
-		<DefaultLayout>
-			<FormProvider {...methods}>
-				<CreateRFPWrapper step={step}>
-					{(step === "1" || step === undefined) && (
-						<div className='space-y-6'>
-							<WhiteWrapper title='RFPCode'>
-								<div className='flex justify-between'>
-									<div>
-										<div className='text-sm text-dark-100 mb-3'>
-											Ensectetur adipiscing elit. Odio ullamcorper sed urna
-										</div>
-										<Button>Generate RFQCode</Button>
-									</div>
-									<div>
-										<Input placeholder='23455' />
-									</div>
-								</div>
-							</WhiteWrapper>
-							<WhiteWrapper title='Engagement Details'>
-								<FormProvider {...methods}>
-									<form className='space-y-6'>
-										<Input label='Product Name' placeholder='Product Name' />
-										<Input label='Categories' placeholder='Categories' />
-										<Input
-											label='Product Description'
-											placeholder='Product Description'
-										/>
-									</form>
-								</FormProvider>
-							</WhiteWrapper>
-							<div className='flex items-center justify-between'>
-								<Button theme='outline'>Discard</Button>
-								<Button
-									onClick={() => {
-										router.push({
-											pathname: "/collaboration/rfp/create",
-											query: {
-												step: "2",
-											},
-										});
-									}}>
-									Continue
-								</Button>
-							</div>
-						</div>
-					)}
-					{step === "2" && (
-						<div className='space-y-8'>
-							<WhiteWrapper title='Create Criteria '>
-								<div className='flex items-center justify-between'>
-									<div className='text-sm text-dark-100'>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Quisque.
-									</div>
-									<Button>Add Criteria</Button>
-								</div>
-							</WhiteWrapper>
-							<WhiteWrapper title='Create Fields '>
-								<div className='flex items-center justify-between'>
-									<div className='text-sm text-dark-100'>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Quisque.
-									</div>
-									<Button>Add Criteria</Button>
-								</div>
-							</WhiteWrapper>
-							<div className='flex items-center justify-between'>
-								<Button theme='outline'>Discard</Button>
-								<div className='flex items-center justify-between'>
-									<Button theme='plain' className='text-primary w-[200px]'>
-										Skip Step
-									</Button>
-									<Button
-										onClick={() => {
-											router.push({
-												pathname: "/collaboration/rfp/create",
-												query: {
-													step: "3",
-												},
-											});
-										}}>
-										Continue
-									</Button>
-								</div>
-							</div>
-						</div>
-					)}
-					{step === "3" && (
-						<div className='space-y-6'>
-							<WhiteWrapper title='Add Fields '>
-								<div className='flex items-center justify-between'>
-									<div className='text-sm text-dark-100'>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Quisque.
-									</div>
-									<Button>Add Criteria</Button>
-								</div>
-								<div className='p-5 mt-5 rounded-xl bg-accents-light-blue'>
-									<Input label='Description' placeholder='Description' />
-								</div>
-								<div className='p-5 mt-5 rounded-xl bg-accents-light-blue'>
-									<Input label='Description' placeholder='Description' />
-								</div>
-							</WhiteWrapper>
+  const [rfpDetails , setRfpDetails ] =
+  useState<RfpDetails>();
+  const [bidSelectionT  , setBidSelectionT ] =
+  useState<Bids>();
+  const [selectionCriteria, setSelectionCriteria] =
+  useState<CriteriaPath>();
+  const [budgetDetails , setBudgetDetails ] =
+  useState<BudgetValues>();
+  const [reviewDetails , setReviewDetails ] =
+  useState<CodeValues>();
 
-							<WhiteWrapper title='Create Fields '>
-								<div className='flex items-center justify-between'>
-									<div className='text-sm text-dark-100'>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Quisque.
-									</div>
-									<Button>Add Criteria</Button>
-								</div>
-								<div className='p-5 mt-5 rounded-xl bg-accents-light-blue'>
-									<Input label='Description' placeholder='Description' />
-								</div>
-								<div className='p-5 mt-5 rounded-xl bg-accents-light-blue'>
-									<Input label='Description' placeholder='Description' />
-								</div>
-								<div className='p-5 mt-5 rounded-xl bg-accents-light-blue'>
-									<Input label='Description' placeholder='Description' />
-								</div>
-								<div className='p-5 mt-5 rounded-xl bg-accents-light-blue'>
-									<Input label='Description' placeholder='Description' />
-								</div>
-								<div className='p-5 mt-5 rounded-xl bg-accents-light-blue'>
-									<Input label='Description' placeholder='Description' />
-								</div>
-								<div className='p-5 mt-5 rounded-xl bg-accents-light-blue'>
-									<Input label='Description' placeholder='Description' />
-								</div>
-							</WhiteWrapper>
 
-							<div className='flex items-center justify-between'>
-								<Button theme='outline'>Discard</Button>
-								<div className='flex items-center justify-between'>
-									<Button theme='plain' className='text-primary w-[200px]'>
-										Skip Step
-									</Button>
-									<Button
-										onClick={() => {
-											router.push({
-												pathname: "/collaboration/rfp/create",
-												query: {
-													step: "4",
-												},
-											});
-										}}>
-										Continue
-									</Button>
-								</div>
-							</div>
-						</div>
-					)}
 
-					{step === "4" && (
-						<div className='space-y-6'>
-							<WhiteWrapper title='Client Communication'>
-								<div className='text-sm text-dark-100'>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Quisque.
-								</div>
-							</WhiteWrapper>
+  const rfpDetailsForm = (details: RfpDetails) => {
+    console.log("details", details);
+    setRfpDetails(details);
+  };
+  const bidSelectionTForm = (details: Bids) => {
+    console.log("details", details);
+    setBidSelectionT(details);
+  };
+  const selectionCriteriaForm = (details: CriteriaPath) => {
+    console.log("details", details);
+    setSelectionCriteria(details);
+  };
+  const budgetDetailsForm = (details: BudgetValues) => {
+    console.log("details", details);
+    setBudgetDetails(details);
+  };
+  const reviewDetailsForm = (details: CodeValues) => {
+    console.log("details", details);
+    setReviewDetails(details);
+  };
 
-							<div className='flex items-center justify-between'>
-								<Button theme='outline'>Discard</Button>
-								<div className='flex items-center justify-between'>
-									<Button theme='plain' className='text-primary w-[200px]'>
-										Skip Step
-									</Button>
-									<Button
-										onClick={() => {
-											router.push({
-												pathname: "/collaboration/rfp/create",
-												query: {
-													step: "5",
-												},
-											});
-										}}>
-										Continue
-									</Button>
-								</div>
-							</div>
-						</div>
-					)}
-				</CreateRFPWrapper>
-			</FormProvider>
-		</DefaultLayout>
-	);
+
+  const router = useRouter();
+
+  const { step } = router.query;
+
+  const token = Cookies.get("sedherToken");
+
+  const [completeRFP, { isLoading }] = useCreateRFPMutation();
+
+  const handleCompleteRFP = async () => {
+    try {
+      const data = {
+        token: token as string,
+        body: {
+      ...rfpDetails,
+      ...bidSelectionT,
+      ...SelectionCriteria,
+      ...budgetDetails,
+      ...reviewDetails
+        } as any,
+      };
+      console.log("rfp data", data);
+      const result = await completeRFP(data).unwrap();
+      toast.success("RFP completed successfully");
+      console.log("result", result);
+      //   To route to start
+      router.push(`collaboration/rfp`);
+    } catch (err: any) {
+      console.log("err", err);
+      toast.error(err?.data?.message || err.data.error);
+    }
+  };
+
+  return (
+    <DefaultLayout>
+      <>
+        <CreateRFPWrapper step={step}>
+          {(step === "1" || step === undefined) && <RfpDeatails 
+                      rfpDetailsForm={rfpDetailsForm}
+          />}
+          {step === "2" && <BidSelectionT  bidSelectionTForm={bidSelectionTForm} />}
+          {step === "3" && <SelectionCriteria selectionCriteriaForm={selectionCriteriaForm}/>} 
+          {step === "4" && <Budget budgetDetailsForm={budgetDetailsForm}/>}
+          {step === "5" && <MakePayment  />}
+          {step === "6" && <GetReview rfpDetails={rfpDetails} bidSelectionT={bidSelectionT} selectionCriteria={selectionCriteria} budgetDetails={budgetDetails }
+          reviewDetailsForm ={reviewDetailsForm }
+          />}
+        </CreateRFPWrapper>
+      </>
+    </DefaultLayout>
+  );
 };
 
 export default create;
 export const getServerSideProps: GetServerSideProps = requireAuthentication(
-	async (context) => {
-		return {
-			props: {
-				customers: [],
-			},
-		};
-	}
+  async (context) => {
+    return {
+      props: {
+        customers: [],
+      },
+    };
+  }
 );

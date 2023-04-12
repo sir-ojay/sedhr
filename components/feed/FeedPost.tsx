@@ -163,14 +163,14 @@ const FeedPost = ({
                 href={`/profile/${author?.username}`}
                 className="font-semibold text-sm xl:text-base text-dark-900 hover:underline"
               >
-                {author.name}
+                {author?.name}
               </Link>
               <div className="text-xs xl:text-sm text-dark-100"></div>
               <div className="text-xs xl:text-sm capitalize text-accents-brown">
-                {author.accountType === "hcp"
-                  ? author.accountType?.toUpperCase()
-                  : author.accountType}{" "}
-                {author.company && `- ${author.company}`}
+                {author?.accountType === "hcp"
+                  ? author?.accountType?.toUpperCase()
+                  : author?.accountType}{" "}
+                {author?.company && `- ${author?.company}`}
               </div>
               <div className="text-xs xl:text-sm text-dark-100">
                 {moment(createdAt).fromNow()}

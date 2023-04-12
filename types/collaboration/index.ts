@@ -7,15 +7,40 @@ export type GetRFPSRequest = {
   token: string;
 };
 
+export type GetRFPResponse = {
+  message: string;
+  data: RFP;
+};
+
+export type GetRFPRequest = {
+  token: string;
+  id: string;
+};
+
+export type CreateRFPRequest = {
+  token: string;
+  body: {};
+};
+
+export type CreateRFPResponse = {
+  message: string;
+};
+
+export type GetRFPCodeResponse = {
+  data: {
+    code: string;
+  };
+};
+
+export type GetRFPCodeRequest = {
+  token: string;
+};
+
 export type RFP = {
-  _id: string;
-  userId: string;
-  productName: string;
-  category: string;
-  description: string;
-  proposal: {
-    description: [];
-    timelines: [];
+  bids: {
+    deadline: string;
+    selectionDate: string;
+    note: string;
   };
   communications: {
     channels: string[];
@@ -23,18 +48,19 @@ export type RFP = {
     responseToFeedback: string;
     note: string;
   };
-  timelines: {
+  _id: string;
+  userId: string;
+  productName: string;
+  category: string;
+  scopeOfWork: string;
+  additionalDetails?: string[];
+  budgets: {
     fieldName?: string;
-    value?: string;
+    value?: number;
+    _id: string;
   }[];
-  paymentDetails: {
-    paymentType: "FIXED";
-    prices: {
-      fieldName: string;
-      value: number;
-    }[];
-  };
   code: number;
+  rfpType: string;
   status: "pending" | "approved" | "rejected";
   createdAt: string;
   updatedAt: string;

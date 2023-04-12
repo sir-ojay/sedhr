@@ -35,6 +35,8 @@ const feed = () => {
 		data && setPosts(data?.data);
 	}, [isSuccess, data]);
 
+	console.log(data);
+
 	return (
 		<DefaultLayout title='Sedher | Feed'>
 			<div className='grid grid-cols-1 xl:grid-cols-6 gap-8'>
