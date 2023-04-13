@@ -1,12 +1,9 @@
-
 import CollaborationWrapper from "@/components/collaboration/CollaborationWrapper";
 import Button from "@/components/global/Button";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useGetRFPsQuery } from "@/services/collaborations";
 import { RFP } from "@/types/collaboration";
-// import { requireAuthentication } from "hoc/requireAuthentication";
 import Cookies from "js-cookie";
-// import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -89,33 +86,7 @@ const RFPPage = ({ navigations }: RFPProps) => {
     <DefaultLayout title="Sedher | Collaboration | RFP">
       <CollaborationWrapper getGrid={getGrid}>
         <div className="grid grid-cols-6 gap-2">
-          {/* <section className='col-span-2 space-y-6'>
-						<CollaborationNav
-							title='My request for proposal'
-							navigations={navigations}
-						/>
-					</section> */}
           <section className="col-span-6  grid grid-cols-2 gap-1 max-[650px]:grid-cols-1">
-            {/* <WhiteWrapper className=" items-center ">
-              <div
-                title="Request for Proposal"
-                className="font-semibold text-lg text-dark-900 bg-red h-4"
-              >
-                Create an RFP
-              </div>
-              <p>
-                You need to send an RFI or RFP to potential vendors and evaluate
-                their proposals.
-              </p>
-              <Button
-                icon="plus"
-                onClick={() => router.push("/collaboration/rfp/create?step=1")}
-                size="sm"
-                className="w-[234px]"
-              >
-                Create RFP
-              </Button>
-            </WhiteWrapper> */}
             {proposalOptions.map((proposalOption) => (
               <div key={proposalOption.id}>
                 <div className="bg-white w-4/5 h-[90%] ">
@@ -142,53 +113,6 @@ const RFPPage = ({ navigations }: RFPProps) => {
                 </div>
               </div>
             ))}
-            {/* <div className='flex items-center gap-3'>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
-								All
-							</Button>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
-								Product RFP
-							</Button>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
-								Service RFP
-							</Button>
-						</div> */}
-            {/* 
-						<WhiteWrapper>
-							<FormProvider {...methods}>
-								<form action=''>
-									<div
-										title='Request for Proposal'
-										className='font-semibold text-lg text-dark-900'>
-										Request for Proposal
-									</div>
-									<Input type='search' placeholder='This is placeholder' />
-									<p className='text-sm text-dark-100 mt-2'>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-									</p>
-								</form>
-							</FormProvider>
-						</WhiteWrapper> */}
-
-            {/* {isLoading && (
-							<GridContainer grid={grid}>
-								{[1, 2, 3, 4, 5, 6].map((card) => (
-									<WhiteWrapper key={card} className='h-[400px] w-full' />
-								))}
-							</GridContainer>
-						)} */}
-
-            {/* <GridContainer grid={grid}>
-							{rfpData?.map((card) => (
-								<RFPCard key={card._id} {...card} />
-							))}
-						</GridContainer> */}
           </section>
         </div>
       </CollaborationWrapper>

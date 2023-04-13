@@ -20,7 +20,6 @@ const RFPCard = ({
 }: Props & RFP) => {
   const router = useRouter();
 
-
   return (
     <motion.article layout>
       <WhiteWrapper>
@@ -68,13 +67,13 @@ const RFPCard = ({
                 router.push(
                   router.asPath === "/collaboration/rfp/respond"
                     ? "/collaboration/rfp/thomas-clinics"
-                    : "/collaboration/rfp"
+                    : "/collaboration/rfp/apply-for-rfp"
                 )
               }
             >
               {router.asPath === "/collaboration/rfp/respond"
                 ? "View Applications"
-                : "Apply"}
+                : "Apply Now"}
             </Button>
           </div>
         </div>
