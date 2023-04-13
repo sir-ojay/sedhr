@@ -17,62 +17,62 @@ import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 type RFPProps = {
-	navigations: {
-		name: string;
-		href: string;
-		query: string;
-		count: number;
-	}[];
-	grid: number;
-	RFPs: RFP[];
+  navigations: {
+    name: string;
+    href: string;
+    query: string;
+    count: number;
+  }[];
+  grid: number;
+  RFPs: RFP[];
 };
 
 const RFPapply = ({ navigations }: RFPProps) => {
-	const [grid, setGrid] = useState(2);
-	const [rfpData, setRFPData] = useState<RFP[]>([]);
+  const [grid, setGrid] = useState(2);
+  const [rfpData, setRFPData] = useState<RFP[]>([]);
 
-	const getGrid = (grid: number) => {
-		setGrid(grid);
-	};
+  const getGrid = (grid: number) => {
+    setGrid(grid);
+  };
 
-	const router = useRouter();
+  const router = useRouter();
 
-	const methods = useForm({
-		defaultValues: {
-			term: "",
-		},
-		mode: "onChange",
-	});
+  const methods = useForm({
+    defaultValues: {
+      term: "",
+    },
+    mode: "onChange",
+  });
 
-	const token: any = Cookies.get("sedherToken");
+  const token: any = Cookies.get("sedherToken");
 
-	const { data, error, isLoading, isSuccess, isFetching } = useGetRFPsQuery({
-		token,
-	});
+  const { data, error, isLoading, isSuccess, isFetching } = useGetRFPsQuery({
+    token,
+  });
 
-	useEffect(() => {
-		console.log(data);
-		data && setRFPData(data.data as RFP[]);
-	}, [isSuccess, data]);
+  useEffect(() => {
+    console.log(data);
+    data && setRFPData(data.data as RFP[]);
+  }, [isSuccess, data]);
 
-	return (
-		<DefaultLayout title='Sedher | Collaboration | RFP'>
-			<CollaborationWrapper getGrid={getGrid}>
-				<div className='grid grid-cols-3'>
-			
-					<section className='col-span-4 space-y-6'>
-						<div className='flex items-center justify-between'>
-						<GoBackButton label="Respond  to an RFP" />
-							<Button
-								icon='plus'
-								onClick={() => router.push("/collaboration/rfp/create?step=1")}
-								size='sm'
-								className='w-[234px]'>
-								Create RFP
-							</Button>
-						</div>
+  return (
+    <DefaultLayout title="Sedher | Collaboration | RFP">
+      <CollaborationWrapper getGrid={getGrid}>
+        <div className="grid grid-cols-3">
+          <section className="col-span-4 space-y-6">
+            <div className="flex items-center justify-between">
+              <GoBackButton label="Respond  to an RFP" />
+              <Button
+                icon="plus"
+                onClick={() => router.push("/collaboration/rfp/create?step=1")}
+                size="sm"
+                className="w-[234px]"
+              >
+                Create RFP
+              </Button>
+            </div>
 
-						{/* <div className='flex items-center gap-3'>
+            {/* <div className='flex items-center gap-3'>
 							<Button
 								theme='plain'
 								className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
@@ -90,40 +90,41 @@ const RFPapply = ({ navigations }: RFPProps) => {
 							</Button>
 						</div> */}
 
-						<WhiteWrapper>
-							<FormProvider {...methods}>
-								<form action=''>
-									<div
-										title='Request for Proposal'
-										className='font-semibold text-lg text-dark-900'>
-										Request for Proposal
-									</div>
-									<Input type='search' placeholder='This is placeholder' />
-									{/* <p className='text-sm text-dark-100 mt-2'>
+            <WhiteWrapper>
+              <FormProvider {...methods}>
+                <form action="">
+                  <div
+                    title="Search for RFPs"
+                    className="font-semibold text-lg text-dark-900"
+                  >
+                    Search for RFPs
+                  </div>
+                  <Input type="search" placeholder="This is placeholder" />
+                  {/* <p className='text-sm text-dark-100 mt-2'>
 										Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
 									</p> */}
-								</form>
-							</FormProvider>
-						</WhiteWrapper>
+                </form>
+              </FormProvider>
+            </WhiteWrapper>
 
-						{isLoading && (
-							<GridContainer grid={grid}>
-								{[1, 2, 3, 4, 5, 6].map((card) => (
-									<WhiteWrapper key={card} className='h-[400px] w-full' />
-								))}
-							</GridContainer>
-						)}
+            {isLoading && (
+              <GridContainer grid={grid}>
+                {[1, 2, 3, 4, 5, 6].map((card) => (
+                  <WhiteWrapper key={card} className="h-[400px] w-full" />
+                ))}
+              </GridContainer>
+            )}
 
-						<GridContainer grid={grid}>
-							{rfpData?.map((card) => (
-								<RFPCard key={card._id} {...card} />
-							))}
-						</GridContainer>
-					</section>
-				</div>
-			</CollaborationWrapper>
-		</DefaultLayout>
-	);
+            <GridContainer grid={grid}>
+              {rfpData?.map((card) => (
+                <RFPCard key={card._id} {...card} />
+              ))}
+            </GridContainer>
+          </section>
+        </div>
+      </CollaborationWrapper>
+    </DefaultLayout>
+  );
 };
 
 export default RFPapply;

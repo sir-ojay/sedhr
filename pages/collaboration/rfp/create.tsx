@@ -4,30 +4,30 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import RfpDeatails, {RfpDetails} from "@/components/collaboration/rfp/RfpDeatails";
-import BidSelectionT , {Bids}from "@/components/collaboration/rfp/BidSelectionT";
-import SelectionCriteria, {CriteriaPath} from "@/components/collaboration/rfp/SelectionCriteria";
-import Budget , {BudgetValues}from "@/components/collaboration/rfp/Budget";
+import RfpDeatails, {
+  RfpDetails,
+} from "@/components/collaboration/rfp/RfpDeatails";
+import BidSelectionT, {
+  Bids,
+} from "@/components/collaboration/rfp/BidSelectionT";
+import SelectionCriteria, {
+  CriteriaPath,
+} from "@/components/collaboration/rfp/SelectionCriteria";
+import Budget, { BudgetValues } from "@/components/collaboration/rfp/Budget";
 import MakePayment from "@/components/collaboration/rfp/MakePayment";
-import GetReview , {CodeValues}from "pages/collaboration/rfp/[id]/GetReview";
+import GetReview, {
+  CodeValues,
+} from "@/components/collaboration/rfp/GetReview";
 import { useCreateRFPMutation } from "@/services/collaborations";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
 const create = () => {
-
-  const [rfpDetails , setRfpDetails ] =
-  useState<RfpDetails>();
-  const [bidSelectionT  , setBidSelectionT ] =
-  useState<Bids>();
-  const [selectionCriteria, setSelectionCriteria] =
-  useState<CriteriaPath>();
-  const [budgetDetails , setBudgetDetails ] =
-  useState<BudgetValues>();
-  const [reviewDetails , setReviewDetails ] =
-  useState<CodeValues>();
-
-
+  const [rfpDetails, setRfpDetails] = useState<RfpDetails>();
+  const [bidSelectionT, setBidSelectionT] = useState<Bids>();
+  const [selectionCriteria, setSelectionCriteria] = useState<CriteriaPath>();
+  const [budgetDetails, setBudgetDetails] = useState<BudgetValues>();
+  const [reviewDetails, setReviewDetails] = useState<CodeValues>();
 
   const rfpDetailsForm = (details: RfpDetails) => {
     console.log("details", details);
@@ -50,7 +50,6 @@ const create = () => {
     setReviewDetails(details);
   };
 
-
   const router = useRouter();
 
   const { step } = router.query;
@@ -64,11 +63,11 @@ const create = () => {
       const data = {
         token: token as string,
         body: {
-      ...rfpDetails,
-      ...bidSelectionT,
-      ...SelectionCriteria,
-      ...budgetDetails,
-      ...reviewDetails
+          ...rfpDetails,
+          ...bidSelectionT,
+          ...SelectionCriteria,
+          ...budgetDetails,
+          ...reviewDetails,
         } as any,
       };
       console.log("rfp data", data);
@@ -87,16 +86,26 @@ const create = () => {
     <DefaultLayout>
       <>
         <CreateRFPWrapper step={step}>
-          {(step === "1" || step === undefined) && <RfpDeatails 
-                      rfpDetailsForm={rfpDetailsForm}
-          />}
-          {step === "2" && <BidSelectionT  bidSelectionTForm={bidSelectionTForm} />}
-          {step === "3" && <SelectionCriteria selectionCriteriaForm={selectionCriteriaForm}/>} 
-          {step === "4" && <Budget budgetDetailsForm={budgetDetailsForm}/>}
-          {step === "5" && <MakePayment  />}
-          {step === "6" && <GetReview rfpDetails={rfpDetails} bidSelectionT={bidSelectionT} selectionCriteria={selectionCriteria} budgetDetails={budgetDetails }
-          reviewDetailsForm ={reviewDetailsForm }
-          />}
+          {(step === "1" || step === undefined) && (
+            <RfpDeatails rfpDetailsForm={rfpDetailsForm} />
+          )}
+          {step === "2" && (
+            <BidSelectionT bidSelectionTForm={bidSelectionTForm} />
+          )}
+          {step === "3" && (
+            <SelectionCriteria selectionCriteriaForm={selectionCriteriaForm} />
+          )}
+          {step === "4" && <Budget budgetDetailsForm={budgetDetailsForm} />}
+          {step === "5" && <MakePayment />}
+          {step === "6" && (
+            <GetReview
+              rfpDetails={rfpDetails}
+              bidSelectionT={bidSelectionT}
+              selectionCriteria={selectionCriteria}
+              budgetDetails={budgetDetails}
+              reviewDetailsForm={reviewDetailsForm}
+            />
+          )}
         </CreateRFPWrapper>
       </>
     </DefaultLayout>

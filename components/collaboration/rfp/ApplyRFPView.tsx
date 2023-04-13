@@ -6,22 +6,13 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import JWT from "jsonwebtoken";
 import { RFP } from "@/types/collaboration";
-import { usePaystackPayment } from "react-paystack";
-import { toast } from "react-toastify";
-import { v4 as uuid } from "uuid";
-import { LoginResponse } from "@/types/auth/auth";
-import { VerifyPaymentResponse } from "@/types/onboarding";
-import { useVerifyPaymentMutation } from "@/services/onboarding";
 import moment from "moment";
 import { useGetRFPQuery } from "@/services/collaborations";
 
-const GetReview = ({rfpDetails}:any) => {
+const ApplyRFPView = ({ rfpDetails }: any) => {
   const router = useRouter();
-console.log(rfpDetails)
+  console.log(rfpDetails);
   // Payment functions
-  const [amount, setAmount] = useState<number>(0);
-  const [count, setCount] = useState<number>(0);
-  const [userDetails, setUserDetails] = useState<LoginResponse>();
   const [synergi, setSynergi] = useState<any>();
   console.log(synergi);
 
@@ -30,71 +21,7 @@ console.log(rfpDetails)
 
   const token = Cookies.get("sedherToken") as string;
   let user = JWT.decode(token) as { id: string };
-  // console.log(user?.id);
-
-  useEffect(() => {
-    try {
-      const userpayer = JSON.parse(Cookies.get("sedherUser") || "{}");
-      setUserDetails(userpayer);
-    } catch (error) {
-      // console.log(error);
-    }
-  }, []);
-  const [verify] = useVerifyPaymentMutation();
-
-  const verifyPayment = async (ref: any) => {
-    try {
-      const body = {
-        reference: ref.reference as string,
-        amount: amount * 100,
-        email: userDetails?.email.toLowerCase() as string,
-      };
-      (await verify(body).unwrap()) as VerifyPaymentResponse;
-      toast.success("payment successful");
-      router.push({
-        pathname: "/collaboration/rfp/successfulPayment",
-        query: {
-          ...router.query,
-          rfpData: JSON.stringify(rfpData),
-        },
-      });
-    } catch (err: any) {
-      toast.error(err?.data?.message);
-    }
-  };
-  // console.log({ user });
-  const config = {
-    reference: uuid(),
-    email: userDetails?.email.toLowerCase() as string,
-    amount: amount * 100,
-    publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PK as string,
-    userId: user?.id as string,
-    paymentItem: "Sedher Subscription",
-  };
-  const onSuccess = (reference: void) => {
-    console.log(reference);
-    setTimeout(() => verifyPayment(reference as any), 2500);
-  };
-
-  const onClose = () => {
-    // console.log("closed");
-  };
-
-  const initializePayment = usePaystackPayment(config);
-
-  const makePayment = (_amount: number) => {
-    setAmount(_amount);
-    setCount(count + 1);
-  };
-
-  useEffect(() => {
-    if (amount > 0) initializePayment(onSuccess, onClose);
-  }, [amount, count]);
-
-  //   const dateTime = moment.utc("2023-02-22:10:30:00Z");
-  //   const newDateTime = dateTime.local().add(30, "minutes");
-  //   const time = newDateTime.format("HH:mm");
-
+  // console.log(user?.id
   // Get booking functions
 
   useEffect(() => {
@@ -266,8 +193,17 @@ console.log(rfpDetails)
             {/* <Button theme="plain" className="text-primary w-[200px]">
                     Skip Step
                   </Button> */}
-            <Button onClick={() => makePayment(synergi?.budgets[0]?.value)}>
-              Submit
+            <Button
+              onClick={() =>
+                router.push({
+                  pathname: "/collaboration/rfp/apply-for-rfp",
+                  query: {
+                    step: "2",
+                  },
+                })
+              }
+            >
+              Continue
             </Button>
           </div>
         </div>
@@ -276,4 +212,4 @@ console.log(rfpDetails)
   );
 };
 
-export default GetReview;
+export default ApplyRFPView;

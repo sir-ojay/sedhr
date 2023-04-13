@@ -60,7 +60,15 @@ const RFPrespond = ({ navigations }: RFPProps) => {
         <div className="grid grid-cols-3">
           <section className="col-span-4 space-y-6">
             <div className="flex items-center justify-between">
-              <GoBackButton label="Respond  to an RFP" />
+              <div className="flex items-center mb-8">
+                <GoBackButton />
+                <div>
+                  <div className="font-epilogue capitalize font-semibold text-[20px] text-dark-900">
+                    Respond to an RFP
+                  </div>
+                  <div className="text-dark-900">List of Vendors responses</div>
+                </div>
+              </div>
               <Button
                 icon="plus"
                 onClick={() => router.push("/collaboration/rfp/create?step=1")}
@@ -75,10 +83,10 @@ const RFPrespond = ({ navigations }: RFPProps) => {
               <FormProvider {...methods}>
                 <form action="">
                   <div
-                    title="Request for Proposal"
+                    title="Search for Responses"
                     className="font-semibold text-lg text-dark-900"
                   >
-                    Request for Proposal
+                    Search for Responses
                   </div>
                   <Input type="search" placeholder="This is placeholder" />
                   {/* <p className='text-sm text-dark-100 mt-2'>
@@ -98,7 +106,7 @@ const RFPrespond = ({ navigations }: RFPProps) => {
 
             <GridContainer grid={grid}>
               {rfpData?.map((card) => (
-                <RFPCard key={card._id} {...card}/>
+                <RFPCard key={card._id} {...card} />
               ))}
             </GridContainer>
           </section>
@@ -125,11 +133,6 @@ RFPrespond.defaultProps = {
     {
       name: "Saved RFP",
       href: "/collaboration/rfp/saved-rfp",
-      count: "",
-    },
-    {
-      name: "Apply",
-      href: "/collaboration/rfp/respond",
       count: "",
     },
   ],
