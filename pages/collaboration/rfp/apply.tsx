@@ -1,5 +1,3 @@
-import CollaborationNav from "@/components/collaboration/CollaborationNav";
-import CollaborationWrapper from "@/components/collaboration/CollaborationWrapper";
 import RFPCard from "@/components/collaboration/rfp/RFPCard";
 import Button from "@/components/global/Button";
 import GoBackButton from "@/components/global/GoBackButton";
@@ -9,9 +7,7 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useGetRFPsQuery } from "@/services/collaborations";
 import { RFP } from "@/types/collaboration";
-import { requireAuthentication } from "hoc/requireAuthentication";
 import Cookies from "js-cookie";
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -57,11 +53,21 @@ const RFPapply = ({ navigations }: RFPProps) => {
 
   return (
     <DefaultLayout title="Sedher | Collaboration | RFP">
-      <CollaborationWrapper getGrid={getGrid}>
+      <>
         <div className="grid grid-cols-3">
           <section className="col-span-4 space-y-6">
             <div className="flex items-center justify-between">
-              <GoBackButton label="Respond  to an RFP" />
+              <div className="flex items-center mb-8">
+                <GoBackButton />
+                <div>
+                  <div className="font-epilogue capitalize font-semibold text-[20px] text-dark-900">
+                    Apply for RFP
+                  </div>
+                  <div className="text-dark-900">
+                    List of RFPS. Apply for a RFP
+                  </div>
+                </div>
+              </div>
               <Button
                 icon="plus"
                 onClick={() => router.push("/collaboration/rfp/create?step=1")}
@@ -71,25 +77,6 @@ const RFPapply = ({ navigations }: RFPProps) => {
                 Create RFP
               </Button>
             </div>
-
-            {/* <div className='flex items-center gap-3'>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-primary bg-tertiary'>
-								All
-							</Button>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
-								Product RFP
-							</Button>
-							<Button
-								theme='plain'
-								className='border-2 border-[#B8C9C9] rounded-full text-[#4C4475]'>
-								Service RFP
-							</Button>
-						</div> */}
-
             <WhiteWrapper>
               <FormProvider {...methods}>
                 <form action="">
@@ -100,9 +87,6 @@ const RFPapply = ({ navigations }: RFPProps) => {
                     Search for RFPs
                   </div>
                   <Input type="search" placeholder="This is placeholder" />
-                  {/* <p className='text-sm text-dark-100 mt-2'>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-									</p> */}
                 </form>
               </FormProvider>
             </WhiteWrapper>
@@ -122,39 +106,9 @@ const RFPapply = ({ navigations }: RFPProps) => {
             </GridContainer>
           </section>
         </div>
-      </CollaborationWrapper>
+      </>
     </DefaultLayout>
   );
 };
 
 export default RFPapply;
-
-// RFPapply.defaultProps = {
-// 	navigations: [
-// 		{
-// 			name: "Active RFP",
-// 			href: "/collaboration/rfp/active-rfp",
-// 			count: "",
-// 		},
-// 		{
-// 			name: "Complete RFP",
-// 			href: "/collaboration/rfp/complete-rfp",
-// 			count: "",
-// 		},
-// 		{
-// 			name: "Saved RFP",
-// 			href: "/collaboration/rfp/saved-rfp",
-// 			count: "",
-// 		},
-// 	],
-// };
-
-// export const getServerSideProps: GetServerSideProps = requireAuthentication(
-// 	async (context) => {
-// 		return {
-// 			props: {
-// 				customers: [],
-// 			},
-// 		};
-// 	}
-// );
