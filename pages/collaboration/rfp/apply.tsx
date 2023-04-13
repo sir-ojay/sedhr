@@ -87,9 +87,6 @@ const RFPapply = ({ navigations }: RFPProps) => {
                     Search for RFPs
                   </div>
                   <Input type="search" placeholder="This is placeholder" />
-                  {/* <p className='text-sm text-dark-100 mt-2'>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
-									</p> */}
                 </form>
               </FormProvider>
             </WhiteWrapper>
