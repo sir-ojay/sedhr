@@ -41,7 +41,7 @@ const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
   });
 
   const {
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
     getValues,
     register,
@@ -136,18 +136,9 @@ const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
             Back
           </Button>
           <div className="flex items-center justify-between">
-            {/* <Button theme="plain" className="text-primary w-[200px]">
-              Skip Step
-            </Button> */}
             <Button
-              // onClick={() => {
-              //   router.push({
-              //     pathname: "/collaboration/rfp/create",
-              //     query: {
-              //       step: "3",
-              //     },
-              //   });
-              // }}
+              type="submit"
+              disabled={!isValid}
               onClick={() => handleStep()}
             >
               Continue

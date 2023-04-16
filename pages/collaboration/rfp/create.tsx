@@ -15,9 +15,7 @@ import SelectionCriteria, {
 } from "@/components/collaboration/rfp/SelectionCriteria";
 import Budget, { BudgetValues } from "@/components/collaboration/rfp/Budget";
 import MakePayment from "@/components/collaboration/rfp/MakePayment";
-import GetReview, {
-  CodeValues,
-} from "@/components/collaboration/rfp/GetReview";
+import GetReview, {CodeValues} from "@/components/collaboration/rfp/GetReview";
 import { useCreateRFPMutation } from "@/services/collaborations";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
@@ -25,7 +23,7 @@ import Cookies from "js-cookie";
 const create = () => {
   const [rfpDetails, setRfpDetails] = useState<RfpDetails>();
   const [bidSelectionT, setBidSelectionT] = useState<Bids>();
-  const [selectionCriteria, setSelectionCriteria] = useState<CriteriaPath>();
+  const [selectionCritria, setSelectionCriteria] = useState<CriteriaPath>();
   const [budgetDetails, setBudgetDetails] = useState<BudgetValues>();
   const [reviewDetails, setReviewDetails] = useState<CodeValues>();
 
@@ -45,16 +43,20 @@ const create = () => {
     console.log("details", details);
     setBudgetDetails(details);
   };
-  const reviewDetailsForm = (details: CodeValues) => {
+  const preDetailForm = (details: CodeValues) => {
     console.log("details", details);
     setReviewDetails(details);
+  };
+
+  const handleRFPSubmit = () => {
+    handleCompleteRFP();
   };
 
   const router = useRouter();
 
   const { step } = router.query;
 
-  const token = Cookies.get("sedherToken");
+  const token:any = Cookies.get("sedherToken");
 
   const [completeRFP, { isLoading }] = useCreateRFPMutation();
 
@@ -65,7 +67,7 @@ const create = () => {
         body: {
           ...rfpDetails,
           ...bidSelectionT,
-          ...SelectionCriteria,
+          ...selectionCritria,
           ...budgetDetails,
           ...reviewDetails,
         } as any,
@@ -99,11 +101,12 @@ const create = () => {
           {step === "5" && <MakePayment />}
           {step === "6" && (
             <GetReview
+              preDetailForm={preDetailForm}
               rfpDetails={rfpDetails}
               bidSelectionT={bidSelectionT}
-              selectionCriteria={selectionCriteria}
+              selectionCritria={selectionCritria}
               budgetDetails={budgetDetails}
-              reviewDetailsForm={reviewDetailsForm}
+              handleRFPSubmit={handleRFPSubmit}
             />
           )}
         </CreateRFPWrapper>
