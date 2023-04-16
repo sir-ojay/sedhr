@@ -90,7 +90,7 @@ export const collaboration = createApi({
     }),
     createRFP: builder.mutation<CreateRFPResponse, CreateRFPRequest>({
       query: (credentials) =>
-        postRequest("/rfps",  credentials.token),
+        postRequest("/rfps", credentials.body, credentials.token),
       invalidatesTags: ["RFP"],
     }),
     getRFPCode: builder.query<GetRFPCodeResponse, GetRFPCodeRequest>({

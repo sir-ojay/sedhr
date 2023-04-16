@@ -25,7 +25,7 @@ type BusinessInformationFormProps = {
 };
 
 const BusinessInformationForm = ({
-  businessInformationForm,
+  businessInformationForm
 }: BusinessInformationFormProps) => {
   const router = useRouter();
   const { type } = router.query;

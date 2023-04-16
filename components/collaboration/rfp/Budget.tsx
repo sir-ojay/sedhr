@@ -11,7 +11,7 @@ export type BudgetValues = {
         {
             fieldName: string,
             value: number | any,
-        },
+        }[],
 }
 
 type BudgetDetailsFormProps = {
@@ -22,20 +22,20 @@ const Budget = ({budgetDetailsForm}:BudgetDetailsFormProps) => {
   const router = useRouter();
   const methods = useForm({
     defaultValues: {
-      budgets: 
+      budgets: [
         {
             fieldName: "",
             value:""
         }
+      ]
     },
     mode: "onChange",
   });
 
   
   const {
-    formState: { errors },
-    watch,
-    getValues,
+    formState: { errors , isValid},
+    watch
   
   } = methods;
 
@@ -71,14 +71,14 @@ const Budget = ({budgetDetailsForm}:BudgetDetailsFormProps) => {
               <div className="flex items-center justify-between mt-3">
                 <div className="text-sm text-dark-100">
                 <Input
-                    name="budgets.fieldName"
+                    name="budgets.0.fieldName"
                     placeholder="Desricption"
                     rules={["required"]}
                   />
                 </div>
                 <div className="text-sm text-dark-100">
                   <Input
-                    name="budgets.value"
+                    name="budgets.0.value"
                     placeholder="$ 5000" 
                     rules={["required"]}
                   />
@@ -99,14 +99,8 @@ const Budget = ({budgetDetailsForm}:BudgetDetailsFormProps) => {
               Skip Step
             </Button> */}
             <Button
-              // onClick={() => {
-              //   router.push({
-              //     pathname: "/collaboration/rfp/create",
-              //     query: {
-              //       step: "5",
-              //     },
-              //   });
-              // }}
+             type="submit"
+             disabled={!isValid}
               onClick={() => handleStep()}
             >
               Continue

@@ -14,9 +14,10 @@ type Props = {
 
 const RFPCard = ({
   type = "default",
-  // description,
+  bids,
+  category,
   productName,
-  updatedAt,
+  budgets,
 }: Props & RFP) => {
   const router = useRouter();
 
@@ -29,33 +30,35 @@ const RFPCard = ({
               href="/connection/1"
               shape="square"
               size={54}
-              name="Thomas clinics"
+              name={productName}
             />
             <div>
               <Link
                 href="/connection/1"
                 className="font-semibold text-[#2A2069] hover:underline"
               >
-                Thomas clinics
+                {productName}
               </Link>
               <div className="text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]">
-                Dental clinics
+                {category}
               </div>
               <div className="text-sm text-accents-brown">
-                Patient care centres
+                {budgets?.[0]?.value}
               </div>
             </div>
           </div>
           <hr />
           <div className="flex items-center gap-2">
-            <StatusPill text="Product" bg="#1AD48D1A" textColor="#1AD48D" />
-            <span className="text-sm text-[#4C4475]">
-              {moment(updatedAt).format("DD, MMMM yy")}
+            {/* <StatusPill text="Product" bg="#1AD48D1A" textColor="#1AD48D" /> */}
+            <span className="text-sm text-[#B0B7C3] text-xs">
+              {moment(bids?.deadline).format(
+                "DD, MMMM yy, h:mm:ss a [- Deadline]"
+              )}
             </span>
           </div>
-          <h4 className="font-semibold text-sm text-[#2A2069] hover:underline">
+          {/* <h4 className="font-semibold text-sm text-[#2A2069] hover:underline">
             {productName}
-          </h4>
+          </h4> */}
           {/* <div className="text-sm text-[#4C4475]">{description}</div> */}
 
           <div className="flex items-center gap-5">

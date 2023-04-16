@@ -1,21 +1,23 @@
 import Button from "@/components/global/Button";
-import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-
 export type CriteriaPath = {
-  selectionCriteria: string,
-}
-
-type SelectionCriteriaFormProps = {
-  selectionCriteriaForm:(details: CriteriaPath) => void;
+  selectionCriteria: string;
 };
 
-const SelectionCriteria = ({selectionCriteriaForm}:SelectionCriteriaFormProps) => {
-  const handleScopeOfWorkChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+type SelectionCriteriaFormProps = {
+  selectionCriteriaForm: (details: CriteriaPath) => void;
+};
+
+const SelectionCriteria = ({
+  selectionCriteriaForm,
+}: SelectionCriteriaFormProps) => {
+  const handleScopeOfWorkChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const inputText = e.target.value;
     const maxLength = 2000;
     if (inputText.length > maxLength) {
@@ -24,18 +26,16 @@ const SelectionCriteria = ({selectionCriteriaForm}:SelectionCriteriaFormProps) =
     setValue("selectionCriteria", e.target.value);
   };
 
-
-
   const router = useRouter();
   const methods = useForm({
     defaultValues: {
-      selectionCriteria: " "
+      selectionCriteria: " ",
     },
     mode: "onChange",
   });
 
   const {
-    formState: { errors },
+    formState: { errors, isValid },
     watch,
     getValues,
     register,
@@ -63,7 +63,6 @@ const SelectionCriteria = ({selectionCriteriaForm}:SelectionCriteriaFormProps) =
       <div className="space-y-6">
         <FormProvider {...methods}>
           <form className="space-y-6">
-        
             <WhiteWrapper title="Selection Criteria">
               <div className="text-sm text-dark-100">
                 This part of the request for proposal can help accomplish two
@@ -87,7 +86,6 @@ const SelectionCriteria = ({selectionCriteriaForm}:SelectionCriteriaFormProps) =
               </div>
 
               <div className="p-5 mt-5 rounded-xl bg-accents-light-blue">
-
                 <label
                   htmlFor="Write out your Selection Criteria below"
                   className="flex flex-col relative"
@@ -110,7 +108,7 @@ const SelectionCriteria = ({selectionCriteriaForm}:SelectionCriteriaFormProps) =
                 </label>
                 <div className="flex justify-between text-dark-100">
                   <span>Maximum 2000 characters</span>
-                  <span>{details.selectionCriteria.length}  / 2000</span>
+                  <span>{details.selectionCriteria.length} / 2000</span>
                 </div>
               </div>
             </WhiteWrapper>
@@ -123,19 +121,9 @@ const SelectionCriteria = ({selectionCriteriaForm}:SelectionCriteriaFormProps) =
           </Button>
 
           <div className="flex items-center justify-between">
-            {/* <Button theme="plain" className="text-primary w-[200px]">
-              Skip Step
-            </Button> */}
             <Button
-              // onClick={() => {
-              //   router.push({
-              //     pathname: "/collaboration/rfp/create",
-              //     query: {
-              //       step: "4",
-              //     },
-              //   });
-              // }}
-
+              type="submit"
+              disabled={!isValid}
               onClick={() => handleStep()}
             >
               Continue

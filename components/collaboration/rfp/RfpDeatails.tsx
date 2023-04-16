@@ -69,7 +69,7 @@ const onFileChange = async(e:any) => {
   });
 
   const {
-    formState: { errors },
+    formState: { errors ,  isValid},
     watch,
     getValues,
     setValue,
@@ -316,15 +316,8 @@ const onFileChange = async(e:any) => {
         <div className="flex items-center justify-between">
           <Button theme="outline">Discard</Button>
           <Button
-            // onClick={() => {
-            //   handleStep
-            //   router.push({
-            //     pathname: "/collaboration/rfp/create",
-            //     query: {
-            //       step: "2",
-            //     },
-            //   });
-            // }}
+            type="submit"
+            disabled={!isValid}
             onClick={() => handleStep()}
           >
             Continue

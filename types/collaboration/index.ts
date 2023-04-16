@@ -53,10 +53,11 @@ export type RFP = {
   productName: string;
   category: string;
   scopeOfWork: string;
+  selectionCriteria: string;
   additionalDetails?: string[];
   budgets: {
     fieldName?: string;
-    value?: number;
+    value: number;
     _id: string;
   }[];
   code: number;
