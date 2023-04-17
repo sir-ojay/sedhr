@@ -4,7 +4,7 @@ import WhiteWrapper from "@/components/global/WhiteWrapper";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import { ControllerRenderProps, FormProvider, useForm } from "react-hook-form";
-import Cookies from "js-cookie";  
+import Cookies from "js-cookie";
 import { useUploadDocumentMutation } from "@/services/upload";
 import { toast } from "react-toastify";
 
@@ -12,45 +12,49 @@ export type RfpDetails = {
   productName: string;
   category: string;
   scopeOfWork: string;
+  communications: {
+    channels: string[];
+    responseToEmail: string;
+    responseToFeedback: string;
+    note: string;
+  };
   additionalDetails?: {
     fieldName: string;
     value: any | undefined;
   }[];
 };
 
-
 type RfpDetailsFormProps = {
   rfpDetailsForm: (details: RfpDetails) => void;
 };
 
 const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
-
   const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
 
-	const token = Cookies.get("sedherToken");
+  const token = Cookies.get("sedherToken");
 
-const [file, setFile] = useState<any>("");
+  const [file, setFile] = useState<any>("");
 
-const onFileChange = async(e:any) => {
-  console.log("knjk")
- const  photoId = e?.target?.files?.[0]
-  try {
-    let data: any = [];
-    const result = (await uploadDocument({
-      file: photoId as any,
-      token: token as string,
-    }).unwrap()) as any;
-    data.push({
-      idType:"rfp",
-      idLink: result.data[0],
-      // publicId: result.data.publicId,
-    });
-    console.log(data)
-    // documentsInfo(data);
-  } catch (err: any) {
-    toast.error(err?.data?.message || err.data.error);
-  }
-};
+  const onFileChange = async (e: any) => {
+    console.log("knjk");
+    const photoId = e?.target?.files?.[0];
+    try {
+      let data: any = [];
+      const result = (await uploadDocument({
+        file: photoId as any,
+        token: token as string,
+      }).unwrap()) as any;
+      data.push({
+        idType: "rfp",
+        idLink: result.data[0],
+        // publicId: result.data.publicId,
+      });
+      console.log(data);
+      // documentsInfo(data);
+    } catch (err: any) {
+      toast.error(err?.data?.message || err.data.error);
+    }
+  };
 
   const router = useRouter();
   const methods = useForm({
@@ -61,15 +65,21 @@ const onFileChange = async(e:any) => {
       additionalDetails: [
         {
           fieldName: "",
-          value: " ",
-        }
+          value: "",
+        },
       ],
+      communications: {
+        channels: ["slack"],
+        responseToEmail: "2 days",
+        responseToFeedback: "1 day",
+        note: "This responses can vary",
+      },
     },
     mode: "onChange",
   });
 
   const {
-    formState: { errors ,  isValid},
+    formState: { errors, isValid },
     watch,
     getValues,
     setValue,
@@ -128,22 +138,22 @@ const onFileChange = async(e:any) => {
   const addDetails = () => setIsOpen(!isOpen);
   useEffect(() => {}, [errors]);
   const handleUpload = async () => {
-		try {
-			let data: any = [];
-			const result = (await uploadDocument({
+    try {
+      let data: any = [];
+      const result = (await uploadDocument({
         file: data as any,
-				token: token as string,
-			}).unwrap()) as any;
-			data.push({
-				idLink: result.data[0],
-				// publicId: result.data.publicId,
-			});
+        token: token as string,
+      }).unwrap()) as any;
+      data.push({
+        idLink: result.data[0],
+        // publicId: result.data.publicId,
+      });
       console.log(result, data);
-      console.log( data);
-		} catch (err: any) {
-			toast.error(err?.data?.message || err.data.error);
-		}
-	};
+      console.log(data);
+    } catch (err: any) {
+      toast.error(err?.data?.message || err.data.error);
+    }
+  };
   // const handlePhotoChange = (event) => {
   //   setPhotoId(event.target.files[0]);
   // };
@@ -151,7 +161,7 @@ const onFileChange = async(e:any) => {
   return (
     <>
       <div className="space-y-6">
-      {/* <WhiteWrapper title="RFPCode">
+        {/* <WhiteWrapper title="RFPCode">
               <div className="flex justify-between">
                 <div>
                   <div className="text-sm text-dark-100 mb-3">
@@ -173,7 +183,6 @@ const onFileChange = async(e:any) => {
             </WhiteWrapper> */}
         <FormProvider {...methods}>
           <form className="space-y-6">
-          
             <WhiteWrapper title="RFP Details">
               <Input
                 label="Project Name"
@@ -304,7 +313,12 @@ const onFileChange = async(e:any) => {
                       />
 
                       <div className="mt-3">
-                        <Input onChange={onFileChange}  name="additionalDetails.[1].value"  showFilePreview type="file"  />
+                        <Input
+                          onChange={onFileChange}
+                          name="additionalDetails.[1].value"
+                          showFilePreview
+                          type="file"
+                        />
                       </div>
                     </div>
                   </div>

@@ -37,34 +37,27 @@ export type GetRFPCodeRequest = {
 };
 
 export type RFP = {
-  bids: {
-    deadline: string;
-    selectionDate: string;
-    note: string;
-  };
+  productName: string;
+  category: string;
+  scopeOfWork: string;
   communications: {
     channels: string[];
     responseToEmail: string;
     responseToFeedback: string;
     note: string;
   };
-  _id: string;
-  userId: string;
-  productName: string;
-  category: string;
-  scopeOfWork: string;
   selectionCriteria: string;
   additionalDetails?: string[];
   budgets: {
     fieldName?: string;
     value: number;
-    _id: string;
   }[];
+  bids: {
+    deadline: string;
+    selectionDate: string;
+    note: string;
+  };
   code: number;
-  rfpType: string;
-  status: "pending" | "approved" | "rejected";
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type CreateH2HRequest = {

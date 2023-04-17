@@ -5,38 +5,34 @@ import { useRouter } from "next/router";
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-
 export type BudgetValues = {
-  budgets: 
-        {
-            fieldName: string,
-            value: number | any,
-        }[],
-}
+  budgets: {
+    fieldName: string;
+    value: number | any;
+  }[];
+};
 
 type BudgetDetailsFormProps = {
   budgetDetailsForm: (details: BudgetValues) => void;
 };
 
-const Budget = ({budgetDetailsForm}:BudgetDetailsFormProps) => {
+const Budget = ({ budgetDetailsForm }: BudgetDetailsFormProps) => {
   const router = useRouter();
   const methods = useForm({
     defaultValues: {
       budgets: [
         {
-            fieldName: "",
-            value:""
-        }
-      ]
+          fieldName: "",
+          value: "",
+        },
+      ],
     },
     mode: "onChange",
   });
 
-  
   const {
-    formState: { errors , isValid},
-    watch
-  
+    formState: { errors, isValid },
+    watch,
   } = methods;
 
   const details = watch();
@@ -60,7 +56,6 @@ const Budget = ({budgetDetailsForm}:BudgetDetailsFormProps) => {
       <div className="space-y-6">
         <FormProvider {...methods}>
           <form className="space-y-6">
-      
             <WhiteWrapper title="Budget">
               <div className="text-sm text-dark-100">
                 Contractors need to know what budget you’re working with in
@@ -70,7 +65,7 @@ const Budget = ({budgetDetailsForm}:BudgetDetailsFormProps) => {
               </div>
               <div className="flex items-center justify-between mt-3">
                 <div className="text-sm text-dark-100">
-                <Input
+                  <Input
                     name="budgets.0.fieldName"
                     placeholder="Desricption"
                     rules={["required"]}
@@ -79,12 +74,11 @@ const Budget = ({budgetDetailsForm}:BudgetDetailsFormProps) => {
                 <div className="text-sm text-dark-100">
                   <Input
                     name="budgets.0.value"
-                    placeholder="$ 5000" 
+                    placeholder="$ 5000"
                     rules={["required"]}
                   />
                 </div>
               </div>
-            
             </WhiteWrapper>
           </form>
         </FormProvider>
@@ -99,8 +93,8 @@ const Budget = ({budgetDetailsForm}:BudgetDetailsFormProps) => {
               Skip Step
             </Button> */}
             <Button
-             type="submit"
-             disabled={!isValid}
+              type="submit"
+              disabled={!isValid}
               onClick={() => handleStep()}
             >
               Continue
