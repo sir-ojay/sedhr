@@ -5,27 +5,28 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
-
- export type Bids = {
-  deadline:string;
-  selectionDate: string;
-  note : string;
-}
+export type Bids = {
+  bids: {
+    deadline: string;
+    selectionDate: string;
+    note: string;
+  };
+};
 
 type BidSelectionTFormProps = {
   bidSelectionTForm: (details: Bids) => void;
 };
 
-const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
-
-
-   const handleScopeOfWorkChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+const BidSelectionT = ({ bidSelectionTForm }: BidSelectionTFormProps) => {
+  const handleScopeOfWorkChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const inputText = e.target.value;
     const maxLength = 2000;
     if (inputText.length > maxLength) {
       e.target.value = inputText.substring(0, maxLength);
     }
-    setValue("note", e.target.value);
+    setValue("bids.note", e.target.value);
   };
 
   // const [value, setValue] = useState("");
@@ -33,9 +34,11 @@ const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
 
   const methods = useForm({
     defaultValues: {
-      deadline:"",
-      selectionDate: "",
-      note : ""
+      bids: {
+        deadline: "",
+        selectionDate: "",
+        note: "",
+      },
     },
     mode: "onChange",
   });
@@ -51,7 +54,6 @@ const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
   const details = watch();
   console.log(details);
 
-  
   const handleStep = () => {
     const body = {
       ...details,
@@ -70,7 +72,6 @@ const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
       <div className="space-y-8">
         <FormProvider {...methods}>
           <form className="space-y-6">
-
             <WhiteWrapper title="Bid Selection Timeline ">
               <p>
                 If you have a strict deadline, make sure to highlight that in
@@ -83,7 +84,7 @@ const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
                 <div className="text-sm text-dark-100">Deadline for Bids</div>
                 <div>
                   <Input
-                    name="deadline"
+                    name="bids.deadline"
                     type="date"
                     id="deadline"
                     placeholder="deadline"
@@ -97,7 +98,7 @@ const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
                 </div>
                 <div>
                   <Input
-                    name="selectionDate"
+                    name="bids.selectionDate"
                     type="date"
                     id="selectionDate"
                     placeholder="selectionDate"
@@ -116,17 +117,17 @@ const BidSelectionT = ({bidSelectionTForm}: BidSelectionTFormProps) => {
                   cols={30}
                   placeholder="Any SideNote?"
                   rows={1}
-                  {...register("note", { maxLength: 2000 })}
+                  {...register("bids.note", { maxLength: 2000 })}
                   onChange={(e) => {
                     handleScopeOfWorkChange(e);
                   }}
-          
+
                   // {...register("post", { required: true })}
                 />
               </label>
               <div className="flex justify-between text-dark-100">
                 <span>Maximum 2000 characters</span>
-                <span>{details.note.length} / 2000</span>
+                <span>{details.bids.note.length} / 2000</span>
               </div>
             </WhiteWrapper>
           </form>

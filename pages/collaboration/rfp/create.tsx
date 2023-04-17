@@ -15,7 +15,9 @@ import SelectionCriteria, {
 } from "@/components/collaboration/rfp/SelectionCriteria";
 import Budget, { BudgetValues } from "@/components/collaboration/rfp/Budget";
 import MakePayment from "@/components/collaboration/rfp/MakePayment";
-import GetReview, {CodeValues} from "@/components/collaboration/rfp/GetReview";
+import GetReview, {
+  CodeValues,
+} from "@/components/collaboration/rfp/GetReview";
 import { useCreateRFPMutation } from "@/services/collaborations";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
@@ -56,7 +58,7 @@ const create = () => {
 
   const { step } = router.query;
 
-  const token:any = Cookies.get("sedherToken");
+  const token: any = Cookies.get("sedherToken");
 
   const [completeRFP, { isLoading }] = useCreateRFPMutation();
 
@@ -77,7 +79,7 @@ const create = () => {
       toast.success("RFP completed successfully");
       console.log("result", result);
       //   To route to start
-      router.push(`collaboration/rfp`);
+      router.push("/collaboration/rfp");
     } catch (err: any) {
       console.log("err", err);
       toast.error(err?.data?.message || err.data.error);

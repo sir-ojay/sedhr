@@ -156,7 +156,7 @@ const GetReview = ({
               </div>
               <div className="text-sm font-normal text-[#0C1938]">
                 {" "}
-                {moment(bidSelectionT?.deadline).format("DD, MMMM YYYY")}
+                {moment(bidSelectionT?.bids.deadline).format("DD, MMMM YYYY")}
               </div>
             </div>
             <hr />
@@ -166,7 +166,7 @@ const GetReview = ({
               </div>
               <div className="text-sm font-normal text-[#0C1938]">
                 {" "}
-                {moment(bidSelectionT?.selectionDate).format("DD, MMMM YYYY")}
+                {moment(bidSelectionT?.bids.selectionDate).format("DD, MMMM YYYY")}
               </div>
             </div>
             <hr />
@@ -175,7 +175,7 @@ const GetReview = ({
                 Side Note
               </div>
               <div className="text-sm font-normal text-[#0C1938] w-5/6">
-                {bidSelectionT?.note}
+                {bidSelectionT?.bids.note}
               </div>
             </div>
           </div>
