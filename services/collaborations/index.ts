@@ -95,8 +95,8 @@ export const collaboration = createApi({
     >({
       query: (credentials) =>
         getRequest(
-          // `/rfps/applications/${credentials.id}`
-          `/rfps/applications/644a775a493ad8ad06b030de`,
+          `/rfps/applications/${credentials.id}`,
+          // `/rfps/applications/644a775a493ad8ad06b030de`,
           credentials.token
         ),
       providesTags: ["RFP"],
