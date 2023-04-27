@@ -68,15 +68,15 @@ const GetReview = ({
   } = methods;
 
   const details = watch();
-  console.log(details);
+  // console.log(details);
 
   const handleSubmit = () => {
     const body = { ...details };
     preDetailForm(body);
     handleRFPSubmit();
   };
-  console.log(preDetailForm);
-  console.log(handleRFPSubmit);
+  // console.log(preDetailForm);
+  // console.log(handleRFPSubmit);
 
   return (
     <div>

@@ -17,7 +17,7 @@ import {
   GetRFPResponse,
   GetRFPCodeResponse,
   GetRFPCodeRequest,
-  CreateRFPResponse, 
+  CreateRFPResponse,
   CreateRFPRequest,
   GetSnergiRequest,
   GetSnergiResponse,
@@ -31,20 +31,23 @@ import {
   GetChatRequest,
   GetConvoResponse,
   GetConvoRequest,
+  CreateRFPApplicationResponse,
+  CreateRFPApplicationRequest,
+  GetRFPApplicationResponse,
+  GetRFPApplicationRequest,
 } from "@/types/collaboration";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const postRequest = (url: string, details: any, token?: string) => 
-{
- 
-return   {
-  url,
-  method: "POST",
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-  body: details,
-}}
+const postRequest = (url: string, details: any, token?: string) => {
+  return {
+    url,
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: details,
+  };
+};
 
 const putRequest = (url: string, details: any, token?: string) => ({
   url,
@@ -82,10 +85,20 @@ export const collaboration = createApi({
       providesTags: ["RFP"],
     }),
     getRFP: builder.query<GetRFPResponse, GetRFPRequest>({
-      query: (credentials) => getRequest(
-        `/rfps/${credentials.id}`
-        // `/rfps/632dfd7d4e7ea21733e76620`
-      , credentials.token),
+      query: (credentials) =>
+        getRequest(`/rfps/${credentials.userId}`, credentials.token),
+      providesTags: ["RFP"],
+    }),
+    getRFPApplication: builder.query<
+      GetRFPApplicationResponse,
+      GetRFPApplicationRequest
+    >({
+      query: (credentials) =>
+        getRequest(
+          // `/rfps/applications/${credentials.id}`
+          `/rfps/applications/644a775a493ad8ad06b030de`,
+          credentials.token
+        ),
       providesTags: ["RFP"],
     }),
     createRFP: builder.mutation<CreateRFPResponse, CreateRFPRequest>({
@@ -93,11 +106,23 @@ export const collaboration = createApi({
         postRequest("/rfps", credentials.body, credentials.token),
       invalidatesTags: ["RFP"],
     }),
+    createRFPApplication: builder.mutation<
+      CreateRFPApplicationResponse,
+      CreateRFPApplicationRequest
+    >({
+      query: (credentials) =>
+        postRequest(
+          `/rfps/${credentials.id}/applications`,
+          credentials.body,
+          credentials.token
+        ),
+      invalidatesTags: ["RFP"],
+    }),
     getRFPCode: builder.query<GetRFPCodeResponse, GetRFPCodeRequest>({
       query: (credentials) =>
-      getRequest("rfps/generate-code",  credentials.token),
-      
+        getRequest("rfps/generate-code", credentials.token),
     }),
+
     getH2Hs: builder.query<GetH2HSResponse, GetH2HSRequest>({
       query: (credentials) => getRequest("/h2hs/public", credentials.token),
       providesTags: ["H2H"],
@@ -105,9 +130,8 @@ export const collaboration = createApi({
     getH2H: builder.query<GetH2HResponse, GetH2HRequest>({
       query: (credentials) =>
         getRequest(`/h2hs/${credentials.id}`, credentials.token),
-        
     }),
-   
+
     createH2H: builder.mutation<CreateH2HResponse, CreateH2HRequest>({
       query: (credentials) =>
         postRequest(`/h2hs`, credentials.body, credentials.token),
@@ -146,27 +170,34 @@ export const collaboration = createApi({
         postRequest(`/synergies`, credentials.body, credentials.token),
       invalidatesTags: ["Synergi"],
     }),
-    createBooking: builder.mutation<CreateBookingResponse, CreateBookingRequest>({
+    createBooking: builder.mutation<
+      CreateBookingResponse,
+      CreateBookingRequest
+    >({
       query: (credentials) =>
-        postRequest(`/synergies/${credentials.id}/bookings`, credentials.body, credentials.token),
+        postRequest(
+          `/synergies/${credentials.id}/bookings`,
+          credentials.body,
+          credentials.token
+        ),
       invalidatesTags: ["Booking"],
     }),
     getBooking: builder.query<GetBookingResponse, GetBookingRequest>({
       query: (credentials) =>
-        getRequest(
-          `/synergies/${credentials.id}/bookings`,
-          credentials.token
-        ),
+        getRequest(`/synergies/${credentials.id}/bookings`, credentials.token),
       providesTags: ["Booking"],
     }),
-    getAvailability: builder.query<GetAvailabilityResponse, GetAvailabilityRequest>({
-      query: (credentials) =>
-       {
+    getAvailability: builder.query<
+      GetAvailabilityResponse,
+      GetAvailabilityRequest
+    >({
+      query: (credentials) => {
         // console.log({credentials})
-        return  getRequest(
+        return getRequest(
           `/synergies/${credentials.id}/availabilities?dateSlot=${credentials.time}`,
           credentials.token
-        )},
+        );
+      },
       providesTags: ["Available"],
     }),
   }),
@@ -176,6 +207,8 @@ export const {
   useGetRFPsQuery,
   useGetRFPQuery,
   useGetRFPCodeQuery,
+  useGetRFPApplicationQuery,
+  useCreateRFPApplicationMutation,
   useCreateRFPMutation,
   useCreateH2HMutation,
   useGetH2HsQuery,
@@ -188,5 +221,5 @@ export const {
   useCreateSnergiMutation,
   useCreateBookingMutation,
   useGetBookingQuery,
-  useGetAvailabilityQuery
+  useGetAvailabilityQuery,
 } = collaboration;

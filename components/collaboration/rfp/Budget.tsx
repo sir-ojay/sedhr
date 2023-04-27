@@ -36,7 +36,7 @@ const Budget = ({ budgetDetailsForm }: BudgetDetailsFormProps) => {
   } = methods;
 
   const details = watch();
-  console.log(details);
+  // console.log(details);
 
   const handleStep = () => {
     const body = {
@@ -49,7 +49,7 @@ const Budget = ({ budgetDetailsForm }: BudgetDetailsFormProps) => {
         step: "5",
       },
     });
-    console.log(body);
+    // console.log(body);
   };
   return (
     <>
@@ -89,9 +89,6 @@ const Budget = ({ budgetDetailsForm }: BudgetDetailsFormProps) => {
           </Button>
 
           <div className="flex items-center justify-between">
-            {/* <Button theme="plain" className="text-primary w-[200px]">
-              Skip Step
-            </Button> */}
             <Button
               type="submit"
               disabled={!isValid}

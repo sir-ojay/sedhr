@@ -36,7 +36,6 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
   const [file, setFile] = useState<any>("");
 
   const onFileChange = async (e: any) => {
-    console.log("knjk");
     const photoId = e?.target?.files?.[0];
     try {
       let data: any = [];
@@ -83,7 +82,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
     watch,
     getValues,
     setValue,
-  } = methods;
+  }:any = methods;
   // const handleScopeOfWorkChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
   //   const inputText = e.target.value;
   //   const maxLength = 20;
@@ -125,6 +124,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
       ...details,
     };
     rfpDetailsForm(body);
+    // handleUpload()
     router.push({
       pathname: "/collaboration/rfp/create",
       query: {
@@ -137,50 +137,10 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const addDetails = () => setIsOpen(!isOpen);
   useEffect(() => {}, [errors]);
-  const handleUpload = async () => {
-    try {
-      let data: any = [];
-      const result = (await uploadDocument({
-        file: data as any,
-        token: token as string,
-      }).unwrap()) as any;
-      data.push({
-        idLink: result.data[0],
-        // publicId: result.data.publicId,
-      });
-      console.log(result, data);
-      console.log(data);
-    } catch (err: any) {
-      toast.error(err?.data?.message || err.data.error);
-    }
-  };
-  // const handlePhotoChange = (event) => {
-  //   setPhotoId(event.target.files[0]);
-  // };
-
   return (
     <>
       <div className="space-y-6">
-        {/* <WhiteWrapper title="RFPCode">
-              <div className="flex justify-between">
-                <div>
-                  <div className="text-sm text-dark-100 mb-3">
-                    Copy Reference Code for this project
-                  </div>
-                  <Button>CopyRFQCode</Button>
-                </div>
-                <div>
-                  <Input
-                    placeholder={codeData?.data.code}
-                    name={codeData?.data.code}
-                  />
-                  <div className="w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none">
-                  <p>{codeData?.data.code}</p>
-                  </div>
-                 
-                </div>
-              </div>
-            </WhiteWrapper> */}
+    
         <FormProvider {...methods}>
           <form className="space-y-6">
             <WhiteWrapper title="RFP Details">
@@ -267,20 +227,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
                         <span className="w-full font-bold text-left text-title mb-1">
                           Description
                         </span>
-                        {/* <textarea
-                        className="w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none"
-                        id="value"
-                        cols={30}
-                        placeholder="Description"
-                        rows={1}
-                        {...register(`additionalDetails.${0}.value`, {
-                          maxLength: 20,
-                        })}
-                        {...register("scopeOfWork", { maxLength: 20 })}
-                        onChange={(e) => {
-                          handleScopeOfWork1Change(e);
-                        }}
-                      /> */}
+            
                         <textarea
                           className="w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none"
                           id="additionalDetails"
