@@ -96,8 +96,12 @@ CreateRFPWrapper.defaultProps = {
 			no: 1,
 		},
 		{
-			title: "Apply RFP & Submit",
+			title: "Make Payments",
 			no: 2,
+		},
+		{
+			title: "Apply RFP & Submit",
+			no: 3,
 		},
 	
 	],

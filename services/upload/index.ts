@@ -19,11 +19,15 @@ export const upload = createApi({
 		>({
 			query: (credentials) => {
 				const formData = new FormData();
-				formData.append("data", credentials.file[0]);
+				// formData.append("data", credentials.file[0]);
+				for(let file of credentials.file){
+					formData.append("data", file);
+					  }
 				return postRequest("/uploads", formData, credentials.token);
 			},
 		}),
+		 
 	}),
 });
 
-export const { useUploadDocumentMutation } = upload;
+export const { useUploadDocumentMutation}= upload;

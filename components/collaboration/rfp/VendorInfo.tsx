@@ -1,19 +1,39 @@
 import Avatar from "@/components/global/Avatar";
 import Button from "@/components/global/Button";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
-import React from "react";
+import { useGetRFPApplicationQuery } from "@/services/collaborations";
+import { RFP } from "@/types/collaboration";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+import JWT from "jsonwebtoken";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 
 const VendorInfo = () => {
+  const router = useRouter();
+  const token = Cookies.get("sedherToken") as string;
+  let user = JWT.decode(token) as { id: string };
+
+  const [rfpData, setRfpData] = useState<RFP>();
+
+  const { data, isSuccess } = useGetRFPApplicationQuery({
+    token,
+    id: router.query.id?.toString()!,
+  });
+  useEffect(() => {
+    data && setRfpData(data?.data);
+  }, [isSuccess, data]);
+  console.log(rfpData?.createdAt);
   return (
     <>
-      <WhiteWrapper >
+      <WhiteWrapper>
         <div className="flex gap-4">
-          <div className="flex justify-center content-center"  >
-          <Avatar
+          <div className="flex justify-center content-center">
+            <Avatar
               size={88}
               name={"Jan Mayer"}
               shape="circle"
-            //   image={userIds?.conversationPartner?.profilePicture}
+              //   image={userIds?.conversationPartner?.profilePicture}
             />
           </div>
           <div>
@@ -24,7 +44,9 @@ const VendorInfo = () => {
         <div className="my-5 bg-[#F8F8FD] p-4">
           <div className="flex gap-8 text-sm pb-2">
             <p className="text-[#25324B]">Applied RFP</p>
-            <p className="text-[#7C8493]">2 days ago</p>
+            <p className="text-[#7C8493]">
+              {moment(rfpData?.createdAt).format("DD, MMMM YYYY")}
+            </p>
           </div>
 
           <hr />
@@ -33,7 +55,12 @@ const VendorInfo = () => {
           <p className="text-[#515B6F] text-sm">Technology</p>
         </div>
 
-        <Button onClick={() => "/"} theme='outline' size="sm" className="w-[234px]">
+        <Button
+          onClick={() => "/"}
+          theme="outline"
+          size="sm"
+          className="w-[234px]"
+        >
           Approve Proposal
         </Button>
 

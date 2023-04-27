@@ -14,6 +14,16 @@ export type GetRFPResponse = {
 
 export type GetRFPRequest = {
   token: string;
+  userId: string;
+};
+
+export type GetRFPApplicationResponse = {
+  message: string;
+  data: RFP;
+};
+
+export type GetRFPApplicationRequest = {
+  token: string;
   id: string;
 };
 
@@ -36,7 +46,22 @@ export type GetRFPCodeRequest = {
   token: string;
 };
 
+export type CreateRFPApplicationResponse = {
+  message: string;
+  data: RFP;
+  id: string;
+};
+
+export type CreateRFPApplicationRequest = {
+  token: string;
+  body: {};
+  id: string;
+};
+
 export type RFP = {
+  _id: string;
+  userId: string;
+  createdAt: string;
   productName: string;
   category: string;
   scopeOfWork: string;
@@ -57,7 +82,10 @@ export type RFP = {
     selectionDate: string;
     note: string;
   };
-  code: number;
+  code: string;
+  applicantId: string;
+  details: string[];
+  documentLinks: string[];
 };
 
 export type CreateH2HRequest = {

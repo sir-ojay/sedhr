@@ -2,7 +2,7 @@ import Button from "@/components/global/Button";
 import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 
 export type Bids = {
@@ -52,7 +52,7 @@ const BidSelectionT = ({ bidSelectionTForm }: BidSelectionTFormProps) => {
   } = methods;
 
   const details = watch();
-  console.log(details);
+  // console.log(details);
 
   const handleStep = () => {
     const body = {
@@ -65,7 +65,7 @@ const BidSelectionT = ({ bidSelectionTForm }: BidSelectionTFormProps) => {
         step: "3",
       },
     });
-    console.log(body);
+    // console.log(body);
   };
   return (
     <>

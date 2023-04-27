@@ -13,7 +13,8 @@ type Props = {
 };
 
 const RFPCard = ({
-  type = "default",
+  // type = "default",
+  userId,
   bids,
   category,
   productName,
@@ -69,8 +70,8 @@ const RFPCard = ({
               onClick={() =>
                 router.push(
                   router.asPath === "/collaboration/rfp/respond"
-                    ? "/collaboration/rfp/thomas-clinics"
-                    : "/collaboration/rfp/apply-for-rfp"
+                    ? `/collaboration/rfp/applications/${userId}`
+                    : `/collaboration/rfp/${userId}/apply-for-rfp`
                 )
               }
             >

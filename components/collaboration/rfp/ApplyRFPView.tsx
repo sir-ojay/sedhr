@@ -9,15 +9,15 @@ import { RFP } from "@/types/collaboration";
 import moment from "moment";
 import { useGetRFPQuery } from "@/services/collaborations";
 
-const ApplyRFPView = ({ rfpDetails }: any) => {
+const ApplyRFPView = () => {
   const router = useRouter();
-  console.log(rfpDetails);
+  // console.log(rfpDetails);
   // Payment functions
   const [synergi, setSynergi] = useState<any>();
-  console.log(synergi);
+  // console.log(synergi);
 
   const [rfpData, setRfpData] = useState<RFP>();
-  console.log(rfpData);
+  // console.log(rfpData);
 
   const token = Cookies.get("sedherToken") as string;
   let user = JWT.decode(token) as { id: string };
@@ -40,14 +40,12 @@ const ApplyRFPView = ({ rfpDetails }: any) => {
     }
   }, [rfpData]);
 
-  console.log(synergi?.productName);
+  console.log(synergi?.code);
 
   const { data, isSuccess } = useGetRFPQuery({
     token,
-    id: router.query.id?.toString()!,
+    userId: router.query.id?.toString()!,
   });
-  console.log;
-
   useEffect(() => {
     data && setRfpData(data?.data);
   }, [isSuccess, data]);
@@ -66,7 +64,7 @@ const ApplyRFPView = ({ rfpDetails }: any) => {
               </Button>
             </div>
             <div className="w border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none">
-              <p className="pt-7 px-4 ">{synergi?.code}</p>
+              <p className="pt-7 px-4 ">{synergi?.code ===" "?'000000': synergi?.code}</p>
             </div>
           </div>
         </WhiteWrapper>
@@ -96,10 +94,10 @@ const ApplyRFPView = ({ rfpDetails }: any) => {
             </div>
             <hr />
             <div className="flex items-center justify-between py-3.5 ">
-              <div className="text- font-semibold text-black">
+              <div className="text- font-semibold text-black w-1/2">
                 Project Description
               </div>
-              <div className="text-sm font-normal text-[#0C1938]">
+              <div className="text-sm font-normal text-[#0C1938] w-5/6">
                 {synergi?.scopeOfWork}
               </div>
             </div>
@@ -138,8 +136,8 @@ const ApplyRFPView = ({ rfpDetails }: any) => {
             </div>
             <hr />
             <div className="flex items-center justify-between py-3.5 ">
-              <div className="text-basefont-semibold text-black">Side Note</div>
-              <div className="text-sm font-normal text-[#0C1938]">
+              <div className="text-base font-semibold text-black w-1/2">Side Note</div>
+              <div className="text-sm font-normal text-[#0C1938] w-5/6">
                 {synergi?.bids?.note}
               </div>
             </div>
@@ -156,11 +154,11 @@ const ApplyRFPView = ({ rfpDetails }: any) => {
             </div>
             <hr />
             <div className="flex items-center justify-between py-3.5 ">
-              <div className="text-base font-semibold text-black">
+              <div className="text-base font-semibold text-black w-1/2">
                 Chanels of communication
               </div>
-              <div className="text-sm font-normal text-[#0C1938]">
-                {synergi?.communications?.channels[0]}
+              <div className="text-sm font-normal text-[#0C1938] w-5/6">
+                {synergi?.selectionCriteria}
               </div>
             </div>
           </div>
@@ -190,13 +188,10 @@ const ApplyRFPView = ({ rfpDetails }: any) => {
           </Button>
 
           <div className="flex items-center justify-between">
-            {/* <Button theme="plain" className="text-primary w-[200px]">
-                    Skip Step
-                  </Button> */}
             <Button
               onClick={() =>
                 router.push({
-                  pathname: "/collaboration/rfp/apply-for-rfp",
+                  pathname: `/collaboration/rfp/${synergi?.userId}/apply-for-rfp`,
                   query: {
                     step: "2",
                   },
