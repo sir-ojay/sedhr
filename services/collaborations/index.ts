@@ -35,6 +35,8 @@ import {
   CreateRFPApplicationRequest,
   GetRFPApplicationResponse,
   GetRFPApplicationRequest,
+  PutRFPApplicationResponse,
+  PutRFPApplicationRequest,
 } from "@/types/collaboration";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -95,12 +97,23 @@ export const collaboration = createApi({
     >({
       query: (credentials) =>
         getRequest(
-          // `/rfps/applications/${credentials.id}`
-          `/rfps/applications/644a775a493ad8ad06b030de`,
+          `/rfps/applications/${credentials.id}`,
+          // `/rfps/applications/644a775a493ad8ad06b030de`,
           credentials.token
         ),
       providesTags: ["RFP"],
     }),
+    updateRFPApplication: builder.mutation<
+    PutRFPApplicationResponse,
+    PutRFPApplicationRequest
+  >({
+    query: (credentials) =>
+      putRequest(
+        `/rfps/applications/${credentials.id}`,credentials.body,
+        // `/rfps/applications/644a775a493ad8ad06b030de`,
+        credentials.token
+      ),
+  }),
     createRFP: builder.mutation<CreateRFPResponse, CreateRFPRequest>({
       query: (credentials) =>
         postRequest("/rfps", credentials.body, credentials.token),
@@ -208,6 +221,7 @@ export const {
   useGetRFPQuery,
   useGetRFPCodeQuery,
   useGetRFPApplicationQuery,
+  useUpdateRFPApplicationMutation,
   useCreateRFPApplicationMutation,
   useCreateRFPMutation,
   useCreateH2HMutation,

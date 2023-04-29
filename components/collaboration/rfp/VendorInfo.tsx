@@ -1,13 +1,17 @@
 import Avatar from "@/components/global/Avatar";
 import Button from "@/components/global/Button";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
-import { useGetRFPApplicationQuery } from "@/services/collaborations";
 import { RFP } from "@/types/collaboration";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import JWT from "jsonwebtoken";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import {
+  useGetRFPApplicationQuery,
+  useUpdateRFPApplicationMutation,
+} from "@/services/collaborations";
 
 const VendorInfo = () => {
   const router = useRouter();
@@ -24,6 +28,27 @@ const VendorInfo = () => {
     data && setRfpData(data?.data);
   }, [isSuccess, data]);
   console.log(rfpData?.createdAt);
+
+  const [updateRFP, { isLoading }] = useUpdateRFPApplicationMutation();
+
+  const approveRFP = async () => {
+    try {
+      const approvedData = {
+        id: router.query.id?.toString()!,
+        token: token as string,
+        body: {
+          status: "accepted",
+        } as RFP,
+      };
+      console.log("rfp data", approvedData);
+      const resultRFP = await updateRFP(approvedData).unwrap();
+      toast.success("RFP approved successfully");
+      console.log("result", resultRFP);
+    } catch (err: any) {
+      console.log("err", err);
+      toast.error(err?.data?.message || err.data.error);
+    }
+  };
   return (
     <>
       <WhiteWrapper>
@@ -56,7 +81,7 @@ const VendorInfo = () => {
         </div>
 
         <Button
-          onClick={() => "/"}
+          onClick={() => approveRFP()}
           theme="outline"
           size="sm"
           className="w-[234px]"
