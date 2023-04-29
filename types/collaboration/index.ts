@@ -27,6 +27,16 @@ export type GetRFPApplicationRequest = {
   id: string;
 };
 
+export type PutRFPApplicationResponse = {
+  message: string;
+};
+
+export type PutRFPApplicationRequest = {
+  token: string;
+  id: string;
+  body: {};
+};
+
 export type CreateRFPRequest = {
   token: string;
   body: {};
@@ -60,6 +70,7 @@ export type CreateRFPApplicationRequest = {
 
 export type RFP = {
   _id: string;
+  id: string;
   userId: string;
   createdAt: string;
   productName: string;
@@ -85,6 +96,7 @@ export type RFP = {
   code: string;
   applicantId: string;
   details: string[];
+  status: string;
   documentLinks: string[];
 };
 
