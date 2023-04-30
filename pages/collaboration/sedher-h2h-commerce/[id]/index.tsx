@@ -137,7 +137,7 @@ const index = () => {
                       </span>
                     </div>
                     <div className="text-base text-dark-100">
-                      {moment(h2hIDData?.data.createdAt).format("DD, MMMM yy")}
+                      {moment(h2hIDData?.data.createdAt).format("DD, MMMM YYYY")}
                     </div>
                     <Button
                       theme="outline"

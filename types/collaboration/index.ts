@@ -244,12 +244,16 @@ export type Snergi = {
     documents: string[];
   };
   event?: {
+    duration:string;
     date: {
       range: [];
     };
     availabilties: [];
-    availabilities: [];
+    maximumBookings: number;
   };
+  connectedCalendars: string[],
+    enableReminders:boolean,
+    communicationChannels: string[],
   locationDetails?: {
     street: string;
     lga: string;
@@ -257,13 +261,15 @@ export type Snergi = {
     country: string;
   };
   paymentDetails?: {
+    price:number;
     prices: [
       {
+        field: string;
         value: number;
-        _id: string;
+       
       }
     ];
-    total: 500000;
+    total: number;
   };
   owner?: {
     accountType: string;

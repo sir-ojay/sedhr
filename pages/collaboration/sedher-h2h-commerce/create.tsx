@@ -73,17 +73,17 @@ const create = () => {
 				file: image as any,
 				token: token as string,
 			}).unwrap()) as any;
-
+console.log(url.data[0]);
 			const details = {
 				body: {
-					// code: "6756655",
+					code: "6756655",
 					productDetails: {
 						name,
 						category,
 						description,
 						quantity,
 					},
-					images: [url.data.secureUrl],
+					images: [url.data[0]],
 					itemDetails: {
 						modelOrType,
 						description: itemDescription,
@@ -101,6 +101,7 @@ const create = () => {
 					shipmentDetails,
 					paymentDetails: {
 						paymentType: "FIXED",
+						price: 200,
 						prices: [
 							{
 								fieldValue: "Price description breakdown",
@@ -111,6 +112,7 @@ const create = () => {
 				},
 				token,
 			};
+			console.log(details);
 			const result = (await create(
 				details as any
 			).unwrap()) as CreateH2HResponse;
