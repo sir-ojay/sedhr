@@ -69,7 +69,7 @@ const LargeDetailsCard = ({
 				details = {
 					token: token as string,
 					body: {
-						pictureLink: url.data.secureUrl,
+						pictureLink: url.data[0],
 					},
 				};
 			}

@@ -2,7 +2,7 @@ import React from "react";
 import AccountPackage from "./AccountPackage";
 
 type AccountPackagesProps = {
-	makePayment: (amount: number) => void;
+	makePayment: (amount: any) => void;
 };
 
 const AccountPackages = ({ makePayment }: AccountPackagesProps) => {

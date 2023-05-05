@@ -19,6 +19,14 @@ export type SendFriendsRequest = {
   username: string;
 };
 
+export type IgnoreFriendResponse = {
+	data:[];
+};
+export type  IgnoreFriendRequest = {
+  token: string;
+  username: string;
+};
+
 export type SendFriendsResponse = {
 	data:[];
 };

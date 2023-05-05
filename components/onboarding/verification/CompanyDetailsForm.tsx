@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { v4 as uuidv4 } from "uuid";
 
+
 export type CompanyInformationDetails = {
   numberOfBeds: string;
   averagePatientTurnover: string;
@@ -48,6 +49,7 @@ const CompanyDetailsForm = ({
   const [pharmacy, setPharmacy] = useState("");
 
   const options = ["1-10", "11-20", "21-30", "31-40", "41-above"];
+
 
   const methods = useForm({
     defaultValues: {
@@ -129,27 +131,36 @@ const CompanyDetailsForm = ({
                   placeholder="Average patient turnover per year"
                   name="averagePatientTurnover"
                   rules={["required"]}
+                
                 />
               </div>
             </div>
             <hr />
             <div className="flex flex-col w-full md:flex-row justify-between flex-wrap gap-10">
+
+            
               <div className="flex flex-col md:flex-row gap-[1px] items-end">
                 <RadioInputGroup
                   label="Theater"
                   options={["Yes", "No"]}
                   onChange={(e) => setTheater(e.target.value)}
                   className="w-full md:w-auto"
+                  name="Theater"
+                  value={theater}
+          
                 />
+               
                 {theater === "Yes" && (
                   <div className="w-full md:w-[125px]">
                     <Input
                       placeholder="how many?"
                       name="numberOfTheaters"
-                      rules={["required"]}
-                    />{" "}
+                  
+                    />
                   </div>
                 )}
+               
+                
               </div>
               <div className="flex flex-col md:flex-row gap-[1px] items-end">
                 <RadioInputGroup
@@ -157,13 +168,15 @@ const CompanyDetailsForm = ({
                   options={["Yes", "No"]}
                   onChange={(e) => setXrays(e.target.value)}
                   className="w-full md:w-auto"
+                  name="xrays"
+                  value={xrays}
                 />
                 {xrays === "Yes" && (
                   <div className="w-full md:w-[125px]">
                     <Input
                       placeholder="how many?"
                       name="numberOfXrayMachines"
-                      rules={["required"]}
+                   
                     />
                   </div>
                 )}
@@ -174,13 +187,15 @@ const CompanyDetailsForm = ({
                   options={["Yes", "No"]}
                   onChange={(e) => setIcu(e.target.value)}
                   className="w-full md:w-auto"
+                  name="icu"
+                  value={icu}
                 />
                 {icu === "Yes" && (
                   <div className="w-full md:w-[125px]">
                     <Input
                       placeholder="how many?"
                       name="numberOfIcu"
-                      rules={["required"]}
+            
                     />
                   </div>
                 )}
@@ -192,7 +207,8 @@ const CompanyDetailsForm = ({
                   label="Ultrasound"
                   options={["Yes", "No"]}
                   onChange={(e) => setUltrasound(e.target.value)}
-                  // name='ultrasound'
+                  name='ultrasound'
+                  value={ultrasound}
                   className="w-full md:w-auto"
                 />
                 {ultrasound === "Yes" && (
@@ -200,7 +216,7 @@ const CompanyDetailsForm = ({
                     <Input
                       placeholder="how many?"
                       name="numberOfUltrasoundMachines"
-                      rules={["required"]}
+                  
                     />
                   </div>
                 )}
@@ -210,8 +226,9 @@ const CompanyDetailsForm = ({
                   label="Emergency"
                   options={["Yes", "No"]}
                   onChange={(e) => setEmergency(e.target.value)}
-                  // name='emergency'
+                  name='emergency'
                   className="w-full md:w-auto"
+                  value={emergency}
                 />
                 {emergency === "Yes" && (
                   <div className="w-full md:w-[125px]">
@@ -228,7 +245,8 @@ const CompanyDetailsForm = ({
                   label="CT Scan"
                   options={["Yes", "No"]}
                   onChange={(e) => setCtScan(e.target.value)}
-                  // name='ctScan'
+                  name='ctScan'
+                  value={ctscan}
                   className="w-full md:w-auto"
                 />
                 {ctscan === "Yes" && (
@@ -236,7 +254,7 @@ const CompanyDetailsForm = ({
                     <Input
                       placeholder="how many?"
                       name="numberOfCTScanners"
-                      rules={["required"]}
+                   
                     />
                   </div>
                 )}
@@ -248,15 +266,16 @@ const CompanyDetailsForm = ({
                   label="Monitors"
                   options={["Yes", "No"]}
                   onChange={(e) => setMonitors(e.target.value)}
-                  // name='monitors'
+                  name='monitors'
                   className="w-full md:w-auto"
+                  value={monitors}
                 />
                 {monitors === "Yes" && (
                   <div className="w-full md:w-[125px]">
                     <Input
                       placeholder="how many?"
                       name="numberOfMonitors"
-                      rules={["required"]}
+                    
                     />
                   </div>
                 )}
@@ -266,7 +285,8 @@ const CompanyDetailsForm = ({
                   label="MRI"
                   options={["Yes", "No"]}
                   onChange={(e) => setMri(e.target.value)}
-                  // name='mri'
+                  name='mri'
+                  value={mri}
                   className="w-full md:w-auto"
                 />
                 {mri === "Yes" && (
@@ -274,7 +294,7 @@ const CompanyDetailsForm = ({
                     <Input
                       placeholder="how many?"
                       name="numberOfMriMachines"
-                      rules={["required"]}
+              
                     />{" "}
                   </div>
                 )}
@@ -284,15 +304,16 @@ const CompanyDetailsForm = ({
                   label="Anethesia Systems"
                   options={["Yes", "No"]}
                   onChange={(e) => setAnethesiaSystems(e.target.value)}
-                  // name='anethesiaSystems'
+                  name='anethesiaSystems'
                   className="w-full md:w-auto"
+                  value={anethesiaSystems}
                 />
                 {anethesiaSystems === "Yes" && (
                   <div className="w-full md:w-[125px]">
                     <Input
                       placeholder="how many?"
                       name="numberOfAnaestheticMachines"
-                      rules={["required"]}
+                  
                     />
                   </div>
                 )}
@@ -304,7 +325,8 @@ const CompanyDetailsForm = ({
                   label="ECG"
                   options={["Yes", "No"]}
                   onChange={(e) => setEcg(e.target.value)}
-                  // name='ecg'
+                  name='ecg'
+                  value={ecg}
                   className="w-full md:w-auto"
                 />
                 {ecg === "Yes" && (
@@ -322,7 +344,8 @@ const CompanyDetailsForm = ({
                   label="Lab"
                   options={["Yes", "No"]}
                   onChange={(e) => setLab(e.target.value)}
-                  // name='lab'
+                  name='lab'
+                  value={lab}
                   className="w-full md:w-auto"
                 />
                 {lab === "Yes" && (
@@ -330,7 +353,7 @@ const CompanyDetailsForm = ({
                     <Input
                       placeholder="how many?"
                       name="numberOfLaboratories"
-                      rules={["required"]}
+                  
                     />
                   </div>
                 )}
@@ -340,7 +363,8 @@ const CompanyDetailsForm = ({
                   label="Pharmacy"
                   options={["Yes", "No"]}
                   onChange={(e) => setPharmacy(e.target.value)}
-                  // name='pharmacy'
+                  name='pharmacy'
+                  value={pharmacy}
                   className="w-full md:w-auto"
                 />
                 {pharmacy === "Yes" && (
@@ -348,7 +372,7 @@ const CompanyDetailsForm = ({
                     <Input
                       placeholder="how many?"
                       name="numberOfPharmacies"
-                      rules={["required"]}
+                    
                     />
                   </div>
                 )}

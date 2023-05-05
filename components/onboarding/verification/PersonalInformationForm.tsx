@@ -217,8 +217,6 @@ const PersonalInformationForm = ({
                 required
                 options={[
                   "National ID",
-                  "International Passport",
-                  "Driver's License",
                   "Others (please specify)",
                 ]}
               />

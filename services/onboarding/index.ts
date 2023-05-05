@@ -5,6 +5,8 @@ import {
 	GetCountriesResponse,
 	GetStatesRequest,
 	GetStatesResponse,
+	GetSubscriptionRequest,
+	GetSubscriptionResponse,
 	VerifyPaymentRequest,
 	VerifyPaymentResponse,
 } from "@/types/onboarding";
@@ -31,6 +33,7 @@ export const onboarding = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: process.env.NEXT_PUBLIC_APP_BASE_URL + "api",
 	}),
+	tagTypes: ["Onboarding"],
 	endpoints: (builder) => ({
 		verifyPayment: builder.mutation<
 			VerifyPaymentResponse,
@@ -38,6 +41,14 @@ export const onboarding = createApi({
 		>({
 			query: (credentials) => postRequest("/payments/verify", credentials),
 		}),
+		getSubscription: builder.query<
+			GetSubscriptionResponse,
+			GetSubscriptionRequest
+		>({
+			query: (credentials) => getRequest("/onboard/subscriptions", credentials.token),
+			providesTags: ["Onboarding"],
+		}),
+	
 		completeOnboarding: builder.mutation<CompleteOnboardingResponse,CompleteOnboardingRequest>({
 			query: (credentials) =>
 				postRequest("/onboard/account", credentials.body, credentials.token),
@@ -57,6 +68,7 @@ export const onboarding = createApi({
 
 export const {
 	useVerifyPaymentMutation,
+	useGetSubscriptionQuery,
 	useGetCountriesMutation,
 	useGetStatesMutation,
 	useCompleteOnboardingMutation,

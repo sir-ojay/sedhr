@@ -6,6 +6,8 @@ type RadioInputGroupProps = {
 	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	options?: string[];
 	className?: string;
+	value?:any
+	option?:string;
 };
 
 const RadioInputGroup = ({
@@ -14,6 +16,7 @@ const RadioInputGroup = ({
 	onChange,
 	options,
 	className,
+	value
 }: RadioInputGroupProps) => {
 	return (
 		<fieldset className={`font-epilogue space-y-1 ${className}`}>

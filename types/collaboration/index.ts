@@ -141,7 +141,7 @@ export type H2H = {
   _id: string;
   userId: string;
   code: string;
-  images: string[];
+  images: any;
   shipmentDetails: string;
   createdAt: string;
   updatedAt: string;
