@@ -19,46 +19,106 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
   const methods = useForm({
     defaultValues: {
       [idType?.toString().replaceAll("'", "") as string]: undefined,
+      TaxID: "",
+      CAC: "",
     },
     mode: "onChange",
   });
 
   const {
-    formState: { errors, isValid },
+    formState: { isValid },
     watch,
   } = methods;
 
   const token = Cookies.get("sedherToken");
 
   const photoId = watch(idType?.toString().replaceAll("'", "") as string);
+  const uploadingDocDetails = watch();
+  // console.log(uploadingDocDetails);
 
   const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
-console.log({photoId})
+  // console.log({ photoId });
 
-	const handleUpload = async () => {
-		try {
-			let data: any = [];
-			const result = (await uploadDocument({
-				file: photoId as any,
-				token: token as string,
-			}).unwrap()) as any;
-			data.push({
-				idType,
-				idLink: result.data[0],
-				// publicId: result.data.publicId,
-			});
-			documentsInfo(data);
-		} catch (err: any) {
-			toast.error(err?.data?.message || err.data.error);
-		}
-	};
+  // const handleUpload = async () => {
+  //   let data: any = [];
+  //   try {
+  //     const result = (await uploadDocument({
+  //       file: photoId as any,
+  //       token: token as string,
+  //     }).unwrap()) as any;
 
- 
+  //     const result1 = (await uploadDocument({
+  //       file: uploadingDocDetails.CAC as any,
+  //       token: token as string,
+  //     }).unwrap()) as any;
 
+  //     const result2 = (await uploadDocument({
+  //       file: uploadingDocDetails.TaxID as any,
+  //       token: token as string,
+  //     }).unwrap()) as any;
+
+  //     console.log(result, result1, result2);
+
+  //     data.push(
+  //       {
+  //         idType,
+  //         idLink: result.data[0],
+  //       },
+  //       {
+  //         idType: "TaxID",
+  //         idLink: result1.data[0],
+  //       },
+  //       {
+  //         idType: "CAC",
+  //         idLink: result2.data[0],
+  //       }
+  //     );
+  //     console.log(result2.data[0]);
+  //     documentsInfo(data);
+  //   } catch (err: any) {
+  //     toast.error(err?.data?.message || err.data.error);
+  //   }
+  //   console.log(data);
+  // };
+
+
+  const documents = [
+    { file: photoId as any, type: idType },
+    { file: uploadingDocDetails.CAC as any, type: 'CAC' },
+    { file: uploadingDocDetails.TaxID as any, type: 'TaxID' },
+  ];
+
+  console.log(documents);
+
+  const uploadDocuments = async (documents: {file: any, type: string}[], token: string) => {
+    let data: any = [];
+    try {
+      for (const document of documents) {
+        const result = (await uploadDocument({
+          file: document.file,
+          token: token,
+        }).unwrap()) as any;
+  
+        data.push({
+          idType: document.type,
+          idLink: result.data[0],
+        });
+      }
+      // return data;
+      documentsInfo(data);
+      console.log(data);
+    } catch (err: any) {
+      toast.error(err?.data?.message || err.data.error);
+    }
+  };
+  
 
   const handleStep = async (step: number) => {
     if (step === 5) {
-      await handleUpload();
+      await 
+      // handleUpload();
+      uploadDocuments(documents as [], token as string)
+
       // router.push({
       // 	pathname: "/onboarding/start",
       // 	query: {
@@ -90,8 +150,14 @@ console.log({photoId})
                   (idType?.toString().replaceAll("'", "") as string) || "name"
                 }
                 type="file"
-                label={(idType as string) || "Name"}
+                label={
+                  (idType?.toString().replaceAll("'", "") as string) || "Name"
+                }
               />
+
+              <Input name="TaxID" type="file" label="Tax ID Document" />
+              <Input name="CAC" type="file" label="CAC registration" />
+
               {/* <Input name="" type='file' label='CAC registration' />
 							<Input type='file' label='Operating permit' />
 							<Input type='file' label='Operating License' />

@@ -4,7 +4,7 @@ import AccountTypesHorizontalList from "@/components/onboarding/payments/Account
 import DefaultLayout from "@/layouts/DefaultLayout";
 import { useVerifyPaymentMutation } from "@/services/onboarding";
 import { LoginResponse } from "@/types/auth/auth";
-import { VerifyPaymentResponse } from "@/types/onboarding";
+import { VerifyPaymentResponse} from "@/types/onboarding";
 import { requireAuthentication } from "hoc/requireAuthentication";
 import Cookies from "js-cookie";
 import { GetServerSideProps, NextPage } from "next";
@@ -14,6 +14,7 @@ import { usePaystackPayment } from "react-paystack";
 import { toast } from "react-toastify";
 import { v4 as uuid } from "uuid";
 import { ClipLoader } from "react-spinners";
+
 
 const payment: NextPage = () => {
 	const [billRange, setBillRange] = useState("monthly");
@@ -33,6 +34,7 @@ const payment: NextPage = () => {
 	}, []);
 
 	const [verify, { isLoading }] = useVerifyPaymentMutation();
+	
 
 	const verifyPayment = async (ref: any) => {
 		try {
@@ -50,7 +52,7 @@ const payment: NextPage = () => {
 				},
 			});
 		} catch (err: any) {
-			toast.error(err?.data?.message);
+			toast.error(err?.data?.message || err?.data?.error);
 		}
 	};
 
@@ -81,6 +83,9 @@ const payment: NextPage = () => {
 	useEffect(() => {
 		if (amount > 0) initializePayment(onSuccess, onClose);
 	}, [amount, count]);
+
+
+	
 
 	return (
 		<DefaultLayout title='Sedher | Onboarding | Payment' showHeader={false}>

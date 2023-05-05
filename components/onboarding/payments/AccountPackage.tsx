@@ -1,10 +1,33 @@
 import Button from "@/components/global/Button";
+import { useGetSubscriptionQuery } from "@/services/onboarding";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import JWT from "jsonwebtoken";
+import { Onboarding } from "@/types/onboarding";
+
 
 type AccountPackageProps = {
-	makePayment: (amount: number) => void;
+	makePayment: (amount: any) => void;
 };
 
+
+
+
 const AccountPackage = ({ makePayment }: AccountPackageProps) => {
+const router = useRouter();
+  const token = Cookies.get("sedherToken") as string;
+  let user = JWT.decode(token) as { id: string };
+
+  const [subData, setSubData] = useState<Onboarding>();
+
+  const { data, isSuccess } = useGetSubscriptionQuery({
+    token
+  });
+  useEffect(() => {
+    data && setSubData(data?.data[0]);
+  }, [isSuccess, data]);
+  console.log(subData);
 	return (
 		<div className='w-[340px] bg-white p-8'>
 			<h4 className='text-lg font-semibold font-epilogue text-primary'>
@@ -14,12 +37,13 @@ const AccountPackage = ({ makePayment }: AccountPackageProps) => {
 				Custom Domain
 			</div>
 			<div className='text-semibold text-3xl md:text-4xl font-epilogue text-title my-[18px]'>
-				₦3,000
+				
+				   {subData?.amount}
 				<span className='text-lg md:text-2xl text-secondary font-semibold'>
 					/m
 				</span>
 			</div>
-			<Button size='sm' className='w-full' onClick={() => makePayment(3000)}>
+			<Button size='sm' className='w-full' onClick={() => makePayment(subData?.amount)}>
 				Start my free Trial
 			</Button>
 			<div className='mt-[18px] p-4'>
@@ -27,7 +51,7 @@ const AccountPackage = ({ makePayment }: AccountPackageProps) => {
 					This plan includes
 				</div>
 				<div className='space-y-4'>
-					{[1, 2, 3, 4, 5, 6].map((item) => (
+					{[1, 2, 3, 4 , 5, 6].map((item) => (
 						<div key={item} className='flex items-center gap-2'>
 							<svg
 								width='16'

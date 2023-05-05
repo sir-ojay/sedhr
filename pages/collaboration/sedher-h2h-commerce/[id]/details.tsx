@@ -50,19 +50,21 @@ const Details = () => {
       <div className="grid grid-cols-6 gap-8">
         <section className="col-span-4 space-y-6">
           <WhiteWrapper>
-            <div className="rounded-xl overflow-hidden">
-              <Image
-                className="w-full h-[300px] object-cover"
-                src={
-                  data?.data?.images[0] === "cloudinary-link-here"
-                    ? "/assets/images/collabo.jpg"
-                    : data?.data.images[0] || ""
-                }
-                width={300}
-                height={269}
-                layout="responsive"
-                alt=""
-              />
+            <div className="rounded-xl overflow-hidden flex ">
+              {data?.data.images.map((img: any) => (
+                <Image
+                  className="w-full h-[300px] object-cover"
+                  src={
+                    img === "cloudinary-link-here"
+                      ? "/assets/images/collabo.jpg"
+                      : img || ""
+                  }
+                  width={5}
+                  height={9}
+                  layout="responsive"
+                  alt=""
+                />
+              ))}
             </div>
           </WhiteWrapper>
 

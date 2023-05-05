@@ -5,6 +5,8 @@ import {
   GetFriendsRequestResponse,
   SendFriendsRequest,
   SendFriendsResponse,
+  IgnoreFriendResponse,
+  IgnoreFriendRequest,
 } from "@/types/connections";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -82,6 +84,18 @@ export const connections = createApi({
         ),
       invalidatesTags: ["FriendsRequest"],
     }),
+    ignoreFriendRequest: builder.mutation<
+      IgnoreFriendResponse,
+      IgnoreFriendRequest
+    >({
+      query: (credentials) =>
+        putRequest(
+          `/connections/${credentials.username}/unsend-friend-request`,
+          "",
+          credentials.token
+        ),
+      invalidatesTags: ["FriendsRequest"],
+    }),
     followRequest: builder.mutation<SendFriendsResponse, SendFriendsRequest>({
       query: (credentials) =>
         postRequest(
@@ -126,6 +140,7 @@ export const connections = createApi({
 export const {
   useGetFriendsQuery,
   useSendFriendRequestMutation,
+  useIgnoreFriendRequestMutation,
   useGetFollowsQuery,
   useFollowRequestMutation,
   useGetFriendRequestsQuery,

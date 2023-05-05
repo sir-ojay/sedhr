@@ -26,7 +26,7 @@ const ApplicantProfile = ({ control }: any) => {
         <div>
           <h5 className="text-[#7C8493]">Business Establishment</h5>
           <p className="text-[#25324B] font-medium ">
-            March 23, 1995 (26 y.o){" "}
+            March 23, 1995 (26 y.o)
           </p>
         </div>
         <div>

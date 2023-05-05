@@ -97,6 +97,7 @@ const verification: NextPage = () => {
       console.log("onboarding data", data);
       const result = await completeOnboarding(data).unwrap();
       toast.success("Onboarding completed successfully");
+      // toast.error("User already onboarded, please login with your credentials");
       console.log("result", result);
       //   To route to start
       router.push(`/onboarding/start`);
