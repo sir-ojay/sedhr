@@ -9,6 +9,7 @@ export type Onboarding = {
 export type VerifyPaymentResponse = {
   success: boolean;
   message: string;
+  error:string;
 };
 
 export type VerifyPaymentRequest = {
@@ -20,6 +21,7 @@ export type VerifyPaymentRequest = {
 export type GetSubscriptionResponse = {
   success: boolean;
   message: string;
+  error:string;
   data: Onboarding[];
 };
 

@@ -3,6 +3,7 @@ import Input from "@/components/global/Input";
 import { useRouter } from "next/router";
 import { FormProvider, useForm } from "react-hook-form";
 import { useEffect } from "react";
+import SelectInput from "@/components/global/SelectInput";
 
 export type BusinessInformationDetails = {
   phoneNumber: string;
@@ -25,7 +26,7 @@ type BusinessInformationFormProps = {
 };
 
 const BusinessInformationForm = ({
-  businessInformationForm
+  businessInformationForm,
 }: BusinessInformationFormProps) => {
   const router = useRouter();
   const { type } = router.query;
@@ -138,12 +139,21 @@ const BusinessInformationForm = ({
                 placeholder="LGA"
                 rules={["required"]}
               />
-              <Input
-                name="annualRevenue"
-                label="Annual Revenue"
-                placeholder="Annual Revenue"
-                rules={["required"]}
-              />
+              <div className="flex">
+                <SelectInput
+                  name="currency"
+                  label="Currency"
+                  id="currency"
+                  option="NGN"
+                  options={["NGN", "AED", "CAD", "GBP", "USD", "ZAR"]}
+                />
+                <Input
+                  name="annualRevenue"
+                  label="Annual Revenue"
+                  placeholder="Annual Revenue"
+                  rules={["required"]}
+                />
+              </div>
             </div>
 
             <h4 className="font-semibold text-dark-900 font-epilogue font-[20px] my-10">

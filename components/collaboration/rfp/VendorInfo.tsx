@@ -9,27 +9,30 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
-  useGetRFPApplicationQuery,
   useUpdateRFPApplicationMutation,
 } from "@/services/collaborations";
+import { useGetUserIdQuery } from "@/services/profile";
+import { User } from "@/types/profile";
 
-const VendorInfo = () => {
+const VendorInfo = ({ rfpData }: any) => {
   const router = useRouter();
   const token = Cookies.get("sedherToken") as string;
   let user = JWT.decode(token) as { id: string };
 
-  const [rfpData, setRfpData] = useState<RFP>();
-
-  const { data, isSuccess } = useGetRFPApplicationQuery({
-    token,
-    id: router.query.id?.toString()!,
-  });
-  useEffect(() => {
-    data && setRfpData(data?.data);
-  }, [isSuccess, data]);
-  console.log(rfpData?.createdAt);
-
   const [updateRFP, { isLoading }] = useUpdateRFPApplicationMutation();
+
+  const [userData, getUserData] = useState<User>();
+
+  let { data, isSuccess } = useGetUserIdQuery({
+    token,
+    userId: router.query.id?.toString()!,
+  });
+
+  useEffect(() => {
+    data && getUserData(data?.data);
+  }, [isSuccess, data]);
+  // console.log(userData);
+  console.log(userData);
 
   const approveRFP = async () => {
     try {
@@ -58,12 +61,12 @@ const VendorInfo = () => {
               size={88}
               name={"Jan Mayer"}
               shape="circle"
-              //   image={userIds?.conversationPartner?.profilePicture}
+              image={userData?.profilePicture}
             />
           </div>
           <div>
-            <h5 className="pt-4">Vendor Name</h5>
-            <p className="text-[#7C8493]">08185548889</p>
+            <h5 className="pt-4">{userData?.name}</h5>
+            {/* <p className="text-[#7C8493]">08185548889</p> */}
           </div>
         </div>
         <div className="my-5 bg-[#F8F8FD] p-4">
@@ -76,8 +79,11 @@ const VendorInfo = () => {
 
           <hr />
 
-          <h5 className="text-base pt-2">Lagos, Nigeria</h5>
-          <p className="text-[#515B6F] text-sm">Technology</p>
+          {/* <h5 className="text-base pt-2">Lagos, Nigeria</h5> */}
+          <p className="text-[#515B6F] text-sm">
+            {" "}
+            {userData?.educations[0].fieldOfStudy}
+          </p>
         </div>
 
         <Button
@@ -120,12 +126,12 @@ const VendorInfo = () => {
               </svg>
               <div className="font-epilogue">
                 <div className="text-[#7C8493] text-base">Email</div>
-                <div className="text-[#25324B]">mddyudbh@gmail.com</div>
+                <div className="text-[#25324B]">{userData?.email}</div>
               </div>
             </div>
           </div>
           <div>
-            <div className="flex gap-4 mt-2">
+            {/* <div className="flex gap-4 mt-2">
               <svg
                 width="24"
                 height="24"
@@ -166,7 +172,7 @@ const VendorInfo = () => {
                 <div className="text-[#7C8493] text-base">Phone</div>
                 <div className="text-[#25324B]">09077689900</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </WhiteWrapper>
