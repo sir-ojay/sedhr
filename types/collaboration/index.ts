@@ -1,5 +1,6 @@
 export type GetRFPSResponse = {
   message: string;
+  error: string;
   data: RFP[];
 };
 
@@ -9,6 +10,7 @@ export type GetRFPSRequest = {
 
 export type GetRFPResponse = {
   message: string;
+  error: string;
   data: RFP;
 };
 
@@ -19,6 +21,7 @@ export type GetRFPRequest = {
 
 export type GetRFPApplicationResponse = {
   message: string;
+  error: string;
   data: RFP;
 };
 
@@ -29,6 +32,7 @@ export type GetRFPApplicationRequest = {
 
 export type PutRFPApplicationResponse = {
   message: string;
+  error: string;
 };
 
 export type PutRFPApplicationRequest = {
@@ -44,6 +48,7 @@ export type CreateRFPRequest = {
 
 export type CreateRFPResponse = {
   message: string;
+  error: string;
 };
 
 export type GetRFPCodeResponse = {
@@ -58,6 +63,7 @@ export type GetRFPCodeRequest = {
 
 export type CreateRFPApplicationResponse = {
   message: string;
+  error: string;
   data: RFP;
   id: string;
 };
@@ -107,6 +113,7 @@ export type CreateH2HRequest = {
 
 export type CreateH2HResponse = {
   message: string;
+  error: string;
 };
 
 export type H2H = {
@@ -154,6 +161,7 @@ export type H2H = {
 
 export type GetH2HSResponse = {
   message: string;
+  error: string;
   data: H2H[];
 };
 
@@ -163,6 +171,7 @@ export type GetH2HSRequest = {
 
 export type GetH2HResponse = {
   message: string;
+  error: string;
   data: H2H;
 };
 
@@ -197,6 +206,7 @@ export type Chat = {
 
 export type CreateChatResponse = {
   message: string;
+  error: string;
   getData: Chat;
 };
 
@@ -206,6 +216,7 @@ export type CreateChatRequest = {
 };
 export type GetChatResponse = {
   message: any;
+  error: string;
   data: {
     messages: [];
   };
@@ -218,6 +229,7 @@ export type GetChatRequest = {
 };
 export type GetConvoResponse = {
   message: string;
+  error: string;
   data: Chat[];
 };
 
@@ -244,16 +256,16 @@ export type Snergi = {
     documents: string[];
   };
   event?: {
-    duration:string;
+    duration: string;
     date: {
       range: [];
     };
     availabilties: [];
     maximumBookings: number;
   };
-  connectedCalendars: string[],
-    enableReminders:boolean,
-    communicationChannels: string[],
+  connectedCalendars: string[];
+  enableReminders: boolean;
+  communicationChannels: string[];
   locationDetails?: {
     street: string;
     lga: string;
@@ -261,12 +273,11 @@ export type Snergi = {
     country: string;
   };
   paymentDetails?: {
-    price:number;
+    price: number;
     prices: [
       {
         field: string;
         value: number;
-       
       }
     ];
     total: number;
@@ -284,6 +295,7 @@ export type Snergi = {
 
 export type GetSnergisResponse = {
   message: string;
+  error: string;
   data: Snergi[];
 };
 
@@ -293,6 +305,7 @@ export type GetSnergisRequest = {
 
 export type GetSnergiResponse = {
   message: string;
+  error: string;
   data: Snergi;
 };
 
@@ -308,6 +321,7 @@ export type CreateSnergiRequest = {
 
 export type CreateSnergiResponse = {
   message: string;
+  error: string;
 };
 
 export type Booking = {
@@ -331,6 +345,7 @@ export type Booking = {
 
 export type CreateBookingResponse = {
   message: string;
+  error: string;
   data: Booking[];
   id: string;
 };

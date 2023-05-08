@@ -5,10 +5,13 @@ import { useRouter } from "next/router";
 import VendorInfo from "@/components/collaboration/rfp/VendorInfo";
 import ApplicantProfile from "@/components/collaboration/rfp/ApplicantProfile";
 import Attachment from "@/components/collaboration/rfp/Attachment";
-import { useState } from "react";
-import WhiteWrapper from "@/components/global/WhiteWrapper";
+import { useEffect, useState } from "react";
 import Button from "@/components/global/Button";
 import GoBackButton from "@/components/global/GoBackButton";
+import { useGetRFPApplicationQuery } from "@/services/collaborations";
+import { RFP } from "@/types/collaboration";
+import Cookies from "js-cookie";
+import JWT from "jsonwebtoken";
 
 export type Control = {
   control: any;
@@ -18,6 +21,20 @@ const index = () => {
 
   const [isOpen, setIsOpen] = useState<Boolean>(true);
   const control = () => setIsOpen(!isOpen);
+
+  const token = Cookies.get("sedherToken") as string;
+  let user = JWT.decode(token) as { id: string };
+
+  const [rfpData, setRfpData] = useState<RFP>();
+
+  const { data, isSuccess } = useGetRFPApplicationQuery({
+    token,
+    id: router.query.id?.toString()!,
+  });
+  useEffect(() => {
+    data && setRfpData(data?.data);
+  }, [isSuccess, data]);
+  console.log(rfpData?.createdAt);
 
   return (
     <DefaultLayout title="Sedher | Collaboration | create RFP">
@@ -45,7 +62,7 @@ const index = () => {
 
         <div className="grid grid-cols-6 gap-8">
           <section className="col-span-2 space-y-8">
-            <VendorInfo />
+            <VendorInfo rfpData={rfpData} />
           </section>
           <section className="col-span-4 space-y-8">
             {isOpen ? (

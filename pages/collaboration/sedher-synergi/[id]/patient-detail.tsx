@@ -10,6 +10,8 @@ import Cookies from "js-cookie";
 import { useGetSnergiQuery } from "@/services/collaborations";
 import { Snergi } from "@/types/collaboration";
 import { useCreateBookingMutation } from "@/services/collaborations";
+import { useUploadDocumentMutation } from "@/services/upload";
+import { toast } from "react-toastify";
 
 const PatientDetail = () => {
   const router = useRouter();
@@ -29,8 +31,6 @@ const PatientDetail = () => {
     data && setSnergiData(data?.data);
   }, [isSuccess, data]);
 
-  const [file, setFile] = useState<any>("");
-
   const [value, setValue] = useState({
     title: "",
     firstName: "",
@@ -40,59 +40,63 @@ const PatientDetail = () => {
     age: "",
   });
 
-  // const token = Cookies.get("sedherToken") as string;
-  console.log(token);
-
-  const [Booking] = useCreateBookingMutation();
-  // const router = useRouter();
-
+  const [Booking, { isLoading }] = useCreateBookingMutation();
+  const [upload] = useUploadDocumentMutation();
   const handleClick = () => {
     router.back();
   };
 
-  const onFileChange = (e) => {
-    setFile(e?.target?.files?.[0]);
-  };
-
   const methods = useForm({
     defaultValues: {
-      message: "",
+      image: "",
     },
     mode: "onChange",
   });
 
-  const handleSubmit = (e) => {
+  const {
+    formState: { isValid },
+    watch,
+  } = methods;
+
+  const photoID = watch("image");
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+    try {
+      const url = (await upload({
+        file: photoID as any,
+        token: token as string,
+      }).unwrap()) as any;
 
-    // console.log(router.query)
-    const result = Booking({
-      token,
-      id: router.query.id?.toString()!,
-      body: {
-        description: value.title,
-        patients: [
-          {
-            firstName: value.firstName,
-            lastName: value.lastName,
-            age: value.age,
-            gender: value.gender,
-            condition: value.condition,
-            attachments: [],
-          },
-        ],
-        appointment: JSON.parse(localStorage.getItem("appointment") as string),
-      },
-    })
-      .unwrap()
-      .then(async (res) => {
-        // console.log({res})
-
-        setFile(null);
-
-        router.push(
-          `/collaboration/sedher-synergi/${snergiData?.id}/edit/view`
-        );
-      });
+      const data = {
+        token,
+        id: router.query.id?.toString()!,
+        body: {
+          description: value.title,
+          patients: [
+            {
+              firstName: value.firstName,
+              lastName: value.lastName,
+              age: value.age,
+              gender: value.gender,
+              condition: value.condition,
+              attachments: [url.data[0]],
+            },
+          ],
+          appointment: JSON.parse(
+            localStorage.getItem("appointment") as string
+          ),
+        } as any,
+      };
+      console.log("booking data", data);
+      const result = await Booking(data).unwrap();
+      toast.success("Your Booking data has been saved");
+      console.log("result", result);
+      //   To route to view
+      router.push(`/collaboration/sedher-synergi/${snergiData?.id}/edit/view`);
+    } catch (err: any) {
+      console.log("err", err);
+      toast.error(err?.data?.message || err.data.error);
+    }
   };
   return (
     <DefaultLayout>
@@ -192,19 +196,16 @@ const PatientDetail = () => {
                 }
               />
 
-              <Input
-                name="image"
-                type="file"
-                label="Attach image"
-                onChange={onFileChange}
-              />
+              <Input name="image" type="file" label="Attach image" />
             </div>
           </WhiteWrapper>
           <div className="flex justify-between mt-5">
             <Button theme="outline" onClick={handleClick}>
               Back
             </Button>
-            <Button type="submit">Submit Booking</Button>
+            <Button type="submit" loading={isLoading}>
+              Submit Booking
+            </Button>
           </div>
         </form>
       </FormProvider>

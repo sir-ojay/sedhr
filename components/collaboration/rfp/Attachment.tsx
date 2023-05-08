@@ -20,7 +20,7 @@ const Attachment = ({ control }: any) => {
   useEffect(() => {
     data && setRfpData(data?.data);
   }, [isSuccess, data]);
-  console.log(rfpData);
+  // console.log(rfpData);
 
   const downloadImage = (imageUrl: any) => {
     fetch(imageUrl, {
