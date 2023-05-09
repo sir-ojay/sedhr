@@ -37,6 +37,9 @@ import {
   GetRFPApplicationRequest,
   PutRFPApplicationResponse,
   PutRFPApplicationRequest,
+  UpdateBookingRequest,
+  UpdateBookingResponse,
+
 } from "@/types/collaboration";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -196,6 +199,18 @@ export const collaboration = createApi({
         ),
       invalidatesTags: ["Booking"],
     }),
+    updateBooking: builder.mutation<
+    UpdateBookingResponse,
+    UpdateBookingRequest
+  >({
+    query: (credentials) =>
+      putRequest(
+        `/synergies/bookings/${credentials.id}`,
+        credentials.body,
+        // `/rfps/applications/644a775a493ad8ad06b030de`,
+        credentials.token,
+      ),
+  }),
     getBooking: builder.query<GetBookingResponse, GetBookingRequest>({
       query: (credentials) =>
         getRequest(`/synergies/${credentials.id}/bookings`, credentials.token),
@@ -236,5 +251,6 @@ export const {
   useCreateSnergiMutation,
   useCreateBookingMutation,
   useGetBookingQuery,
+  useUpdateBookingMutation,
   useGetAvailabilityQuery,
 } = collaboration;

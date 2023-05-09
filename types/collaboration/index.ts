@@ -326,6 +326,7 @@ export type CreateSnergiResponse = {
 
 export type Booking = {
   description?: string;
+  // synergy: string;
   patients?: [
     {
       firstName: string;
@@ -341,6 +342,10 @@ export type Booking = {
     selectedSlots?: string[];
     communicationChannels?: string[];
   };
+  // status: string;
+  // createdAt: string;
+  // updatedAt: string;
+  // id: string;
 };
 
 export type CreateBookingResponse = {
@@ -354,6 +359,41 @@ export type CreateBookingRequest = {
   token: string;
   body: {};
   id: string;
+};
+
+
+export type UpdateB = {
+  appointment: {
+    dateSlot: string;
+    timeSlot: string;
+    communicationChannels: string[];
+  };
+  synergy: string;
+  description: string;
+  patients: {
+    firstName: string;
+    lastName: string;
+    gender: string;
+    age: string;
+    condition: string;
+    attachment: [];
+    _id: string;
+  }[];
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  id: string;
+};
+
+export type UpdateBookingResponse = {
+  message: string;
+  error: string;
+};
+
+export type UpdateBookingRequest = {
+  token: string;
+  id: string;
+  body:UpdateB;
 };
 
 export type GetBookingResponse = {

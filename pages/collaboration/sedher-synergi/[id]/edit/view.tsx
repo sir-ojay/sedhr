@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import JWT from "jsonwebtoken";
-import { Booking } from "@/types/collaboration";
+import { Booking, UpdateB } from "@/types/collaboration";
 import { usePaystackPayment } from "react-paystack";
 import { toast } from "react-toastify";
 import { v4 as uuid } from "uuid";
@@ -19,7 +19,7 @@ import { LoginResponse } from "@/types/auth/auth";
 import { VerifyPaymentResponse } from "@/types/onboarding";
 import { useVerifyPaymentMutation } from "@/services/onboarding";
 import moment from "moment";
-import { useGetBookingQuery } from "@/services/collaborations";
+import { useGetBookingQuery, useUpdateBookingMutation } from "@/services/collaborations";
 
 const Detail = () => {
   const router = useRouter();
@@ -127,6 +127,25 @@ const Detail = () => {
   useEffect(() => {
     data && setBookingData(data?.data);
   }, [isSuccess, data]);
+
+  // const cancelBooking = async () => {
+  //   try {
+  //     const cancelledData = {
+  //       id: router.query.id?.toString()!,
+  //       token: token as string,
+  //       body: {
+  //         status: "cancel",
+  //       } as UpdateB,
+  //     };
+  //     console.log("rfp data", cancelledData);
+  //     const resultRFP = await useUpdateBookingMutation(cancelledData).unwrap();
+  //     toast.success("Booking cancelled successfully");
+  //     console.log("result", resultRFP);
+  //   } catch (err: any) {
+  //     console.log("err", err);
+  //     toast.error(err?.data?.message || err.data.error);
+  //   }
+  // };
 
   return (
     <DefaultLayout>
@@ -345,6 +364,7 @@ const Detail = () => {
             theme="plain"
             size="sm"
             // textColor='#FF3956'
+            onClick={()=>router.push(`/collaboration/sedher-synergi`)}
             className=" w-full  border text-[#FF3956] border-[#DDE4F6] "
           >
             Cancel
