@@ -128,24 +128,24 @@ const Detail = () => {
     data && setBookingData(data?.data);
   }, [isSuccess, data]);
 
-  // const cancelBooking = async () => {
-  //   try {
-  //     const cancelledData = {
-  //       id: router.query.id?.toString()!,
-  //       token: token as string,
-  //       body: {
-  //         status: "cancel",
-  //       } as UpdateB,
-  //     };
-  //     console.log("rfp data", cancelledData);
-  //     const resultRFP = await useUpdateBookingMutation(cancelledData).unwrap();
-  //     toast.success("Booking cancelled successfully");
-  //     console.log("result", resultRFP);
-  //   } catch (err: any) {
-  //     console.log("err", err);
-  //     toast.error(err?.data?.message || err.data.error);
-  //   }
-  // };
+  const cancelBooking = async () => {
+    try {
+      const cancelledData = {
+        id: router.query.id?.toString()!,
+        token: token as string,
+        body: {
+          status: "accepted",
+        } as UpdateB,
+      };
+      console.log("rfp data", cancelledData);
+      const resultRFP = await useUpdateBookingMutation(cancelledData).unwrap();
+      toast.success("Booking cancelled successfully");
+      console.log("result", resultRFP);
+    } catch (err: any) {
+      console.log("err", err);
+      toast.error(err?.data?.message || err.data.error);
+    }
+  };
 
   return (
     <DefaultLayout>
