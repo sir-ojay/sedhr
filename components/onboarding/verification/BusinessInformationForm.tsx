@@ -140,13 +140,13 @@ const BusinessInformationForm = ({
                 rules={["required"]}
               />
               <div className="flex">
-                <SelectInput
+                {/* <SelectInput
                   name="currency"
                   label="Currency"
                   id="currency"
                   option="NGN"
                   options={["NGN", "AED", "CAD", "GBP", "USD", "ZAR"]}
-                />
+                /> */}
                 <Input
                   name="annualRevenue"
                   label="Annual Revenue"
