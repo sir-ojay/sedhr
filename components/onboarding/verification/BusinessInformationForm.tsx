@@ -41,17 +41,14 @@ const BusinessInformationForm = ({
       businessAddress: "",
       businessLga: "",
       businessState: "",
+      currency: "",
       annualRevenue: "",
       businessCountry: "",
       accountName: "None",
       accountNumber: "None",
       bankName: "None",
-      platformManager: [
-        {
-          name: "",
-          email: "",
-        },
-      ],
+      platformManagerName: "",
+      platformManagerEmail: "",
     },
     mode: "onChange",
   });
@@ -62,11 +59,46 @@ const BusinessInformationForm = ({
     getValues,
   } = methods;
 
-  const detailsValue = watch();
+  const {
+    phoneNumber,
+    businessName,
+    businessEmail,
+    businessPhone,
+    businessWebsite,
+    businessAddress,
+    businessLga,
+    businessState,
+    currency,
+    annualRevenue,
+    businessCountry,
+    platformManagerName,
+    platformManagerEmail,
+  } = watch();
+
+  const newCurrency = currency + annualRevenue;
+  console.log(newCurrency);
 
   const handleStep = (step: number) => {
     const body = {
-      ...detailsValue,
+      phoneNumber,
+      businessName,
+      businessEmail,
+      businessPhone,
+      businessWebsite,
+      businessAddress,
+      businessLga,
+      businessState,
+      annualRevenue: newCurrency,
+      businessCountry,
+      accountName: "None",
+      accountNumber: "None",
+      bankName: "None",
+      platformManager: [
+        {
+          name: platformManagerName,
+          email: platformManagerEmail,
+        },
+      ],
     };
     businessInformationForm(body);
     router.push({
@@ -140,13 +172,13 @@ const BusinessInformationForm = ({
                 rules={["required"]}
               />
               <div className="flex">
-                {/* <SelectInput
+                <SelectInput
                   name="currency"
                   label="Currency"
                   id="currency"
-                  option="NGN"
+                  option=""
                   options={["NGN", "AED", "CAD", "GBP", "USD", "ZAR"]}
-                /> */}
+                />
                 <Input
                   name="annualRevenue"
                   label="Annual Revenue"
@@ -161,13 +193,13 @@ const BusinessInformationForm = ({
             </h4>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
               <Input
-                name="platformManager[0].name"
+                name="platformManagerName"
                 label="Full Name"
                 placeholder="Full Name"
                 rules={["required"]}
               />
               <Input
-                name="platformManager[0].email"
+                name="platformManagerEmail"
                 type="email"
                 label="Email"
                 rules={["required"]}

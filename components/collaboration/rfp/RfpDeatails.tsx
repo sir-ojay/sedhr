@@ -29,32 +29,10 @@ type RfpDetailsFormProps = {
 };
 
 const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
-  const [uploadDocument, { isLoading }] = useUploadDocumentMutation();
+  const [uploadDocument, { isLoading: isLoadingUpload }] =
+    useUploadDocumentMutation();
 
   const token = Cookies.get("sedherToken");
-
-  const [file, setFile] = useState<any>("");
-
-  const onFileChange = async (e: any) => {
-    const photoId = e?.target?.files?.[0];
-    try {
-      let data: any = [];
-      const result = (await uploadDocument({
-        file: photoId as any,
-        token: token as string,
-      }).unwrap()) as any;
-      data.push({
-        idType: "rfp",
-        idLink: result.data[0],
-        // publicId: result.data.publicId,
-      });
-      console.log(data);
-      // documentsInfo(data);
-    } catch (err: any) {
-      toast.error(err?.data?.message || err.data.error);
-    }
-  };
-
   const router = useRouter();
   const methods = useForm({
     defaultValues: {
@@ -82,7 +60,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
     watch,
     getValues,
     setValue,
-  }:any = methods;
+  }: any = methods;
   // const handleScopeOfWorkChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
   //   const inputText = e.target.value;
   //   const maxLength = 20;
@@ -119,12 +97,33 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
   const details = watch();
   console.log(details);
 
-  const handleStep = () => {
+  const handleStep = async () => {
+    const url = (await uploadDocument({
+      file: details.additionalDetails[1].value as any,
+      token: token as string,
+    }).unwrap()) as any;
     const body = {
-      ...details,
+      productName: details.productName,
+      category: details.category,
+      scopeOfWork: details.scopeOfWork,
+      additionalDetails: [
+        {
+          fieldName: details.additionalDetails[0].fieldName,
+          value: details.additionalDetails[0].value,
+        },
+        {
+          fieldName: details.additionalDetails[1].fieldName,
+          value: url.data[0],
+        },
+      ],
+      communications: {
+        channels: ["slack"],
+        responseToEmail: "2 days",
+        responseToFeedback: "1 day",
+        note: "This responses can vary",
+      },
     };
     rfpDetailsForm(body);
-    // handleUpload()
     router.push({
       pathname: "/collaboration/rfp/create",
       query: {
@@ -140,7 +139,6 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
   return (
     <>
       <div className="space-y-6">
-    
         <FormProvider {...methods}>
           <form className="space-y-6">
             <WhiteWrapper title="RFP Details">
@@ -161,19 +159,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
                 <span className="w-full font-bold text-left text-title mb-1">
                   Scope of Work
                 </span>
-                {/* <textarea
-                  className="w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none"
-                  id="scopeOfWork"
-                  cols={30}
-                  placeholder="Scope of Work"
-                  rows={1}
-                  {...register("scopeOfWork", { maxLength: 20 })}
-                  onChange={(e) => {
-                    handleScopeOfWorkChange(e);
-                  }
-                
-                }
-                /> */}
+
                 <textarea
                   className="w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none"
                   id="scopeOfWork"
@@ -227,7 +213,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
                         <span className="w-full font-bold text-left text-title mb-1">
                           Description
                         </span>
-            
+
                         <textarea
                           className="w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none"
                           id="additionalDetails"
@@ -261,7 +247,6 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
 
                       <div className="mt-3">
                         <Input
-                          onChange={onFileChange}
                           name="additionalDetails.[1].value"
                           showFilePreview
                           type="file"

@@ -108,12 +108,8 @@ CreateRFPWrapper.defaultProps = {
 			no: 4,
 		},
 		{
-			title: "Make Payment",
-			no: 5,
-		},
-		{
 			title: "Review & Submit",
-			no: 6,
+			no: 5,
 		},
 	],
 };

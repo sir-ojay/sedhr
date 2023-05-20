@@ -35,10 +35,20 @@ const RFPapply = ({ navigations }: RFPProps) => {
 
   const methods = useForm({
     defaultValues: {
-      term: "",
+      searchTerm: "",
     },
     mode: "onChange",
   });
+
+  const {
+    formState: { errors, isValid },
+    watch,
+    getValues,
+    setValue,
+  }: any = methods;
+
+  const searchValue = watch();
+  console.log(searchValue);
 
   const token: any = Cookies.get("sedherToken");
 
@@ -86,7 +96,11 @@ const RFPapply = ({ navigations }: RFPProps) => {
                   >
                     Search for RFPs
                   </div>
-                  <Input type="search" placeholder="This is placeholder" />
+                  <Input
+                    type="text"
+                    name="searchTerm"
+                    placeholder="Search for RFPs"
+                  />
                 </form>
               </FormProvider>
             </WhiteWrapper>
@@ -100,9 +114,18 @@ const RFPapply = ({ navigations }: RFPProps) => {
             )}
 
             <GridContainer grid={grid}>
-              {rfpData?.map((card) => (
-                <RFPCard key={card._id} {...card} />
-              ))}
+              {rfpData
+                .filter((obj) => {
+                  if (searchValue.searchTerm) {
+                    return obj?.productName
+                      ?.toLowerCase()
+                      .includes(searchValue.searchTerm?.toLowerCase());
+                  }
+                  return true;
+                })
+                ?.map((card) => (
+                  <RFPCard key={card._id} {...card} />
+                ))}
             </GridContainer>
           </section>
         </div>

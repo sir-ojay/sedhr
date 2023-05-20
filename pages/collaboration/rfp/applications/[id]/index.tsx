@@ -70,7 +70,16 @@ const index = () => {
             ) : (
               <Attachment control={control} />
             )}
+
+            <Button
+              theme="outline"
+              className="w-full mt-5"
+              onClick={() => router.push("/messages")}
+            >
+              Start Chat
+            </Button>
           </section>
+
           {/* <section className='col-span-2 space-y-8'>
 							
 						

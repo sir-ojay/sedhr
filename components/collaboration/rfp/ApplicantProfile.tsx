@@ -56,7 +56,7 @@ const ApplicantProfile = ({ control }: any) => {
         <div>
           <h5 className="text-[#7C8493]">Speciality</h5>
           <p className="text-[#25324B] font-medium">
-            {userData?.educations[0].fieldOfStudy}
+            {/* {userData?.experiences[0]?.title} */}
           </p>
         </div>
       </div>

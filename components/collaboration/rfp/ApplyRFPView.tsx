@@ -50,6 +50,27 @@ const ApplyRFPView = () => {
     data && setRfpData(data?.data);
   }, [isSuccess, data]);
 
+  const downloadImage = (imageUrl: any) => {
+    fetch(imageUrl, {
+      headers: {
+        "Content-Type": "image/jpeg",
+      },
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "image.jpg");
+        document.body.appendChild(link);
+        link.click();
+        // link.parentNode.removeChild(link);
+      })
+      .catch((error) => {
+        console.error("Error occurred while downloading the image", error);
+      });
+  };
+
   return (
     <div>
       <div className="space-y-6">
@@ -74,7 +95,7 @@ const ApplyRFPView = () => {
               <div className="text-base font-semibold text-black">
                 RFP Summary
               </div>
-              <div className="text-[#3772FF] font-bold text-base ">Modify</div>
+              {/* <div className="text-[#3772FF] font-bold text-base ">Modify</div> */}
             </div>
             <hr />
             <div className="flex items-center justify-between py-3.5">
@@ -105,13 +126,44 @@ const ApplyRFPView = () => {
         </WhiteWrapper>
 
         <WhiteWrapper>
+        <div className="flex items-center justify-between py-3.5 ">
+              {" "}
+              <div className="text-base font-semibold text-black">
+                Specifications
+              </div>
+            </div>
+            <hr />
+            <div className="flex items-center justify-between py-3.5 ">
+              <div className="text-base font-semibold text-black w-1/2">
+              {synergi?.additionalDetails[0].fieldName}
+              </div>
+              <div className="text-sm font-normal text-[#0C1938] w-5/6">
+                {" "}
+                {synergi?.additionalDetails[0].value}
+              </div>
+            </div>
+            <hr />
+            <div className="flex items-center justify-between py-3.5 ">
+              <div className="text-base font-semibold text-black">
+              {synergi?.additionalDetails[1].fieldName}
+              </div>
+              <div className="text-sm font-normal text-[#0C1938]">
+                <button onClick={() => downloadImage(synergi?.additionalDetails[1].value)}>
+                Download Document
+              </button>
+              </div>
+            </div>
+
+        </WhiteWrapper>
+
+        <WhiteWrapper>
           <div>
             <div className="flex items-center justify-between py-3.5 ">
               {" "}
               <div className="text-base font-semibold text-black">
                 Bid Selection & Timeline
               </div>
-              <div className="text-[#3772FF] font-bold text-base ">Modify</div>
+              {/* <div className="text-[#3772FF] font-bold text-base ">Modify</div> */}
             </div>
             <hr />
             <div className="flex items-center justify-between py-3.5 ">
@@ -150,7 +202,7 @@ const ApplyRFPView = () => {
               <div className="text-base font-semibold text-black">
                 Selection Criteria
               </div>
-              <div className="text-[#3772FF] font-bold text-base ">Modifiy</div>
+              {/* <div className="text-[#3772FF] font-bold text-base ">Modifiy</div> */}
             </div>
             <hr />
             <div className="flex items-center justify-between py-3.5 ">
@@ -170,7 +222,7 @@ const ApplyRFPView = () => {
               <div className="text-base font-semibold text-black">
                 RFP Budget
               </div>
-              <div className="text-[#3772FF] font-bold text-base ">Modifiy</div>
+              {/* <div className="text-[#3772FF] font-bold text-base ">Modifiy</div> */}
             </div>
             <hr />
             <div className="flex items-center justify-between py-3.5 ">
