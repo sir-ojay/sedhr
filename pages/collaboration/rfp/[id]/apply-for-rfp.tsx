@@ -38,8 +38,8 @@ const ApplyForRFP = () => {
       <>
         <ApplyRFPWrapper step={step}>
           {(step === "1" || step === undefined) && <ApplyRFPView />}
-          {step === "2" && <ApplyPayment rfpFilter={rfpFilter} />}
-          {step === "3" && <ApplyRfpDetails />}
+          {/* {step === "2" && <ApplyPayment rfpFilter={rfpFilter} />} */}
+          {step === "2" && <ApplyRfpDetails />}
         </ApplyRFPWrapper>
       </>
     </DefaultLayout>

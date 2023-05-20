@@ -82,7 +82,7 @@ const VendorInfo = ({ rfpData }: any) => {
           {/* <h5 className="text-base pt-2">Lagos, Nigeria</h5> */}
           <p className="text-[#515B6F] text-sm">
             {" "}
-            {userData?.educations[0].fieldOfStudy}
+            {/* {userData?.experiences[0]?.title} */}
           </p>
         </div>
 

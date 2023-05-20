@@ -100,8 +100,8 @@ const create = () => {
             <SelectionCriteria selectionCriteriaForm={selectionCriteriaForm} />
           )}
           {step === "4" && <Budget budgetDetailsForm={budgetDetailsForm} />}
-          {step === "5" && <MakePayment />}
-          {step === "6" && (
+          {/* {step === "5" && <MakePayment />} */}
+          {step === "5" && (
             <GetReview
               preDetailForm={preDetailForm}
               rfpDetails={rfpDetails}

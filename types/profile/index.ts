@@ -29,7 +29,9 @@ export type User = {
     description: string;
     _id: string;
   }[];
-  experiences: string[];
+  experiences: {
+    title: string;
+  }[];
   languages: string[];
   licensesAndCertificates: string[];
   recommendations: string[];

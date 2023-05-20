@@ -43,9 +43,9 @@ const RFPCard = ({
               <div className="text-sm text-dark-400 font-normal font-epilogue text-[#4C4475]">
                 {category}
               </div>
-              <div className="text-sm text-accents-brown">
+              {/* <div className="text-sm text-accents-brown">
                 {budgets?.[0]?.value}
-              </div>
+              </div> */}
             </div>
           </div>
           <hr />

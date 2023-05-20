@@ -68,15 +68,33 @@ const GetReview = ({
   } = methods;
 
   const details = watch();
-  // console.log(details);
 
   const handleSubmit = () => {
     const body = { ...details };
     preDetailForm(body);
     handleRFPSubmit();
   };
-  // console.log(preDetailForm);
-  // console.log(handleRFPSubmit);
+
+  const downloadImage = (imageUrl: any) => {
+    fetch(imageUrl, {
+      headers: {
+        "Content-Type": "image/jpeg",
+      },
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "image.jpg");
+        document.body.appendChild(link);
+        link.click();
+        // link.parentNode.removeChild(link);
+      })
+      .catch((error) => {
+        console.error("Error occurred while downloading the image", error);
+      });
+  };
 
   return (
     <div>
@@ -140,6 +158,41 @@ const GetReview = ({
         </WhiteWrapper>
 
         <WhiteWrapper>
+          <div className="flex items-center justify-between py-3.5 ">
+            {" "}
+            <div className="text-base font-semibold text-black">
+              Specifications
+            </div>
+            <div className="text-[#3772FF] font-bold text-base ">Modify</div>
+          </div>
+          <hr />
+          <div className="flex items-center justify-between py-3.5 ">
+            <div className="text-base font-semibold text-black w-1/2">
+              {rfpDetails?.additionalDetails[0].fieldName}
+            </div>
+            <div className="text-sm font-normal text-[#0C1938] w-5/6">
+              {" "}
+              {rfpDetails?.additionalDetails[0].value}
+            </div>
+          </div>
+          <hr />
+          <div className="flex items-center justify-between py-3.5 ">
+            <div className="text-base font-semibold text-black">
+              {rfpDetails?.additionalDetails[1].fieldName}
+            </div>
+            <div className="text-sm font-normal text-[#0C1938]">
+              <button
+                onClick={() =>
+                  downloadImage(rfpDetails?.additionalDetails[1].value)
+                }
+              >
+                Download Document
+              </button>
+            </div>
+          </div>
+        </WhiteWrapper>
+
+        <WhiteWrapper>
           <div>
             <div className="flex items-center justify-between py-3.5 ">
               {" "}
@@ -166,7 +219,9 @@ const GetReview = ({
               </div>
               <div className="text-sm font-normal text-[#0C1938]">
                 {" "}
-                {moment(bidSelectionT?.bids.selectionDate).format("DD, MMMM YYYY")}
+                {moment(bidSelectionT?.bids.selectionDate).format(
+                  "DD, MMMM YYYY"
+                )}
               </div>
             </div>
             <hr />
