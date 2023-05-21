@@ -25,7 +25,7 @@ const Details = () => {
     token,
     id: router.query.id?.toString()!,
   });
-  console.log(data?.data?.owner);
+  // console.log(data?.data._id);
 
   const [chat, messageMutationData] = useCreateMessageMutation();
   const startChat = async () => {
@@ -34,7 +34,7 @@ const Details = () => {
         token,
         body: {
           content: "Hello ",
-          receiverId: data?.data?.owner,
+          receiverId: data?.data?._id,
           contentType: "text",
         },
       }).unwrap();
