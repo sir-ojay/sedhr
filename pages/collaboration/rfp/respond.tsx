@@ -38,10 +38,14 @@ const RFPrespond = ({ navigations }: RFPProps) => {
 
   const methods = useForm({
     defaultValues: {
-      term: "",
+      searchTerm: "",
     },
     mode: "onChange",
   });
+
+  const { watch }: any = methods;
+
+  const searchValue = watch();
 
   const token: any = Cookies.get("sedherToken");
 
@@ -88,7 +92,11 @@ const RFPrespond = ({ navigations }: RFPProps) => {
                   >
                     Search for Responses
                   </div>
-                  <Input type="search" placeholder="This is placeholder" />
+                  <Input
+                    type="text"
+                    name="searchTerm"
+                    placeholder="Search for Responses"
+                  />
                   {/* <p className='text-sm text-dark-100 mt-2'>
 										Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
 									</p> */}
@@ -105,9 +113,18 @@ const RFPrespond = ({ navigations }: RFPProps) => {
             )}
 
             <GridContainer grid={grid}>
-              {rfpData?.map((card) => (
-                <RFPCard key={card._id} {...card} />
-              ))}
+              {rfpData
+                .filter((obj) => {
+                  if (searchValue.searchTerm) {
+                    return obj?.productName
+                      ?.toLowerCase()
+                      .includes(searchValue.searchTerm?.toLowerCase());
+                  }
+                  return true;
+                })
+                ?.map((card) => (
+                  <RFPCard key={card._id} {...card} />
+                ))}
             </GridContainer>
           </section>
         </div>

@@ -177,13 +177,23 @@ const GetReview = ({
           </div>
           <hr />
           <div className="flex items-center justify-between py-3.5 ">
-            <div className="text-base font-semibold text-black">
+            <div className="text-base font-semibold text-black w-1/2">
               {rfpDetails?.additionalDetails[1].fieldName}
+            </div>
+            <div className="text-sm font-normal text-[#0C1938] w-5/6">
+              {" "}
+              {rfpDetails?.additionalDetails[1].value}
+            </div>
+          </div>
+          <hr />
+          <div className="flex items-center justify-between py-3.5 ">
+            <div className="text-base font-semibold text-black">
+              {rfpDetails?.additionalDetails[2].fieldName}
             </div>
             <div className="text-sm font-normal text-[#0C1938]">
               <button
                 onClick={() =>
-                  downloadImage(rfpDetails?.additionalDetails[1].value)
+                  downloadImage(rfpDetails?.additionalDetails[2].value)
                 }
               >
                 Download Document

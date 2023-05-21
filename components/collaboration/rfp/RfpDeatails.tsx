@@ -7,6 +7,7 @@ import { ControllerRenderProps, FormProvider, useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { useUploadDocumentMutation } from "@/services/upload";
 import { toast } from "react-toastify";
+import SelectInput from "@/components/global/SelectInput";
 
 export type RfpDetails = {
   productName: string;
@@ -40,6 +41,10 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
       category: "",
       scopeOfWork: "",
       additionalDetails: [
+        {
+          fieldName: "",
+          value: "",
+        },
         {
           fieldName: "",
           value: "",
@@ -99,7 +104,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
 
   const handleStep = async () => {
     const url = (await uploadDocument({
-      file: details.additionalDetails[1].value as any,
+      file: details.additionalDetails[2].value as any,
       token: token as string,
     }).unwrap()) as any;
     const body = {
@@ -113,6 +118,10 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
         },
         {
           fieldName: details.additionalDetails[1].fieldName,
+          value: details.additionalDetails[1].value,
+        },
+        {
+          fieldName: details.additionalDetails[2].fieldName,
           value: url.data[0],
         },
       ],
@@ -148,11 +157,13 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
                 name="productName"
                 rules={["required"]}
               />
-              <Input
-                label="Project Category"
-                placeholder="Project Category"
+              <SelectInput
                 name="category"
-                rules={["required"]}
+                label="Project Category"
+                id="category"
+                option="Project Category"
+                required
+                options={["Services", "Product"]}
               />
 
               <label htmlFor="Scope of Work" className="flex flex-col relative">
@@ -201,7 +212,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
                   <div>
                     <div className="bg-[#F5FBFE] mt-3 p-5">
                       <Input
-                        label="Label Name"
+                        label="Dimensions(length,width and height)"
                         placeholder=""
                         name="additionalDetails.[0].fieldName"
                       />
@@ -232,6 +243,39 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
                         </span>
                       </div>
                     </div>
+                    <div className="bg-[#F5FBFE] mt-3 p-5">
+                      <Input
+                        label="Label Name"
+                        placeholder=""
+                        name="additionalDetails.[1].fieldName"
+                      />
+
+                      <label
+                        htmlFor="Description"
+                        className="flex flex-col relative"
+                      >
+                        <span className="w-full font-bold text-left text-title mb-1">
+                          Description
+                        </span>
+
+                        <textarea
+                          className="w-full py-3 px-4 border-2 border-[#B8C9C9] rounded-[5px] focus:border-primary outline-none"
+                          id="additionalDetails1"
+                          name="additionalDetails.1.value"
+                          cols={30}
+                          placeholder="Additional Details"
+                          rows={1}
+                          onChange={(e) => handleTextChange(e, 2000, setValue)}
+                          value={getValues("additionalDetails.1.value")}
+                        />
+                      </label>
+                      <div className="flex justify-between text-dark-100">
+                        <span>Maximum 2000 characters</span>
+                        <span>
+                          {details.additionalDetails[1].value.length}/ 2000
+                        </span>
+                      </div>
+                    </div>
 
                     <div className="bg-[#F5FBFE] mt-3 p-5">
                       <h5 className="font-epilogue capitalize font-semibold text-[20px] text-dark-900 mb-4">
@@ -241,13 +285,13 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
                       <Input
                         label="Description"
                         placeholder="Description"
-                        name="additionalDetails.[1].fieldName"
+                        name="additionalDetails.[2].fieldName"
                         rules={["required"]}
                       />
 
                       <div className="mt-3">
                         <Input
-                          name="additionalDetails.[1].value"
+                          name="additionalDetails.[2].value"
                           showFilePreview
                           type="file"
                         />

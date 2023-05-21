@@ -144,11 +144,21 @@ const ApplyRFPView = () => {
             </div>
             <hr />
             <div className="flex items-center justify-between py-3.5 ">
-              <div className="text-base font-semibold text-black">
+              <div className="text-base font-semibold text-black w-1/2">
               {synergi?.additionalDetails[1].fieldName}
               </div>
+              <div className="text-sm font-normal text-[#0C1938] w-5/6">
+                {" "}
+                {synergi?.additionalDetails[1].value}
+              </div>
+            </div>
+            <hr />
+            <div className="flex items-center justify-between py-3.5 ">
+              <div className="text-base font-semibold text-black">
+              {synergi?.additionalDetails[2].fieldName}
+              </div>
               <div className="text-sm font-normal text-[#0C1938]">
-                <button onClick={() => downloadImage(synergi?.additionalDetails[1].value)}>
+                <button onClick={() => downloadImage(synergi?.additionalDetails[2].value)}>
                 Download Document
               </button>
               </div>
