@@ -40,15 +40,9 @@ const RFPapply = ({ navigations }: RFPProps) => {
     mode: "onChange",
   });
 
-  const {
-    formState: { errors, isValid },
-    watch,
-    getValues,
-    setValue,
-  }: any = methods;
+  const { watch }: any = methods;
 
   const searchValue = watch();
-  console.log(searchValue);
 
   const token: any = Cookies.get("sedherToken");
 
