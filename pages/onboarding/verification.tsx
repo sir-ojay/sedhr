@@ -57,19 +57,19 @@ const verification: NextPage = () => {
       : 3;
 
   const personalInformationForm = (details: PersonalInformationDetails) => {
-    console.log("details", details);
+    // console.log("details", details);
     setPersonalInformationDetails(details);
   };
 
   const businessInformationForm = (
     detailsValue: BusinessInformationDetails
   ) => {
-    console.log("detailsValue", detailsValue);
+    // console.log("detailsValue", detailsValue);
     setBusinessInformationDetails(detailsValue);
   };
 
   const companyInformationForm = (details: CompanyInformationDetails) => {
-    console.log("details", details);
+    // console.log("details", details);
     setCompanyInformationDetails(details);
   };
 
