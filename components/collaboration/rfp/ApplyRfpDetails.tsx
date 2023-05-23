@@ -20,27 +20,6 @@ const ApplyRfpDetails = () => {
 
   // Uploading document
 
-  const onFileChange = async (e: any) => {
-    // console.log("knjk");
-    const photoId = e?.target?.files?.[0];
-    try {
-      let data: any = [];
-      const result = (await uploadDocument({
-        file: photoId as any,
-        token: token as string,
-      }).unwrap()) as any;
-      data.push({
-        idType: "rfp",
-        idLink: result.data[0],
-        // publicId: result.data.publicId,
-      });
-      console.log(data);
-      // documentsInfo(data);
-    } catch (err: any) {
-      toast.error(err?.data?.message || err.data.error);
-    }
-  };
-
   const methods = useForm({
     defaultValues: {
       applicantId: router.query.id?.toString()!,
@@ -48,6 +27,12 @@ const ApplyRfpDetails = () => {
         {
           fieldName: " ",
           value: " ",
+        },
+      ],
+      images: [
+        {
+          i: 1,
+          name: "",
         },
       ],
       documentLinks: [
@@ -68,6 +53,7 @@ const ApplyRfpDetails = () => {
   } = methods;
 
   const detailsRFP = watch();
+  console.log(detailsRFP);
 
   // Text change/add  using useForm
 
@@ -95,13 +81,14 @@ const ApplyRfpDetails = () => {
         token: token as string,
       }).unwrap()) as any;
 
-      let documentLinks = result.data[0].map((img, i) => {
-        return {
-          value: img,
-          fieldName: detailsRFP.images?.[i]?.name,
-        };
-      });
-      console.log(documentLinks);
+      let documentLinks: { value: string; fieldName: string | undefined }[] =
+        result.data[0].map((img: string, i: number) => {
+          return {
+            value: img,
+            fieldName: detailsRFP.images?.[i]?.name,
+          };
+        });
+      // console.log(documentLinks);
 
       const rfpFinalData = {
         id: router.query.id?.toString()!,
@@ -182,18 +169,13 @@ const ApplyRfpDetails = () => {
                       aenean urna, at eget nibh. Arcu gravida vel.
                     </p>
                   </div>
-                  <Input
-                    onChange={onFileChange}
-                    name="images"
-                    type="file"
-                    multiple
-                  />
+                  <Input name="images" type="file" multiple />
                 </div>
 
                 <hr className="pt-3" />
 
                 <p className="text-[#3772FF] text-sm">
-                  NOTE : minimum upload is 4 image
+                  NOTE : minimum upload is 2 images
                 </p>
               </div>
             </WhiteWrapper>

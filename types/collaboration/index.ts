@@ -75,6 +75,39 @@ export type CreateRFPApplicationRequest = {
 };
 
 export type RFP = {
+  businessData: {
+    vendorName: string;
+    profilePicture: string;
+    phoneNumber: string;
+    businessLocation: string;
+    category: string;
+  };
+  contact: {
+    email: string;
+    phoneNumber: string;
+  };
+  personalInfo: {
+    businessName: string;
+    country: string;
+    category: string;
+    address: string;
+  };
+  aboutUs: {
+    bidExperience: string;
+    projectExecuted: number | string;
+  };
+  documents: {
+    details: {
+      fieldName: string;
+      value: string;
+      _id: string;
+    }[];
+    documentLinks: {
+      fieldName: string;
+      value: string;
+      _id: string;
+    }[];
+  };
   _id: string;
   id: string;
   userId: string;
@@ -361,7 +394,6 @@ export type CreateBookingRequest = {
   id: string;
 };
 
-
 export type UpdateB = {
   appointment: {
     dateSlot: string;
@@ -393,7 +425,7 @@ export type UpdateBookingResponse = {
 export type UpdateBookingRequest = {
   token: string;
   id: string;
-  body:UpdateB;
+  body: UpdateB;
 };
 
 export type GetBookingResponse = {

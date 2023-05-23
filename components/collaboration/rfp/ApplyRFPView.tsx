@@ -40,7 +40,7 @@ const ApplyRFPView = () => {
     }
   }, [rfpData]);
 
-  console.log(synergi?.code);
+  // console.log(synergi?.code);
 
   const { data, isSuccess } = useGetRFPQuery({
     token,

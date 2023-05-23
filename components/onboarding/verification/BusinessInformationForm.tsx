@@ -76,7 +76,7 @@ const BusinessInformationForm = ({
   } = watch();
 
   const newCurrency = currency + annualRevenue;
-  console.log(newCurrency);
+  // console.log(newCurrency);
 
   const handleStep = (step: number) => {
     const body = {

@@ -20,7 +20,8 @@ const Attachment = ({ control }: any) => {
   useEffect(() => {
     data && setRfpData(data?.data);
   }, [isSuccess, data]);
-  // console.log(rfpData);
+  console.log(data)
+  console.log(rfpData);
 
   const downloadImage = (imageUrl: any) => {
     fetch(imageUrl, {
@@ -56,7 +57,7 @@ const Attachment = ({ control }: any) => {
       </div>
       <hr />
 
-      {rfpData?.documentLinks.map((doc: any) => (
+      {rfpData?.documents?.documentLinks.map((doc: any) => (
         <div key={doc.id}>
           <h5 className="text-[#7C8493] text-sm font-normal py-2">
             {doc?.fieldName}
