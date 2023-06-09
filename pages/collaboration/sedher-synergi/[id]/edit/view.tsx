@@ -119,6 +119,8 @@ const Detail = () => {
     }
   }, [bookingData]);
 
+  console.log(synergi);
+
   const { data, isSuccess } = useGetBookingQuery({
     token,
     id: router.query.id?.toString()!,
@@ -130,7 +132,7 @@ const Detail = () => {
 
   const cancelBooking = async () => {
     try {
-      const cancelledData = {
+      const cancelledData: any = {
         id: router.query.id?.toString()!,
         token: token as string,
         body: {
@@ -296,6 +298,11 @@ const Detail = () => {
                             theme="plain"
                             size="sm"
                             className=" w text-primary border  border-[#DDE4F6]"
+                            onClick={() =>
+                              router.push(
+                                `/collaboration/sedher-synergi/${router.query.id?.toString()!}/edit-booked-appointment`
+                              )
+                            }
                           >
                             Edit Appointment
                           </Button>
