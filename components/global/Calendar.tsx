@@ -75,7 +75,10 @@ const Calendr = ({ presentData, availableData }: any) => {
       <Button
         onClick={() =>
           router.push(
-            `/collaboration/sedher-synergi/${snergiData?.id}/patient-detail`
+            router.asPath ===
+              `/collaboration/sedher-synergi/${snergiData?.id}/book-appointment`
+              ? `/collaboration/sedher-synergi/${snergiData?.id}/patient-detail`
+              : `/collaboration/sedher-synergi/${snergiData?.id}/edit-patient-details`
           )
         }
         size="sm"

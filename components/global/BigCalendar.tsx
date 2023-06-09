@@ -24,7 +24,7 @@ const BigCalendar = (props: any) => {
   useEffect(() => {
     data &&
       setAvailableData(
-        data?.data?.spots.map((spot) => {
+        data?.data?.spots.map((spot: { status: any; startTime: string | number | Date; }) => {
           return {
             // startT
             title: spot.status,
