@@ -31,7 +31,7 @@ const Detail = () => {
   const [userDetails, setUserDetails] = useState<LoginResponse>();
   const [synergi, setSynergi] = useState<any>();
 
-  const [bookingData, setBookingData] = useState<Booking>();
+  const [bookingData, setBookingData] = useState<Booking[]>();
   console.log(bookingData);
 
   const token = Cookies.get("sedherToken") as string;
@@ -106,13 +106,6 @@ const Detail = () => {
   useEffect(() => {
     if (bookingData) {
       const userSynergi = [...(bookingData as Array<any>)].pop();
-      // .reverse()
-      // .find((data: any) => {
-      //   console.log(data.synergy.owner, user.id);
-      //   return data.synergy.owner == user.id;
-
-      // });
-
       setSynergi(userSynergi);
       // setSynergi(bookingData);
       console.log(userSynergi);
@@ -140,7 +133,7 @@ const Detail = () => {
         } as UpdateB,
       };
       console.log("rfp data", cancelledData);
-      const resultRFP = await useUpdateBookingMutation(cancelledData).unwrap();
+      const resultRFP: any = await useUpdateBookingMutation(cancelledData).unwrap();
       toast.success("Booking cancelled successfully");
       console.log("result", resultRFP);
     } catch (err: any) {
@@ -179,7 +172,12 @@ const Detail = () => {
                   <Button
                     theme="plain"
                     size="sm"
-                    className=" w-[90%] text-primary border  border-[#DDE4F6]"
+                    className=" w-[90%] text-primary border  border-[#DDE4F6]" onClick={() =>
+                      router.push(
+                        `/collaboration/sedher-synergi/${router.query.id?.toString()!}/edit/view-details`
+                      )
+                    }
+
                   >
                     View Details
                   </Button>
