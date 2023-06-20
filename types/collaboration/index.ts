@@ -360,19 +360,18 @@ export type CreateSnergiResponse = {
 export type Booking = {
   description?: string;
   // synergy: string;
-  patients?: [
+  patients: 
     {
       firstName: string;
       lastName: string;
       age: string;
       gender: string;
       condition: string;
-      attachments: [];
-    }
-  ];
+      attachment: string[];
+    }[];
   appointment?: {
     dateSlot: string;
-    selectedSlots?: string[];
+    selectedSlots: string[];
     communicationChannels?: string[];
   };
   // status: string;
@@ -430,7 +429,7 @@ export type UpdateBookingRequest = {
 
 export type GetBookingResponse = {
   message: string;
-  data: Booking;
+  data: Booking[];
   id: string;
 };
 

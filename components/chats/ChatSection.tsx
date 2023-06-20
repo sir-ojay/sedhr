@@ -76,6 +76,9 @@ const ChatSection = ({ userIds }: any) => {
           profilePicture: "none",
           username: "none",
         };
+        //area to add an empty array to manipulate the messages notification
+        alert("message recieved")
+        console.log("message recieved")
         setMessage((previousMessages) => [...previousMessages, response]);
       }
     );
