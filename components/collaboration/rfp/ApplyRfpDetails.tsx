@@ -29,12 +29,7 @@ const ApplyRfpDetails = () => {
           value: " ",
         },
       ],
-      images: [
-        {
-          i: 1,
-          name: "",
-        },
-      ],
+      images:[],
       documentLinks: [
         {
           fieldName: " ",
@@ -53,7 +48,7 @@ const ApplyRfpDetails = () => {
   } = methods;
 
   const detailsRFP = watch();
-  console.log(detailsRFP);
+  // console.log(detailsRFP);
 
   // Text change/add  using useForm
 
@@ -104,10 +99,10 @@ const ApplyRfpDetails = () => {
           documentLinks,
         } as any,
       };
-      console.log("rfp data", rfpFinalData);
+      // console.log("rfp data", rfpFinalData);
       const resultRFP = await completeRFP(rfpFinalData).unwrap();
       toast.success("RFP completed successfully");
-      console.log("result", resultRFP);
+      // console.log("result", resultRFP);
       //   To route to start
       router.push("/collaboration/rfp");
     } catch (err: any) {
