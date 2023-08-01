@@ -100,7 +100,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
     setValue(e.target.name, e.target.value);
   };
   const details = watch();
-  console.log(details);
+  // console.log(details);
 
   const handleStep = async () => {
     const url = (await uploadDocument({
@@ -139,7 +139,7 @@ const RfpDeatails = ({ rfpDetailsForm }: RfpDetailsFormProps) => {
         step: "2",
       },
     });
-    console.log(body);
+    // console.log(body);
   };
 
   const [isOpen, setIsOpen] = useState(false);
