@@ -42,8 +42,8 @@ const GetReview = ({
   const { data, isSuccess } = useGetRFPCodeQuery({
     token,
   });
-  console.log(data?.data.code);
-  console.log(codeData);
+  // console.log(data?.data.code);
+  // console.log(codeData);
 
   useEffect(() => {
     if (data) {
@@ -52,7 +52,7 @@ const GetReview = ({
     }
   }, [isSuccess, data]);
 
-  console.log(rfpDetails, bidSelectionT, selectionCritria, budgetDetails);
+  // console.log(rfpDetails, bidSelectionT, selectionCritria, budgetDetails);
 
   const methods = useForm({
     defaultValues: {
