@@ -29,7 +29,7 @@ const Viewdetails = () => {
     data && setBookingData(data?.data);
   }, [isSuccess, data]);
 
-  console.log(bookingData);
+  // console.log(bookingData);
   const methods = useForm({
     defaultValues: {
       searchTerm: "",

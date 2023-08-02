@@ -77,7 +77,7 @@ const Details = () => {
      paymentItem: "Sedher Subscription",
    };
    const onSuccess = (reference: void) => {
-     console.log(reference);
+    //  console.log(reference);
      setTimeout(() => verifyPayment(reference as any), 2500);
    };
  
