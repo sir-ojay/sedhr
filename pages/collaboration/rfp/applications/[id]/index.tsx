@@ -34,7 +34,7 @@ const index = () => {
   useEffect(() => {
     data && setRfpData(data?.data);
   }, [isSuccess, data]);
-  console.log(rfpData?.createdAt);
+//   console.log(rfpData?.createdAt);
 
   return (
     <DefaultLayout title="Sedher | Collaboration | create RFP">

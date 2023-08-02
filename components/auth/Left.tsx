@@ -11,7 +11,7 @@ const Left = () => {
 						src='/assets/images/auth/bg-svg-1.svg'
 						width={519}
 						height={576}
-						alt=''
+						alt='backGround-image'
 					/>
 				</div>
 				<div className='left-[-175px] bottom-[-250px] absolute w-[62%]'>
@@ -20,7 +20,7 @@ const Left = () => {
 						src='/assets/images/auth/bg-svg-2.svg'
 						width={519}
 						height={576}
-						alt=''
+						alt='backGround-image'
 					/>
 				</div>
 				<div className='top-[175px] right-[-90px] absolute w-[55%]'>
@@ -29,7 +29,7 @@ const Left = () => {
 						src='/assets/images/auth/bg-svg-2.svg'
 						width={519}
 						height={576}
-						alt=''
+						alt='backGround-image'
 					/>
 				</div>
 				<div className='ml-[62px] mt-[42px]'>

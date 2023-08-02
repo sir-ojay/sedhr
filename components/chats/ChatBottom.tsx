@@ -24,7 +24,7 @@ const ChatBottom = ({
     mode: "onChange",
   });
 
-  const onFileChange = (e) => {
+  const onFileChange = (e:any) => {
     setFile(e?.target?.files?.[0]);
   };
 
@@ -64,8 +64,8 @@ const ChatBottom = ({
         let config = {
           priority: 1, // Set priority for the message. 1: Low (by default). 2: Medium. 3: High.
         };
-        // console.log(res.data.content         )
-        // console.log(res.getData.attachment        )
+        // console.log(res.data.content)
+        // console.log(res.getData.attachment)
         // console.log(res.getData.attechment)
         setValue("");
         setFile(null);

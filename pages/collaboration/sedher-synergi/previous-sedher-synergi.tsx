@@ -19,7 +19,7 @@ const ActiveSedherSynergi = ({ navigations }: ActiveH2hProps) => {
 	const { data, error, isLoading, isSuccess, isFetching } = useGetSnergisQuery({
     token: "token",
   });
-  console.log(data);
+//   console.log(data);
 	return (
     <DefaultLayout>
       <div className="space-y-8">
@@ -29,18 +29,17 @@ const ActiveSedherSynergi = ({ navigations }: ActiveH2hProps) => {
         <section className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 ">
           {data?.data?.map((card) => (
             <SynergiCard
-              type="saved"
-              owner={card.owner}
-              key={card.id}
-              bookings={card.bookings}
-              equipments={card.equipments}
-              event={card.event}
-              locationDetails={card.locationDetails}
-              code={""}
-              createdAt={""}
-              updatedAt={card.updatedAt}
-              id={card.id}
-            />
+				  type="saved"
+				  owner={card.owner}
+				  key={card.id}
+				  bookings={card.bookings}
+				  equipments={card.equipments}
+				  event={card.event}
+				  locationDetails={card.locationDetails}
+				  code={""}
+				  createdAt={""}
+				  updatedAt={card.updatedAt}
+				  id={card.id} connectedCalendars={[]} enableReminders={false} communicationChannels={[]}            />
           ))}
         </section>
       </div>

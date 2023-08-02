@@ -87,10 +87,10 @@ const PatientDetail = () => {
           ),
         } as any,
       };
-      console.log("booking data", data);
+      // console.log("booking data", data);
       const result = await Booking(data).unwrap();
       toast.success("Your Booking data has been saved");
-      console.log("result", result);
+      // console.log("result", result);
       //   To route to view
       router.push(`/collaboration/sedher-synergi/${snergiData?.id}/edit/view`);
     } catch (err: any) {

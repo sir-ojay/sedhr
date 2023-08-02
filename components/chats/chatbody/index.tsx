@@ -11,7 +11,7 @@ const index = ({ data, user:sender,userIds , timeconverter}: any) => {
       {data && (
         <div>
           {data?.map((message:any, key:number) => {
-            console.log(message?.sender?.username )
+            // console.log(message?.sender?.username )
             return message?.sender?.username == sender.username ? (
               <RightUser key={key} message={message} />
             ) : (

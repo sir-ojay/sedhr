@@ -187,7 +187,7 @@ const Detail = () => {
                 <div className=" flex justify-between bg-[#F5FBFE] p-[12px]">
                   <div className="flex-1  pl-2">
                     <div className="flex space-x-4">
-                      {/* <div>
+                      <div>
 												<Image
 													width={24}
 													height={24}
@@ -195,16 +195,16 @@ const Detail = () => {
 													src='/assets/icons/notify.svg'
 													alt='notify'
 												/>
-											</div> */}
+											</div>
                       <div>
                         <div>
-                          <Image
+                          {/* <Image
                             width={22}
                             height={22}
                             // layout='responsive'
                             src="/assets/icons/notify.svg"
                             alt="notify"
-                          />
+                          /> */}
                         </div>
                         <div className="mb-3">
                           <h6 className="text-[#7C8493] font-archivo text-sm font-normal ">
@@ -276,7 +276,7 @@ const Detail = () => {
                         <Image
                           width={10}
                           height={10}
-                          // layout='responsive'
+                          layout='responsive'
                           src="/assets/icons/star.svg"
                           alt="star"
                         />

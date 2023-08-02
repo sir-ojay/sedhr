@@ -89,7 +89,7 @@ const RFPPage = ({ navigations }: RFPProps) => {
           <section className="col-span-6  grid grid-cols-2 gap-1 max-[650px]:grid-cols-1">
             {proposalOptions.map((proposalOption) => (
               <div key={proposalOption.id}>
-                <div className="bg-white w-4/5 h-[90%] ">
+                <div className="bg-white w-4/5 h-[90%] max-[650px]:w-[100%] ">
                   <div className="bg-[#2A2069]">
                     <h3 className="text-white p-3 font-semibold">
                       {proposalOption.proposalName}

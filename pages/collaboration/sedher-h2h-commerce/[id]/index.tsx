@@ -30,10 +30,10 @@ const index = () => {
     token,
     id: router.query.id?.toString()!,
   });
-  console.log(h2hIDData);
+  // console.log(h2hIDData);
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     data && setH2HData(data.data as H2H[]);
   }, [isSuccess, data]);
 

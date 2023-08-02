@@ -13,8 +13,8 @@ type CreateRFPWrapperProps = {
 const CreateRFPWrapper = ({ children, steps, step }: CreateRFPWrapperProps) => {
   return (
     <section>
-      <div className="grid grid-cols-6 gap-8">
-        <section className="col-span-4">
+      <div className="grid grid-cols-6 gap-8 ">
+        <section className="col-span-4 max-[650px]:w-[100%] max-[650px]:col-span-6">
           <div className="flex items-center mb-8">
             <GoBackButton />
             <div>
@@ -28,7 +28,7 @@ const CreateRFPWrapper = ({ children, steps, step }: CreateRFPWrapperProps) => {
           </div>
           <section>{children}</section>
         </section>
-        <section className="col-span-2">
+        <section className="col-span-2 max-[650px]:hidden ">
           <Button
             theme="plain"
             icon="icon"
