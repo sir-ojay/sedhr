@@ -1,3 +1,4 @@
+import FeedNotification from "@/components/feed/FeedNotification";
 import FeedPost from "@/components/feed/FeedPost";
 import PostStatus from "@/components/feed/PostStatus";
 import RecentEvents from "@/components/feed/RecentEvent";
@@ -23,6 +24,9 @@ type Posts = {
 };
 
 const feed = () => {
+
+	
+
 	const [posts, setPosts] = useState<Posts>();
 
 	const token: any = Cookies.get("sedherToken");
@@ -35,13 +39,14 @@ const feed = () => {
 		data && setPosts(data?.data);
 	}, [isSuccess, data]);
 
-	console.log(data);
+	// console.log(data);
 
 	return (
 		<DefaultLayout title='Sedher | Feed'>
 			<div className='grid grid-cols-1 xl:grid-cols-6 gap-8'>
 				<section className='xl:col-span-4 space-y-6'>
 					<PostStatus />
+					
 
 					{posts && posts?.posts?.length > 0 && (
 						<section className='space-y-6'>
@@ -50,6 +55,8 @@ const feed = () => {
 							))}
 						</section>
 					)}
+
+				
 
 					{!isLoading && posts?.posts?.length === 0 && (
 						<div>

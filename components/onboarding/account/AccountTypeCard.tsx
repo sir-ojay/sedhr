@@ -13,9 +13,9 @@ const AccountTypeCard = ({
 		Router.push(`/onboarding/payment?type=${title.toLowerCase()}`);
 	};
 	return (
-		<article className='w-[334px] bg-white p-5 rounded-[5px] font-epilogue space-y-5'>
+		<article className='w-[256px] bg-white p-5 rounded-[5px] font-epilogue '>
 			<div
-				className='w-[60px] h-[60px] md:w-[85px] md:h-[85px] rounded-full mb-4 flex justify-center items-center'
+				className='w-[30px] h-[30px] md:w-[65px] md:h-[65px] rounded-full mb-4 flex justify-center items-center'
 				style={{
 					backgroundColor: `${iconColour}`,
 				}}>
@@ -26,18 +26,17 @@ const AccountTypeCard = ({
 				/>
 			</div>
 			<div>
-				<h2 className='text-dark-900 font-bold text-lg leading-[150%]'>
+				<h2 className='text-dark-900 font-bold text-[16px] leading-[150%]'>
 					{title}
 				</h2>
-				<p className='text-dark-100 text-sm md:text-base leading-[150%]'>
-					{/* Complete details about your company, set roles and permission */}
+				<p className='text-dark-100  md:text-base leading-[150%]'>
 					{description}
-					<span className='text-secondary cursor-pointer'> read more....</span>
+					<span className='text-secondary text-sm cursor-pointer'> read more....</span>
 				</p>
 			</div>
 			<Button
 				type='button'
-				className='w-full text-white'
+				className='w-full text-white text-sm mt-4 rounded-sm'
 				style={{
 					backgroundColor: `${buttonColor}`,
 				}}

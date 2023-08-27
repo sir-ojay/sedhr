@@ -9,12 +9,13 @@ import { Onboarding } from "@/types/onboarding";
 
 type AccountPackageProps = {
 	makePayment: (amount: any) => void;
+	naming:string;
 };
 
 
 
 
-const AccountPackage = ({ makePayment }: AccountPackageProps) => {
+const AccountPackage = ({ makePayment, naming}: AccountPackageProps) => {
 const router = useRouter();
   const token = Cookies.get("sedherToken") as string;
   let user = JWT.decode(token) as { id: string };
@@ -31,7 +32,7 @@ const router = useRouter();
 	return (
 		<div className='w-[340px] bg-white p-8'>
 			<h4 className='text-lg font-semibold font-epilogue text-primary'>
-				Starter
+				{naming}
 			</h4>
 			<div className='text-neutral-60 font-medium font-epilogue'>
 				Custom Domain

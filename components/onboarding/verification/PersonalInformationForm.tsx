@@ -20,6 +20,7 @@ export type PersonalInformationDetails = {
   professionalRegistrationNumber?: string;
   state: string;
   dateOfBirth: string;
+  gender: string;
   lga: string;
   stateOfOrigin: string;
 };
@@ -50,6 +51,7 @@ const PersonalInformationForm = ({
       criminalHistory: "None",
       idType: "",
       dateOfBirth: "",
+      gender: "",
       idName: "",
     },
     mode: "onChange",
@@ -147,7 +149,7 @@ const PersonalInformationForm = ({
       <section className="w-full bg-white p-5 md:p-8">
         <FormProvider {...methods}>
           <form>
-            <h4 className="font-semibold text-dark-900 font-epilogue font-[20px] mb-10">
+            <h4 className=" text-dark-900 font-epilogue font-[20px] mb-10">
               Personal Information
             </h4>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -215,10 +217,7 @@ const PersonalInformationForm = ({
                 id="idType"
                 option="Select ID Type"
                 required
-                options={[
-                  "National ID",
-                  "Others (please specify)",
-                ]}
+                options={["National ID", "Others (please specify)"]}
               />
               <Input
                 name="dateOfBirth"
@@ -227,6 +226,15 @@ const PersonalInformationForm = ({
                 label="Date of birth"
                 placeholder="Date of birth"
                 rules={["required"]}
+              />
+
+              <SelectInput
+                name="gender"
+                label="Gender"
+                id="gender"
+                option="Select gender"
+                required
+                options={["Male", "Female"]}
               />
               {idType === "Others (please specify)" && (
                 <Input

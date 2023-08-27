@@ -49,7 +49,7 @@ const SedherSynergi = ({ navigations }: SedherSynergiProps) => {
   });
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     data && setSnergiData(data.data as Snergi[]);
   }, [isSuccess, data]);
 

@@ -1,6 +1,10 @@
 import {
 	CommentRequest,
 	CommentResponse,
+	DeleteAPostRequest,
+	DeleteAPostResponse,
+	GetAPostRequest,
+	GetAPostResponse,
 	GetCommentsRequest,
 	GetCommentsResponse,
 	GetTimelineRequest,
@@ -9,6 +13,7 @@ import {
 	LikeAPostResponse,
 	PostRequest,
 	PostResponse,
+	
 } from "@/types/feed";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -74,14 +79,25 @@ export const feed = createApi({
 				getRequest(`/posts/${credentials.id}/comments`, credentials.token),
 			providesTags: ["Comments"],
 		}),
+		getAPost: builder.query<GetAPostResponse, GetAPostRequest>({
+			query: (credentials) =>
+				getRequest(`/posts/${credentials.id}`, credentials.token),
+			providesTags: ["Post"],
+		}),
+		deleteAPost: builder.mutation<DeleteAPostResponse, DeleteAPostRequest>({
+			query: (credentials) =>
+				deleteRequest(`posts/${credentials.id}`, credentials.token),
+		}),
 	}),
 });
 
 export const {
 	usePostMutation,
-	useGetTimelineQuery,
+	useDeleteAPostMutation,
+    useGetTimelineQuery,
 	useLikeAPostMutation,
 	useUnLikeAPostMutation,
 	useCommentMutation,
 	useLazyGetCommentsQuery,
+	useGetAPostQuery,  
 } = feed;

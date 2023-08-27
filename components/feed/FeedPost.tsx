@@ -3,6 +3,7 @@ import {
   useLazyGetCommentsQuery,
   useLikeAPostMutation,
   useUnLikeAPostMutation,
+  useGetAPostQuery,
 } from "@/services/feed";
 import { LoginResponse } from "@/types/auth/auth";
 import { Comment, CommentRequest, Post } from "@/types/feed";
@@ -18,6 +19,9 @@ import Avatar from "../global/Avatar";
 import Button from "../global/Button";
 import Input from "../global/Input";
 import WhiteWrapper from "../global/WhiteWrapper";
+import { useRouter } from "next/router";
+import { AnyAction } from "@reduxjs/toolkit";
+import FeedNotification from "./FeedNotification";
 
 const FeedPost = ({
   commentsCount,
@@ -31,6 +35,7 @@ const FeedPost = ({
   likes,
   id,
 }: Post) => {
+  const router = useRouter();
   const [user, setUser] = useState<LoginResponse>();
   const [disabled, setDisabled] = useState<any>();
   const [fullContent, setFullContent] = useState(false);
@@ -137,6 +142,32 @@ const FeedPost = ({
     data && setComments(data?.data.comments);
   }, [isSuccess, data]);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const openAccess = () => setIsOpen(!isOpen);
+
+  //to get each post
+
+  const { data: postData, isLoading: isLoadingPost } = useGetAPostQuery({
+    token,
+    id,
+  });
+  // console.log(postData?.data.postLink);
+
+  // share post
+  const shareLink = async (urlLink: any) => {
+    try {
+      await navigator.share({
+        title: "feed",
+        url: `https://sedher.vercel.app${urlLink}`,
+      });
+      toast.success("Link shared successfully!");
+      console.log("Link shared successfully!");
+    } catch (err: any) {
+      toast.error(err?.data?.message);
+      console.error("Error sharing link:", err);
+    }
+  };
+
   return (
     <WhiteWrapper>
       <article>
@@ -177,14 +208,27 @@ const FeedPost = ({
               </div>
             </div>
           </div>
-          {/* <button type='button' className='transform rotate-90'>
-						<img
-							src='/assets/icons/layouts/more.svg'
-							alt='see more'
-							title='see more'
-						/>
-					</button> */}
+          <div>
+         
+            <button
+              type="button"
+              className="transform rotate-90"
+              onClick={openAccess}
+            >
+              <img
+                src="/assets/icons/layouts/more.svg"
+                alt="see more"
+                title="see more"
+              />
+              
+            </button>
+           
+          </div>
+         
         </header>
+
+        {isOpen &&<FeedNotification
+            openAccess={openAccess}/>}
         <section className="space-y-5">
           <p className="text-sm xl:text-base leading-[160%]">
             {!fullContent && content.length > 220
@@ -212,6 +256,16 @@ const FeedPost = ({
                 className="rounded-lg xl:rounded-xl w-full h-auto"
                 src={attachments[0]?.url}
                 alt="post"
+              />
+            )}
+            {contentType === "video" && (
+              <video
+                width={500}
+                height={500}
+                className="rounded-lg xl:rounded-xl w-full h-auto"
+                src={attachments[0]?.url}
+                controls
+                loop
               />
             )}
           </div>
@@ -280,22 +334,25 @@ const FeedPost = ({
                   Comment
                 </span>
               </button>
-              {/* <button
-								type='button'
-								className='flex items-center gap-2 xl:gap-4'>
-								<div>
-									<img
-										src='/assets/icons/feed/share.svg'
-										alt='share'
-										title='share'
-									/>
-								</div>
-								<span className='text-dark-100 text-xs xl:text-sm font-medium'>
-									Share
-								</span>
-							</button> */}
+              <button
+                type="button"
+                className="flex items-center gap-2 xl:gap-4"
+                // onClick={() => shareLink(postData?.data.postLink)}
+              >
+                <div>
+                  <img
+                    src="/assets/icons/feed/share.svg"
+                    alt="share"
+                    title="share"
+                  />
+                </div>
+                <span className="text-dark-100 text-xs xl:text-sm font-medium">
+                  Share
+                </span>
+              </button>
             </div>
           )}
+
           {showComments && (
             <div>
               <FormProvider {...methods}>

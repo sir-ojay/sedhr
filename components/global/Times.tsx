@@ -48,7 +48,7 @@ const Times = ({ value }: any) => {
   }
   return (
     <>
-      <div className="w-full mt-1  text-[18px] w-[90%]">
+      <div className="w-full mt-1  text-[18px] ">
         {info
           ? `Your appointment is set to time - ${moment(event).format(
               "HH:MM"

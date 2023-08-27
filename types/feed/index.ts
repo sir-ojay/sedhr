@@ -11,7 +11,9 @@ export type PostRequest = {
 	};
 };
 
-export type PostResponse = {};
+export type PostResponse = {
+	message: string;
+};
 
 export type CommentRequest = {
 	token: string;
@@ -21,19 +23,23 @@ export type CommentRequest = {
 	};
 };
 
-export type CommentResponse = {};
+export type CommentResponse = {
+	message: string;
+};
 
 export type LikeAPostRequest = {
 	token: string;
 	id: string;
 };
 
-export type LikeAPostResponse = {};
+export type LikeAPostResponse = {
+	message: string;
+};
 
 export type Post = {
 	id: string;
 	author: {
-		id: string;
+		_id: string;
 		name: string;
 		username: string;
 		accountType: string;
@@ -41,17 +47,17 @@ export type Post = {
 		company: string;
 	};
 	content: string;
-	attachments: [
+	attachments: 
 		{
 			url: string;
 			contentType: string;
-		}
-	];
+		}[];
 	postType: string;
 	postLink: string;
 	contentType: string;
 	createdAt: string;
 	updatedAt: string;
+	url:string;
 	likes: number;
 	liked: boolean;
 	commentsCount: number;
@@ -96,4 +102,23 @@ export type GetCommentsResponse = {
 	data: {
 		comments: Comment[];
 	};
+};
+export type GetAPostRequest = {
+	token: string;
+	id: string;
+};
+
+export type GetAPostResponse = {
+	message: string;
+	data: Post;
+};
+
+export type DeleteAPostRequest = {
+	token: string;
+	id: string;
+};
+
+export type DeleteAPostResponse = {
+	message: string;
+	
 };

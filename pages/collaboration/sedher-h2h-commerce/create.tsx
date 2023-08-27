@@ -74,7 +74,7 @@ const create = () => {
         file: images as any,
         token: token as string,
       }).unwrap()) as any;
-      let documentLinks = url.data[0]
+      let documentLinks = url.data[0];
       const details = {
         body: {
           code: "6756655",
@@ -113,16 +113,16 @@ const create = () => {
         },
         token,
       };
-      console.log(details);
+      // console.log(details);
       const result = (await create(
         details as any
       ).unwrap()) as CreateH2HResponse;
-      console.log(result);
+      // console.log(result);
       toast.success("H2H created successfully");
       router.push("/collaboration/sedher-h2h-commerce");
     } catch (err: any) {
       toast.error(err?.data?.message);
-      console.log(err);
+      console.log(err?.data?.message);
     }
   };
   return (
@@ -149,7 +149,7 @@ const create = () => {
                   <Input name="images" showFilePreview type="file" multiple />
 
                   <p className="text-[#3772FF] text-sm pt-3">
-                    NOTE : minimum upload is 4 image
+                    NOTE : minimum upload is 2 image
                   </p>
                 </WhiteWrapper>
                 <WhiteWrapper title="Product Details">

@@ -1,6 +1,6 @@
 import {
   useGetFriendsQuery,
-  useSendFriendRequestMutation,
+  useSendFriendRequestMutation,useRemoveConnectionMutation
 } from "@/services/connections";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -65,7 +65,7 @@ const YouMightKnow = () => {
         {friends &&
           friends
             // ?.slice(0, 3)
-            .map((account) => (
+            .map((account: any):any => (
               <YouMightKnowCard
                 key={account._id}
                 account={account}
@@ -92,12 +92,19 @@ const YouMightKnowCard = ({ account, setFriends, key }: any) => {
 
   const [sendRequest, { isLoading: isLoadingFriendRequest }] =
     useSendFriendRequestMutation();
-  const ignoreButton = (key) => {
-    setFriends((prev) => {
-      let response = [...prev].filter((person) => person._id != account._id);
-      return response;
-    });
-  };
+
+  // const ignoreButton = (key) => {
+  //   setFriends((prev) => {
+  //     let response = [...prev].filter((person) => person._id != account._id);
+  //     return response;
+  //   });
+  // };
+
+  const [ignoreRequest] =
+  useRemoveConnectionMutation();
+ 
+
+  
 
   return (
     <div className="bg-accents-light-blue p-4">
@@ -133,8 +140,9 @@ const YouMightKnowCard = ({ account, setFriends, key }: any) => {
           className="w-full"
           size="sm"
           theme="outline"
+          loading={isLoading}
           onClick={() => {
-            ignoreButton(account._id);
+            ignoreRequest({ token, username: account.username });
           }}
         >
           Ignore
