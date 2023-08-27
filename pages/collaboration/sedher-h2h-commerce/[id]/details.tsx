@@ -25,76 +25,75 @@ import { useVerifyPaymentMutation } from "@/services/onboarding";
 import { VerifyPaymentResponse } from "@/types/onboarding";
 
 const Details = () => {
+  // Payment functions
+  const [amount, setAmount] = useState<number>(0);
+  const [count, setCount] = useState<number>(0);
+  const [userDetails, setUserDetails] = useState<LoginResponse>();
+  // const [rfpData, setRfpData] = useState<RFP>();
+  // console.log(rfpData);
+  const token: any = Cookies.get("sedherToken");
 
-   // Payment functions
-   const [amount, setAmount] = useState<number>(0);
-   const [count, setCount] = useState<number>(0);
-   const [userDetails, setUserDetails] = useState<LoginResponse>();
-   // const [rfpData, setRfpData] = useState<RFP>();
-   // console.log(rfpData);
-   const token: any = Cookies.get("sedherToken");
- 
-   // const token = Cookies.get("sedherToken") as string;
-   let user = JWT.decode(token) as { id: string };
-   // console.log(user?.id);
- 
-   useEffect(() => {
-     try {
-       const userpayer = JSON.parse(Cookies.get("sedherUser") || "{}");
-       setUserDetails(userpayer);
-     } catch (error) {
-       // console.log(error);
-     }
-   }, []);
-   const [verify] = useVerifyPaymentMutation();
- 
-   const verifyPayment = async (ref: any) => {
-     try {
-       const body = {
-         reference: ref.reference as string,
-         amount: amount * 100,
-         email: userDetails?.email.toLowerCase() as string,
-       };
-       (await verify(body).unwrap()) as VerifyPaymentResponse;
-       toast.success("payment successful");
-       router.push({
-         pathname: "/collaboration/rfp/create",
-         query: {
-           step: "6",
-         },
-       });
-     } catch (err: any) {
-       toast.error(err?.data?.message);
-     }
-   };
-   // console.log({ user });
-   const config = {
-     reference: uuid(),
-     email: userDetails?.email.toLowerCase() as string,
-     amount: amount * 100,
-     publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PK as string,
-     userId: user?.id as string,
-     paymentItem: "Sedher Subscription",
-   };
-   const onSuccess = (reference: void) => {
+  // const token = Cookies.get("sedherToken") as string;
+  let user = JWT.decode(token) as { id: string };
+  // console.log(user?.id);
+
+  useEffect(() => {
+    try {
+      const userpayer = JSON.parse(Cookies.get("sedherUser") || "{}");
+      setUserDetails(userpayer);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+  const [verify] = useVerifyPaymentMutation();
+
+  const verifyPayment = async (ref: any) => {
+    try {
+      const body = {
+        reference: ref.reference as string,
+        amount: amount * 100,
+        email: userDetails?.email.toLowerCase() as string,
+      };
+      (await verify(body).unwrap()) as VerifyPaymentResponse;
+      toast.success("payment successful");
+      router.push({
+        pathname: "/collaboration/rfp/create",
+        query: {
+          step: "6",
+        },
+      });
+    } catch (err: any) {
+      toast.error(err?.data?.message);
+    }
+  };
+  // console.log({ user });
+  const config = {
+    reference: uuid(),
+    email: userDetails?.email.toLowerCase() as string,
+    amount: amount * 100,
+    publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PK as string,
+    userId: user?.id as string,
+    paymentItem: "Sedher Subscription",
+  };
+  const onSuccess = (reference: void) => {
     //  console.log(reference);
-     setTimeout(() => verifyPayment(reference as any), 2500);
-   };
- 
-   const onClose = () => {
-     // console.log("closed");
-   };
- 
-   const initializePayment = usePaystackPayment(config);
- 
-   const makePayment = (_amount: number | string | any) => {
-     setAmount(_amount);
-     setCount(count + 1);
-   };
- 
-   useEffect(() => {
-     if (amount > 0) initializePayment(onSuccess, onClose);
-   }, [amount, count]);
+    setTimeout(() => verifyPayment(reference as any), 2500);
+  };
+
+  const onClose = () => {
+    // console.log("closed");
+  };
+
+  const initializePayment = usePaystackPayment(config);
+
+  const makePayment = (_amount: number | string | any) => {
+    setAmount(_amount);
+    setCount(count + 1);
+  };
+
+  useEffect(() => {
+    if (amount > 0) initializePayment(onSuccess, onClose);
+  }, [amount, count]);
   const router = useRouter();
 
   // const token: any = Cookies.get("sedherToken");
@@ -118,8 +117,8 @@ const Details = () => {
       }).unwrap();
       router.push("/collaboration/sedher-h2h-commerce/chats");
     } catch (error: any) {
-      alert(error?.data?.error);
-      console.log(error?.data?.error);
+      toast.error(error?.data?.message);
+      console.log(error?.data?.message);
       // console.log(err );
     }
   };
@@ -309,13 +308,16 @@ const Details = () => {
                 </div>
               </div>
             </div>
-            <Button theme="outline" className="w-full mt-5" onClick={() => makePayment(data?.data?.paymentDetails?.prices[0]?.value)}>
-         Make payment
-          </Button>
+            <Button
+              theme="outline"
+              className="w-full mt-5"
+              onClick={() =>
+                makePayment(data?.data?.paymentDetails?.prices[0]?.value)
+              }
+            >
+              Make payment
+            </Button>
           </WhiteWrapper>
-       
-
-
 
           <Button theme="outline" className="w-full mt-5" onClick={startChat}>
             Start Chat

@@ -2,6 +2,7 @@ export interface LoginResponse {
 	_id: string;
 	name: string;
 	profilePicture: string;
+	hasOnboarded: boolean;
 	company: string;
 	accountType: string;
 	email: string;

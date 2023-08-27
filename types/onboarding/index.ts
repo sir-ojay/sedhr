@@ -55,9 +55,9 @@ export type CompleteOnboardingRequest = {
     businessState: string;
     annualRevenue: string;
     businessCountry: string;
-    accountName: "None";
-    accountNumber: "None";
-    bankName?: "None";
+    accountName: " ";
+    accountNumber: " ";
+    bankName?: " ";
     idDetails: [
       {
         idType: string;
@@ -65,6 +65,7 @@ export type CompleteOnboardingRequest = {
       }
     ];
     dateOfBirth: string;
+    gender: string;
     criminalHistory?: "None";
     numberOfBeds?: string;
     averagePatientTurnover: string;

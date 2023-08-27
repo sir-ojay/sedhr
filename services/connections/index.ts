@@ -90,7 +90,7 @@ export const connections = createApi({
     >({
       query: (credentials) =>
         putRequest(
-          `/connections/${credentials.username}/unsend-friend-request`,
+          `/connections/${credentials.username}/unsend-friend-request `,
           "",
           credentials.token
         ),

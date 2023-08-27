@@ -54,7 +54,7 @@ const ApplyPayment = ({rfpFilter}:any) => {
     }
   };
 
-  console.log(rfpFilter?.userId)
+  // console.log(rfpFilter?.userId)
  
   const config = {
     reference: uuid(),

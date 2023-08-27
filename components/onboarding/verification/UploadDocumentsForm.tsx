@@ -88,7 +88,7 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
     { file: uploadingDocDetails.TaxID as any, type: 'TaxID' },
   ];
 
-  console.log(documents);
+  // console.log(documents);
 
   const uploadDocuments = async (documents: {file: any, type: string}[], token: string) => {
     let data: any = [];
@@ -106,7 +106,7 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
       }
       // return data;
       documentsInfo(data);
-      console.log(data);
+      // console.log(data);
     } catch (err: any) {
       toast.error(err?.data?.message || err.data.error);
     }
@@ -141,7 +141,7 @@ const UploadDocumentsForm = ({ documentsInfo }: UploadDocumentsFormProps) => {
       <section className="w-full bg-white p-5 md:p-8">
         <FormProvider {...methods}>
           <form>
-            <h4 className="font-semibold text-dark-900 font-epilogue font-[20px] mb-10">
+            <h4 className=" text-dark-900 font-epilogue font-[20px] mb-10">
               Upload document
             </h4>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">

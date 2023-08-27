@@ -23,18 +23,18 @@ export const types = [
     iconColour: "#FF563033",
     icon: "hcp",
   },
-  {
-    title: "Sedher Luminaries ",
-    description:
-      "We work closely with academic institutions, healthcare organizations, and other partners to foster collaborations and accelerate discovery.",
-    buttonColor: "#0235DD",
-    iconColour: "#95BBFE4D",
-    icon: "sedher-luminaries",
-  },
+  // {
+  //   title: "Sedher Luminaries ",
+  //   description:
+  //     "We work closely with academic institutions, healthcare organizations, and other partners to foster collaborations and accelerate discovery.",
+  //   buttonColor: "#0235DD",
+  //   iconColour: "#95BBFE4D",
+  //   icon: "sedher-luminaries",
+  // },
   {
     title: "Not for Profit",
     description:
-      "We are driven by a mission to positively impact lives by improving the health and well-being of our community, regardless of their ability to pay.",
+      "We are driven by a mission to impact lives by improving the well-being of our community, regardless of their ability to pay.",
     buttonColor: "#11747D",
     iconColour: "#95BBFE4D",
     icon: "not-for-profit",

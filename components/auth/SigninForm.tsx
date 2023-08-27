@@ -26,6 +26,7 @@ const SigninForm = () => {
 
 	/* Handle submit */
 	const [login, { isLoading }] = useLoginMutation();
+	console.log(login);
 
 	const onSubmit: SubmitHandler<LoginRequest> = async (data) => {
 		try {
@@ -44,7 +45,7 @@ const SigninForm = () => {
 			if (user.accountType) router.push("/feed");
 			else router.push("/onboarding/account");
 		} catch (err: any) {
-			toast.error(err?.data?.error?.message);
+			toast.error(err?.data?.message);
 		}
 	};
 

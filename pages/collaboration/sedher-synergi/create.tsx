@@ -172,7 +172,7 @@ const create = () => {
       const result = (await create(
         details as any
       ).unwrap()) as CreateSnergiResponse;
-      console.log(result);
+      // console.log(result);
       toast.success("Snergi created successfully");
       router.push("/collaboration/sedher-synergi");
     } catch (err: any) {

@@ -44,9 +44,9 @@ const BusinessInformationForm = ({
       currency: "",
       annualRevenue: "",
       businessCountry: "",
-      accountName: "None",
-      accountNumber: "None",
-      bankName: "None",
+      accountName: "",
+      accountNumber: "",
+      bankName: " ",
       platformManagerName: "",
       platformManagerEmail: "",
     },
@@ -70,6 +70,9 @@ const BusinessInformationForm = ({
     businessState,
     currency,
     annualRevenue,
+    accountName,
+    accountNumber,
+    bankName,
     businessCountry,
     platformManagerName,
     platformManagerEmail,
@@ -90,9 +93,9 @@ const BusinessInformationForm = ({
       businessState,
       annualRevenue: newCurrency,
       businessCountry,
-      accountName: "None",
-      accountNumber: "None",
-      bankName: "None",
+      accountName,
+      accountNumber,
+      bankName,
       platformManager: [
         {
           name: platformManagerName,
@@ -116,7 +119,7 @@ const BusinessInformationForm = ({
       <section className="w-full bg-white p-5 md:p-8">
         <FormProvider {...methods}>
           <form>
-            <h4 className="font-semibold text-dark-900 font-epilogue font-[20px] mb-10">
+            <h4 className=" text-dark-900 font-epilogue font-[20px] mb-10">
               Business Information
             </h4>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -171,6 +174,7 @@ const BusinessInformationForm = ({
                 placeholder="LGA"
                 rules={["required"]}
               />
+             
               <div className="flex">
                 <SelectInput
                   name="currency"
@@ -186,9 +190,28 @@ const BusinessInformationForm = ({
                   rules={["required"]}
                 />
               </div>
+
+              <Input
+                name="accountName"
+                label="Account Name"
+                placeholder="accountName"
+                rules={["required"]}
+              />
+              <Input
+                name="accountNumber"
+                label="Account Number"
+                placeholder="accountNumber"
+                rules={["required"]}
+              />
+              <Input
+                name="bankName"
+                label="Bank Name"
+                placeholder="bank Name"
+                rules={["required"]}
+              />
             </div>
 
-            <h4 className="font-semibold text-dark-900 font-epilogue font-[20px] my-10">
+            <h4 className=" text-dark-900 font-epilogue font-[20px] my-10">
               Plaform manager
             </h4>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">

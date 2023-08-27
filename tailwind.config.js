@@ -45,7 +45,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tw-elements/dist/plugin"), require("tailwind-scrollbar"), require('@tailwindcss/line-clamp')],
+  plugins: [require("tw-elements/dist/plugin"), require("tailwind-scrollbar")],
   variants: {
     scrollbar: ["rounded"],
   },
