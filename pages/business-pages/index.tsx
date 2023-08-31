@@ -5,9 +5,9 @@ import DefaultLayout from "@/layouts/DefaultLayout";
 const BusinessPage = () => {
   return (
    
-		<DefaultLayout title='Sedher | Finances'>
+		<DefaultLayout title='Sedher | Business'>
         <WhiteWrapper>
-            <h3 className='text-lg leading-normal font-medium'> Features coming soon...</h3>
+            <h3 className='text-lg leading-normal font-medium'> Features coming soon....</h3>
            
         </WhiteWrapper>
         </DefaultLayout>
