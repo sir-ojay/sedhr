@@ -1,3 +1,5 @@
+
+
 import CollaborationNav from "@/components/collaboration/CollaborationNav";
 import RecommendationCard from "@/components/connection/RecommendationCard";
 import SkillsCard from "@/components/connection/SkillsCard";
@@ -27,9 +29,8 @@ import { useEffect, useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { ClipLoader } from "react-spinners";
 import { toast } from "react-toastify";
-import education from "./details/education";
 
-const ProfilePage = () => {
+const BusinessPage = () => {
 	const month = [
 		"January",
 		"February",
@@ -152,6 +153,18 @@ const ProfilePage = () => {
 			name: "Group",
 			href: `/profile/${username}/group`,
 		},
+		{
+			name: "Marketplace",
+			href: `/profile/${username}/Marketplace`,
+		},
+		{
+			name: "Analytics",
+			href: `/profile/${username}/Analytics`,
+		},
+		{
+			name: "Edit Page",
+			href: `/profile/${username}/Edit Page`,
+		},
 	];
 
 	return (
@@ -266,4 +279,5 @@ const ProfilePage = () => {
 	);
 };
 
-export default ProfilePage;
+export default BusinessPage ;
+

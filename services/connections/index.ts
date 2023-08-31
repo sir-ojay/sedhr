@@ -89,11 +89,9 @@ export const connections = createApi({
       IgnoreFriendRequest
     >({
       query: (credentials) =>
-        putRequest(
-          `/connections/${credentials.username}/unsend-friend-request `,
-          "",
-          credentials.token
-        ),
+      postRequest(
+          `/connections/findfriends`,
+          "", credentials.body ),
       invalidatesTags: ["FriendsRequest"],
     }),
     followRequest: builder.mutation<SendFriendsResponse, SendFriendsRequest>({
@@ -141,6 +139,7 @@ export const {
   useGetFriendsQuery,
   useSendFriendRequestMutation,
   useIgnoreFriendRequestMutation,
+
   useGetFollowsQuery,
   useFollowRequestMutation,
   useGetFriendRequestsQuery,

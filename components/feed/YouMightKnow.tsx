@@ -1,6 +1,7 @@
 import {
   useGetFriendsQuery,
-  useSendFriendRequestMutation,useRemoveConnectionMutation
+  useSendFriendRequestMutation,
+  useIgnoreFriendRequestMutation,
 } from "@/services/connections";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -8,6 +9,9 @@ import { useEffect, useState } from "react";
 import Avatar from "../global/Avatar";
 import Button from "../global/Button";
 import WhiteWrapper from "../global/WhiteWrapper";
+import { toast } from "react-toastify";
+import { Post } from "@/types/feed";
+import { IgnoreFriendRequest } from "@/types/connections";
 
 type YouMightKnowprops = {
   data: {
@@ -33,7 +37,7 @@ const YouMightKnow = () => {
   useEffect(() => {
     data && setFriends(data.data as any);
   }, [isSuccess, data]);
-  //   console.log(friends);
+  // console.log(friends);
 
   return (
     <WhiteWrapper>
@@ -65,7 +69,7 @@ const YouMightKnow = () => {
         {friends &&
           friends
             // ?.slice(0, 3)
-            .map((account: any):any => (
+            .map((account: any): any => (
               <YouMightKnowCard
                 key={account._id}
                 account={account}
@@ -80,7 +84,7 @@ const YouMightKnow = () => {
 export default YouMightKnow;
 
 const YouMightKnowCard = ({ account, setFriends, key }: any) => {
-  //   const [friends, setFriends] = useState<any>();
+  // const [friends, setFriends] = useState<any>();
   // console.log(account._id)
   const router = useRouter();
 
@@ -100,11 +104,27 @@ const YouMightKnowCard = ({ account, setFriends, key }: any) => {
   //   });
   // };
 
-  const [ignoreRequest] =
-  useRemoveConnectionMutation();
- 
+  const [ignoreRequest] = useIgnoreFriendRequestMutation();
 
+  const handleSubmit = async ({userId, token}:any) => {
   
+    try {
+      const data = {
+        token,
+        body: {
+          userId,
+        } as any,
+      };
+      // console.log("booking data", data);
+      const result = await ignoreRequest(data).unwrap();
+      toast.success("Your Booking data has been updated");
+      // console.log("result", result);
+      //   To route to view
+    } catch (err: any) {
+      console.log("err", err);
+      toast.error(err?.data?.message || err.data.error);
+    }
+  };
 
   return (
     <div className="bg-accents-light-blue p-4">
@@ -142,7 +162,7 @@ const YouMightKnowCard = ({ account, setFriends, key }: any) => {
           theme="outline"
           loading={isLoading}
           onClick={() => {
-            ignoreRequest({ token, username: account.username });
+            handleSubmit({ token, userId:account._id });
           }}
         >
           Ignore

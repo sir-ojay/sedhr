@@ -9,7 +9,7 @@ const FeedNotification = ({ openAccess }: any) => {
   const token: any = Cookies.get("sedherToken");
   const [deleteFeed] = useDeleteAPostMutation();
   return (
-    <div className=" bg-white rounded-lg mt-[100px] ml-10  absolute shadow-[0px 8px 16px 0px rgba(0, 0, 0, 0.2)] ">
+    <div className=" bg-white rounded-lg mt-[50px] ml-10  absolute shadow-[0px 8px 16px 0px rgba(0, 0, 0, 0.2)] ">
       <div className="w-[300px] h-[140px] p-[40px]  flex justify-between text-justify">
         <div>
           <div>
@@ -25,7 +25,7 @@ const FeedNotification = ({ openAccess }: any) => {
           </button>
         </div>
         <div>
-          <button>
+          <button className="hover-bg-[blue]">
           <Hamburger
             color="#0b211a"
             size={15}

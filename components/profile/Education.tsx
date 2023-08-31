@@ -114,7 +114,7 @@ const Education = ({ educations }: any) => {
 		try {
 			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
 			setUser(user);
-			console.log(user);
+			// console.log(user);
 		} catch (error) {
 			console.log(error);
 		}
