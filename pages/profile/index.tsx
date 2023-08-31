@@ -12,7 +12,7 @@ const ProfilePage = () => {
 			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
 			router.replace(`/profile/${user?.username}`);
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 		}
 	}, []);
 
