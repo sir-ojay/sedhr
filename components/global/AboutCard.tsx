@@ -18,8 +18,11 @@ const AboutCard = ({
 	description,
 	editable = false,
 }: AboutCardProps) => {
-	console.log(description);
+	// console.log(description);
 	const [showEditAboutModal, setShowEditAboutModal] = useState(false);
+	const editAbout = () => {
+		setShowEditAboutModal(!showEditAboutModal);
+	};
 	const methods = useForm({
 		mode: "onChange",
 		defaultValues: {
@@ -33,15 +36,13 @@ const AboutCard = ({
 		setValue,
 		formState: { errors, isValid },
 	} = methods;
-	const editAbout = () => {
-		setShowEditAboutModal(!showEditAboutModal);
-	};
+	
 	const token = Cookies.get("sedherToken");
 
 	const [addAbout, { isLoading }] = useAddAboutMutation();
 
 	const addAboutFunc = async (data: any) => {
-		console.log(data);
+		// console.log(data);
 		try {
 			const details = {
 				token: token as string,
@@ -54,6 +55,7 @@ const AboutCard = ({
 			setShowEditAboutModal(!showEditAboutModal);
 		} catch (err: any) {
 			toast.error(err?.data?.error);
+			toast.error(err?.data?.message);
 		}
 	};
 

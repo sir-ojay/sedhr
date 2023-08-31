@@ -217,7 +217,7 @@ const LargeDetailsCard = ({
 						</svg>
 						<span className='text-[#44BE9D] font-semibold'>OPEN</span>
 					</div>
-					<SmallAvatars name='Richard Ingwe' label='+300 Attendees' />
+					<SmallAvatars name='Ibrahim Sannu' label='+300 Attendees' />
 				</div>
 			)}
 			{(type === "account" || type === "profile") && (
@@ -252,13 +252,13 @@ const LargeDetailsCard = ({
 						underline={false}>
 						{user?.accountType}
 					</Button>
-					{type === "account" && (
+					{/* {type === "account" && (
 						<div className='flex gap-2'>
 							<Button>Message</Button>
 							<Button theme='outline' icon='more' />
 							<Button theme='outline' icon='notification' />
 						</div>
-					)}
+					)} */}
 				</div>
 			)}
 

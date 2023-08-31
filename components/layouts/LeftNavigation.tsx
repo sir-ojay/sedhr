@@ -103,7 +103,7 @@ LeftNavigation.defaultProps = {
         {
           name: "Marketplace",
           icon: "marketplace",
-        //   href: "/feed",
+          //   href: "/feed",
           external: true,
         },
       ],
@@ -125,6 +125,17 @@ LeftNavigation.defaultProps = {
           name: "Profile",
           icon: "profile",
           href: "/profile",
+        },
+      ],
+    },
+
+    {
+      name: "PAGES",
+      links: [
+        {
+          name: "Ibrahim Busineess",
+          // icon:"Pages",
+          // href:"/pages",
         },
       ],
     },

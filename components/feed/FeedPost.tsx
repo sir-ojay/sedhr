@@ -337,7 +337,7 @@ const FeedPost = ({
               <button
                 type="button"
                 className="flex items-center gap-2 xl:gap-4"
-                // onClick={() => shareLink(postData?.data.postLink)}
+                onClick={() => shareLink(postData?.data.postLink)}
               >
                 <div>
                   <img

@@ -66,6 +66,7 @@ const PersonalInformationForm = ({
   const country = watch("country");
 
   const idType = watch("idType");
+  const gender = watch("gender");
 
   const token = Cookies.get("sedherToken");
 

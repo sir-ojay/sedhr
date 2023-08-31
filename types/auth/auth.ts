@@ -8,6 +8,8 @@ export interface LoginResponse {
 	email: string;
 	username: string;
 	token: string;
+	error:string;
+	message:string
 }
 
 export interface LoginRequest {

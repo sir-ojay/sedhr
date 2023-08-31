@@ -20,7 +20,7 @@ const CreateSedherSynergi = ({ navigations }: CreateH2hProps) => {
   const { data, error, isLoading, isSuccess, isFetching } = useGetSnergisQuery({
     token: "token",
   });
-  console.log(data)
+  // console.log(data)
   
 
   return (

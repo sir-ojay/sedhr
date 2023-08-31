@@ -36,7 +36,7 @@ const ApplyRFPView = () => {
 
       setSynergi(userSynergi);
       // setSynergi(bookingData);
-      console.log(userSynergi);
+      // console.log(userSynergi);
     }
   }, [rfpData]);
 
@@ -158,9 +158,11 @@ const ApplyRFPView = () => {
               {synergi?.additionalDetails[2].fieldName}
               </div>
               <div className="text-sm font-normal text-[#0C1938]">
-                <button onClick={() => downloadImage(synergi?.additionalDetails[2].value)}>
+                <button 
+                onClick={() => downloadImage(synergi?.additionalDetails[2].value)}>
                 Download Document
               </button>
+    
               </div>
             </div>
 

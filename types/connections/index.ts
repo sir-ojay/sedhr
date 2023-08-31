@@ -1,4 +1,3 @@
-
 export type GetFriendsRequest = {
   token: string;
 };
@@ -19,44 +18,44 @@ export type SendFriendsRequest = {
   username: string;
 };
 
-export type IgnoreFriendResponse = {
-	data:[];
-};
-export type  IgnoreFriendRequest = {
-  token: string;
-  username: string;
-};
-
 export type SendFriendsResponse = {
-	data:[];
+  data: [];
 };
 
-export type FriendsRequest ={
-	data: {
-		receivedRequests: [
-		  {
-			accountType: string;
-			name: string;
-			profilePicture: string;
-			username: string;
-		  }
-		];
-	  };
-}
+export type IgnoreFriendResponse = {
+  data: string;
+};
+export type IgnoreFriendRequest = {
+  
+    userId: string;
+};
+
+export type FriendsRequest = {
+  data: {
+    receivedRequests: [
+      {
+        accountType: string;
+        name: string;
+        profilePicture: string;
+        username: string;
+      }
+    ];
+  };
+};
 
 export type GetFriendsRequestRequest = {
   token: string;
 };
 
 export type GetFriendsRequestResponse = {
- data: {
-	receivedRequests: [
-	  {
-		accountType: string;
-		name: string;
-		profilePicture: string;
-		username: string;
-	  }
-	];
+  data: {
+    receivedRequests: [
+      {
+        accountType: string;
+        name: string;
+        profilePicture: string;
+        username: string;
+      }
+    ];
   };
 };
