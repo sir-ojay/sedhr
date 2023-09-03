@@ -1,9 +1,14 @@
 import { LeftNavigationProps } from "@/types/layouts/LeftNavigationProps";
+// import { Pages } from "@/types/pages";
 import { Twirl as Hamburger } from "hamburger-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Navigations from "./Navigations";
+// import { useEffect, useState } from "react";
+// import Cookies from "js-cookie";
+// import { useGetAllPagesQuery } from "@/services/pages";
+
 
 const LeftNavigation = ({
   navigations,
@@ -133,9 +138,9 @@ LeftNavigation.defaultProps = {
       name: "PAGES",
       links: [
         {
-          name: "Ibrahim Busineess",
-          // icon:"Pages",
-          // href:"/pages",
+          name: "pages",
+          icon: "Pages",
+          href:"/pages/",
         },
       ],
     },

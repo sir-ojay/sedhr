@@ -227,8 +227,8 @@ const FeedPost = ({
          
         </header>
 
-        {isOpen &&<FeedNotification
-            openAccess={openAccess}/>}
+        {isOpen &&<FeedNotification shareLink={shareLink}  
+           />}
         <section className="space-y-5">
           <p className="text-sm xl:text-base leading-[160%]">
             {!fullContent && content.length > 220

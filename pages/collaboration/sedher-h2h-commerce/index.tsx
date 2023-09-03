@@ -49,7 +49,7 @@ const SedherH2hCommerce = ({ navigations }: SedherH2hCommerceProps) => {
   });
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     data && setH2HData(data.data as H2H[]);
   }, [isSuccess, data]);
 

@@ -1,6 +1,6 @@
 export type Onboarding = {
   amount: number;
-  description: string;
+  description: string[];
   interval: string;
   subscriptionName: string;
   planId: string;

@@ -1,5 +1,3 @@
-
-
 import CollaborationNav from "@/components/collaboration/CollaborationNav";
 import RecommendationCard from "@/components/connection/RecommendationCard";
 import SkillsCard from "@/components/connection/SkillsCard";
