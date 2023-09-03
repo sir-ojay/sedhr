@@ -140,7 +140,7 @@ LeftNavigation.defaultProps = {
         {
           name: "pages",
           icon: "Pages",
-          href:"/pages/",
+          href:"/pages/mybusiness-page",
         },
       ],
     },
