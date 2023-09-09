@@ -17,8 +17,17 @@ export type Pages = {
   updatedAt: string;
   __v: number;
   type: string;
-  link: string,
-  category: string
+  link: string;
+  category: string;
+  businessName:string;
+
+    name: string;
+    href: string | null;
+    icon: string;
+    query?: string;
+    slug?: string;
+    external?: boolean;
+  
 };
 
 

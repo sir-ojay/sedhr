@@ -11,7 +11,7 @@ import Navigations from "./Navigations";
 
 
 const LeftNavigation = ({
-  navigations,
+  navigations,navigationSettings,
   isOpen,
   setOpen,
 }: LeftNavigationProps) => {
@@ -36,7 +36,7 @@ const LeftNavigation = ({
           />
         </div>
       </div>
-      <Navigations navigations={navigations} />
+      <Navigations navigations={navigations} navigationSettings={navigationSettings} />
     </nav>
   );
 };
@@ -134,17 +134,39 @@ LeftNavigation.defaultProps = {
       ],
     },
 
-    {
-      name: "PAGES",
-      links: [
-        {
-          name: "pages",
-          icon: "Pages",
-          href:"/pages/mybusiness-page",
-        },
-      ],
-    },
-    {
+    // {
+    //   name: "PAGES",
+    //   links: [
+    //     {
+    //       name: "pages",
+    //       icon: "Pages",
+    //       href:"/pages/mybusiness-page",
+    //     },
+    //   ],
+    // },
+    // {
+    //   name: "SETTINGS",
+    //   links: [
+    //     {
+    //       name: "Settings",
+    //       icon: "settings",
+    //       href: "/settings",
+    //     },
+    //     {
+    //       name: "Help center",
+    //       icon: "help-center",
+    //       href: "/help-center",
+    //     },
+    //     {
+    //       name: "Logout",
+    //       icon: "logout",
+    //       href: null,
+    //     },
+    //   ],
+    // },
+  ],
+  navigationSettings: [
+ {
       name: "SETTINGS",
       links: [
         {
@@ -165,4 +187,7 @@ LeftNavigation.defaultProps = {
       ],
     },
   ],
+
+
+  
 };

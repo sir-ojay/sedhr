@@ -45,6 +45,14 @@ const LargeDetailsCard = ({
 
 	const router = useRouter();
 	const [user, setUser] = useState<LoginResponse>();
+	useEffect(() => {
+		try {
+			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
+			setUser(user);
+		} catch (error) {
+			console.log(error);
+		}
+	}, []);
 	const [showProfilePhoto, setShowProfilePhoto] = useState(false);
 	const editProfilePhoto = () => {
 		setShowProfilePhoto(!showProfilePhoto);
@@ -81,14 +89,7 @@ const LargeDetailsCard = ({
 		}
 	};
 
-	useEffect(() => {
-		try {
-			const user = JSON.parse(Cookies.get("sedherUser") || "{}");
-			setUser(user);
-		} catch (error) {
-			console.log(error);
-		}
-	}, []);
+
 	return (
 		<section className='rounded-xl bg-white overflow-hidden'>
 			<div className='relative'>

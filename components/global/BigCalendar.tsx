@@ -35,7 +35,7 @@ const BigCalendar = (props: any) => {
       );
   }, [isSuccess, data]);
 
-  console.log(availableData);
+  // console.log(availableData);
 
   const localizer = momentLocalizer(moment);
   return (

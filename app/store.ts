@@ -10,6 +10,7 @@ import { createWrapper } from "next-redux-wrapper";
 import { profile } from "@/services/profile";
 import { collaboration } from "@/services/collaborations";
 import { settings } from "@/services/settings";
+import { pages } from "@/services/pages";
 
 export function makeStore() {
 	return configureStore({
@@ -24,6 +25,7 @@ export function makeStore() {
 			[events.reducerPath]: events.reducer,
 			[connections.reducerPath]: connections.reducer,
 			[collaboration.reducerPath]: collaboration.reducer,
+			[pages.reducerPath]: pages.reducer,
 		},
 		middleware: (getDefaultMiddleware) =>
 			getDefaultMiddleware().concat(
@@ -36,7 +38,8 @@ export function makeStore() {
 				profile.middleware,
 				events.middleware,
 				connections.middleware,
-				collaboration.middleware
+				collaboration.middleware,
+				pages.middleware,
 			),
 	});
 }

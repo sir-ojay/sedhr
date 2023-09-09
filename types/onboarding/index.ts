@@ -4,6 +4,7 @@ export type Onboarding = {
   interval: string;
   subscriptionName: string;
   planId: string;
+  
 };
 
 export type VerifyPaymentResponse = {

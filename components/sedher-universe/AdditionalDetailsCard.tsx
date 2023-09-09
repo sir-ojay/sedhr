@@ -1,15 +1,20 @@
 import Button from "../global/Button";
 import WhiteWrapper from "../global/WhiteWrapper";
+import moment from "moment";
 
 type AdditionalDetailsCardProps = {
 	type: "group" | "event" | "account" | "experience" | "profile";
 	email?: string;
 	username?: string;
+	business?:string;
+	createdAt?:string
 };
 
 const AdditionalDetailsCard = ({
+	business,
 	type,
 	email,
+	createdAt,
 	username,
 }: AdditionalDetailsCardProps) => {
 	return (
@@ -39,10 +44,10 @@ const AdditionalDetailsCard = ({
 								</svg>
 
 								<div className='font-epilogue w-[calc(100%-40px)]'>
-									<div className='text-[#4C4475]'>Profile link</div>
-									<div className='text-[#3772FF] w-full cursor-pointer text-sm break-words'>
-										{process.env.NEXT_PUBLIC_APP_URL + `profile/${username}`}
-									</div>
+									<div className='text-[#4C4475]'>{business === 'business'? "Business link":"Profile link"}</div>
+									<div className='text-[#3772FF] w-full cursor-pointer text-sm break-words'> <a href={business === 'business' ?  `https://sedhr.vercel.app/pages/business/${username}`  :  `https://sedhr.vercel.app/profile/${username}`}>{business ==='business'?  `https://sedhr.vercel.app/pages/business/${username}`  :  `https://sedhr.vercel.app/profile/${username}`}
+							</a>  
+											</div>
 								</div>
 							</div>
 							<div className='flex gap-4'>
@@ -68,7 +73,7 @@ const AdditionalDetailsCard = ({
 									/>
 								</svg>
 								<div className='font-epilogue'>
-									<div className='text-[#4C4475'>Email</div>
+									<div className='text-[#4C4475'>{business==='business'? "Business Email":"Email"}</div>
 									<div className='text-[#2A2069]'>{email}</div>
 								</div>
 							</div>
@@ -111,7 +116,7 @@ const AdditionalDetailsCard = ({
 
 								<div className='font-epilogue'>
 									<div className='text-[#4C4475]'>Connected</div>
-									<div className='text-[#2A2069]'>December 20, 2022</div>
+									<div className='text-[#2A2069]'>{moment(createdAt).format("YYYY, MMMM, DD")} </div>
 								</div>
 							</div>
 							<div className='flex gap-4'>

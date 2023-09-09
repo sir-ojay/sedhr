@@ -24,7 +24,7 @@ const AccountPackage = ({ makePayment, naming }: AccountPackageProps) => {
   useEffect(() => {
     data && setSubData(data?.data[0]);
   }, [isSuccess, data]);
-  //   console.log(subData);
+    console.log(subData);
   return (
     <div className="w-[340px] bg-white p-8">
       <h4 className="text-lg font-semibold font-epilogue text-primary">
@@ -52,7 +52,7 @@ const AccountPackage = ({ makePayment, naming }: AccountPackageProps) => {
         </div>
         <div className="space-y-4">
           {}
-          {subData?.description.map((item, idx) => (
+          {/* {subData?.description.map((item, idx) => (
             <div key={idx} className="flex items-center gap-2">
               <svg
                 width="16"
@@ -72,7 +72,7 @@ const AccountPackage = ({ makePayment, naming }: AccountPackageProps) => {
               </svg>
               <span className="text-sm text-dark-100">{item}</span>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

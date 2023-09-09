@@ -9,7 +9,7 @@ const postRequest = (url: string, details: any, token?: string) => ({
   },
   body: details,
 });
-const getRequest = (url: string, token: string) => ({
+const getRequest = (url: string, token?: string) => ({
   url,
   headers: {
     Authorization: `Bearer ${token}`,
@@ -38,38 +38,64 @@ export const pages = createApi({
   tagTypes: ["Pages", "User"],
 
   endpoints: (builder) => ({
-    // updateCoverPhoto: builder.mutation({
-    //   query: (credentials) =>
-    //     postRequest(
-    //       "/users/cover-picture",
-    //       credentials.body,
-    //       credentials.token
-    //     ),
-    //   invalidatesTags: ["Pages"],
-    // }),
-    updateProfilePhoto: builder.mutation({
+    updateCoverPhoto: builder.mutation({
       query: (credentials) =>
         postRequest(
-          "/pages/profile-picture",
+          "pages/cover-picture",
           credentials.body,
           credentials.token
         ),
       invalidatesTags: ["Pages"],
     }),
-    userPagesDetails: builder.query({
+    updateProfilePhoto: builder.mutation({
       query: (credentials) =>
-        getRequest(`/users/${credentials.id}/Pages`, credentials.token),
+        postRequest(
+          "pages/profile-picture",
+          credentials.body,
+          credentials.token
+        ),
+      invalidatesTags: ["Pages"],
+    }),
+    // userPagesDetails: builder.query({
+    //   query: (credentials) =>
+    //     getRequest(`/users/${credentials.id}/Pages`, credentials.token),
+    //   providesTags: ["Pages"],
+    // }),
+    businessNameDetails: builder.query({
+      query: (credentials) =>
+        getRequest(`/pages/${credentials.id}/${credentials.businessName}`, credentials.token),
+      providesTags: ["Pages"],
+    }),
+    getAnalytics: builder.query({
+      query: (credentials) =>
+        getRequest(`/pages/analytics}`, credentials.token),
       providesTags: ["Pages"],
     }),
     getAllPages: builder.query<GetAllPagesResponse, GetAllPagesRequest>({
-      query: (credentials) => getRequest(`pages`, credentials.token),
+      query: (credentials) => getRequest(`/pages`, credentials.token),
       providesTags: ["Pages"],
     }),
     getAllPosts: builder.query<GetAllPostsResponse, GetAllPostsRequest>({
-      query: (credentials) => getRequest(`pages/post`, credentials.token),
+      query: (credentials) => getRequest(`/pages/post`, credentials.token),
       providesTags: ["Pages"],
     }),
+    updateLicense: builder.mutation({
+    query: (credentials) =>
+    updateRequest(
+        `pages/license`,
+        credentials.body,credentials.token
+      ),
+      invalidatesTags: ["Pages"],
+  }),
+    updatePage: builder.mutation({
+    query: (credentials) =>
+    updateRequest(
+        `/pages/update`,
+        credentials.body,credentials.token
+      ),
+      invalidatesTags: ["Pages"],
+  }),
   }),
 });
 
-export const { useGetAllPagesQuery,useGetAllPostsQuery } = pages;
+export const { useGetAllPagesQuery,useGetAllPostsQuery,useBusinessNameDetailsQuery,useUpdateProfilePhotoMutation,useUpdateCoverPhotoMutation, useGetAnalyticsQuery, useUpdateLicenseMutation, useUpdatePageMutation} = pages;

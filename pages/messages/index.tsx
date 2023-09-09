@@ -45,7 +45,7 @@ const Messages = ({ navs, defaultGrid }: MessagesProps) => {
 				<section className='space-y-6'>
 					<ListSortHeader
 						title=''
-						results={73}
+						results={0}
 						setGrid={setGrid}
 						defaultGrid={defaultGrid}
 					/>

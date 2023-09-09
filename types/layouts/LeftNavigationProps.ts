@@ -12,4 +12,15 @@ export type LeftNavigationProps = {
 			external?: boolean;
 		}[];
 	}[];
+	navigationSettings: {
+		name: string;
+		links: {
+			name: string;
+			href: string | null;
+			icon: string;
+			query?: string;
+			slug?: string;
+			external?: boolean;
+		}[];
+	}[];
 };

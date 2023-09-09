@@ -21,7 +21,7 @@ type ChatsProps = {
 };
 const Chats = () => {
   const [userIds, getUserIds] = useState({});
-  console.log({ userIds });
+  // console.log({ userIds });
   const {
     query: { view },
   } = useRouter();

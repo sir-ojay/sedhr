@@ -2,7 +2,7 @@ export const types = [
   {
     title: "Patient care centres",
     description:
-      "We are dedicated to providing personalized care that addresses your specific needs and support you every step of the way.",
+      "We are dedicated to providing  care that addresses your specific needs and support you every step of the way.",
     buttonColor: "#7F4433",
     iconColour: "#7F44331A",
     icon: "patient-care-centre",
@@ -10,7 +10,7 @@ export const types = [
   {
     title: "Business",
     description:
-      "We understand that running a healthcare business can be challenging, so we provide the support and resources you need to succeed.",
+      "We understand that running a healthcare business can be challenging, so we provide the  resources you need to succeed.",
     buttonColor: "#4CAF50",
     iconColour: "#4CAF5033",
     icon: "business",
@@ -18,7 +18,7 @@ export const types = [
   {
     title: "HCP's",
     description:
-      "We offer a range of resources and tools designed specifically for HCPs, including medical education materials, clinical practice guidelines, and more.",
+      "We offer a range of resources and tools designed for HCPs, including medical materials and guidelines, and more.",
     buttonColor: "#FF5630E5",
     iconColour: "#FF563033",
     icon: "hcp",
