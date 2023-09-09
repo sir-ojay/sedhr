@@ -27,7 +27,7 @@ const ConversationSection = ({ userIds }: any) => {
     try {
       setToken(zegoToken);
       zim.login(newUserDetails, zegoToken);
-    } catch (error) {}
+    } catch (error) {}    
   };
 
   let { data } = useGetMessageQuery({

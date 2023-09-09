@@ -60,7 +60,7 @@ const BusinessAnalytics = () => {
 		},
 		{
 			name: "Edit Page",
-			href: `/pages/${user?.accountType}/${user?.name}/Edit Page`,
+      href: `/pages/${user?.accountType}/${user?.name}/edit`,
 		},
 	];
 

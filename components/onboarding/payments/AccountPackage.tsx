@@ -51,8 +51,8 @@ const AccountPackage = ({ makePayment, naming }: AccountPackageProps) => {
           This plan includes
         </div>
         <div className="space-y-4">
-          {}
-          {/* {subData?.description.map((item, idx) => (
+      
+          {subData?.description.map((item, idx) => (
             <div key={idx} className="flex items-center gap-2">
               <svg
                 width="16"
@@ -72,7 +72,7 @@ const AccountPackage = ({ makePayment, naming }: AccountPackageProps) => {
               </svg>
               <span className="text-sm text-dark-100">{item}</span>
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
     </div>
