@@ -6,10 +6,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { LoginResponse } from "@/types/auth/auth";
-import {
-  useBusinessNameDetailsQuery,
-  useUpdatePageMutation,
-} from "@/services/pages";
+import { useBusinessNameDetailsQuery, useUpdatePageMutation } from "@/services/pages";
 import LargeDetailsBusinessCard from "@/components/global/LargeDetailsBusinessCard";
 import { useUploadDocumentMutation } from "@/services/upload";
 import { useUpdateCoverPhotoMutation } from "@/services/pages";
@@ -27,10 +24,10 @@ const EditBusinessPage = () => {
   const methods = useForm({
     mode: "onChange",
     defaultValues: {
-      TagLine: "",
+		TagLine:"",
       businessName: "",
       link: "",
-      profilePicture: null,
+	  profilePicture:null
     },
   });
 
@@ -106,34 +103,35 @@ const EditBusinessPage = () => {
   const [upload, { isLoading: isLoadingUploadDocument }] =
     useUploadDocumentMutation();
 
-  const EditBusinessPage = async (data: any) => {
-    let details = {};
-    try {
-      if (data.image) {
-        const url = (await upload({
-          file: data.image as any,
-          token: token as string,
-        }).unwrap()) as any;
-
-        details = {
-          token: token as string,
-
-          body: {
-            pageId: data._id,
-            type: "business",
-            ...editDetails,
-            profilePicture: url.data[0],
-          },
-        };
-      }
-      const response = await useUpdatePageMutation(details).unwrap();
-      // console.log(response);
-      toast.success(response.message);
-      setShowEditCoverPicture(false);
-    } catch (err: any) {
-      toast.error(err?.data?.error);
-    }
-  };
+	const EditBusinessPage = async (data: any) => {
+		let details = {};
+		try {
+		  if (data.image) {
+			const url = (await upload({
+			  file: data.image as any,
+			  token: token as string,
+			}).unwrap()) as any;
+	
+			details = {
+			  token: token as string,
+			  body: {
+				body: {
+				  pageId: data._id,
+				  type: "business",
+				 ...editDetails,
+				profilePicture:url.data[0]
+				},
+			  },
+			};
+		  }
+		  // const response = await useUpdatePageMutation(details).unwrap();
+		  // console.log(response);
+		  // toast.success(response.message);
+		  setShowEditCoverPicture(false);
+		} catch (err: any) {
+		  toast.error(err?.data?.error);
+		}
+	  };
 
   const editCoverPhoto = async (data: any) => {
     let details = {};
@@ -184,12 +182,7 @@ const EditBusinessPage = () => {
 
             <WhiteWrapper>
               <ListNav navs={navs} type="slug" />
-              <button
-                onClick={() => editPage()}
-                className="pl-10 font-semibold  pb-2 "
-              >
-                Edit Page
-              </button>
+             
             </WhiteWrapper>
 
             <div>
@@ -221,10 +214,9 @@ const EditBusinessPage = () => {
                       </button>
                     </div>
                     <div className="flex items-center ">
+						
                       <div className="mt-6 ">
-                        <h4 className="mb-3 font-semibold">
-                          Update basic information to increase page Discovery.
-                        </h4>
+					  <h4 className="mb-3 font-semibold">Update basic information to increase page Discovery.</h4>
                         <div>
                           <Input
                             required
@@ -268,22 +260,23 @@ const EditBusinessPage = () => {
                           />
                         </div>
 
-                        <div className="mt-6">
-                          <div className="">
-                            <Button
-                              // loading={loading}
-                              type="submit"
-                              size="sm"
-                              className="text-sm xl:text-base font-normal w-full"
-                              onClick={() => EditBusinessPage(data)}
-                            >
-                              Save
-                            </Button>
-                          </div>
-                        </div>
+						<div className="mt-6">
+                    <div className="">
+                      <Button
+                        // loading={loading}
+                        type="submit"
+                        size="sm"
+                        className="text-sm xl:text-base font-normal w-full"
+						onClick={()=>EditBusinessPage(data)}
+                      >
+                        Save
+                      </Button>
+                    </div>
+                  </div>
                       </div>
                     </div>
                   </form>
+                
                 </FormProvider>
               </Modal>
             </div>

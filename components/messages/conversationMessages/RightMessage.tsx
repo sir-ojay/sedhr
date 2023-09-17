@@ -3,7 +3,7 @@ import React from "react";
 import Timeconverter from "@/helpers/timeconverter";
 
 const RightMessage = ({ message }: any) => {
-  console.log({ contenttype: message });
+  // console.log({ contenttype: message });
   return (
     <div className="flex justify-end mb-4 space-x-6">
       <div className="max-w-sm  ">

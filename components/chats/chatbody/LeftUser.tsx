@@ -7,7 +7,7 @@ const LeftUser = ({ message, userIds}: any) => {
     <div className="flex  mb-4  space-x-6">
       <Avatar
         size={44}
-        name={"Jan Mayer"}
+        name={"Sedher"}
         shape="circle"
         image={userIds?.conversationPartner?.profilePicture}
       />

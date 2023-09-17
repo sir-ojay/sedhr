@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 
 type AvatarProps = {
 	image?: string;
-	name: string;
+	name: string ;
 	size: number;
 	rounded?: boolean;
 	shape?: "circle" | "square";

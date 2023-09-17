@@ -256,7 +256,8 @@ const Details = () => {
               <Button
                 theme="outline"
                 className="w-full mt-5"
-                onClick={() => router.push("/connection/1")}
+                onClick={() => router.push(data?.data.owner.accountType==='business'?`/pages/business/${data?.data.owner.name}`:`/profile/${data?.data.owner.name}`)}
+            
               >
                 view profile
               </Button>

@@ -19,7 +19,7 @@ const ApplyForRFP = () => {
   });
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     data && setRFPData(data.data as RFP[]);
   }, [isSuccess, data]);
 

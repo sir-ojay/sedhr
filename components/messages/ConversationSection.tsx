@@ -22,6 +22,7 @@ const ConversationSection = ({ userIds }: any) => {
   const zegoToken = generateToken(id, 7200);
 
   const newUserDetails = { userName: user.username, userID: id };
+  
 
   const handleLogin = () => {
     try {
@@ -54,7 +55,7 @@ const ConversationSection = ({ userIds }: any) => {
       "connectionStateChanged",
       function (zim, { state, event, extendedData }) {
         if (state === 0 && event === 3) {
-          zim.login(newUserDetails, token);
+          // zim.login(newUserDetails, token);
         }
       }
     );

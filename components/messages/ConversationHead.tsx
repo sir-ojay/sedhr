@@ -1,7 +1,21 @@
 import React from "react";
 import Avatar from "../global/Avatar";
+import { LoginResponse } from "@/types/auth/auth";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 export const ConversationHead = ({ userIds }: any) => {
+  const [user, setUser] = useState<LoginResponse>();
+
+  useEffect(() => {
+    try {
+      const user = JSON.parse(Cookies.get("sedherUser") || "{}");
+      setUser(user);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   return (
     <>
       <div className="flex items-center justify-center mt-[12px]">
@@ -9,18 +23,20 @@ export const ConversationHead = ({ userIds }: any) => {
           <div className="flex justify-center content-center ">
             <Avatar
               size={88}
-              name={"Jan Mayer"}
+              name={`${user?.name}`}
               shape="circle"
-              image={userIds?.conversationPartner?.profilePicture}
+              image={user?.profilePicture}
             />
           </div>
           <div>
             <h4 className="font-semibold bg-light-blue   text-dark-900 text-[24px] font-archivo cursor-pointer">
-              {userIds?.conversationPartner?.name}
+              {userIds?.conversationPartner?.name} {user?.name}
             </h4>
             {/* <p className="font-normal text-base text-neutral-60">
               Designer candidate
             </p> */}
+          <h5 className="text-[16px] text-accents-brown font-normal">{user?.accountType}</h5>
+
           </div>
         </div>
       </div>

@@ -1,8 +1,23 @@
 import React from "react";
 import Avatar from "../global/Avatar";
+import { LoginResponse } from "@/types/auth/auth";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+
 
 const ChatHeader = ({ userIds }: any) => {
-  console.log(userIds?.conversationPartner?.profilePicture);
+  const [user, setUser] = useState<LoginResponse>();
+
+  useEffect(() => {
+    try {
+      const user = JSON.parse(Cookies.get("sedherUser") || "{}");
+      setUser(user);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  // console.log(userIds?.conversationPartner?.profilePicture);
   return (
     <>
       <div className="flex items-center justify-center mt-[12px]">
@@ -10,9 +25,9 @@ const ChatHeader = ({ userIds }: any) => {
           <div className="flex justify-center content-center ">
             <Avatar
               size={88}
-              name={"Jan Mayer"}
+              name={`${user?.name}`}
               shape="circle"
-              image={userIds?.conversationPartner?.profilePicture}
+              image={user?.profilePicture}
             />
           </div>
           <div>

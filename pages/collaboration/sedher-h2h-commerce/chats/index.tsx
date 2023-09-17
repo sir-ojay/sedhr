@@ -8,6 +8,7 @@ import { requireAuthentication } from "hoc/requireAuthentication";
 import dynamic from "next/dynamic";
 
 
+
 const ChatSection = dynamic(() => import("@/components/chats/ChatSection"), {
   ssr: false,
 });
