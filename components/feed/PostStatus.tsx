@@ -46,7 +46,15 @@ const PostStatus = () => {
 
   const onSubmit: SubmitHandler<PostRequest | any> = async (data) => {
     try {
-      let details = {} as PostRequest;
+      // let details = {} as PostRequest;
+      let details:PostRequest = {
+        token: token as string,
+        body: {
+          content: data.post,
+          postType: data.postType.toString().toLowerCase(),
+          contentType: "text",
+        },
+      };
 
       if (data.media) {
         const url = (await upload({
@@ -74,22 +82,15 @@ const PostStatus = () => {
           },
         };
       } 
-	  else {
-        details = {
-          token: token as string,
-          body: {
-            content: data.post,
-            postType: data.postType.toString().toLowerCase(),
-            contentType: "text",
-          },
-        };
-      }
+	  // else {
+       
+    //   }
 
       // console.log(details);
       const result = (await post(details as any).unwrap()) as PostResponse;
       // console.log(result);
       toast.success("Post created successfully");
-      setShowPostModal(false);
+        setShowPostModal(false);
     } catch (err: any) {
       toast.error(err?.data?.message);
     }

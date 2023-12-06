@@ -28,7 +28,7 @@ const Details = () => {
   });
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     // @ts-ignore: Unreachable code error
     data && setSnergiData(data?.data);
   }, [isSuccess, data]);

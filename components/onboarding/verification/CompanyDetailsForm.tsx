@@ -74,7 +74,7 @@ const CompanyDetailsForm = ({
   } = methods;
 
   const details = watch();
-  const options = ["1-10", "11-20", "21-30", "31-40"];
+  const options = ["1-10", "11-20", "21-30", "31-40","41-50", "51-60", "61-70"];
 
   const handleStep = (step: number) => {
     const body = {

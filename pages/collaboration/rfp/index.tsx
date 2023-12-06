@@ -115,7 +115,7 @@ const RFPPage = ({ navigations }: RFPProps) => {
             ))}
           </section>
         </div>
-      </CollaborationWrapper>
+      </CollaborationWrapper>x
     </DefaultLayout>
   );
 };

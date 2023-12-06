@@ -3,6 +3,7 @@ export type Pages = {
   views: number;
   maleViews: number;
   femaleViews: number;
+  profilePicture: string;
   mediaUrl: null;
   _id: string;
   postCreatorId: string;
