@@ -94,17 +94,30 @@ const verification: NextPage = () => {
           idDetails: details,
         } as any,
       };
-      console.log("onboarding data", data);
+      // console.log("onboarding data", data);
       const result = await completeOnboarding(data).unwrap();
-      toast.success("Onboarding completed successfully");
+      toast.success("An approval email will be sent in about 24 hours");
+      
+      router.push(`/onboarding/awaiting`);
       // toast.error("User already onboarded, please login with your credentials");
-      console.log("result", result);
+      // console.log("result", result);
       //   To route to start
-      router.push(`/onboarding/start`);
-    } catch (err: any) {
-      console.log("err", err);
-      toast.error(err?.data?.message || err.data.error);
-    }
+
+    //   router.push(`/onboarding/start`);
+    // } catch (err: any) {
+    //   console.log("err", err);
+    //   toast.error(err?.data?.message || err?.data?.error);
+    // }
+
+        // Set a timer for 24 hours (24 * 60 * 60 * 1000 milliseconds)
+        setTimeout(() => {
+          // Redirect or perform any action after 24 hours
+          router.push(`/onboarding/start`);
+        }, 24 * 60 * 60 * 1000);
+      } catch (err: any) {
+        console.log("err", err);
+        toast.error(err?.data?.message || err?.data?.error);
+      }
   };
 
   return (
