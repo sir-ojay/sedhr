@@ -42,8 +42,20 @@ const SigninForm = () => {
 			Cookies.set("sedherToken", user.token, {
 				expires: 1,
 			});
-			if (user.accountType) router.push("/feed");
-			else router.push("/onboarding/account");
+			// if (user.accountType && user.accountStatus === "approved" || "active" ) {
+			// 	router.push("/feed")};
+			// else if ( user.accountStatus === "deleted" ){
+			// 	toast.error("Your account has been deleted.");
+			// };
+			// else router.push("/onboarding/account");
+
+			if (user.accountType && user.accountStatus === "approved" || "activate" ) {
+					router.push("/feed");
+			} else if (user.accountStatus === "disapproved" || "closed" || "banned" || "inactive" || "drop off" || "under review" || "hibernated") {
+				router.push("/onboarding/status")
+			} else {
+				router.push("/onboarding/account")
+			}
 		} catch (err: any) {
 			toast.error(err?.data?.error);
 		}

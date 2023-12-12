@@ -5,6 +5,7 @@ export interface LoginResponse {
 	hasOnboarded: boolean;
 	company: string;
 	accountType: string;
+	accountStatus: string;
 	email: string;
 	username: string;
 	token: string;
