@@ -40,6 +40,13 @@ const PersonalInformationForm = ({
 
   const { type } = router.query;
 
+     // Load data from sessionStorage on component mount
+     useEffect(() => {
+      const storedData = JSON.parse(sessionStorage.getItem('personalInformationData')) || {};
+      methods.reset(storedData);
+    }, []);
+
+
   const methods = useForm({
     defaultValues: {
       phoneNumber: "",
@@ -79,6 +86,8 @@ const PersonalInformationForm = ({
       idName: undefined,
     };
     personalInformationForm(body);
+     // Save data to sessionStorage
+     sessionStorage.setItem('personalInformationData', JSON.stringify(body));
     router.push({
       pathname: "/onboarding/verification",
       query: {

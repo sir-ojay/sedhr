@@ -47,6 +47,13 @@ const CompanyDetailsForm = ({
   const [lab, setLab] = useState("");
   const [pharmacy, setPharmacy] = useState("");
 
+
+     // Load data from sessionStorage on component mount
+     useEffect(() => {
+      const storedData = JSON.parse(sessionStorage.getItem('companyInformationData')) || {};
+      methods.reset(storedData);
+    }, []);
+
   const methods = useForm({
     defaultValues: {
       numberOfBeds: "",
@@ -81,6 +88,8 @@ const CompanyDetailsForm = ({
       ...details,
     };
     companyInformationForm(body);
+        // Save data to sessionStorage
+    sessionStorage.setItem('companyInformationData', JSON.stringify(body));
     router.push({
       pathname: "/onboarding/verification",
       query: {

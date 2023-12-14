@@ -31,6 +31,13 @@ const BusinessInformationForm = ({
   const router = useRouter();
   const { type } = router.query;
 
+
+    // Load data from sessionStorage on component mount
+    useEffect(() => {
+      const storedData = JSON.parse(sessionStorage.getItem('businessInformationData')) || {};
+      methods.reset(storedData);
+    }, []);
+
   const methods = useForm({
     defaultValues: {
       phoneNumber: "",
@@ -104,6 +111,8 @@ const BusinessInformationForm = ({
       ],
     };
     businessInformationForm(body);
+        // Save data to sessionStorage
+        sessionStorage.setItem('businessInformationData', JSON.stringify(body));
     router.push({
       pathname: "/onboarding/verification",
       query: {
@@ -113,6 +122,7 @@ const BusinessInformationForm = ({
     });
   };
 
+  
   useEffect(() => {}, [errors]);
   return (
     <>

@@ -49,7 +49,7 @@ const SigninForm = () => {
 			// };
 			// else router.push("/onboarding/account");
 
-			if (user.accountType && user.accountStatus === "approved" || "activate" ) {
+			if (user.accountType && user.accountStatus === "approved"  && user.hasOnboarded) {
 					router.push("/feed");
 			} else if (user.accountStatus === "disapproved" || "closed" || "banned" || "inactive" || "drop off" || "under review" || "hibernated") {
 				router.push("/onboarding/status")
