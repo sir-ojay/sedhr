@@ -1,6 +1,6 @@
 import CreateH2HWrapper from "@/components/collaboration/sedher-h2h-commerce/CreateH2HWrapper";
 import Button from "@/components/global/Button";
-import GoBackButton from "@/components/global/GoBackButton";
+// import GoBackButton from "@/components/global/GoBackButton";
 import Input from "@/components/global/Input";
 import WhiteWrapper from "@/components/global/WhiteWrapper";
 import DefaultLayout from "@/layouts/DefaultLayout";
