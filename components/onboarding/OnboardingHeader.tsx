@@ -63,7 +63,7 @@ const OnboardingHeader = ({
               >
                 {_step.title !== "dash" ? (
                   <Link
-                    href={`/onboarding/${_step.title.toLowerCase()}`}
+                    href={``}
                     className="flex gap-4 cursor-pointer"
                   >
                     <div

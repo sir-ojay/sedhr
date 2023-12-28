@@ -32,6 +32,7 @@ const SigninForm = () => {
 		try {
 			const body = {
 				...data,
+				email: data.email.toLowerCase(),
 				rememberMe: undefined,
 			};
 			const user = (await login(body).unwrap()) as LoginResponse;
@@ -42,19 +43,21 @@ const SigninForm = () => {
 			Cookies.set("sedherToken", user.token, {
 				expires: 1,
 			});
-			// if (user.accountType && user.accountStatus === "approved" || "active" ) {
-			// 	router.push("/feed")};
-			// else if ( user.accountStatus === "deleted" ){
-			// 	toast.error("Your account has been deleted.");
-			// };
-			// else router.push("/onboarding/account");
 
 			if (user.accountType && user.accountStatus === "approved"  && user.hasOnboarded) {
 					router.push("/feed");
-			} else if (user.accountStatus === "disapproved" || "closed" || "banned" || "inactive" || "drop off" || "under review" || "hibernated") {
-				router.push("/onboarding/status")
-			} else {
+			} 
+			else if(!user.hasOnboarded){
 				router.push("/onboarding/account")
+			}
+			else if (
+				['disapproved', 'closed', 'banned', 'inactive', 'drop off', 'under review', 'hibernated'].includes(
+				  user.accountStatus
+				)
+			  ) {
+				router.push('/onboarding/status');
+			  } else {
+				router.push("")
 			}
 		} catch (err: any) {
 			toast.error(err?.data?.error);

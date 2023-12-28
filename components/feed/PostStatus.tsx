@@ -92,7 +92,7 @@ const PostStatus = () => {
       toast.success("Post created successfully");
         setShowPostModal(false);
     } catch (err: any) {
-      toast.error(err?.data?.message);
+      toast.error(err?.data?.error);
     }
   };
 

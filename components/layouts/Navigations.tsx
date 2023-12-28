@@ -63,7 +63,7 @@ const Navigations = ({
             </>
           )}
 
-          {/* workimg on addimg condition */}
+          {/* workimg on adding condition */}
           <ul className="flex flex-col gap-[2px] px-4">
             {navigation.links.map((item) => (
               <li
@@ -92,7 +92,18 @@ const Navigations = ({
                     </div>
                   </Link>
                 ) : (
-                  ""
+                  <div
+                    className={`nav-hover text-sm xl:text-base cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}
+                  >
+                    <img
+                      src={`/assets/icons/layouts/${item.icon}.svg`}
+                      className="group-hover:invert-[25%] group-hover:sepia-[49%] group-hover:saturate-[527%] group-hover:hue-rotate-[137deg] group-hover:brightness-[93%]"
+                    />
+
+                    <div className="leading-[160%] font-medium">
+                      {item.name}
+                    </div>
+                  </div>
                 )}
               </li>
             ))}
@@ -100,42 +111,44 @@ const Navigations = ({
         </div>
       ))}
 
-      <ul className="flex flex-col gap-[2px] px-4">
+     {user?.hasOnboarded && <div className="flex flex-col gap-[2px] px-4">
         <p className="mt-5 mb-3 px-4 text-[#3772ff7f] text-xs xl:text-sm font-semibold">
           PAGES
         </p>
-        {pageData.map((item) => (
-          <li
-            key={item.businessName}
-            title={item.businessName}
-            aria-label={`link to ${item.businessName}`}
-            className="flex items-center cursor-pointer"
-          >
-            {item.link && user?.hasOnboarded ? (
-              <Link
-                href={`${item.link}${item.slug ? item.slug : ""}${
-                  item.query ? item.query : ""
-                }`}
-                target={item.external ? "_blank" : "_self"}
-                className={`nav-hover text-sm xl:text-base ${
-                  location.pathname.includes(item.link) ? "active" : ""
-                } cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}
-              >
-                <img
-                  src={item.profilePicture}
-                  className="group-hover:invert-[25%] group-hover:sepia-[49%] group-hover:saturate-[527%] group-hover:hue-rotate-[137deg] group-hover:brightness-[93%]"
-                />
+        <ul>
+          {pageData.map((item) => (
+            <li
+              key={item.businessName}
+              title={item.businessName}
+              aria-label={`link to ${item.businessName}`}
+              className="flex items-center cursor-pointer"
+            >
+              {item.link && user?.hasOnboarded ? (
+                <Link
+                  href={`${item.link}${item.slug ? item.slug : ""}${
+                    item.query ? item.query : ""
+                  }`}
+                  target={item.external ? "_blank" : "_self"}
+                  className={`nav-hover text-sm xl:text-base ${
+                    location.pathname.includes(item.link) ? "active" : ""
+                  } cursor-pointer flex items-center w-full px-4 py-3 gap-x-4 transition-all ease-in group-hover:text-primary text-dark-100 group-hover:bg-[#E7F6FD] rounded-[5px]`}
+                >
+                  <img
+                    src={item.profilePicture}
+                    className="group-hover:invert-[25%] group-hover:sepia-[49%] group-hover:saturate-[527%] group-hover:hue-rotate-[137deg] group-hover:brightness-[93%]"
+                  />
 
-                <div className="leading-[160%] font-medium">
-                  {item.businessName}
-                </div>
-              </Link>
-            ) : (
-              ""
-            )}
-          </li>
-        ))}
-      </ul>
+                  <div className="leading-[160%] font-medium">
+                    {item.businessName}
+                  </div>
+                </Link>
+              ) : (
+                ""
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>}
       {navigationSettings.map((navigation) => (
         <div key={navigation.name} className="pb-3">
           {navigation.name && (

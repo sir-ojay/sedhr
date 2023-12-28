@@ -24,9 +24,8 @@ const awaiting: NextPage = () => {
 
 
 	return (
-		<DefaultLayout title='Sedher | Onboarding | Start' showHeader={false}>
-			<OnboardingHeader step={4}>
-				<section className='flex w-full mt-28 md:mt-[200px] justify-center'>
+		<DefaultLayout title='Sedher | Onboarding' showHeader={false}>
+		<section className='flex w-full mt-10 md:mt-[50px] justify-center'>
 					<div className='max-w-[728px] text-center w-full rounded-[15px] shadow-2xl px-4 bg-white py-20 flex flex-col items-center gap-4 md:gap-6'>
 						<div>
 							<img
@@ -47,7 +46,6 @@ const awaiting: NextPage = () => {
 						</p>
 					</div>
 				</section>
-			</OnboardingHeader>
 		</DefaultLayout>
 	);
 };

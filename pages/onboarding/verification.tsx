@@ -97,7 +97,6 @@ const verification: NextPage = () => {
       // console.log("onboarding data", data);
       const result = await completeOnboarding(data).unwrap();
       toast.success("An approval email will be sent in about 24 hours");
-      
       router.push(`/onboarding/awaiting`);
       // toast.error("User already onboarded, please login with your credentials");
       // console.log("result", result);

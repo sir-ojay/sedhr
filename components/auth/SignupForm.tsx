@@ -30,7 +30,7 @@ const SignupForm = () => {
 	const onSubmit: SubmitHandler<VerifyEmailRequest> = async (data) => {
 		try {
 			const body = {
-				email: data.email,
+				email: data.email.toLowerCase(),
 			};
 			const user = await verifyOTP(body).unwrap();
 			toast.success(user.message);
@@ -38,7 +38,7 @@ const SignupForm = () => {
 				pathname: "/auth/signup",
 				query: {
 					step: "2",
-					email: data.email,
+					email: data.email.toLowerCase(),
 					firstName: data.firstName,
 					lastName: data.lastName,
 					// otp: user.data.otp,
@@ -46,6 +46,7 @@ const SignupForm = () => {
 			});
 		} catch (err: any) {
 			toast.error(err?.data?.message);
+			toast.error(err?.data?.error);
 		}
 	};
 	return (
