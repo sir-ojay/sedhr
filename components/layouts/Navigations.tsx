@@ -111,7 +111,7 @@ const Navigations = ({
         </div>
       ))}
 
-     {user?.hasOnboarded && <div className="flex flex-col gap-[2px] px-4">
+     {user?.hasOnboarded && user?.accountType === "business" && <div className="flex flex-col gap-[2px] px-4">
         <p className="mt-5 mb-3 px-4 text-[#3772ff7f] text-xs xl:text-sm font-semibold">
           PAGES
         </p>
