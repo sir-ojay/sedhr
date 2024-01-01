@@ -78,10 +78,10 @@ const PersonalInformationForm = ({
   const token = Cookies.get("sedherToken");
 
   const details = watch();
-
   const handleStep = (step: number) => {
     const body = {
       ...details,
+      criminalHistory: "None",
       idType: undefined,
       idName: undefined,
     };
