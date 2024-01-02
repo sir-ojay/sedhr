@@ -320,6 +320,10 @@ export type Snergi = {
     name: string;
     profilePicture: string;
   };
+  summary: string;
+  reference: string;
+  start: string;
+  end: string;
   code?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -356,19 +360,27 @@ export type CreateSnergiResponse = {
   message: string;
   error: string;
 };
+export type CreateEventRequest = {
+  token: string;
+  body: {};
+};
+
+export type CreateEventResponse = {
+  message: string;
+  error: string;
+};
 
 export type Booking = {
   description?: string;
   // synergy: string;
-  patients: 
-    {
-      firstName: string;
-      lastName: string;
-      age: string;
-      gender: string;
-      condition: string;
-      attachment: string[];
-    }[];
+  patients: {
+    firstName: string;
+    lastName: string;
+    age: string;
+    gender: string;
+    condition: string;
+    attachment: string[];
+  }[];
   appointment?: {
     dateSlot: string;
     selectedSlots: string[];

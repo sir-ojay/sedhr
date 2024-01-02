@@ -39,6 +39,8 @@ import {
   PutRFPApplicationRequest,
   UpdateBookingRequest,
   UpdateBookingResponse,
+  CreateEventResponse,
+  CreateEventRequest,
 
 } from "@/types/collaboration";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
@@ -187,6 +189,11 @@ export const collaboration = createApi({
         postRequest(`/synergies`, credentials.body, credentials.token),
       invalidatesTags: ["Synergi"],
     }),
+    createEvent: builder.mutation<CreateEventResponse, CreateEventRequest>({
+      query: (credentials) =>
+        postRequest(`/calendar-event/createvent`, credentials.body, credentials.token),
+      invalidatesTags: ["Synergi"],
+    }),
     createBooking: builder.mutation<
       CreateBookingResponse,
       CreateBookingRequest
@@ -253,4 +260,5 @@ export const {
   useGetBookingQuery,
   useUpdateBookingMutation,
   useGetAvailabilityQuery,
+  useCreateEventMutation,
 } = collaboration;

@@ -68,7 +68,7 @@ const Detail = () => {
       toast.error(err?.data?.message);
     }
   };
-  console.log({ user });
+  // console.log({ user });
   const config = {
     reference: uuid(),
     email: userDetails?.email.toLowerCase() as string,
@@ -78,7 +78,7 @@ const Detail = () => {
     paymentItem: "Sedher Subscription",
   };
   const onSuccess = (reference: void) => {
-    console.log(reference);
+    // console.log(reference);
     setTimeout(() => verifyPayment(reference as any), 2500);
   };
 
@@ -112,7 +112,7 @@ const Detail = () => {
     }
   }, [bookingData]);
 
-  console.log(synergi);
+  // console.log(synergi);
 
   const { data, isSuccess } = useGetBookingQuery({
     token,
@@ -132,13 +132,13 @@ const Detail = () => {
           status: "accepted",
         } as UpdateB,
       };
-      console.log("rfp data", cancelledData);
+      // console.log("rfp data", cancelledData);
       const resultRFP: any = await useUpdateBookingMutation(cancelledData).unwrap();
       toast.success("Booking cancelled successfully");
       console.log("result", resultRFP);
     } catch (err: any) {
       console.log("err", err);
-      toast.error(err?.data?.message || err.data.error);
+      toast.error(err?.data?.message || err?.data?.error);
     }
   };
 

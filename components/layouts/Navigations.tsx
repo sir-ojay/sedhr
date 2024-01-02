@@ -72,7 +72,7 @@ const Navigations = ({
                 aria-label={`link to ${item.name}`}
                 className="flex items-center cursor-pointer"
               >
-                {item.href && user?.hasOnboarded ? (
+                {item.href && user?.hasOnboarded && user?.accountStatus === "approved" ? (
                   <Link
                     href={`${item.href}${item.slug ? item.slug : ""}${
                       item.query ? item.query : ""
@@ -111,7 +111,7 @@ const Navigations = ({
         </div>
       ))}
 
-      {user?.hasOnboarded && user?.accountType === "business" && (
+      {user?.hasOnboarded && user?.accountStatus === "approved"   && user?.accountType === "business" && (
         <div className="flex flex-col gap-[2px] px-4">
           <p className="mt-5 mb-3 px-4 text-[#3772ff7f] text-xs xl:text-sm font-semibold">
             PAGES
@@ -124,7 +124,7 @@ const Navigations = ({
                 aria-label={`link to ${item.businessName}`}
                 className="flex items-center cursor-pointer"
               >
-                {item.link && user?.hasOnboarded ? (
+                {item.link && user?.hasOnboarded && user?.accountStatus === "approved"  ? (
                   <Link
                     href={`${item.link}${item.slug ? item.slug : ""}${
                       item.query ? item.query : ""
@@ -165,7 +165,7 @@ const Navigations = ({
             </>
           )}
 
-          {/* workimg on addimg condition */}
+          {/* workimg on adding condition */}
           <ul className="flex flex-col gap-[2px] px-4">
             {navigation.links.map((item) => (
               <li
@@ -174,7 +174,7 @@ const Navigations = ({
                 aria-label={`link to ${item.name}`}
                 className="flex items-center cursor-pointer"
               >
-                {item.href && user?.hasOnboarded ? (
+                {item.href && user?.hasOnboarded && user?.accountStatus === "approved"  ? (
                   <Link
                     href={`${item.href}${item.slug ? item.slug : ""}${
                       item.query ? item.query : ""
